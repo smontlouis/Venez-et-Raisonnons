@@ -1,14 +1,12 @@
-import { Record } from 'immutable';
+import { Map } from 'immutable';
 
 const TEST_ACTION = 'home/TEST_ACTION';
 
-const InitialState = Record({
+const initialState = Map({
   test: 14,
 });
 
-const initialState = new InitialState();
-
-export default function reducer(state = initialState, action = {}) {
+export default function HomeReducer(state = initialState, action = {}) {
   switch (action.type) {
     case TEST_ACTION: {
       return state.set('test', 2);

@@ -2,9 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 
 import Routes from './routes';
-import createStore from './redux/create';
-
-const store = createStore();
+import store from './redux/store';
 
 const PleadApp = () =>
   <Provider store={store}>

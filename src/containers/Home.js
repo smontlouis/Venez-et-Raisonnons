@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-
 import {
   StyleSheet,
   Text,
   View
 } from 'react-native';
-
 import * as HomeActions from '../redux/modules/home';
+import * as auth0 from '../services/auth0';
 
 
 const styles = StyleSheet.create({
@@ -38,6 +37,11 @@ const styles = StyleSheet.create({
   HomeActions,
 )
 export default class PleadApp extends Component {
+
+  componentDidMount() {
+    // auth0.showLogin();
+  }
+
   render() {
     const {
       test,
