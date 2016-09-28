@@ -1,5 +1,4 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import {
@@ -37,38 +36,35 @@ const userIsNotLogged = (nextState, replace) => {
 };
 
 const Routes = () =>
-  <Provider store={store}>
-    <Router history={nativeHistory} addressBar>
-      <TabsRoute
-        path="master"
-        component={Master}
-        transition="horizontal-pager"
-        onEnter={userIsLogged}
-      >
-        <Route
-          path="/"
-          component={Topics}
-        />
-        <Route
-          path="/favorites"
-          component={Favorites}
-        />
-        <Route
-          path="/profile"
-          component={Profile}
-        />
-        <Route
-          path="/more"
-          component={More}
-        />
-      </TabsRoute>
+  <Router history={nativeHistory} addressBar>
+    <TabsRoute
+      path="master"
+      component={Master}
+      onEnter={userIsLogged}
+    >
       <Route
-        path="/login"
-        component={Login}
-        onEnter={userIsNotLogged}
+        path="/"
+        component={Topics}
       />
-    </Router>
-  </Provider>
+      <Route
+        path="/favorites"
+        component={Favorites}
+      />
+      <Route
+        path="/profile"
+        component={Profile}
+      />
+      <Route
+        path="/more"
+        component={More}
+      />
+    </TabsRoute>
+    <Route
+      path="/login"
+      component={Login}
+      onEnter={userIsNotLogged}
+    />
+  </Router>
 ;
 
 export default Routes;

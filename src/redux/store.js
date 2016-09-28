@@ -1,8 +1,5 @@
 import { createStore, compose } from 'redux';
-import { autoRehydrate, persistStore } from 'redux-persist';
-import immutableTransform from 'redux-persist-transform-immutable';
-import { AsyncStorage } from 'react-native';
-
+import { autoRehydrate } from 'redux-persist';
 import reducer from './modules/reducer';
 
 let store;
@@ -21,12 +18,5 @@ if (__DEV__) {
     autoRehydrate()
   )(createStore)(reducer);
 }
-
-persistStore(store, {
-  storage: AsyncStorage,
-  transforms: [immutableTransform()]
-}, () => {
-  console.log('store rehydrated');
-});
 
 export default store;

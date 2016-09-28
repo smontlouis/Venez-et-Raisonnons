@@ -1,5 +1,4 @@
 import { AppRegistry } from 'react-native';
-import Routes from './src/routes';
-import './reactotron';
+import App from './src/App';
 
-AppRegistry.registerComponent('PleadApp', () => Routes);
+AppRegistry.registerComponent('PleadApp', () => App);
