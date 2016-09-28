@@ -56,6 +56,7 @@ export function showLogin() {
     }
 
     // Authentication worked!
+    console.log('Success');
     store.dispatch(AuthStateActions.onUserLoginSuccess(profile, token));
   });
 }

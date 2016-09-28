@@ -1,29 +1,32 @@
 import { createStore, compose } from 'redux';
-// import Reactotron from 'reactotron-react-native';
+import { autoRehydrate, persistStore } from 'redux-persist';
+import immutableTransform from 'redux-persist-transform-immutable';
+import { AsyncStorage } from 'react-native';
 
 import reducer from './modules/reducer';
 
 let store;
 
 if (__DEV__) {
-  // const devTools = require('remote-redux-devtools');
-  // const createTrackingEnhancer = require('reactotron-redux');
-  // const reactotronEnhancer = createTrackingEnhancer(Reactotron);
-
-  store = createStore(reducer, compose(
-    // reactotronEnhancer,
-    global.reduxNativeDevTools ?
-      global.reduxNativeDevTools(/*options*/) :
-      noop => noop,
-    // devTools(),
-  ));
+  store = compose(
+    autoRehydrate(),
+    global.reduxNativeDevTools ? global.reduxNativeDevTools() : noop => noop,
+  )(createStore)(reducer);
 
   if (global.reduxNativeDevTools) {
     global.reduxNativeDevTools.updateStore(store);
   }
-  // devTools.updateStore(store);
 } else {
-  store = createStore(reducer);
+  store = compose(
+    autoRehydrate()
+  )(createStore)(reducer);
 }
+
+persistStore(store, {
+  storage: AsyncStorage,
+  transforms: [immutableTransform()]
+}, () => {
+  console.log('store rehydrated');
+});
 
 export default store;
