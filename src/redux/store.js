@@ -1,22 +1,38 @@
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { autoRehydrate } from 'redux-persist';
+import { install } from 'redux-loop';
 import reducer from './modules/reducer';
 
-let store;
+export default function configureStore() {
+  let store;
 
-if (__DEV__) {
-  store = compose(
-    autoRehydrate(),
-    global.reduxNativeDevTools ? global.reduxNativeDevTools() : noop => noop,
-  )(createStore)(reducer);
+  if (__DEV__) {
+    store = compose(
+      install(),
+      autoRehydrate(),
+      applyMiddleware(thunk),
+      global.reduxNativeDevTools ? global.reduxNativeDevTools() : noop => noop,
+    )(createStore)(reducer);
 
-  if (global.reduxNativeDevTools) {
-    global.reduxNativeDevTools.updateStore(store);
+    if (global.reduxNativeDevTools) {
+      global.reduxNativeDevTools.updateStore(store);
+    }
+
+    if (module.hot) {
+      module.hot.accept(() => {
+        const nextRootReducer = require('./modules/reducer').default;
+
+        store.replaceReducer(nextRootReducer);
+      });
+    }
+  } else {
+    store = compose(
+      install(),
+      autoRehydrate(),
+      applyMiddleware(thunk),
+    )(createStore)(reducer);
   }
-} else {
-  store = compose(
-    autoRehydrate()
-  )(createStore)(reducer);
-}
 
-export default store;
+  return store;
+}

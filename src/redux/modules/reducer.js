@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-loop';
 import { routerReducer } from 'react-router-redux';
 
 import topics from './topics';

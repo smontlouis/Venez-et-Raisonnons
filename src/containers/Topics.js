@@ -1,11 +1,10 @@
-import React, { PropTypes } from 'react';
-import { Actions } from 'react-native-router-flux';
+import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import {
   StyleSheet,
-  Text,
   View
 } from 'react-native';
+import TopicsList from '../components/TopicsList';
 import * as TopicsActions from '../redux/modules/topics';
 
 
@@ -18,17 +17,30 @@ const styles = StyleSheet.create({
   },
 });
 
-const Topics = () =>
-  <View style={styles.container}>
-    <Text>
-      TOPICS
-    </Text>
-  </View>
-;
 
-export default connect(
+@connect(
   state => ({
-
+    topics: state.topics.get('topics'),
   }),
   TopicsActions,
-)(Topics);
+)
+export default class Topics extends Component {
+  static propTypes = {
+    loadTopics: PropTypes.func.isRequired,
+    topics: PropTypes.object.isRequired,
+  }
+
+  componentDidMount() {
+    const { loadTopics } = this.props;
+    loadTopics();
+  }
+
+  render() {
+    const { topics } = this.props;
+    return (
+      <View style={styles.container}>
+        <TopicsList topics={topics} />
+      </View>
+    );
+  }
+}

@@ -18,53 +18,50 @@ import {
   Login,
 } from './containers';
 
-import store from './redux/store';
+export default function (store) {
+  const history = syncHistoryWithStore(nativeHistory, store);
 
-const history = syncHistoryWithStore(nativeHistory, store);
+  const userIsLogged = (nextState, replace) => {
+    if (!store.getState().auth.get('isLoggedIn')) {
+      replace('/login');
+    }
+  };
 
-const userIsLogged = (nextState, replace) => {
-  if (!store.getState().auth.get('isLoggedIn')) {
-    console.log('replaceByLogin');
-    replace('/login');
-  }
-};
+  const userIsNotLogged = (nextState, replace) => {
+    if (store.getState().auth.get('isLoggedIn')) {
+      replace('/');
+    }
+  };
 
-const userIsNotLogged = (nextState, replace) => {
-  if (store.getState().auth.get('isLoggedIn')) {
-    replace('/');
-  }
-};
-
-const Routes = () =>
-  <Router history={nativeHistory} addressBar>
-    <TabsRoute
-      path="master"
-      component={Master}
-      onEnter={userIsLogged}
-    >
+  return (
+    <Router history={nativeHistory} addressBar>
+      <TabsRoute
+        path="master"
+        component={Master}
+        onEnter={userIsLogged}
+      >
+        <Route
+          path="/"
+          component={Topics}
+        />
+        <Route
+          path="/favorites"
+          component={Favorites}
+        />
+        <Route
+          path="/profile"
+          component={Profile}
+        />
+        <Route
+          path="/more"
+          component={More}
+        />
+      </TabsRoute>
       <Route
-        path="/"
-        component={Topics}
+        path="/login"
+        component={Login}
+        onEnter={userIsNotLogged}
       />
-      <Route
-        path="/favorites"
-        component={Favorites}
-      />
-      <Route
-        path="/profile"
-        component={Profile}
-      />
-      <Route
-        path="/more"
-        component={More}
-      />
-    </TabsRoute>
-    <Route
-      path="/login"
-      component={Login}
-      onEnter={userIsNotLogged}
-    />
-  </Router>
-;
-
-export default Routes;
+    </Router>
+  );
+}

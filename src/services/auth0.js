@@ -3,10 +3,14 @@ import { Platform } from 'react-native';
 
 import env from '../../env';
 import * as AuthStateActions from '../redux/modules/auth';
-import store from '../redux/store';
+import { store } from '../App';
 
-const clientId = env.AUTH0_CLIENT_ID;
-const domain = env.AUTH0_DOMAIN;
+const {
+  clientId,
+  domain
+} = env.auth0;
+
+
 const authenticationEnabled = clientId && domain;
 
 let lock = null;
@@ -56,7 +60,6 @@ export function showLogin() {
     }
 
     // Authentication worked!
-    console.log('Success');
     store.dispatch(AuthStateActions.onUserLoginSuccess(profile, token));
   });
 }

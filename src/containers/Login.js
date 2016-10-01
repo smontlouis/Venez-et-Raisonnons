@@ -28,9 +28,8 @@ const styles = StyleSheet.create({
 
 
 @connect(
-  ({ auth, app }) => ({
+  ({ auth }) => ({
     isLoggedIn: auth.get('isLoggedIn'),
-    isReady: app.get('isRehydrated'),
   }),
   null,
 )
@@ -38,12 +37,11 @@ const styles = StyleSheet.create({
 export default class Login extends Component {
   static propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
-    isReady: PropTypes.bool.isRequired,
   }
 
   componentDidMount() {
-    const { isReady, isLoggedIn } = this.props;
-    if (!isLoggedIn && isReady) {
+    const { isLoggedIn } = this.props;
+    if (!isLoggedIn) {
       auth0.showLogin();
     }
   }
@@ -57,16 +55,6 @@ export default class Login extends Component {
   }
 
   render() {
-    const { isReady } = this.props;
-
-    if (!isReady) {
-      return (
-        <View>
-          <ActivityIndicator style={styles.centered} />
-        </View>
-      );
-    }
-
     return (
       <View style={styles.container}>
         <Text>

@@ -9,8 +9,10 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
-import Routes from './routes';
-import store from './redux/store';
+import routes from './routes';
+import configureStore from './redux/store';
+
+export const store = configureStore();
 
 const styles = StyleSheet.create({
   container: {
@@ -39,7 +41,6 @@ class App extends Component {
       storage: AsyncStorage,
       transforms: [immutableTransform()]
     }, () => {
-      console.log('store rehydrated');
       this.setState({ rehydrated: true });
     });
   }
@@ -54,7 +55,7 @@ class App extends Component {
     }
     return (
       <Provider store={store}>
-        <Routes />
+        { routes(store) }
       </Provider>
     );
   }
