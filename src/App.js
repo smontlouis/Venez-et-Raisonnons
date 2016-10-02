@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import immutableTransform from 'redux-persist-transform-immutable';
 import { persistStore } from 'redux-persist';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import {
   AsyncStorage,
   StyleSheet,
@@ -11,8 +12,11 @@ import {
 
 import routes from './routes';
 import configureStore from './redux/store';
+import globalVariables from './helpers/globalVariables';
 
 export const store = configureStore();
+EStyleSheet.build(globalVariables);
+
 
 const styles = StyleSheet.create({
   container: {
@@ -48,6 +52,7 @@ class App extends Component {
   render() {
     if (!this.state.rehydrated) {
       return (
+        // @TODO - Create a loading component
         <View style={styles.container}>
           <ActivityIndicator style={styles.centered} />
         </View>

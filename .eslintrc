@@ -16,6 +16,7 @@
     "indent": [2, 2, {"SwitchCase": 1}],
     "global-require": 0,
     "no-console": 0,
+    "no-underscore-dangle": 0,
     "no-alert": 0,
     "id-length": 0,
     "func-names": 0,

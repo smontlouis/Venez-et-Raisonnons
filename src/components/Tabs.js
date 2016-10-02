@@ -1,15 +1,11 @@
-import React, { PropTypes } from 'react';
-import { Link } from 'react-router-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import React from 'react';
 
 import {
   View,
-  Text,
   StyleSheet,
 } from 'react-native';
 
-import combineStyles from '../helpers/combineStyles';
-
+import Tab from './Tab';
 
 const styles = StyleSheet.create({
   tabs: {
@@ -58,33 +54,17 @@ const links = [
   }
 ];
 
-const Tabs = () => {
-  const IconStyles = combineStyles({
-    tabLink: true,
-    tabLinkActive: false,
-  }, styles);
-  return (
-    <View style={styles.tabs}>
-      {links.map(({ to, icon, label }, i) =>
-        <Link
-          key={i}
-          to={to}
-          style={styles.tabLink}
-          underlayColor="transparent"
-          activeOpacity={0.5}
-        >
-          <View style={styles.tabContainer}>
-            <Icon name={icon} size={24} color="#BFBFBF" />
-            <Text style={styles.tabLinkText}>{label}</Text>
-          </View>
-        </Link>
-      )}
-    </View>
-  );
-};
-
-Tabs.PropTypes = {
-
-};
+const Tabs = () =>
+  <View style={styles.tabs}>
+    {links.map(({ to, icon, label }, i) =>
+      <Tab
+        key={i}
+        to={to}
+        icon={icon}
+        label={label}
+      />
+    )}
+  </View>
+;
 
 export default Tabs;
