@@ -1,16 +1,16 @@
+import R from 'ramda';
 import { Map, fromJS } from 'immutable';
-import { Effects, loop } from 'redux-loop';
 import { firebaseDb } from '../../services/firebase';
 
 const Topics = firebaseDb.ref('topic');
 
 const LOAD_TOPICS = 'topics/LOAD_TOPICS';
-const LOAD_TOPICS_SUCCESS = 'topics/LOAD_TOPICS_SUCCESS';
+export const LOAD_TOPICS_SUCCESS = 'topics/LOAD_TOPICS_SUCCESS';
 const LOAD_TOPICS_FAIL = 'topics/LOAD_TOPICS_FAIL';
 
 const initialState = Map({
   isLoading: false,
-  topics: null,
+  topics: Map(),
 });
 
 
@@ -39,13 +39,6 @@ export function loadTopics() {
   };
 }
 
-// function fetchTopics() {
-//   return Topics.once('value')
-//     .then(snapshot => snapshot.val())
-//     .then(loadTopicsSuccess)
-//     .catch(loadTopicsFail);
-// }
-
 
 export default function TopicsReducer(state = initialState, action = {}) {
   switch (action.type) {
@@ -53,9 +46,10 @@ export default function TopicsReducer(state = initialState, action = {}) {
       return state.set('isLoading', true);
     }
     case LOAD_TOPICS_SUCCESS: {
+      const topics = R.mapObjIndexed((val, id) => ({ id, ...val }), action.payload);// add id as key
       return state
               .set('isLoading', false)
-              .set('topics', fromJS(action.payload));
+              .update('topics', t => t.merge(fromJS(topics)));
     }
 
     case LOAD_TOPICS_FAIL: {

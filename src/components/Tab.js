@@ -40,8 +40,6 @@ const Tab = ({ to, icon, label, router }) => {
     tabTextActive: router.isActive(to),
   }, styles);
 
-  console.log(styles);
-
   return (
     <Link
       to={to}

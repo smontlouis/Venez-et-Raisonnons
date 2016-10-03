@@ -3,7 +3,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 
 import {
   Route,
-  // StackRoute,
+  StackRoute,
   TabsRoute,
   Router,
   nativeHistory,
@@ -12,6 +12,7 @@ import {
 import {
   Master,
   Topics,
+  Topic,
   Favorites,
   Profile,
   More,
@@ -61,6 +62,10 @@ export default function (store) {
         path="/login"
         component={Login}
         onEnter={userIsNotLogged}
+      />
+      <Route
+        path="topics/:topicId"
+        component={Topic}
       />
     </Router>
   );

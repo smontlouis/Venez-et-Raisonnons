@@ -21,25 +21,29 @@ const styles = StyleSheet.create({
 @connect(
   state => ({
     topics: state.topics.get('topics'),
+    isListening: state.app.get('topicsListening')
   }),
   TopicsActions,
 )
 export default class Topics extends Component {
   static propTypes = {
+    isListening: PropTypes.bool.isRequired,
     loadTopics: PropTypes.func.isRequired,
     topics: PropTypes.object.isRequired,
   }
 
   componentDidMount() {
-    const { loadTopics } = this.props;
-    loadTopics();
+    const { loadTopics, isListening } = this.props;
+    !isListening && loadTopics();
   }
 
   render() {
     const { topics } = this.props;
     return (
       <View style={styles.container}>
-        <TopicsList topics={topics} />
+        <TopicsList
+          topics={topics}
+        />
       </View>
     );
   }

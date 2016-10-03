@@ -43,6 +43,7 @@ class App extends Component {
   componentWillMount() {
     persistStore(store, {
       storage: AsyncStorage,
+      blacklist: ['app'],
       transforms: [immutableTransform()]
     }, () => {
       this.setState({ rehydrated: true });

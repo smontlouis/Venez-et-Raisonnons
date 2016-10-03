@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router-native';
 import {
   StyleSheet,
   ListView,
   Text,
-  TouchableHighlight,
   View
 } from 'react-native';
 
@@ -31,6 +31,7 @@ class TopicsList extends Component {
     });
 
     const data = props.topics;
+
     this.state = {
       dataSource: dataSource.cloneWithRows(data.toJS())
     };
@@ -47,20 +48,13 @@ class TopicsList extends Component {
     }
   }
 
-  onPressButton(rowID, rowData) {
-    console.log(rowData);
-  }
-
-  renderRow(rowData, rowID) {
-    console.log(rowData);
+  renderRow({ id, title }) {
     return (
-      <TouchableHighlight underlayColor={'#ccc'} onPress={() => this.onPressButton(rowID, rowData)}>
-        <View>
-          <View style={styles.row}>
-            <Text style={styles.text}>{rowData.title}</Text>
-          </View>
+      <Link to={`/topics/${id}`}>
+        <View style={styles.row}>
+          <Text style={styles.text}>{title}</Text>
         </View>
-      </TouchableHighlight>
+      </Link>
     );
   }
 
