@@ -1,3 +1,5 @@
+
+import R from 'ramda';
 import { Map, fromJS } from 'immutable';
 import { firebaseDb } from '../../services/firebase';
 
@@ -46,9 +48,11 @@ export default function QuestionsReducer(state = initialState, action = {}) {
       return state.set('isLoading', true);
     }
     case LOAD_QUESTIONS_SUCCESS: {
+      // Here we're just adding id as a key (will be needed duh)
+      const questions = R.mapObjIndexed((val, id) => ({ id, ...val }), action.questions);
       return state
               .set('isLoading', false)
-              .update('questions', q => q.merge(fromJS(action.questions)));
+              .update('questions', q => q.merge(fromJS(questions)));
     }
 
     case LOAD_QUESTIONS_FAIL: {

@@ -17,13 +17,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const TopicsList = ({ topics }) =>
+const QuestionsList = ({ questions }) =>
   <List
-    listItems={topics}
+    listItems={questions}
     renderRow={
       function ({ id, title }) {
         return (
-          <Link to={`/topics/${id}`}>
+          <Link to={`/questions/${id}`}>
             <View style={styles.row}>
               <Text style={styles.text}>{title}</Text>
             </View>
@@ -34,8 +34,8 @@ const TopicsList = ({ topics }) =>
   />
 ;
 
-TopicsList.propTypes = {
-  topics: PropTypes.object.isRequired,
+QuestionsList.propTypes = {
+  questions: PropTypes.object.isRequired,
 };
 
-export default TopicsList;
+export default QuestionsList;

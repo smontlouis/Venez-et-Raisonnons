@@ -8,11 +8,11 @@ const initialState = Map({
   isRehydrated: false,
 
   /*
-    I could have put those states in their own respective reducers.
+    I could have put those boolean listeners in their own respective reducers.
     But because I'm using redux persist and that I'm not able for now to disallow
     persist storage for a subState (redux-persist-transform-filter don't work
     with immutable Data and I'm too lazy to know why), I'm just putting this here
-    by addind this whole reducer in the redux-persist's blacklist.
+    and I added this whole reducer as blacklisted by redux-persist.
     I don't want the app to listen multiple times firebase, so I've made this.
   */
   hasTopicsListening: false,
