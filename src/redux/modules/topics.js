@@ -46,7 +46,8 @@ export default function TopicsReducer(state = initialState, action = {}) {
       return state.set('isLoading', true);
     }
     case LOAD_TOPICS_SUCCESS: {
-      const topics = R.mapObjIndexed((val, id) => ({ id, ...val }), action.payload);// add id as key
+      // Here we're just adding id as a key (will be needed duh)
+      const topics = R.mapObjIndexed((val, id) => ({ id, ...val }), action.payload);
       return state
               .set('isLoading', false)
               .update('topics', t => t.merge(fromJS(topics)));

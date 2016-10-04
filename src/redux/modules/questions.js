@@ -13,10 +13,11 @@ const initialState = Map({
 });
 
 
-export function loadQuestionsSuccess(questions) {
+export function loadQuestionsSuccess(questions, topicId) {
   return {
     type: LOAD_QUESTIONS_SUCCESS,
-    payload: questions,
+    questions,
+    topicId,
   };
 }
 
@@ -33,7 +34,7 @@ export function loadQuestions(topicId) {
     });
 
     Questions.orderByChild('topic').equalTo(topicId).on('value', (snapshot) => {
-      dispatch(loadQuestionsSuccess(snapshot.val()));
+      dispatch(loadQuestionsSuccess(snapshot.val(), topicId));
     });
   };
 }
@@ -47,7 +48,7 @@ export default function QuestionsReducer(state = initialState, action = {}) {
     case LOAD_QUESTIONS_SUCCESS: {
       return state
               .set('isLoading', false)
-              .update('questions', q => q.merge(fromJS(action.payload)));
+              .update('questions', q => q.merge(fromJS(action.questions)));
     }
 
     case LOAD_QUESTIONS_FAIL: {

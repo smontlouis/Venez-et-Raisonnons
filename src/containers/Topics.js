@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 @connect(
   state => ({
     topics: state.topics.get('topics'),
-    isListening: state.app.get('topicsListening')
+    isListening: state.app.get('hasTopicsListening')
   }),
   TopicsActions,
 )
