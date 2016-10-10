@@ -17,6 +17,7 @@ import {
   Profile,
   More,
   Login,
+  Question,
 } from './containers';
 
 export default function (store) {
@@ -66,6 +67,10 @@ export default function (store) {
       <Route
         path="topics/:topicId"
         component={Topic}
+      />
+      <Route
+        path="questions/:questionId"
+        component={Question}
       />
     </Router>
   );
