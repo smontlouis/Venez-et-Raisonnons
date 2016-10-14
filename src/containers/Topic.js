@@ -41,14 +41,14 @@ export default class Topic extends Component {
   }
 
   render() {
-    const { topic: { title, questionsCount }, questions } = this.props;
+    const { topic, questions } = this.props;
 
     return (
-      <ScrollableHeader title={title}>
+      <ScrollableHeader title={topic.get('title')}>
         <QuestionsList
           questions={questions}
-          questionsCount={questionsCount}
-          headerTitle={title}
+          questionsCount={topic.get('questionsCount')}
+          headerTitle={topic.get('title')}
         />
       </ScrollableHeader>
     );
