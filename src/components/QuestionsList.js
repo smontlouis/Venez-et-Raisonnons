@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {
   Text,
   View
 } from 'react-native';
 
-import { List, QuestionItem } from '../components';
+import List from './List';
+import QuestionItem from './QuestionItem';
 
 const styles = EStyleSheet.create({
   container: {

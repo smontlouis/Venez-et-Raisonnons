@@ -2,13 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import {
   StyleSheet,
   View,
-  StatusBar,
 } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
   }
 });
 
@@ -22,9 +20,6 @@ export default class Master extends Component {
 
     return (
       <View style={styles.container}>
-        <StatusBar
-          barStyle="light-content"
-        />
         {children}
       </View>
     );

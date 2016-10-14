@@ -2,6 +2,10 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import R from 'ramda';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import {
+  View,
+} from 'react-native';
 import {
   QuestionsList,
   ScrollableHeader,
@@ -17,6 +21,13 @@ const getQuestionsByTopic = createSelector(
   [getCurrentTopic, getQuestions],
   (currentTopic, questions) => R.filter(question => (question.get('topic') === currentTopic.get('id')), questions),
 );
+
+const styles = EStyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+});
 
 @connect(
   (state, ownProps) => ({
@@ -44,13 +55,15 @@ export default class Topic extends Component {
     const { topic, questions } = this.props;
 
     return (
-      <ScrollableHeader title={topic.get('title')}>
-        <QuestionsList
-          questions={questions}
-          questionsCount={topic.get('questionsCount')}
-          headerTitle={topic.get('title')}
-        />
-      </ScrollableHeader>
+      <View style={styles.container}>
+        <ScrollableHeader title={topic.get('title')}>
+          <QuestionsList
+            questions={questions}
+            questionsCount={topic.get('questionsCount')}
+            headerTitle={topic.get('title')}
+          />
+        </ScrollableHeader>
+      </View>
     );
   }
 }

@@ -1,8 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import {
-  StyleSheet,
-  View
+  View,
 } from 'react-native';
 import {
     TopicsList,
@@ -11,7 +11,7 @@ import {
 import * as TopicsActions from '../redux/modules/topics';
 
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -40,6 +40,7 @@ export default class Topics extends Component {
 
   render() {
     const { topics } = this.props;
+
     return (
       <View style={styles.container}>
         <SearchHeader />

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router-native';
-import Icon from 'react-native-vector-icons/Entypo';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {
   Text,
   View,
@@ -15,7 +15,9 @@ const styles = EStyleSheet.create({
     borderBottomWidth: 1,
     borderStyle: 'solid',
     borderBottomColor: '$color.grey',
-    marginRight: 10,
+    paddingRight: 20,
+    paddingTop: 25,
+    paddingBottom: 25,
   },
   content: {
     flex: 1,
@@ -24,6 +26,9 @@ const styles = EStyleSheet.create({
     fontFamily: '$font.heading',
     fontSize: 22,
   },
+  icon: {
+    color: '$color.primary'
+  }
 });
 
 const QuestionItem = ({ id, title }) => (
@@ -37,7 +42,7 @@ const QuestionItem = ({ id, title }) => (
         <Text style={styles.title}>{title}</Text>
       </View>
       <View>
-        <Icon name="chevron-thin-right" size={24} color={styles._container.borderBottomColor} />
+        <Icon name="md-arrow-round-forward" size={20} color={styles._icon.color} />
       </View>
     </View>
   </Link>

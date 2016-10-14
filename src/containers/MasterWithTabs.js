@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {
   StyleSheet,
   View,
+  StatusBar,
 } from 'react-native';
 
 import { Tabs } from '../components';
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class Master extends Component {
+export default class MasterWithTabs extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired,
   }
@@ -23,6 +24,9 @@ export default class Master extends Component {
 
     return (
       <View style={styles.container}>
+        <StatusBar
+          barStyle="light-content"
+        />
         {children}
         <Tabs />
       </View>
