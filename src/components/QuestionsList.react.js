@@ -6,7 +6,7 @@ import {
   View
 } from 'react-native';
 
-import { List, QuestionItem } from '../components';
+import List from './List';
 
 const styles = EStyleSheet.create({
   container: {
@@ -19,41 +19,33 @@ const styles = EStyleSheet.create({
   },
   subTitleText: {
     fontFamily: '$font.title_italic',
-    fontSize: 13,
-    lineHeight: 13,
-  },
-  titleBorder: {
-    marginTop: 20,
-    marginBottom: 40,
-    width: 35,
-    height: 3,
-    backgroundColor: '$color.primary',
+    fontSize: 34,
   }
 });
 
-function renderHeader(headerTitle, questionsCount) {
+function renderHeader(headerTitle) {
   return function () {
     return (
       <View>
         <Text style={styles.titleText}>{headerTitle}</Text>
-        <Text style={styles.subTitleText}>{`${questionsCount} questioens`}</Text>
-        <View style={styles.titleBorder} />
+        <Text style={styles.subTitleText}>{'14 questions'}</Text>
       </View>
     );
   };
 }
 
-const QuestionsList = ({ questions, headerTitle, questionsCount, style, ...props }) =>
+const QuestionsList = ({ questions, headerTitle, style, ...props }) =>
   <List
     listItems={questions}
-    renderHeader={renderHeader(headerTitle, questionsCount)}
+    renderHeader={renderHeader(headerTitle)}
     renderRow={
       function ({ id, title }) {
         return (
-          <QuestionItem
-            id={id}
-            title={title}
-          />
+          <Link to={`/questions/${id}`}>
+            <View style={styles.row}>
+              <Text style={styles.text}>{title}</Text>
+            </View>
+          </Link>
         );
       }
     }
@@ -64,7 +56,6 @@ const QuestionsList = ({ questions, headerTitle, questionsCount, style, ...props
 
 QuestionsList.propTypes = {
   questions: PropTypes.object.isRequired,
-  questionsCount: PropTypes.number.isRequired,
   headerTitle: PropTypes.string.isRequired,
   style: PropTypes.number,
 };

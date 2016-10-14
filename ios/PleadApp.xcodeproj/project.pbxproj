@@ -38,6 +38,7 @@
 		F41274D51DAB860A001C83BE /* metaserif_light_italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F41274D11DAB860A001C83BE /* metaserif_light_italic.otf */; };
 		F41274D61DAB860A001C83BE /* metaserif_light.otf in Resources */ = {isa = PBXBuildFile; fileRef = F41274D21DAB860A001C83BE /* metaserif_light.otf */; };
 		F41274D71DAB860A001C83BE /* metaserif.otf in Resources */ = {isa = PBXBuildFile; fileRef = F41274D31DAB860A001C83BE /* metaserif.otf */; };
+		F41274D91DAB933B001C83BE /* alternategothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F41274D81DAB933B001C83BE /* alternategothic.otf */; };
 		FF4877ECFE324CF39F072DF4 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAD2988DF70E42ED98E11B5F /* Entypo.ttf */; };
 /* End PBXBuildFile section */
 
@@ -178,6 +179,7 @@
 		F41274D11DAB860A001C83BE /* metaserif_light_italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = metaserif_light_italic.otf; sourceTree = "<group>"; };
 		F41274D21DAB860A001C83BE /* metaserif_light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = metaserif_light.otf; sourceTree = "<group>"; };
 		F41274D31DAB860A001C83BE /* metaserif.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = metaserif.otf; sourceTree = "<group>"; };
+		F41274D81DAB933B001C83BE /* alternategothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alternategothic.otf; sourceTree = "<group>"; };
 		F88DB2ADBD0A477F9B94DA64 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -323,6 +325,7 @@
 		209DA77B37464AB7A82F638A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F41274D81DAB933B001C83BE /* alternategothic.otf */,
 				F41274D01DAB860A001C83BE /* metaserif_bold_italic.otf */,
 				F41274D11DAB860A001C83BE /* metaserif_light_italic.otf */,
 				F41274D21DAB860A001C83BE /* metaserif_light.otf */,
@@ -652,6 +655,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				F41274D91DAB933B001C83BE /* alternategothic.otf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				FF4877ECFE324CF39F072DF4 /* Entypo.ttf in Resources */,
 				6B79F39DBC074AA9A3D24DCB /* EvilIcons.ttf in Resources */,
@@ -835,6 +839,12 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
+				New_Setting = "";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PleadApp.app/PleadApp";
 			};
@@ -853,6 +863,12 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				New_Setting = "";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PleadApp.app/PleadApp";

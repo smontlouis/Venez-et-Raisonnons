@@ -1,7 +1,8 @@
 {
-  "presets": ["react-native"],
+  "presets": ["es2015", "react-native"],
   "plugins":
   [
+    ["extensible-destructuring", {"mode": "optout", "impl": "immutable"}],
     "transform-export-extensions",
     "transform-decorators-legacy"
   ]

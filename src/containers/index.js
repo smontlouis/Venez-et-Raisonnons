@@ -6,3 +6,4 @@ export More from './More';
 export Master from './Master';
 export Login from './Login';
 export Question from './Question';
+export MasterWithTabs from './MasterWithTabs';

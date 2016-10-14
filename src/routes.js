@@ -3,14 +3,15 @@ import { syncHistoryWithStore } from 'react-router-redux';
 
 import {
   Route,
-  StackRoute,
   TabsRoute,
+  StackRoute,
   Router,
   nativeHistory,
 } from 'react-router-native';
 
 import {
   Master,
+  MasterWithTabs,
   Topics,
   Topic,
   Favorites,
@@ -20,8 +21,12 @@ import {
   Question,
 } from './containers';
 
+
 export default function (store) {
   const history = syncHistoryWithStore(nativeHistory, store);
+
+  // Set current path to '/'
+  history.push('/');
 
   const userIsLogged = (nextState, replace) => {
     if (!store.getState().auth.get('isLoggedIn')) {
@@ -36,11 +41,15 @@ export default function (store) {
   };
 
   return (
-    <Router history={nativeHistory} addressBar>
+    <Router
+      history={history}
+      // addressBar
+    >
       <TabsRoute
-        path="master"
-        component={Master}
+        path="mainApp"
+        component={MasterWithTabs}
         onEnter={userIsLogged}
+        transition="horizontal-pager"
       >
         <Route
           path="/"
@@ -59,19 +68,25 @@ export default function (store) {
           component={More}
         />
       </TabsRoute>
-      <Route
-        path="/login"
-        component={Login}
-        onEnter={userIsNotLogged}
-      />
-      <Route
-        path="topics/:topicId"
-        component={Topic}
-      />
-      <Route
-        path="questions/:questionId"
-        component={Question}
-      />
+      <StackRoute
+        path="fullscreen"
+        component={Master}
+        transition="horizontal-card-stack"
+      >
+        <Route
+          path="/topics/:topicId"
+          component={Topic}
+        />
+        <Route
+          path="/questions/:questionId"
+          component={Question}
+        />
+        <Route
+          path="/login"
+          component={Login}
+          onEnter={userIsNotLogged}
+        />
+      </StackRoute>
     </Router>
   );
 }

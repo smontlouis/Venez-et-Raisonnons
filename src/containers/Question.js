@@ -5,15 +5,13 @@ import {
   View,
   Text,
 } from 'react-native';
+import { Header } from '../components';
 import * as QuestionsActions from '../redux/modules/questions';
 
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
 });
 
@@ -34,6 +32,7 @@ export default class Question extends Component {
     const { question } = this.props;
     return (
       <View style={styles.container}>
+        <Header title="Question" />
         <Text>Question { question.get('title') }</Text>
       </View>
     );

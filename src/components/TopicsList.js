@@ -7,27 +7,27 @@ import {
 } from 'react-native';
 
 import List from './List';
+import TopicItem from './TopicItem';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
 });
 
 const TopicsList = ({ topics }) =>
   <List
+    style={styles.container}
     listItems={topics}
     renderRow={
-      function ({ id, title }) {
+      function ({ id, title, questionsCount }) {
         return (
-          <Link to={`/topics/${id}`}>
-            <View style={styles.row}>
-              <Text style={styles.text}>{title}</Text>
-            </View>
-          </Link>
+          <TopicItem
+            id={id}
+            title={title}
+            questionsCount={questionsCount}
+            to={`/topics/${id}`}
+          />
         );
       }
     }

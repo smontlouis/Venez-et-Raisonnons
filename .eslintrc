@@ -23,6 +23,9 @@
     "func-names": 0,
     "new-cap": 0,
     "no-unused-vars": 1,
+    "react/jsx-closing-bracket-location": 1,
+    "react/jsx-indent-props": 1,
+    "react/jsx-indent": 1
   },
   "plugins": [
     "react",

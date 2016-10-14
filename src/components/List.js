@@ -35,12 +35,13 @@ class List extends Component {
   }
 
   render() {
-    const { renderRow } = this.props;
+    const { style, ...props } = this.props;
 
     return (
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={renderRow}
+        contentContainerStyle={style}
+        {...props}
       />
     );
   }

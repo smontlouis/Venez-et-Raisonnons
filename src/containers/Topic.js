@@ -3,22 +3,10 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import R from 'ramda';
 import {
-  StyleSheet,
-  View,
-  Text,
-} from 'react-native';
-import QuestionsList from '../components/QuestionsList';
+  QuestionsList,
+  ScrollableHeader,
+} from '../components';
 import * as QuestionsActions from '../redux/modules/questions';
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-});
 
 
 const getCurrentTopic = (state, props) => state.topics.get('topics').get(props.params.topicId);
@@ -38,7 +26,7 @@ const getQuestionsByTopic = createSelector(
   }),
   QuestionsActions,
 )
-export default class Topics extends Component {
+export default class Topic extends Component {
   static propTypes = {
     isListening: PropTypes.bool,
     loadQuestions: PropTypes.func.isRequired,
@@ -53,15 +41,16 @@ export default class Topics extends Component {
   }
 
   render() {
-    const { topic, questions } = this.props;
+    const { topic: { title, questionsCount }, questions } = this.props;
 
     return (
-      <View style={styles.container}>
-        <Text> TOPIC {topic.get('id')} </Text>
+      <ScrollableHeader title={title}>
         <QuestionsList
           questions={questions}
+          questionsCount={questionsCount}
+          headerTitle={title}
         />
-      </View>
+      </ScrollableHeader>
     );
   }
 }

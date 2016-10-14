@@ -37,6 +37,7 @@
 	<string></string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>alternategothic.otf</string>
 		<string>metaserif_light_italic.otf</string>
 		<string>metaserif_light.otf</string>
 		<string>metaserif_bold_italic.otf</string>

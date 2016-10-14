@@ -7,9 +7,9 @@ import {
   View,
   Text,
 } from 'react-native';
+import Color from 'color';
 
 import combineStyles from '../helpers/combineStyles';
-
 
 const styles = EStyleSheet.create({
   tabLink: {
@@ -23,13 +23,16 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
+    borderTopWidth: 2,
+    borderStyle: 'solid',
+    borderTopColor: Color('black').alpha(0.05).rgbString(),
   },
   tabText: {
     fontSize: 11,
-    color: '$colors.grey',
+    color: '$color.grey',
   },
   tabTextActive: {
-    color: '$colors.secondary',
+    color: '$color.secondary',
   },
 });
 

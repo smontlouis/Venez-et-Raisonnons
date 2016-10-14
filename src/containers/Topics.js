@@ -4,16 +4,17 @@ import {
   StyleSheet,
   View
 } from 'react-native';
-import TopicsList from '../components/TopicsList';
+import {
+    TopicsList,
+    SearchHeader,
+} from '../components';
 import * as TopicsActions from '../redux/modules/topics';
 
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
   },
 });
 
@@ -41,6 +42,7 @@ export default class Topics extends Component {
     const { topics } = this.props;
     return (
       <View style={styles.container}>
+        <SearchHeader />
         <TopicsList
           topics={topics}
         />
