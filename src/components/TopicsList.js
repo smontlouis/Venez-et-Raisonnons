@@ -1,15 +1,10 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router-native';
-import {
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 import List from './List';
 import TopicItem from './TopicItem';
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     flex: 1,
   },

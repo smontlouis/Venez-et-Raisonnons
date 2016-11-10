@@ -5,7 +5,6 @@ import { persistStore } from 'redux-persist';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {
   AsyncStorage,
-  StyleSheet,
   View,
   ActivityIndicator,
 } from 'react-native';
@@ -18,7 +17,7 @@ export const store = configureStore();
 EStyleSheet.build(globalVariables);
 
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     flex: 1,
   },

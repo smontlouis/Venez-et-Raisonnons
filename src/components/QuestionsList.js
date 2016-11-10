@@ -19,6 +19,7 @@ const styles = EStyleSheet.create({
   },
   subTitleText: {
     fontFamily: '$font.title_italic',
+    color: '$color.darkGrey',
     fontSize: 13,
     lineHeight: 13,
   },

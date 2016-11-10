@@ -7,6 +7,7 @@ class List extends Component {
   static propTypes = {
     listItems: PropTypes.object.isRequired,
     renderRow: PropTypes.func.isRequired,
+    style: PropTypes.any,
   };
 
   constructor(props) {

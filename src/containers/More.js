@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import {
-  StyleSheet,
   Text,
   View
 } from 'react-native';
 // import * as FavoritesActions from '../redux/modules/favorites';
 
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',

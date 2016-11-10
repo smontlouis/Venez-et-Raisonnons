@@ -1,13 +1,12 @@
 import React from 'react';
-
+import EStyleSheet from 'react-native-extended-stylesheet';
 import {
   View,
-  StyleSheet,
 } from 'react-native';
 
 import Tab from './Tab';
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   tabs: {
     flexDirection: 'row',
     backgroundColor: 'white',

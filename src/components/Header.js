@@ -12,7 +12,7 @@ import combineStyles from '../helpers/combineStyles';
 
 const styles = EStyleSheet.create({
   container: {
-    backgroundColor: '$color.primary',
+    backgroundColor: '$color.primaryDarken',
     height: 64,
     paddingTop: 18,
     alignItems: 'center',

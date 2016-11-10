@@ -1,11 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import {
-  StyleSheet,
   Text,
   View,
-  ActivityIndicator
 } from 'react-native';
 
 // import * as TopicsActions from '../redux/modules/topics';
@@ -13,7 +12,7 @@ import {
 import * as auth0 from '../services/auth0';
 
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',

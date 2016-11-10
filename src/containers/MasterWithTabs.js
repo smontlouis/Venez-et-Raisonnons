@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import {
-  StyleSheet,
   View,
   StatusBar,
 } from 'react-native';
 
 import { Tabs } from '../components';
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',

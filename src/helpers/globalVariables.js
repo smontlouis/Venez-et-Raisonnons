@@ -8,7 +8,9 @@ export default {
   color: {
     grey: 'rgb(230,230,230)',
     darkGrey: 'rgba(0,0,0,0.5)',
-    primary: '#BF1C2E',
+    primary: '#C22839',
+    primaryDarken: '#AE2333',
     secondary: '#FFBC00',
+    tertiary: 'rgb(98,113,122)',
   }
 };

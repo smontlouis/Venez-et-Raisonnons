@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import Icon from 'react-native-vector-icons/Entypo';
+import { Back } from 'react-router-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {
   Animated,
   Platform,
   StatusBar,
-  Text,
   View,
+  Text,
 } from 'react-native';
 
 const HEADER_MAX_HEIGHT = 200;
@@ -42,6 +44,13 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  back: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    height: 32,
+    marginLeft: 10,
+  },
   title: {
     color: 'white',
     fontFamily: '$font.heading',
@@ -58,28 +67,29 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  stickyContent: {
+    position: 'absolute',
+    backgroundColor: 'blue',
+    top: HEADER_MIN_HEIGHT,
+    left: 0,
+    width: '100%',
+    height: HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT,
+  }
 });
 
 export default class ScrollableHeader extends Component {
+
+  static propTypes = {
+    title: PropTypes.string,
+    children: PropTypes.element.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
       scrollY: new Animated.Value(0),
     };
-  }
-
-  _renderScrollViewContent() {
-    const data = Array.from({ length: 30 });
-    return (
-      <View style={styles.scrollViewContent}>
-        {data.map((_, i) =>
-          <View key={i} style={styles.row}>
-            <Text>{i}</Text>
-          </View>
-        )}
-      </View>
-    );
   }
 
   render() {
@@ -139,18 +149,34 @@ export default class ScrollableHeader extends Component {
               { opacity: imageOpacity, transform: [{ translateY: imageTranslate }] },
             ]}
             source={require('../../static/images/bible.png')}
-          />
-          <Animated.View
-            style={[
-              styles.bar,
-              {
-                transform: [{ scale: titleScale }, { translateY: titleTranslate }],
-                opacity: titleOpacity,
-              },
-            ]}
           >
-            <Text style={styles.title}>{title.toUpperCase()}</Text>
-          </Animated.View>
+            <Animated.View
+              style={[
+                styles.stickyContent,
+              ]}
+            >
+              <Text>Coucou</Text>
+            </Animated.View>
+          </Animated.Image>
+          <View style={styles.bar}>
+            <Back
+              style={styles.back}
+              underlayColor="transparent"
+            >
+              <Icon name="chevron-thin-left" size={18} color="white" />
+            </Back>
+            <Animated.Text
+              style={[
+                styles.title,
+                {
+                  transform: [{ scale: titleScale }, { translateY: titleTranslate }],
+                  opacity: titleOpacity,
+                }
+              ]}
+            >
+              {title.toUpperCase()}
+            </Animated.Text>
+          </View>
         </Animated.View>
       </View>
     );
