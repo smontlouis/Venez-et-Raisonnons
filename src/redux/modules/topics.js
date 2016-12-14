@@ -2,7 +2,7 @@ import R from 'ramda';
 import { Map, fromJS } from 'immutable';
 import { firebaseDb } from '../../services/firebase';
 
-const Topics = firebaseDb.ref('topic');
+const Topics = firebaseDb.ref('topics');
 
 const LOAD_TOPICS = 'topics/LOAD_TOPICS';
 export const LOAD_TOPICS_SUCCESS = 'topics/LOAD_TOPICS_SUCCESS';
@@ -34,6 +34,7 @@ export function loadTopics() {
     });
 
     Topics.on('value', (snapshot) => {
+      console.log("hello", snapshot);
       dispatch(loadTopicsSuccess(snapshot.val()));
     });
   };

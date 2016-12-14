@@ -3,7 +3,7 @@ import R from 'ramda';
 import { Map, fromJS } from 'immutable';
 import { firebaseDb } from '../../services/firebase';
 
-const Questions = firebaseDb.ref('question');
+const Questions = firebaseDb.ref('questions');
 
 const LOAD_QUESTIONS = 'questions/LOAD_QUESTIONS';
 export const LOAD_QUESTIONS_SUCCESS = 'questions/LOAD_QUESTIONS_SUCCESS';

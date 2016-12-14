@@ -21,7 +21,6 @@ const TopicsList = ({ topics }) =>
             id={id}
             title={title}
             questionsCount={questionsCount}
-            to={`/topics/${id}`}
           />
         );
       }

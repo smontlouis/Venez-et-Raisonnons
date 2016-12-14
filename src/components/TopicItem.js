@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import {
   Text,
@@ -7,6 +6,7 @@ import {
   Image,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { Link } from '../components';
 
 const styles = EStyleSheet.create({
   container: {
@@ -46,9 +46,8 @@ const styles = EStyleSheet.create({
 
 const TopicItem = ({ id, title, questionsCount }) => (
   <Link
-    to={`/topics/${id}`}
-    underlayColor="transparent"
-    activeOpacity={0.5}
+    route={'topic'}
+    params={{ topicId: id }}
   >
     <View style={styles.container}>
       <Image

@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {
   Text,
   View,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { Link } from '../components';
 
 const styles = EStyleSheet.create({
   container: {
@@ -33,9 +33,8 @@ const styles = EStyleSheet.create({
 
 const QuestionItem = ({ id, title }) => (
   <Link
-    to={`/questions/${id}`}
-    underlayColor="transparent"
-    activeOpacity={0.5}
+    route={'question'}
+    params={{ questionId: id }}
   >
     <View style={styles.container}>
       <View style={styles.content}>

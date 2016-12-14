@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import Icon from 'react-native-vector-icons/Entypo';
-import { Back } from 'react-router-native';
 import {
   View,
   Text,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { Back } from '../components';
 
 import combineStyles from '../helpers/combineStyles';
 
@@ -43,7 +43,7 @@ const styles = EStyleSheet.create({
   }
 });
 
-const Header = ({ title, isTransparent }) => {
+const Header = ({ title, hasBackButton = true, isTransparent }) => {
   const ContainerStyles = combineStyles({
     container: true,
     containerTransparent: isTransparent,
@@ -59,18 +59,22 @@ const Header = ({ title, isTransparent }) => {
             <Text style={styles.title}>{title.toUpperCase()}</Text>
           </View>
       }
-      <Back
-        style={styles.back}
-        underlayColor="transparent"
-      >
-        <Icon name="chevron-thin-left" size={18} color="white" />
-      </Back>
+      {
+        hasBackButton &&
+        <Back
+          style={styles.back}
+          underlayColor="transparent"
+        >
+          <Icon name="chevron-thin-left" size={18} color="white" />
+        </Back>
+      }
     </View>
   );
 };
 
 Header.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  hasBackButton: PropTypes.bool,
   isTransparent: PropTypes.bool,
 };
 

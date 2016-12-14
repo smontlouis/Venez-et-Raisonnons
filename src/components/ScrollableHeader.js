@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import Icon from 'react-native-vector-icons/Entypo';
-import { Back } from 'react-router-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {
   Animated,
@@ -9,6 +8,7 @@ import {
   View,
   Text,
 } from 'react-native';
+import { Back } from '../components';
 
 const HEADER_MAX_HEIGHT = 200;
 const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;

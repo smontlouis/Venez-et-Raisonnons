@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {
   View,
+  StatusBar,
 } from 'react-native';
 import {
-    TopicsList,
-    SearchHeader,
+  TopicsList,
+  Header,
 } from '../components';
 import * as TopicsActions from '../redux/modules/topics';
 
@@ -43,7 +44,13 @@ export default class Topics extends Component {
 
     return (
       <View style={styles.container}>
-        <SearchHeader />
+        <StatusBar
+          barStyle="light-content"
+        />
+        <Header
+          title="Accueil"
+          hasBackButton={false}
+        />
         <TopicsList
           topics={topics}
         />

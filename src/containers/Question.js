@@ -56,7 +56,7 @@ const styles = EStyleSheet.create({
   },
 });
 
-const getCurrentQuestion = (state, props) => state.questions.get('questions').get(props.params.questionId);
+const getCurrentQuestion = (state, props) => state.questions.get('questions').get(props.questionId);
 
 @connect(
   (state, ownProps) => ({

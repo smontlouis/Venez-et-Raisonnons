@@ -13,9 +13,9 @@ import {
 import * as QuestionsActions from '../redux/modules/questions';
 
 
-const getCurrentTopic = (state, props) => state.topics.get('topics').get(props.params.topicId);
+const getCurrentTopic = (state, props) => state.topics.get('topics').get(props.topicId);
 const getQuestions = state => state.questions.get('questions');
-const getListeningQuestionsByTopic = (state, props) => state.app.get('hasQuestionsByTopicListening').get(props.params.topicId);
+const getListeningQuestionsByTopic = (state, props) => state.app.get('hasQuestionsByTopicListening').get(props.topicId);
 
 const getQuestionsByTopic = createSelector(
   [getCurrentTopic, getQuestions],
@@ -41,14 +41,14 @@ export default class Topic extends Component {
   static propTypes = {
     isListening: PropTypes.bool,
     loadQuestions: PropTypes.func.isRequired,
-    params: PropTypes.object.isRequired,
+    topicId: PropTypes.string.isRequired,
     questions: PropTypes.object.isRequired,
     topic: PropTypes.object.isRequired,
   }
 
   componentDidMount() {
-    const { loadQuestions, params, isListening } = this.props;
-    !isListening && loadQuestions(params.topicId);
+    const { loadQuestions, topicId, isListening } = this.props;
+    !isListening && loadQuestions(topicId);
   }
 
   render() {
