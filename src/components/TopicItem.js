@@ -10,7 +10,6 @@ import { Link } from '../components';
 
 const styles = EStyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     paddingBottom: 28,

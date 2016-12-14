@@ -6,23 +6,25 @@ import {
   Text,
   View
 } from 'react-native';
+import {
+  Header,
+} from '../components';
 // import * as FavoritesActions from '../redux/modules/favorites';
 
 
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
   },
 });
 
 const More = () =>
   <View style={styles.container}>
-    <Text>
-      MORE
-    </Text>
+    <Header
+      title="Plus"
+      hasBackButton={false}
+    />
   </View>
 ;
 

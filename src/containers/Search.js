@@ -6,6 +6,9 @@ import {
   Text,
   View
 } from 'react-native';
+import {
+  Header,
+} from '../components';
 
 // import * as SearchActions from '../redux/modules/search';
 
@@ -13,17 +16,16 @@ import {
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
   },
 });
 
 const Search = () =>
   <View style={styles.container}>
-    <Text>
-      SEARCH
-    </Text>
+    <Header
+      title="Recherche"
+      hasBackButton={false}
+    />
   </View>
 ;
 

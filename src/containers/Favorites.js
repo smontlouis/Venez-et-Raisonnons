@@ -1,11 +1,14 @@
 import React, { PropTypes } from 'react';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
 import {
-  Text,
+  // Text,
   View
 } from 'react-native';
+import {
+  Header,
+} from '../components';
 
 // import * as FavoritesActions from '../redux/modules/favorites';
 
@@ -13,17 +16,16 @@ import {
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
   },
 });
 
 const Favorites = () =>
   <View style={styles.container}>
-    <Text>
-      FAVORITES
-    </Text>
+    <Header
+      title="Favoris"
+      hasBackButton={false}
+    />
   </View>
 ;
 
