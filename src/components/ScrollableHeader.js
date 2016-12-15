@@ -6,7 +6,7 @@ import {
   Platform,
   StatusBar,
   View,
-  Text,
+  Image,
 } from 'react-native';
 import { Back } from '../components';
 
@@ -29,14 +29,31 @@ const styles = EStyleSheet.create({
     backgroundColor: '$color.primary',
     overflow: 'hidden',
   },
-  backgroundImage: {
+  headerContainer: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     width: null,
     height: HEADER_MAX_HEIGHT,
+  },
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    width: '100%',
+    height: HEADER_MAX_HEIGHT,
     resizeMode: 'cover',
+  },
+  stickyContent: {
+    position: 'absolute',
+    top: HEADER_MIN_HEIGHT,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT,
   },
   bar: {
     marginTop: Platform.OS === 'ios' ? 28 : 38,
@@ -66,14 +83,6 @@ const styles = EStyleSheet.create({
     backgroundColor: '#D3D3D3',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  stickyContent: {
-    position: 'absolute',
-    backgroundColor: 'blue',
-    top: HEADER_MIN_HEIGHT,
-    left: 0,
-    width: '100%',
-    height: HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT,
   }
 });
 
@@ -82,6 +91,8 @@ export default class ScrollableHeader extends Component {
   static propTypes = {
     title: PropTypes.string,
     children: PropTypes.element.isRequired,
+    header: PropTypes.element,
+    image: PropTypes.string,
   }
 
   constructor(props) {
@@ -93,7 +104,7 @@ export default class ScrollableHeader extends Component {
   }
 
   render() {
-    const { children, title } = this.props;
+    const { children, title, header, image } = this.props;
 
     const headerHeight = this.state.scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE],
@@ -136,28 +147,30 @@ export default class ScrollableHeader extends Component {
           backgroundColor="rgba(0, 0, 0, 0.251)"
         />
         { React.cloneElement(children, {
-          style: styles.scrollViewContent,
+          contentContainerStyle: styles.scrollViewContent,
           scrollEventThrottle: 16,
           onScroll: Animated.event(
             [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }]
           ),
         }) }
         <Animated.View style={[styles.header, { height: headerHeight }]}>
-          <Animated.Image
+          <Animated.View
             style={[
-              styles.backgroundImage,
+              styles.headerContainer,
               { opacity: imageOpacity, transform: [{ translateY: imageTranslate }] },
             ]}
-            source={require('../../static/images/bible.png')}
           >
-            <Animated.View
-              style={[
-                styles.stickyContent,
-              ]}
-            >
-              <Text>Coucou</Text>
-            </Animated.View>
-          </Animated.Image>
+            {
+              image &&
+              <Image
+                style={styles.backgroundImage}
+                source={{ uri: image }}
+              />
+          }
+            <View style={styles.stickyContent}>
+              {header}
+            </View>
+          </Animated.View>
           <View style={styles.bar}>
             <Back
               style={styles.back}

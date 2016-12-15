@@ -56,7 +56,10 @@ export default class Topic extends Component {
 
     return (
       <View style={styles.container}>
-        <ScrollableHeader title={topic.get('title')}>
+        <ScrollableHeader
+          title={topic.get('title')}
+          image={topic.get('image_url')}
+        >
           <QuestionsList
             questions={questions}
             questionsCount={topic.get('questionsCount')}

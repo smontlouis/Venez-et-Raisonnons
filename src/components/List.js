@@ -41,7 +41,7 @@ class List extends Component {
     return (
       <ListView
         dataSource={this.state.dataSource}
-        contentContainerStyle={style}
+        style={style}
         {...props}
       />
     );
