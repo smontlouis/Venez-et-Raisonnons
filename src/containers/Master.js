@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import EIcon from 'react-native-vector-icons/Octicons';
+import { connect } from 'react-redux';
 import {
   TabNavigation,
   TabNavigationItem as TabItem,
@@ -10,8 +11,10 @@ import {
 import {
   View,
   Text,
+  ActivityIndicator,
 } from 'react-native';
 import { Router } from '../routes';
+import { loadData } from '../redux/modules/app';
 
 const styles = EStyleSheet.create({
   icon: {
@@ -28,6 +31,13 @@ const styles = EStyleSheet.create({
     fontSize: 10,
     color: '$color.darkGrey',
   },
+  container: {
+    flex: 1,
+  },
+  centered: {
+    flex: 1,
+    alignSelf: 'center'
+  }
 });
 
 const links = [
@@ -88,24 +98,53 @@ const TabIcon = (label, icon, isSelected) =>
   </View>
 ;
 
-const Tabs = () =>
-  <TabNavigation
-    id="main"
-    navigatorUID="main"
-    initialTab="topics"
-  >
-    {links.map(({ to, icon, label }, i) =>
-      <TabItem
-        key={i}
-        id={to}
-        renderIcon={isSelected => TabIcon(label, icon, isSelected)}
-      >
-        <StackNavigation
-          initialRoute={Router.getRoute(to)}
-        />
-      </TabItem>
-    )}
-  </TabNavigation>
-;
+@connect(
+  state => ({
+    topics: state.topics.get('topics'),
+  })
+)
+class Master extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    topics: PropTypes.object.isRequired,
+  }
+  componentWillMount() {
+    const { dispatch, topics } = this.props;
+    topics.isEmpty() && dispatch(loadData());
+  }
 
-export default Tabs;
+  render() {
+    const { topics } = this.props;
+
+    if (topics.isEmpty()) {
+      return (
+        // @TODO - Create a loading component
+        <View style={styles.container}>
+          <ActivityIndicator style={styles.centered} />
+        </View>
+      );
+    }
+
+    return (
+      <TabNavigation
+        id="main"
+        navigatorUID="main"
+        initialTab="topics"
+      >
+        {links.map(({ to, icon, label }, i) =>
+          <TabItem
+            key={i}
+            id={to}
+            renderIcon={isSelected => TabIcon(label, icon, isSelected)}
+          >
+            <StackNavigation
+              initialRoute={Router.getRoute(to)}
+            />
+          </TabItem>
+        )}
+      </TabNavigation>
+    );
+  }
+}
+
+export default Master;

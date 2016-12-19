@@ -7,4 +7,4 @@ export Login from './Login';
 export Question from './Question';
 export Search from './Search';
 export Add from './Add';
-export Tabs from './Tabs';
+export Master from './Master';

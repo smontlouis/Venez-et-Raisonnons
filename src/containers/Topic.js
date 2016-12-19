@@ -10,12 +10,10 @@ import {
   QuestionsList,
   ScrollableHeader,
 } from '../components';
-import * as QuestionsActions from '../redux/modules/questions';
 
 
 const getCurrentTopic = (state, props) => state.topics.get('topics').get(props.topicId);
 const getQuestions = state => state.questions.get('questions');
-const getListeningQuestionsByTopic = (state, props) => state.app.get('hasQuestionsByTopicListening').get(props.topicId);
 
 const getQuestionsByTopic = createSelector(
   [getCurrentTopic, getQuestions],
@@ -33,22 +31,12 @@ const styles = EStyleSheet.create({
   (state, ownProps) => ({
     topic: getCurrentTopic(state, ownProps),
     questions: getQuestionsByTopic(state, ownProps),
-    isListening: getListeningQuestionsByTopic(state, ownProps),
-  }),
-  QuestionsActions,
+  })
 )
 export default class Topic extends Component {
   static propTypes = {
-    isListening: PropTypes.bool,
-    loadQuestions: PropTypes.func.isRequired,
-    topicId: PropTypes.string.isRequired,
     questions: PropTypes.object.isRequired,
     topic: PropTypes.object.isRequired,
-  }
-
-  componentDidMount() {
-    const { loadQuestions, topicId, isListening } = this.props;
-    !isListening && loadQuestions(topicId);
   }
 
   render() {

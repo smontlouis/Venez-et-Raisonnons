@@ -6,11 +6,11 @@ import {
   Platform,
   StatusBar,
   View,
-  Image,
 } from 'react-native';
 import { Back } from '../components';
 
 const HEADER_MAX_HEIGHT = 200;
+const NEGATIVE_DISTANCE = -200;
 const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
@@ -107,8 +107,8 @@ export default class ScrollableHeader extends Component {
     const { children, title, header, image } = this.props;
 
     const headerHeight = this.state.scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE],
-      outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
+      inputRange: [NEGATIVE_DISTANCE, 0, HEADER_SCROLL_DISTANCE],
+      outputRange: [HEADER_MAX_HEIGHT - NEGATIVE_DISTANCE, HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
       extrapolate: 'clamp',
     });
 
@@ -117,9 +117,16 @@ export default class ScrollableHeader extends Component {
       outputRange: [1, 1, 0],
       extrapolate: 'clamp',
     });
+
     const imageTranslate = this.state.scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE],
-      outputRange: [0, -50],
+      inputRange: [NEGATIVE_DISTANCE, 0, HEADER_SCROLL_DISTANCE],
+      outputRange: [100, 0, -50],
+      extrapolate: 'clamp',
+    });
+
+    const imageScale = this.state.scrollY.interpolate({
+      inputRange: [NEGATIVE_DISTANCE, 0],
+      outputRange: [2, 1],
       extrapolate: 'clamp',
     });
 
@@ -162,9 +169,15 @@ export default class ScrollableHeader extends Component {
           >
             {
               image &&
-              <Image
-                style={styles.backgroundImage}
-                source={{ uri: image }}
+              <Animated.Image
+                style={[
+                  styles.backgroundImage,
+                  {
+                    transform: [{ scale: imageScale }]
+                  }
+                ]}
+                // source={{ uri: image }}
+                source={require('../../static/images/bible.png')}
               />
           }
             <View style={styles.stickyContent}>

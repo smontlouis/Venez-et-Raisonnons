@@ -9,7 +9,6 @@ import {
   TopicsList,
   Header,
 } from '../components';
-import * as TopicsActions from '../redux/modules/topics';
 
 
 const styles = EStyleSheet.create({
@@ -23,20 +22,11 @@ const styles = EStyleSheet.create({
 @connect(
   state => ({
     topics: state.topics.get('topics'),
-    isListening: state.app.get('hasTopicsListening')
-  }),
-  TopicsActions,
+  })
 )
 export default class Topics extends Component {
   static propTypes = {
-    isListening: PropTypes.bool.isRequired,
-    loadTopics: PropTypes.func.isRequired,
     topics: PropTypes.object.isRequired,
-  }
-
-  componentDidMount() {
-    const { loadTopics, isListening } = this.props;
-    !isListening && loadTopics();
   }
 
   render() {

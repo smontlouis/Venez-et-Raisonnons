@@ -14,12 +14,12 @@ import {
   More,
   Search,
   Question,
-  Tabs,
+  Master,
   Add,
 } from './containers';
 
 export const Router = createRouter(() => ({
-  home: () => Tabs,
+  home: () => Master,
   topics: () => Topics,
   favorites: () => Favorites,
   search: () => Search,

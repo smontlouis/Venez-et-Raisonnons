@@ -1,63 +1,20 @@
 import R from 'ramda';
 import { Map, fromJS } from 'immutable';
-import { firebaseDb } from '../../services/firebase';
-
-const Topics = firebaseDb.ref('topics');
-
-const LOAD_TOPICS = 'topics/LOAD_TOPICS';
-export const LOAD_TOPICS_SUCCESS = 'topics/LOAD_TOPICS_SUCCESS';
-const LOAD_TOPICS_FAIL = 'topics/LOAD_TOPICS_FAIL';
+import { LOAD_DATA_SUCCESS } from './app';
 
 const initialState = Map({
-  isLoading: false,
   topics: Map(),
 });
 
-
-export function loadTopicsSuccess(topics) {
-  return {
-    type: LOAD_TOPICS_SUCCESS,
-    payload: topics,
-  };
-}
-
-export function loadTopicsFail() {
-  return {
-    type: LOAD_TOPICS_FAIL,
-  };
-}
-
-export function loadTopics() {
-  return (dispatch) => {
-    dispatch({
-      type: LOAD_TOPICS,
-    });
-
-    Topics.on('value', (snapshot) => {
-      console.log("hello", snapshot);
-      dispatch(loadTopicsSuccess(snapshot.val()));
-    });
-  };
-}
-
-
 export default function TopicsReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case LOAD_TOPICS: {
-      return state.set('isLoading', true);
-    }
-    case LOAD_TOPICS_SUCCESS: {
+    case LOAD_DATA_SUCCESS: {
+      const { topics: response } = action.result;
       // Here we're just adding id as a key (will be needed duh)
-      const topics = R.mapObjIndexed((val, id) => ({ id, ...val }), action.payload);
+      const topics = R.mapObjIndexed((val, id) => ({ id, ...val }), response);
       return state
-              .set('isLoading', false)
               .update('topics', t => t.merge(fromJS(topics)));
     }
-
-    case LOAD_TOPICS_FAIL: {
-      return state.set('isLoading', false);
-    }
-
     default:
       return state;
   }
