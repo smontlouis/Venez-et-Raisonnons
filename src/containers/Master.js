@@ -1,20 +1,20 @@
-import React, { Component, PropTypes } from 'react';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import EIcon from 'react-native-vector-icons/Octicons';
-import { connect } from 'react-redux';
+import React, { Component, PropTypes } from 'react'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import EIcon from 'react-native-vector-icons/Octicons'
+import { connect } from 'react-redux'
 import {
   TabNavigation,
   TabNavigationItem as TabItem,
   StackNavigation,
-} from '@exponent/ex-navigation';
+} from '@exponent/ex-navigation'
 import {
   View,
   Text,
   ActivityIndicator,
-} from 'react-native';
-import { Router } from '../routes';
-import { loadData } from '../redux/modules/app';
+} from 'react-native'
+import { Router } from '../routes'
+import { loadData, listenData } from '../redux/modules/app'
 
 const styles = EStyleSheet.create({
   icon: {
@@ -28,8 +28,9 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
   },
   tabTitleText: {
-    fontSize: 10,
-    color: '$color.darkGrey',
+    fontSize: 11,
+    fontWeight: 'bold',
+    color: '$color.secondary',
   },
   container: {
     flex: 1,
@@ -38,45 +39,45 @@ const styles = EStyleSheet.create({
     flex: 1,
     alignSelf: 'center'
   }
-});
+})
 
 const links = [
   {
     to: 'topics',
-    icon: 'question-answer',
-    label: 'Topics',
+    icon: 'home',
+    label: 'Accueil',
   },
   {
     to: 'favorites',
-    icon: 'favorite',
+    icon: 'bookmark',
     label: 'Favoris',
   },
   {
     to: 'search',
     icon: 'search',
-    label: 'Recherche',
+    label: 'Chercher',
   },
   {
     to: 'add',
     icon: 'add-circle',
-    label: 'Demander',
+    label: 'Poser',
   },
   {
     to: 'more',
     icon: 'menu',
     label: 'Plus',
   }
-];
+]
 
 const renderIcon = (icon, isSelected) => {
   if (icon === 'search') {
     return (
       <EIcon
         name={icon}
-        size={26}
+        size={24}
         color={isSelected ? styles._iconActive.color : styles._icon.color}
       />
-    );
+    )
   }
 
   return (
@@ -85,18 +86,21 @@ const renderIcon = (icon, isSelected) => {
       size={24}
       color={isSelected ? styles._iconActive.color : styles._icon.color}
     />
-  );
-};
+  )
+}
 
 
 const TabIcon = (label, icon, isSelected) =>
   <View style={styles.tabItemContainer}>
     {renderIcon(icon, isSelected)}
-    <Text style={styles.tabTitleText} numberOfLines={1}>
-      {label}
-    </Text>
+    {
+      isSelected &&
+      <Text style={styles.tabTitleText} numberOfLines={1}>
+        {label.toUpperCase()}
+      </Text>
+    }
   </View>
-;
+
 
 @connect(
   state => ({
@@ -109,12 +113,13 @@ class Master extends Component {
     topics: PropTypes.object.isRequired,
   }
   componentWillMount() {
-    const { dispatch, topics } = this.props;
-    topics.isEmpty() && dispatch(loadData());
+    const { dispatch, topics } = this.props
+    dispatch(loadData())
+    dispatch(listenData())
   }
 
   render() {
-    const { topics } = this.props;
+    const { topics } = this.props
 
     if (topics.isEmpty()) {
       return (
@@ -122,7 +127,7 @@ class Master extends Component {
         <View style={styles.container}>
           <ActivityIndicator style={styles.centered} />
         </View>
-      );
+      )
     }
 
     return (
@@ -143,8 +148,8 @@ class Master extends Component {
           </TabItem>
         )}
       </TabNavigation>
-    );
+    )
   }
 }
 
-export default Master;
+export default Master

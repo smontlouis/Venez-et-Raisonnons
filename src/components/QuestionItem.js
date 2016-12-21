@@ -1,11 +1,11 @@
-import React, { PropTypes } from 'react';
-import Icon from 'react-native-vector-icons/Ionicons';
+import React, { PropTypes } from 'react'
+import Icon from 'react-native-vector-icons/Ionicons'
 import {
   Text,
   View,
-} from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { Link } from '../components';
+} from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { Link } from '../components'
 
 const styles = EStyleSheet.create({
   container: {
@@ -28,7 +28,7 @@ const styles = EStyleSheet.create({
   icon: {
     color: '$color.primary'
   }
-});
+})
 
 const QuestionItem = ({ id, title }) => (
   <Link
@@ -44,11 +44,11 @@ const QuestionItem = ({ id, title }) => (
       </View>
     </View>
   </Link>
-);
+)
 
 QuestionItem.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-};
+}
 
-export default QuestionItem;
+export default QuestionItem

@@ -1,14 +1,14 @@
-import React, { PropTypes, Component } from 'react';
-import { connect } from 'react-redux';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import React, { PropTypes, Component } from 'react'
+import { connect } from 'react-redux'
+import EStyleSheet from 'react-native-extended-stylesheet'
 import {
   View,
   StatusBar,
-} from 'react-native';
+} from 'react-native'
 import {
   TopicsList,
   Header,
-} from '../components';
+} from '../components'
 
 
 const styles = EStyleSheet.create({
@@ -16,13 +16,13 @@ const styles = EStyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-});
+})
 
 
 @connect(
   state => ({
     topics: state.topics.get('topics'),
-  })
+  }),
 )
 export default class Topics extends Component {
   static propTypes = {
@@ -30,7 +30,7 @@ export default class Topics extends Component {
   }
 
   render() {
-    const { topics } = this.props;
+    const { topics } = this.props
 
     return (
       <View style={styles.container}>
@@ -45,6 +45,6 @@ export default class Topics extends Component {
           topics={topics}
         />
       </View>
-    );
+    )
   }
 }

@@ -1,12 +1,12 @@
-import React, { PropTypes } from 'react';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import React, { PropTypes } from 'react'
+import EStyleSheet from 'react-native-extended-stylesheet'
 import {
   Text,
   View
-} from 'react-native';
+} from 'react-native'
 
-import List from './List';
-import QuestionItem from './QuestionItem';
+import List from './List'
+import QuestionItem from './QuestionItem'
 
 const styles = EStyleSheet.create({
   container: {
@@ -30,7 +30,7 @@ const styles = EStyleSheet.create({
     height: 3,
     backgroundColor: '$color.primary',
   }
-});
+})
 
 function renderHeader(headerTitle, questionsCount) {
   return function () {
@@ -40,14 +40,14 @@ function renderHeader(headerTitle, questionsCount) {
         <Text style={styles.subTitleText}>{`${questionsCount} questioens`}</Text>
         <View style={styles.titleBorder} />
       </View>
-    );
-  };
+    )
+  }
 }
 
 const QuestionsList = ({ questions, headerTitle, questionsCount, style, ...props }) =>
   <List
     listItems={questions}
-    renderHeader={renderHeader(headerTitle, questionsCount)}
+    renderHeader={headerTitle && renderHeader(headerTitle, questionsCount)}
     renderRow={
       function ({ id, title }) {
         return (
@@ -55,19 +55,19 @@ const QuestionsList = ({ questions, headerTitle, questionsCount, style, ...props
             id={id}
             title={title}
           />
-        );
+        )
       }
     }
     style={[styles.container, style]}
     {...props}
   />
-;
+
 
 QuestionsList.propTypes = {
   questions: PropTypes.object.isRequired,
-  questionsCount: PropTypes.number.isRequired,
-  headerTitle: PropTypes.string.isRequired,
+  questionsCount: PropTypes.number,
+  headerTitle: PropTypes.string,
   style: PropTypes.number,
-};
+}
 
-export default QuestionsList;
+export default QuestionsList

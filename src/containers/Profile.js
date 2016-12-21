@@ -1,12 +1,12 @@
-import React, { PropTypes } from 'react';
-import { Actions } from 'react-native-router-flux';
-import { connect } from 'react-redux';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import React, { PropTypes } from 'react'
+import { Actions } from 'react-native-router-flux'
+import { connect } from 'react-redux'
+import EStyleSheet from 'react-native-extended-stylesheet'
 import {
   Text,
   View
-} from 'react-native';
-// import * as FavoritesActions from '../redux/modules/favorites';
+} from 'react-native'
+// import * as FavoritesActions from '../redux/modules/favorites'
 
 
 const styles = EStyleSheet.create({
@@ -16,7 +16,7 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-});
+})
 
 const Profile = () =>
   <View style={styles.container}>
@@ -24,11 +24,11 @@ const Profile = () =>
       PROFILE
     </Text>
   </View>
-;
+
 
 export default connect(
   state => ({
 
   }),
   // FavoritesActions,
-)(Profile);
+)(Profile)

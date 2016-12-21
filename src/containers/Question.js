@@ -1,14 +1,19 @@
-import React, { PropTypes, Component } from 'react';
-import { connect } from 'react-redux';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import HTMLView from 'react-native-htmlview';
+import React, { PropTypes, Component } from 'react'
+import { connect } from 'react-redux'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import HTMLView from 'react-native-htmlview'
 import {
   View,
   Text,
   ScrollView
-} from 'react-native';
-import { ScrollableHeader } from '../components';
-import * as QuestionsActions from '../redux/modules/questions';
+} from 'react-native'
+import {
+  ScrollableHeader,
+  Share,
+  AddToFavorites,
+  LikeCount,
+} from '../components'
+import * as QuestionsActions from '../redux/modules/questions'
 
 
 const styles = EStyleSheet.create({
@@ -46,15 +51,22 @@ const styles = EStyleSheet.create({
     fontSize: 18,
     color: 'rgba(255, 255, 255, 0.5)',
   },
+  shareWrapper: {
+    flexDirection: 'row',
+    borderTopWidth: 1,
+    borderTopColor: '$color.grey',
+    paddingTop: 20,
+    justifyContent: 'space-between',
+  },
 
   // HTML View
   a: {
     fontWeight: '300',
     color: '#FF3366', // pink links
   },
-});
+})
 
-const getCurrentQuestion = (state, props) => state.questions.get('questions').get(props.questionId);
+const getCurrentQuestion = (state, props) => state.questions.get('questions').get(props.questionId)
 
 @connect(
   (state, ownProps) => ({
@@ -68,13 +80,13 @@ export default class Question extends Component {
   }
 
   render() {
-    const { question } = this.props;
+    const { question } = this.props
     const htmlContent = `
     <h1><img alt="Saturn V carrying Apollo 11" class="right" src="http://c.cksource.com/a/1/img/sample.jpg" /> Apollo 11</h1>
-    <p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p><p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less; and together they collected 47.5 pounds (21.5&nbsp;kg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
-    <p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p><p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less; and together they collected 47.5 pounds (21.5&nbsp;kg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
-    <p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p><p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less; and together they collected 47.5 pounds (21.5&nbsp;kg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
-    `;
+    <p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p><p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less and together they collected 47.5 pounds (21.5&nbspkg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
+    <p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p><p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less and together they collected 47.5 pounds (21.5&nbspkg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
+    <p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p><p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less and together they collected 47.5 pounds (21.5&nbspkg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
+    `
     return (
       <View style={styles.container}>
         <ScrollableHeader
@@ -96,10 +108,15 @@ export default class Question extends Component {
                 stylesheet={styles}
                 onLinkPress={url => console.log('clicked link: ', url)}
               />
+              <View style={styles.shareWrapper}>
+                <Share id={question.get('id')} />
+                <AddToFavorites id={question.get('id')} />
+              </View>
+              <LikeCount count={question.get('likeCount')} id={question.get('id')} />
             </View>
           </ScrollView>
         </ScrollableHeader>
       </View>
-    );
+    )
   }
 }

@@ -1,10 +1,11 @@
-import { combineReducers } from 'redux-loop';
-import { routerReducer } from 'react-router-redux';
+import { combineReducers } from 'redux-loop'
+import { routerReducer } from 'react-router-redux'
 
-import questions from './questions';
-import topics from './topics';
-import auth from './auth';
-import app from './app';
+import questions from './questions'
+import topics from './topics'
+import auth from './auth'
+import app from './app'
+import search from './search'
 
 export default combineReducers({
   routing: routerReducer,
@@ -12,4 +13,5 @@ export default combineReducers({
   topics,
   questions,
   auth,
-});
+  search,
+})

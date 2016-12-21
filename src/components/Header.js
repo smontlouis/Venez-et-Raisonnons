@@ -1,13 +1,15 @@
-import React, { PropTypes } from 'react';
-import Icon from 'react-native-vector-icons/Entypo';
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
+import Icon from 'react-native-vector-icons/Entypo'
 import {
   View,
   Text,
-} from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { Back } from '../components';
+  ActivityIndicator,
+} from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { Back } from '../components'
 
-import combineStyles from '../helpers/combineStyles';
+import combineStyles from '../helpers/combineStyles'
 
 
 const styles = EStyleSheet.create({
@@ -30,7 +32,11 @@ const styles = EStyleSheet.create({
     bottom: 0,
     left: 0,
     height: 32,
+    width: 32,
     marginLeft: 10,
+  },
+  indicator: {
+    marginRight: 10,
   },
   titleContainer: {
     flex: 1,
@@ -41,13 +47,13 @@ const styles = EStyleSheet.create({
     fontSize: 20,
     color: 'white',
   }
-});
+})
 
-const Header = ({ title, hasBackButton = true, isTransparent }) => {
+const Header = ({ title, hasBackButton = true, isTransparent, isLoading }) => {
   const ContainerStyles = combineStyles({
     container: true,
     containerTransparent: isTransparent,
-  }, styles);
+  }, styles)
 
   return (
     <View
@@ -68,14 +74,25 @@ const Header = ({ title, hasBackButton = true, isTransparent }) => {
           <Icon name="chevron-thin-left" size={18} color="white" />
         </Back>
       }
+      {
+        isLoading &&
+        <View style={styles.indicator}>
+          <ActivityIndicator color="white" />
+        </View>
+      }
     </View>
-  );
-};
+  )
+}
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
   hasBackButton: PropTypes.bool,
   isTransparent: PropTypes.bool,
-};
+  isLoading: PropTypes.bool.isRequired,
+}
 
-export default Header;
+export default connect(
+  state => ({
+    isLoading: state.app.get('isLoading'),
+  })
+)(Header)

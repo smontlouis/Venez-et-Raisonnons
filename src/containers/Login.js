@@ -1,15 +1,15 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
 import {
   Text,
   View,
-} from 'react-native';
+} from 'react-native'
 
-// import * as TopicsActions from '../redux/modules/topics';
+// import * as TopicsActions from '../redux/modules/topics'
 
-import * as auth0 from '../services/auth0';
+import * as auth0 from '../services/auth0'
 
 
 const styles = EStyleSheet.create({
@@ -23,7 +23,7 @@ const styles = EStyleSheet.create({
     flex: 1,
     alignSelf: 'center'
   }
-});
+})
 
 
 @connect(
@@ -39,17 +39,17 @@ export default class Login extends Component {
   }
 
   componentDidMount() {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn } = this.props
     if (!isLoggedIn) {
-      auth0.showLogin();
+      auth0.showLogin()
     }
   }
 
   componentWillReceiveProps({ isLoggedIn, router }) {
     if (isLoggedIn) {
-      router.push('/');
+      router.push('/')
     } else {
-      auth0.showLogin();
+      auth0.showLogin()
     }
   }
 
@@ -60,6 +60,6 @@ export default class Login extends Component {
         LOGIN
         </Text>
       </View>
-    );
+    )
   }
 }

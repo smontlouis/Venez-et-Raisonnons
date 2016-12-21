@@ -1,14 +1,14 @@
-import React, { PropTypes } from 'react';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import React, { PropTypes } from 'react'
+import EStyleSheet from 'react-native-extended-stylesheet'
 
-import List from './List';
-import TopicItem from './TopicItem';
+import List from './List'
+import TopicItem from './TopicItem'
 
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
   },
-});
+})
 
 const TopicsList = ({ topics }) =>
   <List
@@ -22,14 +22,14 @@ const TopicsList = ({ topics }) =>
             title={title}
             questionsCount={questionsCount}
           />
-        );
+        )
       }
     }
   />
-;
+
 
 TopicsList.propTypes = {
   topics: PropTypes.object.isRequired,
-};
+}
 
-export default TopicsList;
+export default TopicsList

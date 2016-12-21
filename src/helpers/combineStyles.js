@@ -1,7 +1,7 @@
 export default function combineStyles(conditions, styles) {
-  const results = [];
+  const results = []
 
-  Object.keys(conditions).map(key => conditions[key] && results.push(styles[key]));
+  Object.keys(conditions).map(key => conditions[key] && results.push(styles[key]))
 
-  return results;
+  return results
 }

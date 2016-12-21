@@ -1,12 +1,12 @@
-import React, { PropTypes } from 'react';
-import Icon from 'react-native-vector-icons/Entypo';
+import React, { PropTypes } from 'react'
+import Icon from 'react-native-vector-icons/Entypo'
 import {
   Text,
   View,
   Image,
-} from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { Link } from '../components';
+} from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { Link } from '../components'
 
 const styles = EStyleSheet.create({
   container: {
@@ -41,7 +41,7 @@ const styles = EStyleSheet.create({
     fontSize: 12,
     lineHeight: 15,
   },
-});
+})
 
 const TopicItem = ({ id, title, questionsCount }) => (
   <Link
@@ -62,12 +62,12 @@ const TopicItem = ({ id, title, questionsCount }) => (
       </View>
     </View>
   </Link>
-);
+)
 
 TopicItem.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   questionsCount: PropTypes.number.isRequired,
-};
+}
 
-export default TopicItem;
+export default TopicItem

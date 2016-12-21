@@ -13,4 +13,4 @@ export default {
     secondary: '#FFBC00',
     tertiary: 'rgb(98,113,122)',
   }
-};
+}

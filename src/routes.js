@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 
 import {
   createRouter,
   NavigationProvider,
   StackNavigation,
-} from '@exponent/ex-navigation';
+} from '@exponent/ex-navigation'
 
 import {
   Topics,
@@ -16,7 +16,7 @@ import {
   Question,
   Master,
   Add,
-} from './containers';
+} from './containers'
 
 export const Router = createRouter(() => ({
   home: () => Master,
@@ -28,12 +28,12 @@ export const Router = createRouter(() => ({
   topic: () => Topic,
   add: () => Add,
   question: () => Question,
-}));
+}))
 
 export default function () {
   return (
     <NavigationProvider router={Router}>
       <StackNavigation initialRoute={Router.getRoute('home')} />
     </NavigationProvider>
-  );
+  )
 }

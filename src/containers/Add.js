@@ -1,16 +1,16 @@
-import React, { PropTypes } from 'react';
-import { Actions } from 'react-native-router-flux';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { connect } from 'react-redux';
+import React, { PropTypes } from 'react'
+import { Actions } from 'react-native-router-flux'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { connect } from 'react-redux'
 import {
   Text,
   View
-} from 'react-native';
+} from 'react-native'
 import {
   Header,
-} from '../components';
+} from '../components'
 
-// import * as SearchActions from '../redux/modules/search';
+// import * as SearchActions from '../redux/modules/search'
 
 
 const styles = EStyleSheet.create({
@@ -18,7 +18,7 @@ const styles = EStyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-});
+})
 
 const Add = () =>
   <View style={styles.container}>
@@ -27,11 +27,11 @@ const Add = () =>
       hasBackButton={false}
     />
   </View>
-;
+
 
 export default connect(
   state => ({
 
   }),
   // SearchActions,
-)(Add);
+)(Add)

@@ -1,20 +1,22 @@
-import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import immutableTransform from 'redux-persist-transform-immutable';
-import { persistStore } from 'redux-persist';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import React, { Component } from 'react'
+import { Provider } from 'react-redux'
+import immutableTransform from 'redux-persist-transform-immutable'
+import { persistStore } from 'redux-persist'
+import EStyleSheet from 'react-native-extended-stylesheet'
 import {
   AsyncStorage,
   View,
   ActivityIndicator,
-} from 'react-native';
+} from 'react-native'
 
-import routes from './routes';
-import configureStore from './redux/store';
-import globalVariables from './helpers/globalVariables';
+import routes from './routes'
+import configureStore from './redux/store'
+import globalVariables from './helpers/globalVariables'
 
-export const store = configureStore();
-EStyleSheet.build(globalVariables);
+export const store = configureStore()
+export let persistedStore = null // eslint-disable-line import/no-mutable-exports
+
+EStyleSheet.build(globalVariables)
 
 
 const styles = EStyleSheet.create({
@@ -25,28 +27,27 @@ const styles = EStyleSheet.create({
     flex: 1,
     alignSelf: 'center'
   }
-});
+})
 
 
 class App extends Component {
   static propTypes = {
 
-  };
+  }
 
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = { rehydrated: false };
+    this.state = { rehydrated: false }
   }
 
   componentWillMount() {
-    persistStore(store, {
+    persistedStore = persistStore(store, {
       storage: AsyncStorage,
-      blacklist: ['app'],
       transforms: [immutableTransform()]
     }, () => {
-      this.setState({ rehydrated: true });
-    });
+      this.setState({ rehydrated: true })
+    })
   }
 
   render() {
@@ -56,14 +57,14 @@ class App extends Component {
         <View style={styles.container}>
           <ActivityIndicator style={styles.centered} />
         </View>
-      );
+      )
     }
     return (
       <Provider store={store}>
         { routes(store) }
       </Provider>
-    );
+    )
   }
 }
 
-export default App;
+export default App

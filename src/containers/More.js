@@ -1,28 +1,47 @@
-import React, { PropTypes } from 'react';
-import { Actions } from 'react-native-router-flux';
-import { connect } from 'react-redux';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { persistStore } from 'redux-persist';
-import immutableTransform from 'redux-persist-transform-immutable';
+import React from 'react'
+// import { Actions } from 'react-native-router-flux'
+import { connect } from 'react-redux'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { List, ListItem } from 'react-native-elements'
 import {
-  AsyncStorage,
-  Text,
   View,
-  TouchableOpacity
-} from 'react-native';
-import { store } from '../App';
+  ScrollView,
+} from 'react-native'
+import { persistedStore } from '../App'
 import {
   Header,
-} from '../components';
-// import * as FavoritesActions from '../redux/modules/favorites';
+} from '../components'
+// import * as FavoritesActions from '../redux/modules/favorites'
 
+const list = [
+  {
+    title: 'Purge',
+    icon: 'av-timer',
+    onPress() {
+      console.log('purged')
+      persistedStore.purge()
+    },
+  },
+  {
+    title: 'Trips',
+    icon: 'flight-takeoff'
+  },
+  {
+    title: 'Appointments',
+    icon: 'av-timer'
+  },
+  {
+    title: 'Trips',
+    icon: 'flight-takeoff'
+  },
+]
 
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#EFF0F4',
   },
-});
+})
 
 const More = () =>
   <View style={styles.container}>
@@ -30,26 +49,26 @@ const More = () =>
       title="Plus"
       hasBackButton={false}
     />
-    <View>
-      <TouchableOpacity
-        onPress={() => {
-          console.log('purged', store);
-          persistStore(store, {
-            storage: AsyncStorage,
-            blacklist: ['app'],
-            transforms: [immutableTransform()]
-          }, () => {}).purge();
-        }}
-      >
-        <Text>Purge</Text>
-      </TouchableOpacity>
-    </View>
+    <ScrollView>
+      <List>
+        {
+          list.map((item, i) => (
+            <ListItem
+              key={i}
+              title={item.title}
+              leftIcon={{ name: item.icon }}
+              onPress={item.onPress && item.onPress}
+            />
+          ))
+        }
+      </List>
+    </ScrollView>
   </View>
-;
+
 
 export default connect(
-  state => ({
+  () => ({
 
   }),
   // FavoritesActions,
-)(More);
+)(More)
