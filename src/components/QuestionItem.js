@@ -15,8 +15,8 @@ const styles = EStyleSheet.create({
     borderStyle: 'solid',
     borderBottomColor: '$color.grey',
     paddingRight: 20,
-    paddingTop: 25,
-    paddingBottom: 25,
+    paddingTop: 20,
+    paddingBottom: 20,
   },
   content: {
     flex: 1,

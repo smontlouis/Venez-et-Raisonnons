@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import {
   View,
-  Text,
 } from 'react-native'
 import {
   Header,
   QuestionsList,
+  NoItems,
 } from '../components'
 
 const getFavoritesIds = state => state.app.get('favorites')
@@ -29,11 +29,10 @@ const styles = EStyleSheet.create({
 const IfQuestions = (questions) => {
   if (questions.isEmpty()) {
     return (
-      <View>
-        <Text>
-          Pas de résultats
-        </Text>
-      </View>
+      <NoItems
+        icon="bookmark-border"
+        text="Aucun favori"
+      />
     )
   }
 
