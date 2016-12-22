@@ -54,27 +54,14 @@ export function toggleLike(id) {
 export function loadData() {
   return (dispatch) => {
     dispatch({ type: LOAD_DATA })
-    const promiseWrapper = new Promise((resolve, reject) => {
-      AppData.once('value', (snapshot) => {
-        resolve(snapshot.val())
-      })
-      setTimeout(() => {
-        reject()
-      }, 5000)
-    })
+    const racePromise = Promise.race([
+      new Promise(resolve => AppData.once('value', snapshot => resolve(snapshot.val()))),
+      new Promise((r, reject) => setTimeout(() => reject(), 5000))
+    ])
 
-    promiseWrapper
+    racePromise
       .then(val => dispatch(loadDataSuccess(val)))
       .catch(() => dispatch({ type: LOAD_DATA_FAIL }))
-  }
-}
-
-export function listenData() {
-  return (dispatch) => {
-    AppData.on('child_changed', snapshot => {
-      console.log(snapshot.val())
-      // dispatch(loadDataSuccess(snapshot.val()))
-    })
   }
 }
 

@@ -1,11 +1,16 @@
 import React, { Component, PropTypes } from 'react'
 import {
   ListView,
+  RefreshControl,
 } from 'react-native'
+import { connect } from 'react-redux'
+import * as AppActions from '../redux/modules/app'
+
 
 class List extends Component {
   static propTypes = {
     listItems: PropTypes.object.isRequired,
+    loadData: PropTypes.func.isRequired,
     style: PropTypes.any,
   }
 
@@ -18,8 +23,10 @@ class List extends Component {
 
     const data = props.listItems
 
+    this.onRefresh = ::this.onRefresh
     this.state = {
       dataSource: dataSource.cloneWithRows(data.toJS()),
+      refreshing: false,
     }
   }
 
@@ -34,11 +41,25 @@ class List extends Component {
     }
   }
 
+  onRefresh() {
+    const { loadData } = this.props
+    this.setState({ refreshing: true })
+    loadData().then(() => {
+      this.setState({ refreshing: false })
+    })
+  }
+
   render() {
     const { style, ...props } = this.props
     return (
       <ListView
         dataSource={this.state.dataSource}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this.onRefresh}
+          />
+        }
         style={style}
         {...props}
       />
@@ -46,4 +67,7 @@ class List extends Component {
   }
 }
 
-export default List
+export default connect(
+  null,
+  AppActions
+)(List)

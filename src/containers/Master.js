@@ -17,7 +17,7 @@ import {
   NoItems,
 } from '../components'
 import { Router } from '../routes'
-import { loadData, listenData } from '../redux/modules/app'
+import { loadData } from '../redux/modules/app'
 
 const styles = EStyleSheet.create({
   icon: {
@@ -118,9 +118,8 @@ class Master extends Component {
     topics: PropTypes.object.isRequired,
   }
   componentWillMount() {
-    const { dispatch } = this.props
-    dispatch(loadData())
-    dispatch(listenData())
+    const { dispatch, topics } = this.props
+    !topics.isEmpty && dispatch(loadData())
   }
 
   render() {
