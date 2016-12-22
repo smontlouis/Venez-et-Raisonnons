@@ -13,6 +13,9 @@ import {
   Text,
   ActivityIndicator,
 } from 'react-native'
+import {
+  NoItems,
+} from '../components'
 import { Router } from '../routes'
 import { loadData, listenData } from '../redux/modules/app'
 
@@ -105,21 +108,32 @@ const TabIcon = (label, icon, isSelected) =>
 @connect(
   state => ({
     topics: state.topics.get('topics'),
+    isLoading: state.app.get('isLoading'),
   })
 )
 class Master extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired,
     topics: PropTypes.object.isRequired,
   }
   componentWillMount() {
-    const { dispatch, topics } = this.props
+    const { dispatch } = this.props
     dispatch(loadData())
     dispatch(listenData())
   }
 
   render() {
-    const { topics } = this.props
+    const { topics, isLoading } = this.props
+
+    if (topics.isEmpty() && !isLoading) {
+      return (
+        <NoItems
+          icon="sentiment-dissatisfied"
+          text="Pas de connexion"
+        />
+      )
+    }
 
     if (topics.isEmpty()) {
       return (

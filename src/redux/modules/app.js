@@ -3,13 +3,22 @@ import { firebaseDb } from '../../services/firebase'
 
 const LOAD_DATA = 'app/LOAD_DATA'
 export const LOAD_DATA_SUCCESS = 'app/LOAD_DATA_SUCCESS'
-// const LOAD_DATA_FAIL = 'app/LOAD_DATA_FAIL'
+const LOAD_DATA_FAIL = 'app/LOAD_DATA_FAIL'
 const ADD_FAVORITE = 'app/ADD_FAVORITE'
 const REMOVE_FAVORITE = 'app/REMOVE_FAVORITE'
 export const ADD_LIKE = 'app/ADD_LIKE'
 export const REMOVE_LIKE = 'app/REMOVE_LIKE'
 
 const AppData = firebaseDb.ref('/')
+
+const connectedRef = firebaseDb.ref('.info/connected')
+connectedRef.on('value', (snap) => {
+  if (snap.val() === true) {
+    console.log('connected')
+  } else {
+    console.log('not connected')
+  }
+})
 
 const initialState = Map({
   isLoading: false,
@@ -45,7 +54,18 @@ export function toggleLike(id) {
 export function loadData() {
   return (dispatch) => {
     dispatch({ type: LOAD_DATA })
-    AppData.once('value', snapshot => dispatch(loadDataSuccess(snapshot.val())))
+    const promiseWrapper = new Promise((resolve, reject) => {
+      AppData.once('value', (snapshot) => {
+        resolve(snapshot.val())
+      })
+      setTimeout(() => {
+        reject()
+      }, 5000)
+    })
+
+    promiseWrapper
+      .then(val => dispatch(loadDataSuccess(val)))
+      .catch(() => dispatch({ type: LOAD_DATA_FAIL }))
   }
 }
 
@@ -64,6 +84,9 @@ export default function AppReducer(state = initialState, action = {}) {
       return state.set('isLoading', true)
     }
     case LOAD_DATA_SUCCESS: {
+      return state.set('isLoading', false)
+    }
+    case LOAD_DATA_FAIL: {
       return state.set('isLoading', false)
     }
     case ADD_FAVORITE: {
