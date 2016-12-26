@@ -21,7 +21,7 @@ import { loadData } from '../redux/modules/app'
 
 const styles = EStyleSheet.create({
   icon: {
-    color: '$color.grey',
+    color: 'rgba(99, 113, 122, 0.5)',
   },
   iconActive: {
     color: '$color.secondary',
@@ -56,14 +56,14 @@ const links = [
     label: 'Favoris',
   },
   {
-    to: 'search',
-    icon: 'search',
-    label: 'Chercher',
-  },
-  {
     to: 'add',
     icon: 'add-circle',
     label: 'Poser',
+  },
+  {
+    to: 'search',
+    icon: 'search',
+    label: 'Chercher',
   },
   {
     to: 'more',
@@ -77,7 +77,7 @@ const renderIcon = (icon, isSelected) => {
     return (
       <EIcon
         name={icon}
-        size={24}
+        size={22}
         color={isSelected ? styles._iconActive.color : styles._icon.color}
       />
     )
@@ -97,7 +97,7 @@ const TabIcon = (label, icon, isSelected) =>
   <View style={styles.tabItemContainer}>
     {renderIcon(icon, isSelected)}
     {
-      isSelected &&
+      (false && isSelected) &&
       <Text style={styles.tabTitleText} numberOfLines={1}>
         {label.toUpperCase()}
       </Text>
@@ -119,7 +119,7 @@ class Master extends Component {
   }
   componentWillMount() {
     const { dispatch, topics } = this.props
-    !topics.isEmpty && dispatch(loadData())
+    topics.isEmpty() && dispatch(loadData())
   }
 
   render() {
