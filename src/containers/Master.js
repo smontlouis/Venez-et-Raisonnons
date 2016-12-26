@@ -77,7 +77,7 @@ const renderIcon = (icon, isSelected) => {
     return (
       <EIcon
         name={icon}
-        size={22}
+        size={24}
         color={isSelected ? styles._iconActive.color : styles._icon.color}
       />
     )
@@ -86,7 +86,7 @@ const renderIcon = (icon, isSelected) => {
   return (
     <Icon
       name={icon}
-      size={24}
+      size={27}
       color={isSelected ? styles._iconActive.color : styles._icon.color}
     />
   )
