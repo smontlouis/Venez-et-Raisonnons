@@ -9,83 +9,93 @@ import {
 } from 'react-native'
 import { Back } from '../components'
 
-const HEADER_MAX_HEIGHT = 200
-const NEGATIVE_DISTANCE = -200
-const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73
-const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT
+const getStyles = (h) => {
+  const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 64 : 73
+  const HEADER_MAX_HEIGHT = h + HEADER_MIN_HEIGHT
+  const NEGATIVE_DISTANCE = -HEADER_MAX_HEIGHT
+  const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT
 
-const styles = EStyleSheet.create({
-  fill: {
-    flex: 1,
-  },
-  content: {
-    flex: 1,
-  },
-  header: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: '$color.primary',
-    overflow: 'hidden',
-  },
-  headerContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    width: null,
-    height: HEADER_MAX_HEIGHT,
-  },
-  backgroundImage: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    width: '100%',
-    height: HEADER_MAX_HEIGHT,
-    resizeMode: 'cover',
-  },
-  stickyContent: {
-    position: 'absolute',
-    top: HEADER_MIN_HEIGHT,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT,
-  },
-  bar: {
-    marginTop: Platform.OS === 'ios' ? 28 : 38,
-    height: 32,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  back: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    height: 32,
-    width: 32,
-    marginLeft: 10,
-  },
-  title: {
-    color: 'white',
-    fontFamily: '$font.heading',
-    fontSize: 20,
-    backgroundColor: 'transparent',
-  },
-  scrollViewContent: {
-    marginTop: HEADER_MAX_HEIGHT,
-  },
-  row: {
-    height: 40,
-    margin: 16,
-    backgroundColor: '#D3D3D3',
-    alignItems: 'center',
-    justifyContent: 'center',
+  const styles = EStyleSheet.create({
+    fill: {
+      flex: 1,
+    },
+    content: {
+      flex: 1,
+    },
+    header: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      backgroundColor: '$color.primary',
+      overflow: 'hidden',
+    },
+    headerContainer: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      width: null,
+      height: HEADER_MAX_HEIGHT,
+    },
+    backgroundImage: {
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      width: '100%',
+      height: HEADER_MAX_HEIGHT,
+      resizeMode: 'cover',
+    },
+    stickyContent: {
+      position: 'absolute',
+      top: HEADER_MIN_HEIGHT,
+      // bottom: 0,
+      // height: HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT,
+      left: 0,
+      right: 0,
+    },
+    bar: {
+      marginTop: Platform.OS === 'ios' ? 20 : 38,
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    back: {
+      position: 'absolute',
+      height: 44,
+      left: 0,
+      top: 0,
+      width: 42,
+      paddingLeft: 10,
+      justifyContent: 'center',
+    },
+    title: {
+      color: 'white',
+      fontFamily: '$font.heading',
+      fontSize: 20,
+    },
+    scrollViewContent: {
+      marginTop: HEADER_MAX_HEIGHT,
+    },
+    row: {
+      height: 40,
+      margin: 16,
+      backgroundColor: '#D3D3D3',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }
+  })
+
+  return {
+    styles,
+    NEGATIVE_DISTANCE,
+    HEADER_SCROLL_DISTANCE,
+    HEADER_MAX_HEIGHT,
+    HEADER_MIN_HEIGHT,
   }
-})
+}
 
 export default class ScrollableHeader extends Component {
 
@@ -101,11 +111,25 @@ export default class ScrollableHeader extends Component {
 
     this.state = {
       scrollY: new Animated.Value(0),
+      headerMaxHeight: 150,
     }
+
+    this.getHeaderSize = ::this.getHeaderSize
+  }
+
+  getHeaderSize(event) {
+    this.setState({ headerMaxHeight: event.nativeEvent.layout.height })
   }
 
   render() {
     const { children, title, header, image } = this.props
+    const {
+      styles,
+      NEGATIVE_DISTANCE,
+      HEADER_SCROLL_DISTANCE,
+      HEADER_MAX_HEIGHT,
+      HEADER_MIN_HEIGHT
+    } = getStyles(this.state.headerMaxHeight)
 
     const headerHeight = this.state.scrollY.interpolate({
       inputRange: [NEGATIVE_DISTANCE, 0, HEADER_SCROLL_DISTANCE],
@@ -136,11 +160,7 @@ export default class ScrollableHeader extends Component {
       outputRange: [1.2, 1.2, 1],
       extrapolate: 'clamp',
     })
-    const titleTranslate = this.state.scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-      outputRange: [0, 0, -8],
-      extrapolate: 'clamp',
-    })
+
     const titleOpacity = this.state.scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
       outputRange: [0, 0, 1],
@@ -177,13 +197,18 @@ export default class ScrollableHeader extends Component {
                     transform: [{ scale: imageScale }]
                   }
                 ]}
-                // source={{ uri: image }}
-                source={require('../../static/images/bible.png')}
+                source={{ uri: image }}
               />
-          }
-            <View style={styles.stickyContent}>
-              {header}
-            </View>
+            }
+            {
+              header &&
+              <View
+                style={styles.stickyContent}
+                onLayout={this.getHeaderSize}
+              >
+                {header}
+              </View>
+            }
           </Animated.View>
           <View style={styles.bar}>
             <Back
@@ -196,7 +221,9 @@ export default class ScrollableHeader extends Component {
               style={[
                 styles.title,
                 {
-                  transform: [{ scale: titleScale }, { translateY: titleTranslate }],
+                  transform: [
+                    { scale: titleScale },
+                  ],
                   opacity: titleOpacity,
                 }
               ]}

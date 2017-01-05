@@ -37,7 +37,7 @@ function renderHeader(headerTitle, questionsCount) {
     return (
       <View>
         <Text style={styles.titleText}>{headerTitle}</Text>
-        <Text style={styles.subTitleText}>{`${questionsCount} questioens`}</Text>
+        <Text style={styles.subTitleText}>{`${questionsCount} questions`}</Text>
         <View style={styles.titleBorder} />
       </View>
     )

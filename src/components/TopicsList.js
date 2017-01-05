@@ -15,11 +15,12 @@ const TopicsList = ({ topics }) =>
     style={styles.container}
     listItems={topics}
     renderRow={
-      function ({ id, title, questionsCount }) {
+      function ({ id, title, image_url: imageUrl, questionsCount }) {
         return (
           <TopicItem
             id={id}
             title={title}
+            imageUrl={imageUrl}
             questionsCount={questionsCount}
           />
         )

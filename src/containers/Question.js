@@ -1,7 +1,8 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
+import Modal from 'react-native-modalbox'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import HTMLView from 'react-native-htmlview'
 import {
   View,
   Text,
@@ -13,6 +14,7 @@ import {
   AddToFavorites,
   LikeCount,
 } from '../components'
+import HTMLView from '../helpers/react-native-htmlview'
 import * as QuestionsActions from '../redux/modules/questions'
 
 
@@ -24,8 +26,8 @@ const styles = EStyleSheet.create({
     flex: 1,
   },
   responseContainer: {
-    paddingLeft: 35,
-    paddingRight: 35,
+    paddingLeft: 20,
+    paddingRight: 20,
     paddingTop: 25,
     paddingBottom: 25,
   },
@@ -35,7 +37,7 @@ const styles = EStyleSheet.create({
   title: {
     fontFamily: '$font.title',
     color: 'white',
-    fontSize: 29,
+    fontSize: 27,
     lineHeight: 38,
     width: '80%',
     marginTop: 5,
@@ -55,45 +57,63 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     borderTopWidth: 1,
     borderTopColor: '$color.grey',
+    marginTop: 20,
     paddingTop: 20,
     justifyContent: 'space-between',
   },
 
   // HTML View
+  p: {
+    lineHeight: 22,
+    fontSize: 16,
+  },
   a: {
     fontWeight: '300',
     color: '#FF3366', // pink links
   },
+
+  // Modal
+  modal: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 400,
+  },
 })
 
 const getCurrentQuestion = (state, props) => state.questions.get('questions').get(props.questionId)
+const getTopics = state => state.topics.get('topics')
+
+const getCurrentTopic = createSelector(
+  [getCurrentQuestion, getTopics],
+  (question, topics) => topics.get(question.get('topic'))
+)
 
 @connect(
   (state, ownProps) => ({
     question: getCurrentQuestion(state, ownProps),
+    topic: getCurrentTopic(state, ownProps)
   }),
   QuestionsActions,
 )
 export default class Question extends Component {
   static propTypes = {
     question: PropTypes.object.isRequired,
+    topic: PropTypes.object.isRequired,
   }
 
   render() {
-    const { question } = this.props
-    const htmlContent = `
-    <h1><img alt="Saturn V carrying Apollo 11" class="right" src="http://c.cksource.com/a/1/img/sample.jpg" /> Apollo 11</h1>
-    <p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p><p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less and together they collected 47.5 pounds (21.5&nbspkg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
-    <p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p><p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less and together they collected 47.5 pounds (21.5&nbspkg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
-    <p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p><p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less and together they collected 47.5 pounds (21.5&nbspkg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
-    `
+    const {
+      question,
+      topic
+    } = this.props
+
     return (
       <View style={styles.container}>
         <ScrollableHeader
-          title="Question"
+          title={question.get('title')}
           header={(
             <View style={styles.header}>
-              <Text style={styles.topic}>La Bible</Text>
+              <Text style={styles.topic}>{ topic.get('title') }</Text>
               <Text style={styles.title}>{ question.get('title') }</Text>
             </View>
           )}
@@ -104,9 +124,9 @@ export default class Question extends Component {
             <View style={styles.responseContainer}>
               <Text style={styles.subTitle}>Réponse</Text>
               <HTMLView
-                value={htmlContent}
+                value={question.get('description')}
                 stylesheet={styles}
-                onLinkPress={url => console.log('clicked link: ', url)}
+                onLinkPress={url => this.modal.open()}
               />
               <View style={styles.shareWrapper}>
                 <Share id={question.get('id')} />
@@ -116,6 +136,13 @@ export default class Question extends Component {
             </View>
           </ScrollView>
         </ScrollableHeader>
+        <Modal
+          style={styles.modal}
+          position="bottom"
+          ref={c => this.modal = c}
+        >
+          <Text style={styles.text}>Modal on bottom with backdrop</Text>
+        </Modal>
       </View>
     )
   }

@@ -3190,6 +3190,10 @@ react-native-lock@^0.4.0:
   dependencies:
     react-native-auth0 "^0.0.1"
 
+react-native-modalbox@latest:
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/react-native-modalbox/-/react-native-modalbox-1.3.8.tgz#dc83bf90ded653288842a21153b5fca1af82e355"
+
 react-native-router-flux@^3.35.0:
   version "3.37.0"
   resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-3.37.0.tgz#18e8fd3e1e6dbdc4d8340cd47313c28bb9bb1caf"
