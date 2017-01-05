@@ -1902,7 +1902,7 @@ fbjs-scripts@^0.7.0:
     semver "^5.1.0"
     through2 "^2.0.0"
 
-fbjs@^0.8.1, fbjs@^0.8.3, fbjs@^0.8.4, fbjs@^0.8.5:
+fbjs@^0.8.3, fbjs@^0.8.4, fbjs@^0.8.5:
   version "0.8.6"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.6.tgz#7eb67d6986b2d5007a9b6e92e0e7cb6f75cad290"
   dependencies:
@@ -2134,20 +2134,11 @@ has@^1.0.1:
   dependencies:
     function-bind "^1.0.2"
 
-history@3.2.1, history@^3.0.0:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/history/-/history-3.2.1.tgz#71c7497f4e6090363d19a6713bb52a1bfcdd99aa"
-  dependencies:
-    invariant "^2.2.1"
-    loose-envify "^1.2.0"
-    query-string "^4.2.2"
-    warning "^3.0.0"
-
 hoek@2.x.x:
   version "2.16.3"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
 
-hoist-non-react-statics@^1.0.3, hoist-non-react-statics@^1.0.5, hoist-non-react-statics@^1.2.0:
+hoist-non-react-statics@^1.0.3, hoist-non-react-statics@^1.0.5:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
 
@@ -2652,7 +2643,7 @@ longest@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
 
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0:
+loose-envify@^1.0.0, loose-envify@^1.1.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.3.0.tgz#6b26248c42f6d4fa4b0d8542f78edfcde35642a8"
   dependencies:
@@ -3081,13 +3072,6 @@ qs@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-4.0.0.tgz#c31d9b74ec27df75e543a86c78728ed8d4623607"
 
-query-string@^4.2.2:
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/query-string/-/query-string-4.2.3.tgz#9f27273d207a25a8ee4c7b8c74dcd45d556db822"
-  dependencies:
-    object-assign "^4.1.0"
-    strict-uri-encode "^1.0.0"
-
 querystring@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
@@ -3117,10 +3101,6 @@ raw-body@~2.1.2:
     bytes "2.4.0"
     iconv-lite "0.4.13"
     unpipe "1.0.0"
-
-react-addons-pure-render-mixin@15.0.2, react-addons-pure-render-mixin@^15.0.2:
-  version "15.0.2"
-  resolved "https://registry.yarnpkg.com/react-addons-pure-render-mixin/-/react-addons-pure-render-mixin-15.0.2.tgz#b7731c5cc7f21214d68a78c84f40df3aefdf462f"
 
 react-addons-shallow-compare@15.3.2:
   version "15.3.2"
@@ -3162,17 +3142,6 @@ react-native-elements@^0.7.1:
   dependencies:
     react-native-tab-navigator "^0.3.3"
 
-react-native-experimental-navigation@0.26.x:
-  version "0.26.10"
-  resolved "https://registry.yarnpkg.com/react-native-experimental-navigation/-/react-native-experimental-navigation-0.26.10.tgz#355e37929a2bfb84088dca331f34bc575297df68"
-  dependencies:
-    babel-plugin-syntax-flow "^6.8.0"
-    babel-plugin-transform-flow-strip-types "^6.8.0"
-    babel-preset-react-native "^1.9.0"
-    clamp "^1.0.1"
-    fbjs "^0.8.1"
-    react-addons-pure-render-mixin "^15.0.2"
-
 react-native-extended-stylesheet@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/react-native-extended-stylesheet/-/react-native-extended-stylesheet-0.3.0.tgz#8f99f2be88d9ad2011c281ee842e9cc37e8bce61"
@@ -3194,15 +3163,6 @@ react-native-modalbox@latest:
   version "1.3.8"
   resolved "https://registry.yarnpkg.com/react-native-modalbox/-/react-native-modalbox-1.3.8.tgz#dc83bf90ded653288842a21153b5fca1af82e355"
 
-react-native-router-flux@^3.35.0:
-  version "3.37.0"
-  resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-3.37.0.tgz#18e8fd3e1e6dbdc4d8340cd47313c28bb9bb1caf"
-  dependencies:
-    react-addons-pure-render-mixin "15.0.2"
-    react-native-experimental-navigation "0.26.x"
-    react-native-tabs "^1.0.9"
-    react-static-container "1.0.1"
-
 react-native-tab-navigator@^0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/react-native-tab-navigator/-/react-native-tab-navigator-0.3.3.tgz#b222bad21fbe773c8d28f9a0de30ce62b08724d3"
@@ -3212,10 +3172,6 @@ react-native-tab-navigator@^0.3.3:
 react-native-tab-view@^0.0.38:
   version "0.0.38"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-0.0.38.tgz#4194bba0abda9f781101c1a995c92733b194461a"
-
-react-native-tabs@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/react-native-tabs/-/react-native-tabs-1.0.9.tgz#75d3c35e8b5b6970869eab282372cb32e2a782cd"
 
 react-native-vector-icons@^2.1.0:
   version "2.1.0"
@@ -3319,40 +3275,7 @@ react-redux@^4.4.5:
     lodash "^4.2.0"
     loose-envify "^1.1.0"
 
-react-router-native@^2.0.0-alpha.5:
-  version "2.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/react-router-native/-/react-router-native-2.0.0-beta.0.tgz#8a1ee883836b04582267738c36c16b8ec13741e7"
-  dependencies:
-    history "3.2.1"
-    invariant "^2.2.1"
-    react-router "3.0.0-alpha.3"
-    warning "^3.0.0"
-
-react-router-redux@^4.0.6:
-  version "4.0.7"
-  resolved "https://registry.yarnpkg.com/react-router-redux/-/react-router-redux-4.0.7.tgz#9b1fde4e70106c50f47214e12bdd888cfb96e2a6"
-
-react-router@3.0.0-alpha.3:
-  version "3.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-3.0.0-alpha.3.tgz#3bd707e3b0352e48a1abd0a9d71703aafd47dd81"
-  dependencies:
-    history "^3.0.0"
-    hoist-non-react-statics "^1.2.0"
-    invariant "^2.2.1"
-    loose-envify "^1.2.0"
-    warning "^3.0.0"
-
-react-router@^3.0.0-alpha.3:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-3.0.0.tgz#3f313e4dbaf57048c48dd0a8c3cac24d93667dff"
-  dependencies:
-    history "^3.0.0"
-    hoist-non-react-statics "^1.2.0"
-    invariant "^2.2.1"
-    loose-envify "^1.2.0"
-    warning "^3.0.0"
-
-react-static-container@1.0.1, react-static-container@^1.0.0:
+react-static-container@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-static-container/-/react-static-container-1.0.1.tgz#694c0dd68a896b879519afb548399cc1989c9ab0"
 
@@ -3485,10 +3408,6 @@ redux-devtools-instrument@^1.2.0:
   dependencies:
     lodash "^4.2.0"
     symbol-observable "^0.2.4"
-
-redux-loop@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/redux-loop/-/redux-loop-2.2.2.tgz#1df804487be0f79daf7eff065ad8301ce255fd4e"
 
 redux-persist-immutable@^4.0.0-alpha6:
   version "4.0.1"
@@ -3950,10 +3869,6 @@ stream-counter@~0.2.0:
   dependencies:
     readable-stream "~1.1.8"
 
-strict-uri-encode@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-1.1.0.tgz#279b225df1d582b1f54e65addd4352e18faa0713"
-
 string-width@^1.0.1, string-width@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-1.0.2.tgz#118bdf5b8cdc51a2a7e70d211e07e2b0b9b107d3"
@@ -4199,12 +4114,6 @@ walker@~1.0.5:
 warning@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/warning/-/warning-2.1.0.tgz#21220d9c63afc77a8c92111e011af705ce0c6901"
-  dependencies:
-    loose-envify "^1.0.0"
-
-warning@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
   dependencies:
     loose-envify "^1.0.0"
 

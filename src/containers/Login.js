@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import {
   Text,
@@ -32,7 +31,6 @@ const styles = EStyleSheet.create({
   }),
   null,
 )
-@withRouter
 export default class Login extends Component {
   static propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,

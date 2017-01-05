@@ -1,5 +1,4 @@
-import { combineReducers } from 'redux-loop'
-import { routerReducer } from 'react-router-redux'
+import { combineReducers } from 'redux'
 
 import questions from './questions'
 import topics from './topics'
@@ -8,7 +7,6 @@ import app from './app'
 import search from './search'
 
 export default combineReducers({
-  routing: routerReducer,
   app,
   topics,
   questions,

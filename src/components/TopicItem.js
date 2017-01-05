@@ -4,6 +4,7 @@ import {
   Text,
   View,
   Image,
+  NativeModules,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { Link } from '../components'
@@ -52,6 +53,9 @@ export default class TopicItem extends Component {
 
   componentWillMount() {
     const { imageUrl } = this.props
+    NativeModules.RNImageToBase64.getBase64String(imageUrl, (err, base64) => {
+      console.log('yeye')
+    })
     const prefetchTask = Image.prefetch(imageUrl)
     prefetchTask
       .then(() => {
