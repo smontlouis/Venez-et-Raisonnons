@@ -1,5 +1,4 @@
 # Venez et Raisonnons
-> Réponses à des questions bibliques.
 
 Ceci est le code source de l'application, en cours de développement.
 
