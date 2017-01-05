@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react'
-import { Actions } from 'react-native-router-flux'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { connect } from 'react-redux'
 import {
