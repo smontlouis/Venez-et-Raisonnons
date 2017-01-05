@@ -6,6 +6,7 @@ import {
   Image,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
+import RNFetchBlob from 'react-native-fetch-blob'
 import { Link } from '../components'
 
 const styles = EStyleSheet.create({
@@ -52,6 +53,10 @@ export default class TopicItem extends Component {
 
   componentWillMount() {
     const { imageUrl } = this.props
+    RNFetchBlob.fetch('GET', imageUrl)
+      .then((res) => {
+        console.log(res)
+      })
     const prefetchTask = Image.prefetch(imageUrl)
     prefetchTask
       .then(() => {
