@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import Icon from 'react-native-vector-icons/Entypo'
+import { connect } from 'react-redux'
 import {
   Text,
   View,
@@ -8,6 +9,7 @@ import {
 import EStyleSheet from 'react-native-extended-stylesheet'
 import RNFetchBlob from 'react-native-fetch-blob'
 import { Link } from '../components'
+import { saveBase64Image } from '../redux/modules/topics'
 
 const styles = EStyleSheet.create({
   container: {
@@ -43,8 +45,18 @@ const styles = EStyleSheet.create({
     lineHeight: 15,
   },
 })
+
+const getBase64Img = (state, props) => state.topics.get('base64Images').get(props.id)
+
+@connect(
+  (state, ownProps) => ({
+    base64Img: getBase64Img(state, ownProps)
+  }),
+)
 export default class TopicItem extends Component {
   static propTypes = {
+    base64Img: PropTypes.string,
+    dispatch: PropTypes.func.isRequired,
     id: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -52,23 +64,15 @@ export default class TopicItem extends Component {
   }
 
   componentWillMount() {
-    const { imageUrl } = this.props
+    const { imageUrl, id, dispatch } = this.props
     RNFetchBlob.fetch('GET', imageUrl)
       .then((res) => {
-        console.log(res)
-      })
-    const prefetchTask = Image.prefetch(imageUrl)
-    prefetchTask
-      .then(() => {
-        console.log('Load Image Success')
-      })
-      .catch(() => {
-        console.log('Load Image Error')
+        dispatch(saveBase64Image(id, res.base64()))
       })
   }
 
   render() {
-    const { id, title, questionsCount, imageUrl } = this.props
+    const { id, title, questionsCount, base64Img } = this.props
     return (
       <Link
         route={'topic'}
@@ -77,7 +81,7 @@ export default class TopicItem extends Component {
         <View style={styles.container}>
           <Image
             style={styles.image}
-            source={{ uri: imageUrl }}
+            source={{ uri: `data:image/gif;base64,${base64Img}` }}
           />
           <View style={styles.content}>
             <Text style={styles.title}>{title}</Text>

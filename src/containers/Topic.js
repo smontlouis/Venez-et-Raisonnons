@@ -13,6 +13,7 @@ import {
 
 
 const getCurrentTopic = (state, props) => state.topics.get('topics').get(props.topicId)
+const getBase64Img = (state, props) => state.topics.get('base64Images').get(props.topicId)
 const getQuestions = state => state.questions.get('questions')
 
 const getQuestionsByTopic = createSelector(
@@ -30,23 +31,25 @@ const styles = EStyleSheet.create({
 @connect(
   (state, ownProps) => ({
     topic: getCurrentTopic(state, ownProps),
+    base64Img: getBase64Img(state, ownProps),
     questions: getQuestionsByTopic(state, ownProps),
   })
 )
 export default class Topic extends Component {
   static propTypes = {
+    base64Img: PropTypes.string.isRequired,
     questions: PropTypes.object.isRequired,
     topic: PropTypes.object.isRequired,
   }
 
   render() {
-    const { topic, questions } = this.props
+    const { topic, questions, base64Img } = this.props
 
     return (
       <View style={styles.container}>
         <ScrollableHeader
           title={topic.get('title')}
-          image={topic.get('image_url')}
+          image={`data:image/gif;base64,${base64Img}`}
         >
           <QuestionsList
             questions={questions}

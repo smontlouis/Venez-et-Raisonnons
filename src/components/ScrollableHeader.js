@@ -75,6 +75,7 @@ const getStyles = (h) => {
       color: 'white',
       fontFamily: '$font.heading',
       fontSize: 20,
+      backgroundColor: 'transparent',
     },
     scrollViewContent: {
       marginTop: HEADER_MAX_HEIGHT,
