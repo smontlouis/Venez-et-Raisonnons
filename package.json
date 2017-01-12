@@ -1,6 +1,6 @@
 {
-  "name": "PleadApp",
-  "version": "0.0.1",
+  "name": "Venez-Et-Raisonnons",
+  "version": "0.8.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start"
@@ -16,6 +16,7 @@
     "ramda": "^0.22.1",
     "react": "^15.4.1",
     "react-native": "^0.39.2",
+    "react-native-code-push": "latest",
     "react-native-elements": "^0.7.1",
     "react-native-extended-stylesheet": "^0.3.0",
     "react-native-fetch-blob": "^0.10.1",

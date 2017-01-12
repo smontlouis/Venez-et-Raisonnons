@@ -30,11 +30,13 @@
 		48B4005B6CD764261F95CB68 /* libPods-PleadApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5062759D8133AC857853AA /* libPods-PleadApp.a */; };
 		57BF0D050D6049E288530CC5 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5A34451CE9A4161B46D8F4F /* MaterialIcons.ttf */; };
 		6B79F39DBC074AA9A3D24DCB /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 207C6033C2B9431EB5E93B2C /* EvilIcons.ttf */; };
+		7A9402FD78634B7D97484476 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA27636D2FD4B7888DB7C6A /* libCodePush.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		904F6342614C40729DF1FD3B /* libLRDRCTSimpleToast.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1843C4DC5C2C44D181186920 /* libLRDRCTSimpleToast.a */; };
 		BFBEA07BAD2B4DED833256DE /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D77947E1939D4A68A471772A /* libRNFetchBlob.a */; };
 		DA4C0F73F4E26A284791AB6E /* libPods-PleadAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B82D28AADDAA68A58869DB /* libPods-PleadAppTests.a */; };
 		DB2852E502BF448A976AF44F /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6C43933DD2840F08888F9D5 /* libRNVectorIcons.a */; };
+		DE55E94976D04B208C5BE2A5 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC1E47900734BD09022EA55 /* libz.tbd */; };
 		F41274D41DAB860A001C83BE /* metaserif_bold_italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F41274D01DAB860A001C83BE /* metaserif_bold_italic.otf */; };
 		F41274D51DAB860A001C83BE /* metaserif_light_italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F41274D11DAB860A001C83BE /* metaserif_light_italic.otf */; };
 		F41274D61DAB860A001C83BE /* metaserif_light.otf in Resources */ = {isa = PBXBuildFile; fileRef = F41274D21DAB860A001C83BE /* metaserif_light.otf */; };
@@ -206,6 +208,13 @@
 			remoteGlobalIDString = 15209BEF1D250F63000D0F44;
 			remoteInfo = LRDRCTSimpleToast;
 		};
+		F4A66C7E1E28477E0078443E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4E9700AAC37420DB4636BE3 /* CodePush.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = CodePush;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -219,6 +228,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* PleadAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PleadAppTests.m; sourceTree = "<group>"; };
 		077691F02E1B4A95835889B7 /* LRDRCTSimpleToast.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = LRDRCTSimpleToast.xcodeproj; path = "../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast.xcodeproj"; sourceTree = "<group>"; };
+		0AA27636D2FD4B7888DB7C6A /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libCodePush.a; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* PleadApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PleadApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,12 +259,14 @@
 		CC0EC047D1A44AB5BFCA5BDC /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		D77947E1939D4A68A471772A /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
 		EE371DB46BD77B6F6321271E /* Pods-PleadApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PleadApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-PleadApp/Pods-PleadApp.release.xcconfig"; sourceTree = "<group>"; };
+		EFC1E47900734BD09022EA55 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		F41274D01DAB860A001C83BE /* metaserif_bold_italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = metaserif_bold_italic.otf; sourceTree = "<group>"; };
 		F41274D11DAB860A001C83BE /* metaserif_light_italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = metaserif_light_italic.otf; sourceTree = "<group>"; };
 		F41274D21DAB860A001C83BE /* metaserif_light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = metaserif_light.otf; sourceTree = "<group>"; };
 		F41274D31DAB860A001C83BE /* metaserif.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = metaserif.otf; sourceTree = "<group>"; };
 		F41274D81DAB933B001C83BE /* alternategothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alternategothic.otf; sourceTree = "<group>"; };
 		F48BB7C41E01EDBE007D4996 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		F4E9700AAC37420DB4636BE3 /* CodePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		F88DB2ADBD0A477F9B94DA64 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -287,6 +299,8 @@
 				DB2852E502BF448A976AF44F /* libRNVectorIcons.a in Frameworks */,
 				BFBEA07BAD2B4DED833256DE /* libRNFetchBlob.a in Frameworks */,
 				904F6342614C40729DF1FD3B /* libLRDRCTSimpleToast.a in Frameworks */,
+				7A9402FD78634B7D97484476 /* libCodePush.a in Frameworks */,
+				DE55E94976D04B208C5BE2A5 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +464,7 @@
 				36C6A709888D4B1485819B81 /* RNVectorIcons.xcodeproj */,
 				C9DA870C6BE3490794A6A5A0 /* RNFetchBlob.xcodeproj */,
 				077691F02E1B4A95835889B7 /* LRDRCTSimpleToast.xcodeproj */,
+				F4E9700AAC37420DB4636BE3 /* CodePush.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -492,6 +507,7 @@
 			children = (
 				9C5062759D8133AC857853AA /* libPods-PleadApp.a */,
 				56B82D28AADDAA68A58869DB /* libPods-PleadAppTests.a */,
+				EFC1E47900734BD09022EA55 /* libz.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -525,6 +541,14 @@
 			isa = PBXGroup;
 			children = (
 				F4A66C571E27ED380078443E /* libLRDRCTSimpleToast.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4A66C7B1E28477E0078443E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4A66C7F1E28477E0078443E /* libCodePush.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -604,6 +628,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = F4A66C7B1E28477E0078443E /* Products */;
+					ProjectRef = F4E9700AAC37420DB4636BE3 /* CodePush.xcodeproj */;
+				},
 				{
 					ProductGroup = F4A66C531E27ED380078443E /* Products */;
 					ProjectRef = 077691F02E1B4A95835889B7 /* LRDRCTSimpleToast.xcodeproj */;
@@ -824,6 +852,13 @@
 			remoteRef = F4A66C561E27ED380078443E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		F4A66C7F1E28477E0078443E /* libCodePush.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCodePush.a;
+			remoteRef = F4A66C7E1E28477E0078443E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1022,6 +1057,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				New_Setting = "";
 				OTHER_LDFLAGS = (
@@ -1045,6 +1081,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1074,6 +1111,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 				);
 				INFOPLIST_FILE = PleadApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1101,6 +1139,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 				);
 				INFOPLIST_FILE = PleadApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1155,6 +1194,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1198,6 +1238,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

@@ -21,10 +21,10 @@ const styles = EStyleSheet.create({
   },
   titleBorder: {
     marginTop: 20,
-    marginBottom: 40,
+    marginBottom: 20,
     width: 35,
     height: 3,
-    backgroundColor: '$color.primary',
+    backgroundColor: '$color.secondary',
   },
   text: {
     fontSize: 16,
