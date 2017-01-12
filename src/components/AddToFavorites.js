@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import Toast from 'react-native-simple-toast'
+
 import {
   View,
   Text,
@@ -44,7 +46,11 @@ const renderIcon = (hasIconOnly, isActive) => {
 
 const AddToFavorites = ({ id, toggleFavorite, isActive, hasIconOnly }) => (
   <TouchableOpacity
-    onPress={() => toggleFavorite(id)}
+    onPress={() => {
+      Toast.show(isActive ? 'Supprimé des favoris' : 'Ajouté aux favoris')
+      toggleFavorite(id)
+    }
+    }
     activeOpacity={0.7}
   >
     <View style={styles.container}>
