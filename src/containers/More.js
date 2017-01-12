@@ -1,10 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import EStyleSheet from 'react-native-extended-stylesheet'
+import Toast from 'react-native-simple-toast'
 import { List, ListItem } from 'react-native-elements'
 import {
   View,
   ScrollView,
+  Alert
 } from 'react-native'
 import { persistedStore } from '../App'
 import {
@@ -14,24 +16,44 @@ import {
 
 const list = [
   {
-    title: 'Purge',
-    icon: 'av-timer',
+    title: 'À propos',
+    icon: 'info-outline'
+  },
+  {
+    title: 'Aide',
+    icon: 'help-outline'
+  },
+  {
+    title: 'Nous soutenir',
+    icon: 'thumb-up'
+  },
+  {
+    title: 'Réseaux sociaux',
+    icon: 'share'
+  },
+  {
+    title: 'Noter l\'application',
+    icon: 'star'
+  },
+  {
+    title: 'Effacer les données sauvegardées',
+    icon: 'delete-forever',
     onPress() {
-      console.log('purged')
-      persistedStore.purge()
+      Alert.alert(
+        'Effacer les données',
+        'Toutes les données sauvegardées (questions, images, favoris) seront définitivement effacées à votre prochaine connexion et devront être re-téléchargées. Êtes-vous sur de vouloir tout supprimer ?',
+        [
+          { text: 'Annuler', onPress: () => {}, style: 'cancel' },
+          {
+            text: 'Effacer',
+            onPress: () => {
+              persistedStore.purge()
+              Toast.show('Toutes les données ont été effacées.')
+            }
+          },
+        ]
+      )
     },
-  },
-  {
-    title: 'Trips',
-    icon: 'flight-takeoff'
-  },
-  {
-    title: 'Appointments',
-    icon: 'av-timer'
-  },
-  {
-    title: 'Trips',
-    icon: 'flight-takeoff'
   },
 ]
 

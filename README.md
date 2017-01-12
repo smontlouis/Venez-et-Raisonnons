@@ -12,8 +12,7 @@ Ceci est le code source de l'application, en cours de développement.
 - react-native-extended-stylesheet
 
 ## Reste à faire
-- Meilleure gestion des images en cache
 - Possibilité de partager une question
-- Se connecter à une API Bible
-- Finir la page `Ajouter une question`
+- Vider la barre de recherche
 - Finir la page `Plus`
+- Polir la version Android

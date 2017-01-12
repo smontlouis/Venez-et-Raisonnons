@@ -54,7 +54,7 @@ const VerseModal = ({ isLoading, title, text, refValue }) => (
     {
       !isLoading &&
       <View>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title}>{title} (LSG)</Text>
         <View style={styles.titleBorder} />
         <Text style={styles.text}>{text}</Text>
       </View>
