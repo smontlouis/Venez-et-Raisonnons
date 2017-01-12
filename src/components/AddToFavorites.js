@@ -22,15 +22,37 @@ const styles = EStyleSheet.create({
   }
 })
 
-const AddToFavorites = ({ id, toggleFavorite, isActive }) => (
-  <TouchableOpacity onPress={() => toggleFavorite(id)}>
-    <View style={styles.container}>
+const renderIcon = (hasIconOnly, isActive) => {
+  if (hasIconOnly) {
+    return (
       <Icon
-        name="bookmark"
+        name={isActive ? 'bookmark' : 'bookmark-border'}
         size={24}
-        color={isActive ? '#FFBC00' : 'rgb(230,230,230)'}
+        color="white"
       />
-      <Text style={styles.text}>Ajouter aux favoris</Text>
+    )
+  }
+
+  return (
+    <Icon
+      name="bookmark"
+      size={24}
+      color={isActive ? '#FFBC00' : 'rgb(230,230,230)'}
+    />
+  )
+}
+
+const AddToFavorites = ({ id, toggleFavorite, isActive, hasIconOnly }) => (
+  <TouchableOpacity
+    onPress={() => toggleFavorite(id)}
+    activeOpacity={0.7}
+  >
+    <View style={styles.container}>
+      {renderIcon(hasIconOnly, isActive)}
+      {
+        !hasIconOnly &&
+        <Text style={styles.text}>Ajouter aux favoris</Text>
+      }
     </View>
   </TouchableOpacity>
 )
@@ -39,6 +61,7 @@ AddToFavorites.propTypes = {
   id: PropTypes.string.isRequired,
   toggleFavorite: PropTypes.func.isRequired,
   isActive: PropTypes.bool,
+  hasIconOnly: PropTypes.bool,
 }
 
 export default connect(

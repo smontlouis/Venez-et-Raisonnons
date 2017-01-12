@@ -15,8 +15,8 @@ const styles = EStyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingBottom: 25,
-    paddingTop: 25,
+    paddingBottom: 20,
+    paddingTop: 20,
     paddingLeft: 0,
     paddingRight: 20,
     borderBottomWidth: 1,

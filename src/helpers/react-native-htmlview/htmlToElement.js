@@ -33,7 +33,10 @@ function htmlToElement(rawHtml, opts, done) {
       if (node.type === 'tag') {
         let linkPressHandler = null
         if (node.name === 'a' && node.attribs && node.attribs.href) {
-          linkPressHandler = () => opts.linkHandler(entities.decodeHTML(node.attribs.href))
+          linkPressHandler = () => opts.linkHandler(
+            entities.decodeHTML(node.attribs.href),
+            entities.decodeHTML(node.children[0].data)
+          )
         }
 
         return (

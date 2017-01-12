@@ -4,6 +4,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  Share as NativeShare,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
@@ -20,13 +21,23 @@ const styles = EStyleSheet.create({
   }
 })
 
+const shareQuestion = () => {
+  NativeShare.share({
+    message: 'Such sharing! Wow',
+    title: 'Best title ever!',
+    url: 'http://codingmiles.com'
+  })
+  .then(result => console.log(result))
+  .catch(err => console.log(err))
+}
+
 const Share = () => (
-  <TouchableOpacity onPress={() => {}} >
+  <TouchableOpacity onPress={shareQuestion} >
     <View style={styles.container}>
       <Icon
         name="share"
         size={24}
-        color="#FFBC00"
+        color="#000"
       />
       <Text style={styles.text}>Partager</Text>
     </View>

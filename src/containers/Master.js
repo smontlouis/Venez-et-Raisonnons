@@ -11,10 +11,10 @@ import {
 import {
   View,
   Text,
-  ActivityIndicator,
 } from 'react-native'
 import {
   NoItems,
+  Loading,
 } from '../components'
 import { Router } from '../routes'
 import { loadData } from '../redux/modules/app'
@@ -35,13 +35,6 @@ const styles = EStyleSheet.create({
     fontWeight: 'bold',
     color: '$color.secondary',
   },
-  container: {
-    flex: 1,
-  },
-  centered: {
-    flex: 1,
-    alignSelf: 'center'
-  }
 })
 
 const links = [
@@ -136,10 +129,7 @@ class Master extends Component {
 
     if (topics.isEmpty()) {
       return (
-        // @TODO - Create a loading component
-        <View style={styles.container}>
-          <ActivityIndicator style={styles.centered} />
-        </View>
+        <Loading />
       )
     }
 

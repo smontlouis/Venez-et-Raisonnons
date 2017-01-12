@@ -1,7 +1,8 @@
+/* global fetch */
+
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
-import Modal from 'react-native-modalbox'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import {
   View,
@@ -13,6 +14,7 @@ import {
   Share,
   AddToFavorites,
   LikeCount,
+  VerseModal,
 } from '../components'
 import HTMLView from '../helpers/react-native-htmlview'
 import * as QuestionsActions from '../redux/modules/questions'
@@ -68,15 +70,11 @@ const styles = EStyleSheet.create({
     fontSize: 16,
   },
   a: {
-    fontWeight: '300',
-    color: '#FF3366', // pink links
-  },
-
-  // Modal
-  modal: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 400,
+    fontWeight: 'bold',
+    color: '$color.primary',
+    borderStyle: 'solid',
+    borderWidth: 2,
+    borderColor: '$color.primary',
   },
 })
 
@@ -101,6 +99,35 @@ export default class Question extends Component {
     topic: PropTypes.object.isRequired,
   }
 
+  constructor(props) {
+    super(props)
+    this.onLinkPress = ::this.onLinkPress
+  }
+
+  state = {
+    verseIsLoading: false,
+    verse: {
+      title: '',
+      text: '',
+    }
+  }
+
+  onLinkPress(url, title) {
+    this.modal.open()
+    this.setState({ verseIsLoading: true })
+    fetch(`https://www.bible.com/fr/bible/93/${url}.json`)
+      .then(res => res.json())
+      .then((json) => {
+        this.setState({
+          verseIsLoading: false,
+          verse: {
+            title,
+            text: json.reader_html
+          },
+        })
+      })
+  }
+
   render() {
     const {
       question,
@@ -117,6 +144,12 @@ export default class Question extends Component {
               <Text style={styles.title}>{ question.get('title') }</Text>
             </View>
           )}
+          rightComponent={(
+            <AddToFavorites
+              id={question.get('id')}
+              hasIconOnly
+            />
+          )}
         >
           <ScrollView
             contentContainerStyle={styles.scrollContainer}
@@ -126,7 +159,7 @@ export default class Question extends Component {
               <HTMLView
                 value={question.get('description')}
                 stylesheet={styles}
-                onLinkPress={url => this.modal.open()}
+                onLinkPress={this.onLinkPress}
               />
               <View style={styles.shareWrapper}>
                 <Share id={question.get('id')} />
@@ -136,13 +169,12 @@ export default class Question extends Component {
             </View>
           </ScrollView>
         </ScrollableHeader>
-        <Modal
-          style={styles.modal}
-          position="bottom"
-          ref={c => this.modal = c}
-        >
-          <Text style={styles.text}>Modal on bottom with backdrop</Text>
-        </Modal>
+        <VerseModal
+          refValue={(c) => { this.modal = c }}
+          isLoading={this.state.verseIsLoading}
+          title={this.state.verse.title}
+          text={this.state.verse.text}
+        />
       </View>
     )
   }

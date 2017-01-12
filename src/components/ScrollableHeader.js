@@ -71,6 +71,13 @@ const getStyles = (h) => {
       paddingLeft: 10,
       justifyContent: 'center',
     },
+    rightComponent: {
+      position: 'absolute',
+      width: 42,
+      // height: 44,
+      right: 0,
+      top: 10,
+    },
     title: {
       color: 'white',
       fontFamily: '$font.heading',
@@ -105,6 +112,7 @@ export default class ScrollableHeader extends Component {
     children: PropTypes.element.isRequired,
     header: PropTypes.element,
     image: PropTypes.string,
+    rightComponent: PropTypes.element,
   }
 
   constructor(props) {
@@ -123,7 +131,13 @@ export default class ScrollableHeader extends Component {
   }
 
   render() {
-    const { children, title, header, image } = this.props
+    const {
+      children,
+      title,
+      header,
+      image,
+      rightComponent,
+    } = this.props
     const {
       styles,
       NEGATIVE_DISTANCE,
@@ -231,6 +245,12 @@ export default class ScrollableHeader extends Component {
             >
               {title.toUpperCase()}
             </Animated.Text>
+            {
+              !!rightComponent &&
+              <View style={styles.rightComponent}>
+                {rightComponent}
+              </View>
+            }
           </View>
         </Animated.View>
       </View>

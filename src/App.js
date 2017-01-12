@@ -5,30 +5,20 @@ import { persistStore } from 'redux-persist'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import {
   AsyncStorage,
-  View,
-  ActivityIndicator,
 } from 'react-native'
 
 import routes from './routes'
 import configureStore from './redux/store'
 import globalVariables from './helpers/globalVariables'
 
+import {
+  Loading
+} from './components'
+
 export const store = configureStore()
 export let persistedStore = null // eslint-disable-line import/no-mutable-exports
 
 EStyleSheet.build(globalVariables)
-
-
-const styles = EStyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  centered: {
-    flex: 1,
-    alignSelf: 'center'
-  }
-})
-
 
 class App extends Component {
   static propTypes = {
@@ -53,10 +43,7 @@ class App extends Component {
   render() {
     if (!this.state.rehydrated) {
       return (
-        // @TODO - Create a loading component
-        <View style={styles.container}>
-          <ActivityIndicator style={styles.centered} />
-        </View>
+        <Loading />
       )
     }
     return (
