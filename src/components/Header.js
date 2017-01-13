@@ -37,6 +37,11 @@ const styles = EStyleSheet.create({
   },
   indicator: {
     marginRight: 10,
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    height: 32,
+    width: 32,
   },
   titleContainer: {
     flex: 1,

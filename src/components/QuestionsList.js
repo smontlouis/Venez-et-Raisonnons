@@ -12,6 +12,7 @@ const styles = EStyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    paddingTop: 0,
   },
   titleText: {
     fontFamily: '$font.title',

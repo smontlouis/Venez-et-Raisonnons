@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import Toast from 'react-native-simple-toast'
 import {
   ListView,
   RefreshControl,
@@ -46,6 +47,7 @@ class List extends Component {
     this.setState({ refreshing: true })
     loadData().then(() => {
       this.setState({ refreshing: false })
+      Toast.show('Application à jour')
     })
   }
 
