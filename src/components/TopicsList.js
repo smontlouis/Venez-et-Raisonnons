@@ -10,9 +10,8 @@ const styles = EStyleSheet.create({
   },
 })
 
-const TopicsList = ({ topics }) =>
+const TopicsList = ({ topics, style, ...props }) =>
   <List
-    style={styles.container}
     listItems={topics}
     renderRow={
       function ({ id, title, image_url: imageUrl, questionsCount }) {
@@ -26,11 +25,14 @@ const TopicsList = ({ topics }) =>
         )
       }
     }
+    style={[styles.container, style]}
+    {...props}
   />
 
 
 TopicsList.propTypes = {
   topics: PropTypes.object.isRequired,
+  style: PropTypes.number,
 }
 
 export default TopicsList

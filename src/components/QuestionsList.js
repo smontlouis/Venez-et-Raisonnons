@@ -17,6 +17,7 @@ const styles = EStyleSheet.create({
   titleText: {
     fontFamily: '$font.title',
     fontSize: 34,
+    marginTop: 20,
   },
   subTitleText: {
     fontFamily: '$font.title_italic',

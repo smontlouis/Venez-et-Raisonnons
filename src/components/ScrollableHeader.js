@@ -137,6 +137,8 @@ export default class ScrollableHeader extends Component {
       header,
       image,
       rightComponent,
+      hasBackButton = true,
+      isHome,
     } = this.props
     const {
       styles,
@@ -160,7 +162,7 @@ export default class ScrollableHeader extends Component {
 
     const imageTranslate = this.state.scrollY.interpolate({
       inputRange: [NEGATIVE_DISTANCE, 0, HEADER_SCROLL_DISTANCE],
-      outputRange: [100, 0, -50],
+      outputRange: [107, 0, -50],
       extrapolate: 'clamp',
     })
 
@@ -212,7 +214,7 @@ export default class ScrollableHeader extends Component {
                     transform: [{ scale: imageScale }]
                   }
                 ]}
-                source={{ uri: image }}
+                source={isHome ? require('../../static/images/bible.png') : { uri: image }}
               />
             }
             {
@@ -226,12 +228,15 @@ export default class ScrollableHeader extends Component {
             }
           </Animated.View>
           <View style={styles.bar}>
-            <Back
-              style={styles.back}
-              underlayColor="transparent"
-            >
-              <Icon name="chevron-thin-left" size={18} color="white" />
-            </Back>
+            {
+              hasBackButton &&
+              <Back
+                style={styles.back}
+                underlayColor="transparent"
+              >
+                <Icon name="chevron-thin-left" size={18} color="white" />
+              </Back>
+            }
             <Animated.Text
               style={[
                 styles.title,

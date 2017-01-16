@@ -3,11 +3,10 @@ import { connect } from 'react-redux'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import {
   View,
-  StatusBar,
 } from 'react-native'
 import {
   TopicsList,
-  Header,
+  ScrollableHeader,
 } from '../components'
 
 
@@ -34,16 +33,16 @@ export default class Topics extends Component {
 
     return (
       <View style={styles.container}>
-        <StatusBar
-          barStyle="light-content"
-        />
-        <Header
-          title="Accueil"
+        <ScrollableHeader
+          title="Venez Et Raisonnons"
+          image="http://www.wintonchristadelphians.org/wp-content/uploads/2012/04/bible.png"
+          isHome
           hasBackButton={false}
-        />
-        <TopicsList
-          topics={topics}
-        />
+        >
+          <TopicsList
+            topics={topics}
+          />
+        </ScrollableHeader>
       </View>
     )
   }
