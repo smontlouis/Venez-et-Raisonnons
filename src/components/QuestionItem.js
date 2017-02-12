@@ -25,6 +25,7 @@ const styles = EStyleSheet.create({
   title: {
     fontFamily: '$font.heading',
     fontSize: 22,
+    lineHeight: 26,
   },
   number: {
     color: '$color.primary',
