@@ -1,6 +1,5 @@
 import React from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { connect } from 'react-redux'
 import { Button } from 'react-native-elements'
 import {
   Text,
@@ -10,8 +9,6 @@ import {
 import {
   Header,
 } from '../components'
-
-// import * as SearchActions from '../redux/modules/search'
 
 
 const styles = EStyleSheet.create({
@@ -43,7 +40,6 @@ const Add = () =>
   <View style={styles.container}>
     <Header
       title="Poser une question"
-      hasBackButton={false}
     />
     <View style={styles.centered}>
       <Text style={styles.text}>
@@ -59,9 +55,4 @@ const Add = () =>
   </View>
 
 
-export default connect(
-  state => ({
-
-  }),
-  // SearchActions,
-)(Add)
+export default Add

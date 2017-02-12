@@ -5,7 +5,7 @@ import {
   View,
 } from 'react-native'
 import {
-  TopicsList,
+  StudiesList,
   ScrollableHeader,
 } from '../components'
 
@@ -20,27 +20,29 @@ const styles = EStyleSheet.create({
 
 @connect(
   state => ({
-    topics: state.topics.get('topics'),
+    studies: state.studies.get('studies'),
   }),
 )
-export default class Topics extends Component {
+export default class Studies extends Component {
   static propTypes = {
-    topics: PropTypes.object.isRequired,
+    studies: PropTypes.object.isRequired,
   }
 
   render() {
-    const { topics } = this.props
+    const { studies } = this.props
 
     return (
       <View style={styles.container}>
         <ScrollableHeader
-          title="Venez Et Raisonnons"
-          isHome
+          title="Études bibliques"
+          headerStyle={{ backgroundColor: '#1A806F' }}
+          isStudies
           hasBackButton={false}
         >
-          <TopicsList
-            headerTitle="Venez et Raisonnons"
-            topics={topics}
+          <StudiesList
+            headerTitle="Études bibliques"
+            headerStyle={{ backgroundColor: '#1A806F' }}
+            studies={studies}
           />
         </ScrollableHeader>
       </View>

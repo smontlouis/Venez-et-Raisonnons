@@ -3,7 +3,7 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 
 import {
   List,
-  QuestionItem,
+  StudyItem,
   HeaderList,
 } from './index'
 
@@ -15,15 +15,14 @@ const styles = EStyleSheet.create({
   },
 })
 
-const QuestionsList = ({ questions, headerTitle, questionsCount, style, ...props }) =>
+const StudiesList = ({ headerTitle, studies, style, ...props }) =>
   <List
-    listItems={questions}
-    renderHeader={() => headerTitle && <HeaderList title={headerTitle} subtitle={`${questionsCount} questions`} />}
+    listItems={studies}
+    renderHeader={() => headerTitle && <HeaderList title={headerTitle} />}
     renderRow={
-      function ({ id, title }, sId, rowID) {
+      function ({ id, title }) {
         return (
-          <QuestionItem
-            number={Number(rowID) + 1}
+          <StudyItem
             id={id}
             title={title}
           />
@@ -35,11 +34,10 @@ const QuestionsList = ({ questions, headerTitle, questionsCount, style, ...props
   />
 
 
-QuestionsList.propTypes = {
-  questions: PropTypes.object.isRequired,
-  questionsCount: PropTypes.number,
+StudiesList.propTypes = {
   headerTitle: PropTypes.string,
+  studies: PropTypes.object.isRequired,
   style: PropTypes.number,
 }
 
-export default QuestionsList
+export default StudiesList

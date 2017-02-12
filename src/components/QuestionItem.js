@@ -20,23 +20,34 @@ const styles = EStyleSheet.create({
   },
   content: {
     flex: 1,
+    flexDirection: 'row',
   },
   title: {
     fontFamily: '$font.heading',
     fontSize: 22,
+  },
+  number: {
+    color: '$color.primary',
+    fontFamily: '$font.heading',
+    fontSize: 20,
+    lineHeight: 24,
   },
   icon: {
     color: '$color.primary'
   }
 })
 
-const QuestionItem = ({ id, title }) => (
+const QuestionItem = ({ number, id, title }) => (
   <Link
     route={'question'}
     params={{ questionId: id }}
   >
     <View style={styles.container}>
       <View style={styles.content}>
+        {
+          number &&
+          <Text style={styles.number}>{number}. </Text>
+        }
         <Text style={styles.title}>{title}</Text>
       </View>
       <View>
@@ -47,6 +58,7 @@ const QuestionItem = ({ id, title }) => (
 )
 
 QuestionItem.propTypes = {
+  number: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 }

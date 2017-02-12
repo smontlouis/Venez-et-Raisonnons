@@ -1,18 +1,24 @@
 import React, { PropTypes } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
-import List from './List'
-import TopicItem from './TopicItem'
+import {
+  List,
+  TopicItem,
+  HeaderList,
+} from './index'
 
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
+    padding: 20,
+    paddingTop: 0,
   },
 })
 
-const TopicsList = ({ topics, style, ...props }) =>
+const TopicsList = ({ headerTitle, topics, style, ...props }) =>
   <List
     listItems={topics}
+    renderHeader={() => headerTitle && <HeaderList title={headerTitle} />}
     renderRow={
       function ({ id, title, image_url: imageUrl, questionsCount }) {
         return (
@@ -31,6 +37,7 @@ const TopicsList = ({ topics, style, ...props }) =>
 
 
 TopicsList.propTypes = {
+  headerTitle: PropTypes.string,
   topics: PropTypes.object.isRequired,
   style: PropTypes.number,
 }

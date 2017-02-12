@@ -1,5 +1,7 @@
 export Topics from './Topics'
+export Studies from './Studies'
 export Topic from './Topic'
+export Study from './Study'
 export Favorites from './Favorites'
 export Profile from './Profile'
 export More from './More'

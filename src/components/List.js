@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Toast from 'react-native-simple-toast'
+import R from 'ramda'
 import {
   ListView,
   RefreshControl,
@@ -26,7 +27,7 @@ class List extends Component {
 
     this.onRefresh = ::this.onRefresh
     this.state = {
-      dataSource: dataSource.cloneWithRows(data.toJS()),
+      dataSource: dataSource.cloneWithRows(R.values(data.toJS())),
       refreshing: false,
     }
   }
@@ -37,7 +38,7 @@ class List extends Component {
 
     if (nextListItems !== listItems) {
       this.setState({
-        dataSource: dataSource.cloneWithRows(nextListItems.toJS())
+        dataSource: dataSource.cloneWithRows(R.values(nextListItems.toJS()))
       })
     }
   }

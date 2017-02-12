@@ -132,6 +132,7 @@ export default class ScrollableHeader extends Component {
 
   render() {
     const {
+      headerStyle,
       children,
       title,
       header,
@@ -139,6 +140,7 @@ export default class ScrollableHeader extends Component {
       rightComponent,
       hasBackButton = true,
       isHome,
+      isStudies,
     } = this.props
     const {
       styles,
@@ -184,6 +186,16 @@ export default class ScrollableHeader extends Component {
       extrapolate: 'clamp',
     })
 
+    const getImage = () => {
+      if (isHome) {
+        return require('../../static/images/bible.png')
+      }
+      if (isStudies) {
+        return require('../../static/images/bible-study.jpg')
+      }
+      return { uri: image }
+    }
+
     return (
       <View style={styles.fill}>
         <StatusBar
@@ -198,7 +210,7 @@ export default class ScrollableHeader extends Component {
             [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }]
           ),
         }) }
-        <Animated.View style={[styles.header, { height: headerHeight }]}>
+        <Animated.View style={[styles.header, { height: headerHeight }, headerStyle]}>
           <Animated.View
             style={[
               styles.headerContainer,
@@ -206,7 +218,7 @@ export default class ScrollableHeader extends Component {
             ]}
           >
             {
-              image &&
+              (image || isHome || isStudies) &&
               <Animated.Image
                 style={[
                   styles.backgroundImage,
@@ -214,7 +226,7 @@ export default class ScrollableHeader extends Component {
                     transform: [{ scale: imageScale }]
                   }
                 ]}
-                source={isHome ? require('../../static/images/bible.png') : { uri: image }}
+                source={getImage()}
               />
             }
             {

@@ -61,7 +61,10 @@ export function loadData() {
 
     racePromise
       .then(val => dispatch(loadDataSuccess(val)))
-      .catch(() => dispatch({ type: LOAD_DATA_FAIL }))
+      .catch((e) => {
+        console.log(e)
+        return dispatch({ type: LOAD_DATA_FAIL })
+      })
   }
 }
 

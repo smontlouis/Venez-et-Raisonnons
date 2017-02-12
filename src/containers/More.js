@@ -1,20 +1,30 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { PropTypes } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Toast from 'react-native-simple-toast'
 import { List, ListItem } from 'react-native-elements'
+import { withNavigation } from '@exponent/ex-navigation'
 import {
   View,
   ScrollView,
   Alert
 } from 'react-native'
+import { Router } from '../routes'
 import { persistedStore } from '../App'
 import {
   Header,
 } from '../components'
-// import * as FavoritesActions from '../redux/modules/favorites'
 
-const list = [
+const primaryList = [
+  {
+    title: 'Poser une question',
+    icon: 'add-circle',
+    onPress(navigator) {
+      navigator.push(Router.getRoute('add'))
+    }
+  }
+]
+
+const secondaryList = [
   {
     title: 'À propos',
     icon: 'info-outline'
@@ -64,7 +74,7 @@ const styles = EStyleSheet.create({
   },
 })
 
-const More = () =>
+const More = ({ navigator }) =>
   <View style={styles.container}>
     <Header
       title="Plus"
@@ -73,7 +83,19 @@ const More = () =>
     <ScrollView>
       <List>
         {
-          list.map((item, i) => (
+          primaryList.map((item, i) => (
+            <ListItem
+              key={i}
+              title={item.title}
+              leftIcon={{ name: item.icon }}
+              onPress={() => item.onPress && item.onPress(navigator)}
+            />
+          ))
+        }
+      </List>
+      <List>
+        {
+          secondaryList.map((item, i) => (
             <ListItem
               key={i}
               title={item.title}
@@ -86,10 +108,9 @@ const More = () =>
     </ScrollView>
   </View>
 
+More.propTypes = {
+  navigator: PropTypes.object.isRequired,
+}
 
-export default connect(
-  () => ({
 
-  }),
-  // FavoritesActions,
-)(More)
+export default withNavigation(More)

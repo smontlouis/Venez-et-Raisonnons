@@ -44,19 +44,24 @@ const links = [
     label: 'Accueil',
   },
   {
-    to: 'favorites',
-    icon: 'bookmark',
-    label: 'Favoris',
+    to: 'studies',
+    icon: 'description',
+    label: 'Études',
   },
-  {
-    to: 'add',
-    icon: 'add-circle',
-    label: 'Poser',
-  },
+  // {
+  //   to: 'add',
+  //   icon: 'add-circle',
+  //   label: 'Poser',
+  // },
   {
     to: 'search',
     icon: 'search',
     label: 'Chercher',
+  },
+  {
+    to: 'favorites',
+    icon: 'bookmark',
+    label: 'Favoris',
   },
   {
     to: 'more',

@@ -8,7 +8,9 @@ import {
 
 import {
   Topics,
+  Studies,
   Topic,
+  Study,
   Favorites,
   Profile,
   More,
@@ -21,11 +23,13 @@ import {
 export const Router = createRouter(() => ({
   home: () => Master,
   topics: () => Topics,
+  studies: () => Studies,
   favorites: () => Favorites,
   search: () => Search,
   profile: () => Profile,
   more: () => More,
   topic: () => Topic,
+  study: () => Study,
   add: () => Add,
   question: () => Question,
 }))

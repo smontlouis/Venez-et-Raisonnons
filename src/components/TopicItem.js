@@ -22,8 +22,6 @@ const styles = EStyleSheet.create({
     borderBottomWidth: 1,
     borderStyle: 'solid',
     borderBottomColor: '$color.grey',
-    marginLeft: 10,
-    marginRight: 10,
   },
   image: {
     width: 72,
