@@ -114,7 +114,7 @@ export default class TopicItem extends Component {
             <Text style={styles.count}>{questionsCount} questions</Text>
           </View>
           <View>
-            <Icon name="chevron-thin-right" size={24} color={styles._container.borderBottomColor} />
+            <Icon name="chevron-thin-right" size={24} color={'black'} />
           </View>
         </View>
       </Link>
