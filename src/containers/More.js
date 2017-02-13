@@ -6,7 +6,8 @@ import { withNavigation } from '@exponent/ex-navigation'
 import {
   View,
   ScrollView,
-  Alert
+  Alert,
+  Linking,
 } from 'react-native'
 import { Router } from '../routes'
 import { persistedStore } from '../App'
@@ -14,32 +15,48 @@ import {
   Header,
 } from '../components'
 
-const primaryList = [
-  {
-    title: 'Poser une question',
-    icon: 'add-circle',
-    onPress(navigator) {
-      navigator.push(Router.getRoute('add'))
-    }
-  }
-]
+// const primaryList = [
+//   {
+//     title: 'Poser une question',
+//     icon: 'add-circle',
+//     onPress(navigator) {
+//       navigator.push(Router.getRoute('add'))
+//     }
+//   }
+// ]
 
 const secondaryList = [
   {
     title: 'À propos',
-    icon: 'info-outline'
+    icon: 'info-outline',
+    onPress(navigator) {
+      navigator.push(Router.getRoute('about'))
+    }
   },
-  {
-    title: 'Aide',
-    icon: 'help-outline'
-  },
+  // {
+  //   title: 'Aide',
+  //   icon: 'help-outline'
+  // },
   {
     title: 'Nous soutenir',
-    icon: 'thumb-up'
+    icon: 'thumb-up',
+    onPress() {
+      Linking
+        .openURL('https://igg.me/at/CVE7THZnG6w')
+        .catch(err => console.log(err))
+    }
   },
+  // {
+  //   title: 'Réseaux sociaux',
+  //   icon: 'share'
+  // },
   {
-    title: 'Réseaux sociaux',
-    icon: 'share'
+    title: 'Nous contacter',
+    icon: 'mail',
+    onPress() {
+      Linking
+        .openURL('mailto:venezetraisonnons@gmail.com')
+    }
   },
   {
     title: 'Noter l\'application',
@@ -81,7 +98,7 @@ const More = ({ navigator }) =>
       hasBackButton={false}
     />
     <ScrollView>
-      <List>
+      {/* <List>
         {
           primaryList.map((item, i) => (
             <ListItem
@@ -92,7 +109,7 @@ const More = ({ navigator }) =>
             />
           ))
         }
-      </List>
+      </List> */}
       <List>
         {
           secondaryList.map((item, i) => (
@@ -100,7 +117,7 @@ const More = ({ navigator }) =>
               key={i}
               title={item.title}
               leftIcon={{ name: item.icon }}
-              onPress={item.onPress && item.onPress}
+              onPress={() => item.onPress && item.onPress(navigator)}
             />
           ))
         }

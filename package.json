@@ -32,7 +32,8 @@
     "redux-persist-transform-filter": "0.0.4",
     "redux-persist-transform-immutable": "^3.2.0",
     "redux-thunk": "^2.1.0",
-    "reselect": "^2.5.4"
+    "reselect": "^2.5.4",
+    "showdown": "^1.6.4"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",

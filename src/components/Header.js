@@ -76,7 +76,7 @@ const Header = ({ title, hasBackButton = true, isTransparent, isLoading }) => {
           style={styles.back}
           underlayColor="transparent"
         >
-          <Icon name="chevron-thin-left" size={18} color="white" />
+          <Icon name="chevron-left" size={20} color="white" />
         </Back>
       }
       {

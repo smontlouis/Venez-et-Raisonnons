@@ -11,13 +11,14 @@ import {
 } from 'react-native'
 import {
   ScrollableHeader,
-  Share,
+  // Share,
+  MarkAsRead,
   AddToFavorites,
   LikeCount,
   VerseModal,
+  StylizedHTMLView
 } from '../components'
-import HTMLView from '../helpers/react-native-htmlview'
-import * as QuestionsActions from '../redux/modules/questions'
+import * as AppActions from '../redux/modules/app'
 
 
 const styles = EStyleSheet.create({
@@ -63,19 +64,6 @@ const styles = EStyleSheet.create({
     paddingTop: 20,
     justifyContent: 'space-between',
   },
-
-  // HTML View
-  p: {
-    lineHeight: 22,
-    fontSize: 16,
-  },
-  a: {
-    fontWeight: 'bold',
-    color: '$color.primary',
-    borderStyle: 'solid',
-    borderWidth: 2,
-    borderColor: '$color.primary',
-  },
 })
 
 const getCurrentQuestion = (state, props) => state.questions.get('questions').get(props.questionId)
@@ -91,12 +79,13 @@ const getCurrentTopic = createSelector(
     question: getCurrentQuestion(state, ownProps),
     topic: getCurrentTopic(state, ownProps)
   }),
-  QuestionsActions,
+  AppActions,
 )
 export default class Question extends Component {
   static propTypes = {
     question: PropTypes.object.isRequired,
     topic: PropTypes.object.isRequired,
+    markAsRead: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -131,13 +120,15 @@ export default class Question extends Component {
   render() {
     const {
       question,
-      topic
+      topic,
+      markAsRead
     } = this.props
 
     return (
       <View style={styles.container}>
         <ScrollableHeader
           title={question.get('title')}
+          onScrollViewEnd={() => markAsRead(question.get('id'))}
           header={(
             <View style={styles.header}>
               <Text style={styles.topic}>{ topic.get('title') }</Text>
@@ -156,13 +147,13 @@ export default class Question extends Component {
           >
             <View style={styles.responseContainer}>
               <Text style={styles.subTitle}>Réponse</Text>
-              <HTMLView
+              <StylizedHTMLView
                 value={question.get('description')}
-                stylesheet={styles}
                 onLinkPress={this.onLinkPress}
               />
               <View style={styles.shareWrapper}>
-                <Share id={question.get('id')} />
+                {/* <Share id={question.get('id')} /> */}
+                <MarkAsRead id={question.get('id')} />
                 <AddToFavorites id={question.get('id')} />
               </View>
               <LikeCount count={question.get('likeCount')} id={question.get('id')} />

@@ -15,7 +15,7 @@ const styles = EStyleSheet.create({
   },
 })
 
-const QuestionsList = ({ questions, headerTitle, questionsCount, style, ...props }) =>
+const QuestionsList = ({ questions, headerTitle, questionsCount, style, withCounting, ...props }) =>
   <List
     listItems={questions}
     renderHeader={() => headerTitle && <HeaderList title={headerTitle} subtitle={`${questionsCount} questions`} />}
@@ -23,7 +23,7 @@ const QuestionsList = ({ questions, headerTitle, questionsCount, style, ...props
       function ({ id, title }, sId, rowID) {
         return (
           <QuestionItem
-            number={Number(rowID) + 1}
+            number={withCounting && (Number(rowID) + 1)}
             id={id}
             title={title}
           />

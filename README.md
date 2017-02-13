@@ -17,5 +17,5 @@ Ceci est le code source de l'application, en cours de développement.
 - Finir la page `Plus`
 - Polir la version Android
 
-### Mémoi code push
-`code-push release-react Venez-Et-Raisonnons ios --plistFile ios/PleadApp/Info.plist -m --description "Modified header verse modal"`
+### Mémo code push
+`code-push release-react PleadApp ios --plistFile ios/PleadApp/Info.plist -m --description "Added study entity"`

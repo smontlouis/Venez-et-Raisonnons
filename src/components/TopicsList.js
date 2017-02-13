@@ -20,13 +20,12 @@ const TopicsList = ({ headerTitle, topics, style, ...props }) =>
     listItems={topics}
     renderHeader={() => headerTitle && <HeaderList title={headerTitle} />}
     renderRow={
-      function ({ id, title, image_url: imageUrl, questionsCount }) {
+      function ({ id, title, image_url: imageUrl }) {
         return (
           <TopicItem
             id={id}
             title={title}
             imageUrl={imageUrl}
-            questionsCount={questionsCount}
           />
         )
       }

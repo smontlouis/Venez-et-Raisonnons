@@ -53,7 +53,7 @@ export default class Topic extends Component {
         >
           <QuestionsList
             questions={questions}
-            questionsCount={topic.get('questionsCount')}
+            questionsCount={questions.count()}
             headerTitle={topic.get('title')}
           />
         </ScrollableHeader>

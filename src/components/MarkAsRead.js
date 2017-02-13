@@ -37,18 +37,18 @@ const renderIcon = (hasIconOnly, isActive) => {
 
   return (
     <Icon
-      name="bookmark"
+      name="check"
       size={24}
-      color={isActive ? '#FFBC00' : 'rgb(230,230,230)'}
+      color={isActive ? '#2ecc71' : 'rgb(230,230,230)'}
     />
   )
 }
 
-const AddToFavorites = ({ id, toggleFavorite, isActive, hasIconOnly }) => (
+const AddToFavorites = ({ id, toggleMarkAsRead, isActive, hasIconOnly }) => (
   <TouchableOpacity
     onPress={() => {
-      Toast.show(isActive ? 'Supprimé des favoris' : 'Ajouté aux favoris')
-      toggleFavorite(id)
+      Toast.show(isActive ? 'Marqué comme non lu' : 'Marqué comme lu')
+      toggleMarkAsRead(id)
     }}
     activeOpacity={0.7}
   >
@@ -56,7 +56,7 @@ const AddToFavorites = ({ id, toggleFavorite, isActive, hasIconOnly }) => (
       {renderIcon(hasIconOnly, isActive)}
       {
         !hasIconOnly &&
-        <Text style={styles.text}>Ajouter aux favoris</Text>
+        <Text style={styles.text}>Marquer comme lu</Text>
       }
     </View>
   </TouchableOpacity>
@@ -64,14 +64,14 @@ const AddToFavorites = ({ id, toggleFavorite, isActive, hasIconOnly }) => (
 
 AddToFavorites.propTypes = {
   id: PropTypes.string.isRequired,
-  toggleFavorite: PropTypes.func.isRequired,
+  toggleMarkAsRead: PropTypes.func.isRequired,
   isActive: PropTypes.bool,
   hasIconOnly: PropTypes.bool,
 }
 
 export default connect(
   (state, ownProps) => ({
-    isActive: !!state.app.getIn(['favorites', ownProps.id])
+    isActive: !!state.app.getIn(['hasBeenRead', ownProps.id])
   }),
   AppActions,
 )(AddToFavorites)

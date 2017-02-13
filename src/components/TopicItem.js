@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import Icon from 'react-native-vector-icons/Entypo'
 import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
 import {
   Text,
   View,
@@ -22,6 +23,9 @@ const styles = EStyleSheet.create({
     borderBottomWidth: 1,
     borderStyle: 'solid',
     borderBottomColor: '$color.grey',
+  },
+  containerGrey: {
+    opacity: 0.3
   },
   image: {
     width: 72,
@@ -45,10 +49,19 @@ const styles = EStyleSheet.create({
 })
 
 const getBase64Img = (state, props) => state.topics.get('base64Images').get(props.id)
+const getCurrentTopic = (state, props) => state.topics.get('topics').get(props.id)
+const getQuestions = state => state.questions.get('questions')
+
+const getQuestionsNumberByTopic = createSelector(
+  [getCurrentTopic, getQuestions],
+  (currentTopic, questions) => questions.filter(question => (question.get('topic') === currentTopic.get('id'))).count(),
+)
+
 
 @connect(
   (state, ownProps) => ({
-    base64Img: getBase64Img(state, ownProps)
+    base64Img: getBase64Img(state, ownProps),
+    questionsCount: getQuestionsNumberByTopic(state, ownProps),
   }),
 )
 export default class TopicItem extends Component {
@@ -71,6 +84,21 @@ export default class TopicItem extends Component {
 
   render() {
     const { id, title, questionsCount, base64Img } = this.props
+
+    if (!questionsCount) {
+      return (
+        <View style={[styles.container, styles.containerGrey]}>
+          <Image
+            style={styles.image}
+            source={{ uri: `data:image/gif;base64,${base64Img}` }}
+          />
+          <View style={styles.content}>
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.count}>Bientôt disponible</Text>
+          </View>
+        </View>
+      )
+    }
     return (
       <Link
         route={'topic'}

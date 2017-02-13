@@ -43,25 +43,25 @@ const links = [
     icon: 'home',
     label: 'Accueil',
   },
-  {
-    to: 'studies',
-    icon: 'description',
-    label: 'Études',
-  },
   // {
-  //   to: 'add',
-  //   icon: 'add-circle',
-  //   label: 'Poser',
+  //   to: 'studies',
+  //   icon: 'description',
+  //   label: 'Études',
   // },
-  {
-    to: 'search',
-    icon: 'search',
-    label: 'Chercher',
-  },
   {
     to: 'favorites',
     icon: 'bookmark',
     label: 'Favoris',
+  },
+  {
+    to: 'add',
+    icon: 'add-circle',
+    label: 'Poser',
+  },
+  {
+    to: 'search',
+    icon: 'search',
+    label: 'Chercher',
   },
   {
     to: 'more',

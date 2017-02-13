@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/Ionicons'
 import {
   Text,
@@ -38,7 +39,7 @@ const styles = EStyleSheet.create({
   }
 })
 
-const QuestionItem = ({ number, id, title }) => (
+const QuestionItem = ({ number, id, title, hasBeenRead }) => (
   <Link
     route={'question'}
     params={{ questionId: id }}
@@ -52,16 +53,28 @@ const QuestionItem = ({ number, id, title }) => (
         <Text style={styles.title}>{title}</Text>
       </View>
       <View>
-        <Icon name="md-arrow-round-forward" size={20} color={styles._icon.color} />
+        {
+          hasBeenRead &&
+          <Icon name="md-checkmark" size={20} color="#2ecc71" />
+        }
+        {
+          !hasBeenRead &&
+          <Icon name="md-arrow-round-forward" size={20} color={styles._icon.color} />
+        }
       </View>
     </View>
   </Link>
 )
 
 QuestionItem.propTypes = {
-  number: PropTypes.number.isRequired,
+  number: PropTypes.number,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  hasBeenRead: PropTypes.bool,
 }
 
-export default QuestionItem
+export default connect(
+  (state, ownProps) => ({
+    hasBeenRead: !!state.app.getIn(['hasBeenRead', ownProps.id])
+  }),
+)(QuestionItem)

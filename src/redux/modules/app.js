@@ -2,6 +2,8 @@ import { Map, List } from 'immutable'
 import { firebaseDb } from '../../services/firebase'
 
 const LOAD_DATA = 'app/LOAD_DATA'
+const MARK_AS_READ = 'app/MARK_AS_READ'
+const REMOVE_AS_READ = 'app/REMOVE_AS_READ'
 export const LOAD_DATA_SUCCESS = 'app/LOAD_DATA_SUCCESS'
 const LOAD_DATA_FAIL = 'app/LOAD_DATA_FAIL'
 const ADD_FAVORITE = 'app/ADD_FAVORITE'
@@ -23,6 +25,7 @@ connectedRef.on('value', (snap) => {
 const initialState = Map({
   isLoading: false,
   favorites: Map(),
+  hasBeenRead: Map(),
   likes: Map(),
 })
 
@@ -39,6 +42,22 @@ export function toggleFavorite(id) {
       return dispatch({ type: REMOVE_FAVORITE, id })
     }
     return dispatch({ type: ADD_FAVORITE, id })
+  }
+}
+
+export function markAsRead(id) {
+  return {
+    type: MARK_AS_READ,
+    id
+  }
+}
+
+export function toggleMarkAsRead(id) {
+  return (dispatch, getState) => {
+    if (getState().app.getIn(['hasBeenRead', id])) {
+      return dispatch({ type: REMOVE_AS_READ, id })
+    }
+    return dispatch({ type: MARK_AS_READ, id })
   }
 }
 
@@ -90,6 +109,12 @@ export default function AppReducer(state = initialState, action = {}) {
     }
     case REMOVE_LIKE: {
       return state.update('likes', f => f.delete(action.id))
+    }
+    case MARK_AS_READ: {
+      return state.update('hasBeenRead', f => f.merge({ [action.id]: true }))
+    }
+    case REMOVE_AS_READ: {
+      return state.update('hasBeenRead', f => f.delete(action.id))
     }
     default:
       return state

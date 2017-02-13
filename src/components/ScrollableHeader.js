@@ -109,11 +109,16 @@ const getStyles = (h) => {
 export default class ScrollableHeader extends Component {
 
   static propTypes = {
+    headerStyle: PropTypes.object,
+    hasBackButton: PropTypes.bool,
     title: PropTypes.string,
     children: PropTypes.element.isRequired,
     header: PropTypes.element,
     image: PropTypes.string,
     rightComponent: PropTypes.element,
+    onScrollViewEnd: PropTypes.func,
+    isHome: PropTypes.bool,
+    isStudies: PropTypes.bool,
   }
 
   constructor(props) {
@@ -125,10 +130,24 @@ export default class ScrollableHeader extends Component {
     }
 
     this.getHeaderSize = ::this.getHeaderSize
+    this.detectScrollViewEnd = ::this.detectScrollViewEnd
   }
+
+  state = { hasReachedEnd: false }
 
   getHeaderSize(event) {
     this.setState({ headerMaxHeight: event.nativeEvent.layout.height })
+  }
+
+  detectScrollViewEnd({ nativeEvent: { layoutMeasurement, contentOffset, contentSize } }) {
+    const paddingToBottom = 120
+    const hasReachedEnd = layoutMeasurement.height + contentOffset.y >=
+                            contentSize.height - paddingToBottom
+
+    if (hasReachedEnd && !this.state.hasReachedEnd) {
+      this.setState({ hasReachedEnd: true })
+      this.props.onScrollViewEnd && this.props.onScrollViewEnd()
+    }
   }
 
   render() {
@@ -208,7 +227,8 @@ export default class ScrollableHeader extends Component {
           contentContainerStyle: styles.scrollViewContent,
           scrollEventThrottle: 16,
           onScroll: Animated.event(
-            [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }]
+            [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
+            { listener: this.detectScrollViewEnd }
           ),
         }) }
         <Animated.View style={[styles.header, { height: headerHeight }, headerStyle]}>
@@ -247,7 +267,7 @@ export default class ScrollableHeader extends Component {
                 style={styles.back}
                 underlayColor="transparent"
               >
-                <Icon name="chevron-thin-left" size={18} color="white" />
+                <Icon name="chevron-left" size={24} color="white" />
               </Back>
             }
             <Animated.Text
