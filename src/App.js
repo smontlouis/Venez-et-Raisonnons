@@ -36,10 +36,33 @@ class App extends Component {
   componentWillMount() {
     persistedStore = persistStore(store, {
       storage: AsyncStorage,
-      transforms: [immutableTransform()]
+      transforms: [immutableTransform()],
     }, () => {
       this.setState({ rehydrated: true })
     })
+  }
+
+  codePushStatusDidChange(status) {
+    switch (status) {
+      case codePush.SyncStatus.CHECKING_FOR_UPDATE:
+        console.log('Checking for updates.')
+        break
+      case codePush.SyncStatus.DOWNLOADING_PACKAGE:
+        console.log('Downloading package.')
+        break
+      case codePush.SyncStatus.INSTALLING_UPDATE:
+        persistedStore.purge()
+        console.log('Installing update.')
+        break
+      case codePush.SyncStatus.UP_TO_DATE:
+        console.log('Up-to-date.')
+        break
+      case codePush.SyncStatus.UPDATE_INSTALLED:
+        console.log('Update installed.')
+        break
+      default:
+        return
+    }
   }
 
   render() {
