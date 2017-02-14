@@ -17,8 +17,8 @@ const styles = EStyleSheet.create({
     borderStyle: 'solid',
     borderColor: '$color.grey',
     paddingRight: 20,
-    paddingTop: 20,
-    paddingBottom: 20,
+    paddingTop: 25,
+    paddingBottom: 25,
   },
   content: {
     flex: 1,
@@ -69,7 +69,7 @@ const QuestionItem = ({ number, id, title, hasBeenRead, containerStyle, isStudy 
         }
         {
           !hasBeenRead &&
-          <Icon name="md-arrow-round-forward" size={20} color={isStudy ? '#1A806F' : '#C22839'} />
+          <Icon name="md-arrow-round-forward" size={18} color={isStudy ? '#1A806F' : '#C22839'} />
         }
       </View>
     </View>

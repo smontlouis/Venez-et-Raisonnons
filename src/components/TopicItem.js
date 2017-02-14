@@ -31,6 +31,7 @@ const styles = EStyleSheet.create({
     width: 72,
     height: 53,
     marginRight: 20,
+    borderRadius: 3,
   },
   content: {
     flex: 1,
@@ -115,7 +116,7 @@ export default class TopicItem extends Component {
             <Text style={styles.count}>{questionsCount} questions</Text>
           </View>
           <View>
-            <Icon name="chevron-thin-right" size={24} color={'black'} />
+            <Icon name="chevron-thin-right" size={22} color="rgba(0,0,0,0.5)" />
           </View>
         </View>
       </Link>
