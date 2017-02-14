@@ -52,6 +52,13 @@ export function markAsRead(id) {
   }
 }
 
+export function removeAsRead(id) {
+  return {
+    type: REMOVE_AS_READ,
+    id
+  }
+}
+
 export function toggleMarkAsRead(id) {
   return (dispatch, getState) => {
     if (getState().app.getIn(['hasBeenRead', id])) {

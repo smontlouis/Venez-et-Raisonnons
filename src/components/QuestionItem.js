@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/Ionicons'
+import MIcon from 'react-native-vector-icons/MaterialIcons'
 import {
   Text,
   View,
@@ -14,7 +15,7 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     borderBottomWidth: 1,
     borderStyle: 'solid',
-    borderBottomColor: '$color.grey',
+    borderColor: '$color.grey',
     paddingRight: 20,
     paddingTop: 20,
     paddingBottom: 20,
@@ -22,6 +23,7 @@ const styles = EStyleSheet.create({
   content: {
     flex: 1,
     flexDirection: 'row',
+    alignItems: 'center',
   },
   title: {
     fontFamily: '$font.heading',
@@ -35,31 +37,39 @@ const styles = EStyleSheet.create({
     lineHeight: 24,
   },
   icon: {
-    color: '$color.primary'
+    color: '$color.primary',
+  },
+  studyIcon: {
+    color: '$color.quart',
+    marginRight: 10
   }
 })
 
-const QuestionItem = ({ number, id, title, hasBeenRead }) => (
+const QuestionItem = ({ number, id, title, hasBeenRead, containerStyle, isStudy }) => (
   <Link
     route={'question'}
-    params={{ questionId: id }}
+    params={{ questionId: id, fromStudy: !!number }}
   >
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyle]}>
       <View style={styles.content}>
         {
           number &&
           <Text style={styles.number}>{number}. </Text>
+        }
+        {
+          isStudy &&
+          <MIcon name="description" size={20} style={styles.studyIcon} />
         }
         <Text style={styles.title}>{title}</Text>
       </View>
       <View>
         {
           hasBeenRead &&
-          <Icon name="md-checkmark" size={20} color="#2ecc71" />
+          <Icon name="md-checkmark" size={20} color={isStudy ? 'rgba(26, 128, 111, 0.5)' : 'rgba(194, 40, 57, 0.5)'} />
         }
         {
           !hasBeenRead &&
-          <Icon name="md-arrow-round-forward" size={20} color={styles._icon.color} />
+          <Icon name="md-arrow-round-forward" size={20} color={isStudy ? '#1A806F' : '#C22839'} />
         }
       </View>
     </View>
@@ -67,10 +77,12 @@ const QuestionItem = ({ number, id, title, hasBeenRead }) => (
 )
 
 QuestionItem.propTypes = {
+  containerStyle: PropTypes.object,
   number: PropTypes.number,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   hasBeenRead: PropTypes.bool,
+  isStudy: PropTypes.bool,
 }
 
 export default connect(

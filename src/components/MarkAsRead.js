@@ -44,7 +44,7 @@ const renderIcon = (hasIconOnly, isActive) => {
   )
 }
 
-const AddToFavorites = ({ id, toggleMarkAsRead, isActive, hasIconOnly }) => (
+const MarkAsRead = ({ id, toggleMarkAsRead, isActive, hasIconOnly }) => (
   <TouchableOpacity
     onPress={() => {
       Toast.show(isActive ? 'Marqué comme non lu' : 'Marqué comme lu')
@@ -62,7 +62,7 @@ const AddToFavorites = ({ id, toggleMarkAsRead, isActive, hasIconOnly }) => (
   </TouchableOpacity>
 )
 
-AddToFavorites.propTypes = {
+MarkAsRead.propTypes = {
   id: PropTypes.string.isRequired,
   toggleMarkAsRead: PropTypes.func.isRequired,
   isActive: PropTypes.bool,
@@ -74,4 +74,4 @@ export default connect(
     isActive: !!state.app.getIn(['hasBeenRead', ownProps.id])
   }),
   AppActions,
-)(AddToFavorites)
+)(MarkAsRead)

@@ -20,12 +20,15 @@ const QuestionsList = ({ questions, headerTitle, questionsCount, style, withCoun
     listItems={questions}
     renderHeader={() => headerTitle && <HeaderList title={headerTitle} subtitle={`${questionsCount} questions`} />}
     renderRow={
-      function ({ id, title }, sId, rowID) {
+      function ({ id, title, children }, sId, rowID) {
+        const number = (Number(rowID) + 1)
         return (
           <QuestionItem
-            number={withCounting && (Number(rowID) + 1)}
+            number={withCounting && number}
+            isStudy={!!children}
             id={id}
             title={title}
+            containerStyle={withCounting && { borderBottomWidth: 0 }}
           />
         )
       }
@@ -40,6 +43,7 @@ QuestionsList.propTypes = {
   questionsCount: PropTypes.number,
   headerTitle: PropTypes.string,
   style: PropTypes.number,
+  withCounting: PropTypes.bool,
 }
 
 export default QuestionsList

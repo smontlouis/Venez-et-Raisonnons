@@ -86,18 +86,19 @@ export default class TopicItem extends Component {
     const { id, title, questionsCount, base64Img } = this.props
 
     if (!questionsCount) {
-      return (
-        <View style={[styles.container, styles.containerGrey]}>
-          <Image
-            style={styles.image}
-            source={{ uri: `data:image/gif;base64,${base64Img}` }}
-          />
-          <View style={styles.content}>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.count}>Bientôt disponible</Text>
-          </View>
-        </View>
-      )
+      return null
+      // return (
+      //   <View style={[styles.container, styles.containerGrey]}>
+      //     <Image
+      //       style={styles.image}
+      //       source={{ uri: `data:image/gif;base64,${base64Img}` }}
+      //     />
+      //     <View style={styles.content}>
+      //       <Text style={styles.title}>{title}</Text>
+      //       <Text style={styles.count}>Bientôt disponible</Text>
+      //     </View>
+      //   </View>
+      // )
     }
     return (
       <Link
