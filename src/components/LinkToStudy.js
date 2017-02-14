@@ -14,15 +14,18 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
-    backgroundColor: 'rgba(26, 128, 111, 0.5)',
+    paddingBottom: 15,
+    paddingTop: 15,
+    backgroundColor: 'rgba(26, 128, 111, 0.1)',
     marginLeft: 20,
     marginRight: 20,
-    borderWidth: 1,
-    borderColor: '$color.quart',
     borderRadius: 3,
   },
+  icon: {
+    color: '$color.quart',
+  },
   text: {
-    color: 'white',
+    color: '$color.quart',
     flex: 1,
     paddingLeft: 10,
     paddingRight: 10,
@@ -37,14 +40,14 @@ const LinkToStudy = ({ id, question }) => (
     <View style={styles.container}>
       <Icon
         name="description"
-        size={24}
-        color="#fff"
+        size={32}
+        style={styles.icon}
       />
-      <Text style={styles.text}>{`Cette question fait partie de l'étude "${question.get('title')}"`}</Text>
+      <Text style={styles.text}>{`Voir l'étude "${question.get('title')}"`}</Text>
       <Icon
         name="chevron-right"
         size={24}
-        color="#fff"
+        style={styles.icon}
       />
     </View>
   </Link>
