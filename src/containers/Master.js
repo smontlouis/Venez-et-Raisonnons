@@ -34,7 +34,7 @@ const styles = EStyleSheet.create({
     fontSize: 11,
     fontWeight: 'bold',
     color: '$color.secondary',
-  },
+  }
 })
 
 const links = [
@@ -121,13 +121,15 @@ class Master extends Component {
   }
 
   render() {
-    const { topics, isLoading } = this.props
+    const { topics, isLoading, dispatch } = this.props
 
     if (topics.isEmpty() && !isLoading) {
       return (
         <NoItems
           icon="sentiment-dissatisfied"
           text="Pas de connexion"
+          buttonTitle="Réessayer"
+          buttonAction={() => dispatch(loadData())}
         />
       )
     }

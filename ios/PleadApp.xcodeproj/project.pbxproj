@@ -1109,7 +1109,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fr.SbyDesign.PleadApp;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.smontlouiscalixte.pleadapp;
 				PRODUCT_NAME = PleadApp;
 				PROVISIONING_PROFILE = "";
 			};
@@ -1140,7 +1140,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fr.SbyDesign.PleadApp;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.smontlouiscalixte.pleadapp;
 				PRODUCT_NAME = PleadApp;
 				PROVISIONING_PROFILE = "";
 			};
