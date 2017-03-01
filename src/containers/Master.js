@@ -18,6 +18,7 @@ import {
 } from '../components'
 import { Router } from '../routes'
 import { loadData } from '../redux/modules/app'
+import { initDB } from '../helpers/database'
 
 const styles = EStyleSheet.create({
   icon: {
@@ -49,19 +50,24 @@ const links = [
   //   label: 'Études',
   // },
   {
-    to: 'favorites',
-    icon: 'bookmark',
-    label: 'Favoris',
+    to: 'bible',
+    icon: 'book',
+    label: 'Bible',
   },
-  {
-    to: 'add',
-    icon: 'add-circle',
-    label: 'Poser',
-  },
+  // {
+  //   to: 'add',
+  //   icon: 'add-circle',
+  //   label: 'Poser',
+  // },
   {
     to: 'search',
     icon: 'search',
     label: 'Chercher',
+  },
+  {
+    to: 'favorites',
+    icon: 'bookmark',
+    label: 'Favoris',
   },
   {
     to: 'more',
@@ -118,6 +124,7 @@ class Master extends Component {
   componentWillMount() {
     const { dispatch, topics } = this.props
     topics.isEmpty() && dispatch(loadData())
+    initDB()
   }
 
   render() {

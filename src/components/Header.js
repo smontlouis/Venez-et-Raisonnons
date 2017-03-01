@@ -8,8 +8,7 @@ import {
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { Back } from '../components'
-
-import combineStyles from '../helpers/combineStyles'
+import { combineStyles } from '../helpers'
 
 
 const styles = EStyleSheet.create({

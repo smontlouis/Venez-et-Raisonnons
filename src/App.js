@@ -10,7 +10,7 @@ import {
 
 import routes from './routes'
 import configureStore from './redux/store'
-import globalVariables from './helpers/globalVariables'
+import { globalVariables } from './helpers'
 
 import {
   Loading

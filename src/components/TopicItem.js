@@ -81,6 +81,7 @@ export default class TopicItem extends Component {
       .then((res) => {
         dispatch(saveBase64Image(id, res.base64()))
       })
+      .catch(err => console.log(err))
   }
 
   render() {

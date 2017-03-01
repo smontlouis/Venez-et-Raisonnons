@@ -19,6 +19,7 @@ import {
   Master,
   Add,
   About,
+  Bible
 } from './containers'
 
 export const Router = createRouter(() => ({
@@ -34,6 +35,7 @@ export const Router = createRouter(() => ({
   add: () => Add,
   question: () => Question,
   about: () => About,
+  bible: () => Bible,
 }))
 
 export default function () {
