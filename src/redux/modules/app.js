@@ -82,7 +82,7 @@ export function loadData() {
     dispatch({ type: LOAD_DATA })
     const racePromise = Promise.race([
       new Promise(resolve => AppData.once('value', snapshot => resolve(snapshot.val()))),
-      new Promise((r, reject) => setTimeout(() => reject(), 5000))
+      new Promise((r, reject) => setTimeout(() => reject(), 10000))
     ])
 
     racePromise

@@ -1,6 +1,6 @@
 import React from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import HTMLView from '../helpers/react-native-htmlview'
+import { HTMLView } from '../helpers'
 
 const styles = EStyleSheet.create({
   h1: {

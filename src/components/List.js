@@ -13,6 +13,7 @@ class List extends Component {
   static propTypes = {
     listItems: PropTypes.object.isRequired,
     loadData: PropTypes.func.isRequired,
+    refreshApp: PropTypes.bool,
     style: PropTypes.any,
   }
 
@@ -53,15 +54,17 @@ class List extends Component {
   }
 
   render() {
-    const { style, ...props } = this.props
+    const { style, refreshApp, ...props } = this.props
     return (
       <ListView
         dataSource={this.state.dataSource}
         refreshControl={
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this.onRefresh}
-          />
+          refreshApp ?
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this.onRefresh}
+            />
+            : null
         }
         style={style}
         {...props}

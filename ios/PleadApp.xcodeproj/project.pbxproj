@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -25,8 +24,10 @@
 		1DA6E0003B6141F484EF1C3E /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B09DC515C264F859E582B06 /* Octicons.ttf */; };
 		25EF2630999849D6AF669CDC /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABC376DE14544832A1AF2FC1 /* Ionicons.ttf */; };
 		2725A2C826A74F8EAB9F048A /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC0EC047D1A44AB5BFCA5BDC /* Foundation.ttf */; };
+		2B7AF90F5DAD479DB290E67A /* libSQLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6C81A8CA1DB4E388FF626A2 /* libSQLite.a */; };
 		2BD39678DDAB4D3DB2BB558C /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8585F4FF0D124F95BEF94DF0 /* FontAwesome.ttf */; };
 		48B4005B6CD764261F95CB68 /* libPods-PleadApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5062759D8133AC857853AA /* libPods-PleadApp.a */; };
+		4B1806F7321E427A9B8679A2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D083590BAA4411848AA6B2 /* libsqlite3.0.tbd */; };
 		57BF0D050D6049E288530CC5 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5A34451CE9A4161B46D8F4F /* MaterialIcons.ttf */; };
 		6B79F39DBC074AA9A3D24DCB /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 207C6033C2B9431EB5E93B2C /* EvilIcons.ttf */; };
 		7A9402FD78634B7D97484476 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA27636D2FD4B7888DB7C6A /* libCodePush.a */; };
@@ -42,6 +43,7 @@
 		F41274D71DAB860A001C83BE /* metaserif.otf in Resources */ = {isa = PBXBuildFile; fileRef = F41274D31DAB860A001C83BE /* metaserif.otf */; };
 		F41274D91DAB933B001C83BE /* alternategothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F41274D81DAB933B001C83BE /* alternategothic.otf */; };
 		F48BB7EE1E01EDF9007D4996 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F48BB7CC1E01EDBE007D4996 /* libRCTAnimation.a */; };
+		F4EE13AD1E65CBE600CA75F6 /* www in Resources */ = {isa = PBXBuildFile; fileRef = F4EE13AC1E65CBE600CA75F6 /* www */; };
 		FF4877ECFE324CF39F072DF4 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAD2988DF70E42ED98E11B5F /* Entypo.ttf */; };
 /* End PBXBuildFile section */
 
@@ -214,6 +216,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = CodePush;
 		};
+		F4AF458C1E65A08000BEEF12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A0138CDEEDA4AF19669BE5D /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E23D7B471ACEFE2A00C59171;
+			remoteInfo = SQLite;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -245,10 +254,12 @@
 		56B82D28AADDAA68A58869DB /* libPods-PleadAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PleadAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5921EB8BE0153A90991DC4EE /* Pods-PleadApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PleadApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PleadApp/Pods-PleadApp.debug.xcconfig"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		7A0138CDEEDA4AF19669BE5D /* SQLite.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "../node_modules/react-native-sqlite-storage/src/ios/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8585F4FF0D124F95BEF94DF0 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		9C5062759D8133AC857853AA /* libPods-PleadApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PleadApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABC376DE14544832A1AF2FC1 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		B1D083590BAA4411848AA6B2 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		B5A34451CE9A4161B46D8F4F /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		C583BC940CDAD40AD79311CE /* Pods-PleadAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PleadAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PleadAppTests/Pods-PleadAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C6C43933DD2840F08888F9D5 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
@@ -265,6 +276,8 @@
 		F41274D81DAB933B001C83BE /* alternategothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alternategothic.otf; sourceTree = "<group>"; };
 		F48BB7C41E01EDBE007D4996 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		F4E9700AAC37420DB4636BE3 /* CodePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
+		F4EE13AC1E65CBE600CA75F6 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = PleadApp/www; sourceTree = "<group>"; };
+		F6C81A8CA1DB4E388FF626A2 /* libSQLite.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libSQLite.a; sourceTree = "<group>"; };
 		F88DB2ADBD0A477F9B94DA64 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -299,6 +312,8 @@
 				904F6342614C40729DF1FD3B /* libLRDRCTSimpleToast.a in Frameworks */,
 				7A9402FD78634B7D97484476 /* libCodePush.a in Frameworks */,
 				DE55E94976D04B208C5BE2A5 /* libz.tbd in Frameworks */,
+				2B7AF90F5DAD479DB290E67A /* libSQLite.a in Frameworks */,
+				4B1806F7321E427A9B8679A2 /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +411,7 @@
 		13B07FAE1A68108700A75B9A /* PleadApp */ = {
 			isa = PBXGroup;
 			children = (
+				F4EE13AC1E65CBE600CA75F6 /* www */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -462,6 +478,7 @@
 				C9DA870C6BE3490794A6A5A0 /* RNFetchBlob.xcodeproj */,
 				077691F02E1B4A95835889B7 /* LRDRCTSimpleToast.xcodeproj */,
 				F4E9700AAC37420DB4636BE3 /* CodePush.xcodeproj */,
+				7A0138CDEEDA4AF19669BE5D /* SQLite.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -505,6 +522,7 @@
 				9C5062759D8133AC857853AA /* libPods-PleadApp.a */,
 				56B82D28AADDAA68A58869DB /* libPods-PleadAppTests.a */,
 				EFC1E47900734BD09022EA55 /* libz.tbd */,
+				B1D083590BAA4411848AA6B2 /* libsqlite3.0.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -546,6 +564,14 @@
 			isa = PBXGroup;
 			children = (
 				F4A66C7F1E28477E0078443E /* libCodePush.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4AF45721E65A08000BEEF12 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4AF458D1E65A08000BEEF12 /* libSQLite.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -685,6 +711,10 @@
 				{
 					ProductGroup = F41274B41DAB84E5001C83BE /* Products */;
 					ProjectRef = 36C6A709888D4B1485819B81 /* RNVectorIcons.xcodeproj */;
+				},
+				{
+					ProductGroup = F4AF45721E65A08000BEEF12 /* Products */;
+					ProjectRef = 7A0138CDEEDA4AF19669BE5D /* SQLite.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -857,6 +887,13 @@
 			remoteRef = F4A66C7E1E28477E0078443E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		F4AF458D1E65A08000BEEF12 /* libSQLite.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSQLite.a;
+			remoteRef = F4AF458C1E65A08000BEEF12 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -874,6 +911,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				F41274D91DAB933B001C83BE /* alternategothic.otf in Resources */,
 				FF4877ECFE324CF39F072DF4 /* Entypo.ttf in Resources */,
+				F4EE13AD1E65CBE600CA75F6 /* www in Resources */,
 				6B79F39DBC074AA9A3D24DCB /* EvilIcons.ttf in Resources */,
 				2BD39678DDAB4D3DB2BB558C /* FontAwesome.ttf in Resources */,
 				F41274D51DAB860A001C83BE /* metaserif_light_italic.otf in Resources */,
@@ -1044,6 +1082,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				New_Setting = "";
 				OTHER_LDFLAGS = (
@@ -1068,6 +1107,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1101,6 +1141,8 @@
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
+					"$(SRCROOT)/../node_modules/react-native-sqlite-storage/src/ios",
+					"$(SRCROOT)/../node_modules/react-native/Libraries",
 				);
 				INFOPLIST_FILE = PleadApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1132,6 +1174,8 @@
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
+					"$(SRCROOT)/../node_modules/react-native-sqlite-storage/src/ios",
+					"$(SRCROOT)/../node_modules/react-native/Libraries",
 				);
 				INFOPLIST_FILE = PleadApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1188,6 +1232,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
+					"$(SRCROOT)/../node_modules/react-native-sqlite-storage/src/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1232,6 +1277,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
+					"$(SRCROOT)/../node_modules/react-native-sqlite-storage/src/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

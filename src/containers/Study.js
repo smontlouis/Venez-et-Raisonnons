@@ -11,7 +11,7 @@ import {
   QuestionsList,
   ScrollableHeader,
 } from '../components'
-import HTMLView from '../helpers/react-native-htmlview'
+import { HTMLView } from '../helpers'
 
 
 const styles = EStyleSheet.create({

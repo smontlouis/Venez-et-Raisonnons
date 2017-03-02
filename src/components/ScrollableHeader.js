@@ -7,7 +7,7 @@ import {
   StatusBar,
   View,
 } from 'react-native'
-import truncate from '../helpers/truncate'
+import { truncate } from '../helpers'
 import { Back } from '../components'
 
 const getStyles = (h) => {
@@ -281,7 +281,7 @@ export default class ScrollableHeader extends Component {
                 }
               ]}
             >
-              {truncate(title, 40).toUpperCase()}
+              {truncate(title, 30).toUpperCase()}
             </Animated.Text>
             {
               !!rightComponent &&

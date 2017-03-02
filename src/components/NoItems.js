@@ -46,8 +46,8 @@ const NoItems = ({ icon, text, buttonTitle, buttonAction }) => (
 
 
 NoItems.propTypes = {
-  buttonTitle: PropTypes.string.isRequired,
-  buttonAction: PropTypes.func.isRequired,
+  buttonTitle: PropTypes.string,
+  buttonAction: PropTypes.func,
   icon: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
 }

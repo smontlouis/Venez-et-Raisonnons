@@ -15,15 +15,15 @@ import {
   Header,
 } from '../components'
 
-// const primaryList = [
-//   {
-//     title: 'Poser une question',
-//     icon: 'add-circle',
-//     onPress(navigator) {
-//       navigator.push(Router.getRoute('add'))
-//     }
-//   }
-// ]
+const primaryList = [
+  {
+    title: 'Poser une question',
+    icon: 'add-circle',
+    onPress(navigator) {
+      navigator.push(Router.getRoute('add'))
+    }
+  }
+]
 
 const secondaryList = [
   {
@@ -98,7 +98,7 @@ const More = ({ navigator }) =>
       hasBackButton={false}
     />
     <ScrollView>
-      {/* <List>
+      <List>
         {
           primaryList.map((item, i) => (
             <ListItem
@@ -109,7 +109,7 @@ const More = ({ navigator }) =>
             />
           ))
         }
-      </List> */}
+      </List>
       <List>
         {
           secondaryList.map((item, i) => (

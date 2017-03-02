@@ -17,6 +17,7 @@ const styles = EStyleSheet.create({
 
 const TopicsList = ({ headerTitle, topics, style, ...props }) =>
   <List
+    refreshApp
     listItems={topics}
     renderHeader={() => headerTitle && <HeaderList title={headerTitle} />}
     renderRow={

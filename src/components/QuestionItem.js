@@ -16,19 +16,20 @@ const styles = EStyleSheet.create({
     borderBottomWidth: 1,
     borderStyle: 'solid',
     borderColor: '$color.grey',
-    paddingRight: 20,
-    paddingTop: 25,
-    paddingBottom: 25,
+    paddingRight: 10,
+    paddingTop: 20,
+    paddingBottom: 20,
   },
   content: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    paddingRight: 15,
   },
   title: {
     fontFamily: '$font.heading',
-    fontSize: 22,
-    lineHeight: 26,
+    fontSize: 21,
+    lineHeight: 24,
   },
   number: {
     color: '$color.primary',
@@ -41,7 +42,7 @@ const styles = EStyleSheet.create({
   },
   studyIcon: {
     color: '$color.quart',
-    marginRight: 10
+    marginRight: 5
   }
 })
 
