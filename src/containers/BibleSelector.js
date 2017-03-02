@@ -15,6 +15,7 @@ import {
   BookSelector,
   ChapterSelector,
   VerseSelector,
+  SelectorButtons,
 } from '../components'
 
 
@@ -80,6 +81,7 @@ export default class BibleSelector extends Component {
             <VerseSelector navigator={navigator} />
           </SlidingTabNavigationItem>
         </SlidingTabNavigation>
+        <SelectorButtons />
       </View>
     )
   }

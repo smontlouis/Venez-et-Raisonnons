@@ -49,7 +49,7 @@ export default class BibleHeader extends Component {
 
   componentDidUpdate(oldProps) {
     if ((this.props.chapter !== oldProps.chapter) || (this.props.book !== oldProps.book)) {
-      this.loadName()
+      setTimeout(() => this.loadName(), 0)
     }
   }
 

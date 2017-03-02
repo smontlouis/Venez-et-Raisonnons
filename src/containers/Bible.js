@@ -17,7 +17,7 @@ const styles = EStyleSheet.create({
   },
 })
 
-const Bible = ({ book, chapter }) =>
+const Bible = ({ book, chapter, verse }) =>
   <View style={styles.container}>
     <BibleHeader
       book={book}
@@ -26,17 +26,20 @@ const Bible = ({ book, chapter }) =>
     <BibleViewer
       book={book}
       chapter={chapter}
+      verse={verse}
     />
   </View>
 
 Bible.propTypes = {
   book: PropTypes.number.isRequired,
   chapter: PropTypes.number.isRequired,
+  verse: PropTypes.number.isRequired,
 }
 
 export default connect(
   state => ({
     book: state.bible.get('selectedBook'),
-    chapter: state.bible.get('selectedChapter')
+    chapter: state.bible.get('selectedChapter'),
+    verse: state.bible.get('selectedVerse'),
   })
 )(Bible)

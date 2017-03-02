@@ -16,7 +16,7 @@ const styles = EStyleSheet.create({
     color: '$color.tertiary',
   },
   versetWrapper: {
-    width: 20,
+    width: 25,
     height: 20,
     marginLeft: 5,
     marginRight: 5,
@@ -26,7 +26,14 @@ const styles = EStyleSheet.create({
 class BibleVerse extends Component {
 
   static propTypes = {
-    verse: PropTypes.object.isRequired
+    verse: PropTypes.object.isRequired,
+    getPosition: PropTypes.func.isRequired,
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.getVerseMeasure = ::this.getVerseMeasure
   }
 
   state = {
@@ -36,6 +43,15 @@ class BibleVerse extends Component {
   componentWillMount() {
     const { verse } = this.props
     this.formatVerse(verse)
+
+    setTimeout(this.getVerseMeasure)
+  }
+
+  getVerseMeasure() {
+    const { verse, getPosition } = this.props
+    this.bibleVerse.measure((x, y, width, height, px, py) => {
+      getPosition(verse.Verset, { x, y, width, height, px, py })
+    })
   }
 
   formatVerse(verse) {
@@ -48,7 +64,7 @@ class BibleVerse extends Component {
     const { verse: { Verset } } = this.props
     return (
       <Text style={styles.text}>
-        <View style={styles.versetWrapper}>
+        <View style={styles.versetWrapper} ref={(r) => { this.bibleVerse = r }} >
           <Text style={styles.verset}>{Verset}</Text>
         </View>
         {this.state.element}

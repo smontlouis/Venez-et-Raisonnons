@@ -68,8 +68,8 @@ export default class ChapterSelector extends Component {
 
   loadChapters() {
     const { selectedBook } = this.props
-    this.setState({ isLoaded: false })
     this.chapters = []
+    this.setState({ isLoaded: false })
     this.DB.executeSql(`SELECT Chapitres FROM Livres WHERE Numero = ${selectedBook}`)
       .then(([results]) => {
         const len = results.rows.length

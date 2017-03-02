@@ -20,6 +20,14 @@ export default class BibleViewer extends Component {
   static propTypes = {
     book: PropTypes.number.isRequired,
     chapter: PropTypes.number.isRequired,
+    verse: PropTypes.number.isRequired,
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.getPosition = ::this.getPosition
+    this.scrollToVerse = ::this.scrollToVerse
   }
 
   state = {
@@ -33,7 +41,32 @@ export default class BibleViewer extends Component {
 
   componentDidUpdate(oldProps) {
     if ((this.props.chapter !== oldProps.chapter) || (this.props.book !== oldProps.book)) {
-      this.loadVerses()
+      setTimeout(() => this.loadVerses(), 0)
+    }
+
+    // Scroll ONLY when verse change ALONE
+    if (
+      (this.props.verse !== oldProps.verse)
+      && (this.props.chapter === oldProps.chapter)
+      && (this.props.book === oldProps.book)
+    ) {
+      setTimeout(() => this.scrollToVerse(), 0)
+    }
+  }
+
+  getPosition(numVerset, measures) {
+    this.versesMeasure[`verse${numVerset}`] = measures
+
+    // We need to wait 'til every Bible verse component get calculated
+    if (Object.keys(this.versesMeasure).length === this.verses.length) {
+      setTimeout(() => this.scrollToVerse(), 0)
+    }
+  }
+
+  scrollToVerse() {
+    const { verse } = this.props
+    if (verse !== 1) {
+      this.scrollView.scrollTo({ x: 0, y: this.versesMeasure[`verse${verse}`].y + 17, animated: true })
     }
   }
 
@@ -41,6 +74,7 @@ export default class BibleViewer extends Component {
     const { book, chapter } = this.props
     const part = book > 39 ? 'LSGSNT2' : 'LSGSAT2'
     this.verses = []
+    this.versesMeasure = {}
     this.setState({ isLoaded: false })
     this.DB.executeSql(`SELECT * FROM ${part} WHERE LIVRE = ${book} AND CHAPITRE  = ${chapter}`)
       .then(([results]) => {
@@ -56,13 +90,17 @@ export default class BibleViewer extends Component {
       return null
     }
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView
+        ref={(r) => { this.scrollView = r }}
+        style={styles.container}
+      >
         <Text>
           {
             this.verses.map((verse, i) =>
               <BibleVerse
                 verse={verse}
                 key={i}
+                getPosition={this.getPosition}
               />
             )
           }

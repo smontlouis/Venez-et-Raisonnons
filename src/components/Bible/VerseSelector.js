@@ -64,15 +64,15 @@ export default class VerseSelector extends Component {
 
   onValidate(verse) {
     this.props.setTempSelectedVerse(verse)
-    this.props.validateSelected(verse)
     this.props.navigator.pop()
+    this.props.validateSelected(verse)
   }
 
   loadVerses() {
     const { selectedBook, selectedChapter } = this.props
     const part = selectedBook > 39 ? 'LSGSNT2' : 'LSGSAT2'
-    this.setState({ isLoaded: false })
     this.verses = []
+    this.setState({ isLoaded: false })
     this.DB.executeSql(`SELECT count(*) as count FROM ${part} WHERE Livre = ${selectedBook} AND Chapitre = ${selectedChapter}`)
       .then(([results]) => {
         const len = results.rows.length
