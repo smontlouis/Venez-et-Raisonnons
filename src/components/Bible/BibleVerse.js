@@ -16,7 +16,7 @@ const styles = EStyleSheet.create({
     color: '$color.tertiary',
   },
   versetWrapper: {
-    width: 25,
+    width: 30,
     height: 20,
     marginLeft: 5,
     marginRight: 5,

@@ -65,9 +65,13 @@ export default class BibleViewer extends Component {
 
   scrollToVerse() {
     const { verse } = this.props
-    if (verse !== 1) {
-      this.scrollView.scrollTo({ x: 0, y: this.versesMeasure[`verse${verse}`].y + 17, animated: true })
-    }
+    const scrollHeight = (this.contentHeight - this.scrollViewHeight) + 20
+    const y = (verse === 1) ? 0 : this.versesMeasure[`verse${verse}`].y + 17
+    this.scrollView.scrollTo({
+      x: 0,
+      y: (y >= scrollHeight) ? scrollHeight : y,
+      animated: true
+    })
   }
 
   loadVerses() {
@@ -92,6 +96,8 @@ export default class BibleViewer extends Component {
     return (
       <ScrollView
         ref={(r) => { this.scrollView = r }}
+        onContentSizeChange={(w, h) => { this.contentHeight = h }}
+        onLayout={(ev) => { this.scrollViewHeight = ev.nativeEvent.layout.height }}
         style={styles.container}
       >
         <Text>
