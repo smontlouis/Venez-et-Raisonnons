@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import {
   ScrollView,
+  Text,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import getDB from '../../helpers/database'
@@ -10,7 +11,7 @@ import {
 
 const styles = EStyleSheet.create({
   container: {
-    flexDirection: 'column',
+    padding: 20,
   },
 })
 
@@ -27,13 +28,20 @@ export default class BibleViewer extends Component {
 
   componentWillMount() {
     this.DB = getDB()
-    this.verses = []
     this.loadVerses()
+  }
+
+  componentDidUpdate(oldProps) {
+    if ((this.props.chapter !== oldProps.chapter) || (this.props.book !== oldProps.book)) {
+      this.loadVerses()
+    }
   }
 
   loadVerses() {
     const { book, chapter } = this.props
     const part = book > 39 ? 'LSGSNT2' : 'LSGSAT2'
+    this.verses = []
+    this.setState({ isLoaded: false })
     this.DB.executeSql(`SELECT * FROM ${part} WHERE LIVRE = ${book} AND CHAPITRE  = ${chapter}`)
       .then(([results]) => {
         const len = results.rows.length
@@ -49,14 +57,16 @@ export default class BibleViewer extends Component {
     }
     return (
       <ScrollView style={styles.container}>
-        {
-          this.verses.map((verse, i) =>
-            <BibleVerse
-              verse={verse}
-              key={i}
-            />
-          )
-        }
+        <Text>
+          {
+            this.verses.map((verse, i) =>
+              <BibleVerse
+                verse={verse}
+                key={i}
+              />
+            )
+          }
+        </Text>
       </ScrollView>
     )
   }

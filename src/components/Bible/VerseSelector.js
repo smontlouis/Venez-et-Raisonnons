@@ -27,21 +27,24 @@ const styles = EStyleSheet.create({
   state => ({
     selectedBook: state.bible.get('temp').get('selectedBook'),
     selectedChapter: state.bible.get('temp').get('selectedChapter'),
+    selectedVerse: state.bible.get('temp').get('selectedVerse'),
   }),
   BibleActions,
 )
-export default class ChapterSelector extends Component {
+export default class VerseSelector extends Component {
   static propTypes = {
-    navigation: PropTypes.object.isRequired,
-    setTempSelectedChapter: PropTypes.func.isRequired,
+    navigator: PropTypes.object.isRequired,
+    setTempSelectedVerse: PropTypes.func.isRequired,
+    validateSelected: PropTypes.func.isRequired,
     selectedBook: PropTypes.number.isRequired,
     selectedChapter: PropTypes.number.isRequired,
+    selectedVerse: PropTypes.number.isRequired,
   }
 
   constructor(props) {
     super(props)
 
-    this.onChapterChange = ::this.onChapterChange
+    this.onValidate = ::this.onValidate
   }
 
   state = {
@@ -50,30 +53,30 @@ export default class ChapterSelector extends Component {
 
   componentWillMount() {
     this.DB = getDB()
-    this.loadChapters()
+    this.loadVerses()
   }
 
   componentDidUpdate(oldProps) {
-    if (this.props.selectedBook !== oldProps.selectedBook) {
-      this.loadChapters()
+    if (this.props.selectedChapter !== oldProps.selectedChapter) {
+      this.loadVerses()
     }
   }
 
-  onChapterChange(book) {
-    this.props.navigation.performAction(({ tabs }) => {
-      tabs('sliding-tab-navigation').jumpToTab('verset')
-    })
-    this.props.setTempSelectedChapter(book)
+  onValidate(verse) {
+    this.props.setTempSelectedVerse(verse)
+    this.props.validateSelected(verse)
+    this.props.navigator.pop()
   }
 
-  loadChapters() {
-    const { selectedBook } = this.props
+  loadVerses() {
+    const { selectedBook, selectedChapter } = this.props
+    const part = selectedBook > 39 ? 'LSGSNT2' : 'LSGSAT2'
     this.setState({ isLoaded: false })
-    this.chapters = []
-    this.DB.executeSql(`SELECT Chapitres FROM Livres WHERE Numero = ${selectedBook}`)
+    this.verses = []
+    this.DB.executeSql(`SELECT count(*) as count FROM ${part} WHERE Livre = ${selectedBook} AND Chapitre = ${selectedChapter}`)
       .then(([results]) => {
         const len = results.rows.length
-        for (let i = 0; i < len; i += 1) { this.chapters.push(results.rows.item(i)) }
+        for (let i = 0; i < len; i += 1) { this.verses.push(results.rows.item(i)) }
         this.setState({ isLoaded: true })
       })
   }
@@ -81,7 +84,7 @@ export default class ChapterSelector extends Component {
   render() {
     const { isLoaded } = this.state
     const {
-      selectedChapter,
+      selectedVerse,
     } = this.props
 
     if (!isLoaded) {
@@ -89,12 +92,12 @@ export default class ChapterSelector extends Component {
     }
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        {[...Array(this.chapters[0].Chapitres).keys()].map(c =>
+        {[...Array(this.verses[0].count).keys()].map(v =>
           <SelectorItem
-            key={c}
-            item={c + 1}
-            isSelected={selectedChapter === (c + 1)}
-            onChange={this.onChapterChange}
+            key={v}
+            item={v + 1}
+            isSelected={selectedVerse === (v + 1)}
+            onChange={this.onValidate}
           />
         )}
       </ScrollView>

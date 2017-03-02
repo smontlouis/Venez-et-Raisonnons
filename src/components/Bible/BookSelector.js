@@ -26,8 +26,15 @@ const styles = EStyleSheet.create({
 )
 export default class BookSelector extends Component {
   static propTypes = {
+    navigation: PropTypes.object.isRequired,
     setTempSelectedBook: PropTypes.func.isRequired,
     selectedBook: PropTypes.number.isRequired,
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.onBookChange = ::this.onBookChange
   }
 
   state = {
@@ -36,11 +43,19 @@ export default class BookSelector extends Component {
 
   componentWillMount() {
     this.DB = getDB()
-    this.books = []
     this.loadBooks()
   }
 
+  onBookChange(book) {
+    this.props.navigation.performAction(({ tabs }) => {
+      tabs('sliding-tab-navigation').jumpToTab('chapitre')
+    })
+    this.props.setTempSelectedBook(book)
+  }
+
   loadBooks() {
+    this.books = []
+    this.setState({ isLoaded: false })
     this.DB.executeSql('SELECT * FROM Livres')
       .then(([results]) => {
         const len = results.rows.length
@@ -53,7 +68,6 @@ export default class BookSelector extends Component {
     const { isLoaded } = this.state
     const {
       selectedBook,
-      setTempSelectedBook,
     } = this.props
 
     if (!isLoaded) {
@@ -64,7 +78,7 @@ export default class BookSelector extends Component {
         listItems={fromJS(this.books)}
         renderRow={book =>
           <BookSelectorItem
-            onChange={setTempSelectedBook}
+            onChange={this.onBookChange}
             book={book}
             isSelected={book.Numero === selectedBook}
           />

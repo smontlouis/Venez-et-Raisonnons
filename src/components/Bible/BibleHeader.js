@@ -44,12 +44,20 @@ export default class BibleHeader extends Component {
 
   componentWillMount() {
     this.DB = getDB()
-    this.res = []
     this.loadName()
   }
 
+  componentDidUpdate(oldProps) {
+    if ((this.props.chapter !== oldProps.chapter) || (this.props.book !== oldProps.book)) {
+      this.loadName()
+    }
+  }
+
+
   loadName() {
     const { book } = this.props
+    this.res = []
+    this.setState({ isLoaded: false })
     this.DB.executeSql(`SELECT Nom FROM Livres WHERE Numero = ${book}`)
       .then(([results]) => {
         const len = results.rows.length

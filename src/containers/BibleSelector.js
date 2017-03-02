@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
+import { connect } from 'react-redux'
 import {
   Text,
   View,
@@ -8,10 +9,12 @@ import {
   SlidingTabNavigation,
   SlidingTabNavigationItem,
 } from '@exponent/ex-navigation'
+import * as BibleActions from '../redux/modules/bible'
 import {
   Header,
   BookSelector,
   ChapterSelector,
+  VerseSelector,
 } from '../components'
 
 
@@ -29,7 +32,22 @@ const styles = EStyleSheet.create({
   },
 })
 
+@connect(
+  null,
+  BibleActions,
+)
 export default class BibleSelector extends Component {
+
+  static propTypes = {
+    navigation: PropTypes.object.isRequired,
+    navigator: PropTypes.object.isRequired,
+    resetTempSelected: PropTypes.func.isRequired,
+  }
+
+  componentDidMount() {
+    const { resetTempSelected } = this.props
+    resetTempSelected()
+  }
 
   renderLabel(param) {
     return (
@@ -38,6 +56,10 @@ export default class BibleSelector extends Component {
   }
 
   render() {
+    const {
+      navigation,
+      navigator,
+    } = this.props
     return (
       <View style={styles.container}>
         <Header title="Livres" />
@@ -49,13 +71,13 @@ export default class BibleSelector extends Component {
           indicatorStyle={styles.tabIndicator}
         >
           <SlidingTabNavigationItem id="livres">
-            <BookSelector />
+            <BookSelector navigation={navigation} />
           </SlidingTabNavigationItem>
           <SlidingTabNavigationItem id="chapitre">
-            <ChapterSelector />
+            <ChapterSelector navigation={navigation} />
           </SlidingTabNavigationItem>
           <SlidingTabNavigationItem id="verset">
-            <View><Text>Test 3</Text></View>
+            <VerseSelector navigator={navigator} />
           </SlidingTabNavigationItem>
         </SlidingTabNavigation>
       </View>

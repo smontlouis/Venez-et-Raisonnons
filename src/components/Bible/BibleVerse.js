@@ -7,9 +7,20 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import { verseToStrong } from '../../helpers'
 
 const styles = EStyleSheet.create({
-  container: {
-    flex: 1,
+  text: {
+    lineHeight: 23,
+    fontSize: 16,
   },
+  verset: {
+    fontSize: 12,
+    color: '$color.tertiary',
+  },
+  versetWrapper: {
+    width: 20,
+    height: 20,
+    marginLeft: 5,
+    marginRight: 5,
+  }
 })
 
 class BibleVerse extends Component {
@@ -36,12 +47,12 @@ class BibleVerse extends Component {
   render() {
     const { verse: { Verset } } = this.props
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>
-          <Text>{Verset}</Text>
-          {this.state.element}
-        </Text>
-      </View>
+      <Text style={styles.text}>
+        <View style={styles.versetWrapper}>
+          <Text style={styles.verset}>{Verset}</Text>
+        </View>
+        {this.state.element}
+      </Text>
     )
   }
 }

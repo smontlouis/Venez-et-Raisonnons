@@ -6,7 +6,7 @@ import {
 import EStyleSheet from 'react-native-extended-stylesheet'
 
 const styles = EStyleSheet.create({
-  chapter: {
+  item: {
     width: 50,
     height: 50,
     margin: 3,
@@ -15,7 +15,7 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'flex-start',
   },
-  selectedChapter: {
+  selectedItem: {
     backgroundColor: '$color.primary',
   },
   selectedText: {
@@ -31,22 +31,22 @@ const styles = EStyleSheet.create({
   },
 })
 
-const ChapterSelectorItem = ({ chapter, isSelected, onChange }) => (
+const SelectorItem = ({ item, isSelected, onChange }) => (
   <TouchableOpacity
-    onPress={() => onChange(chapter)}
-    style={[styles.chapter, isSelected && styles.selectedChapter]}
+    onPress={() => onChange(item)}
+    style={[styles.item, isSelected && styles.selectedItem]}
   >
     <Text style={[styles.text, isSelected && styles.selectedText]}>
-      {chapter}
+      {item}
     </Text>
   </TouchableOpacity>
 )
 
 
-ChapterSelectorItem.propTypes = {
-  chapter: PropTypes.number.isRequired,
+SelectorItem.propTypes = {
+  item: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   isSelected: PropTypes.bool,
 }
 
-export default ChapterSelectorItem
+export default SelectorItem

@@ -6,11 +6,8 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 
 const styles = EStyleSheet.create({
   text: {
-    color: 'blue',
-    borderColor: 'blue',
-    borderWidth: 2,
-    borderStyle: 'solid',
-    backgroundColor: 'yellow',
+    color: '$color.primary',
+    // backgroundColor: 'rgba(0,0,0,0.1)',
   },
 })
 
