@@ -37,6 +37,7 @@ class App extends Component {
     persistedStore = persistStore(store, {
       storage: AsyncStorage,
       transforms: [immutableTransform()],
+      blacklist: ['bible', 'app'], // TEMP
     }, () => {
       this.setState({ rehydrated: true })
     })

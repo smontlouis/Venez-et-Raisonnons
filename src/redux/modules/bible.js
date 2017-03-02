@@ -1,25 +1,42 @@
 import { Map } from 'immutable'
 
-// const SET_SEARCH_INPUT = 'search/SET_SEARCH_INPUT'
+const SET_TEMP_SELECTED_BOOK = 'bible/SET_TEMP_SELECTED_BOOK'
+const SET_TEMP_SELECTED_CHAPTER = 'bible/SET_TEMP_SELECTED_CHAPTER'
 
 const initialState = Map({
-  chapter: 1,
-  book: 1,
+  selectedBook: 1,
+  selectedChapter: 1,
+  temp: Map({
+    selectedBook: 1,
+    selectedChapter: 1,
+  })
 })
 
-// export function setSearchInput(result) {
-//   return {
-//     type: SET_SEARCH_INPUT,
-//     result,
-//   }
-// }
+export function setTempSelectedBook(book) {
+  return {
+    type: SET_TEMP_SELECTED_BOOK,
+    book,
+  }
+}
 
-export default function SearchReducer(state = initialState, action = {}) {
+export function setTempSelectedChapter(chapter) {
+  return {
+    type: SET_TEMP_SELECTED_CHAPTER,
+    chapter,
+  }
+}
+
+export default function BibleReducer(state = initialState, action = {}) {
   switch (action.type) {
-    // case SET_SEARCH_INPUT: {
-    //   return state
-    //           .set('input', action.result)
-    // }
+    case SET_TEMP_SELECTED_BOOK: {
+      return state
+        .update('temp', t => t.merge({ selectedBook: action.book }))
+        .update('temp', t => t.merge({ selectedChapter: 1 }))
+    }
+    case SET_TEMP_SELECTED_CHAPTER: {
+      return state
+        .update('temp', t => t.merge({ selectedChapter: action.chapter }))
+    }
     default:
       return state
   }

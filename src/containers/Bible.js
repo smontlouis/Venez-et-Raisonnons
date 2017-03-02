@@ -5,7 +5,7 @@ import {
   View,
 } from 'react-native'
 import {
-  Header,
+  BibleHeader,
   BibleViewer,
 } from '../components'
 
@@ -15,19 +15,13 @@ const styles = EStyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  centered: {
-    padding: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-  },
 })
 
 const Bible = ({ book, chapter }) =>
   <View style={styles.container}>
-    <Header
-      title="Bible"
-      hasBackButton={false}
+    <BibleHeader
+      book={book}
+      chapter={chapter}
     />
     <BibleViewer
       book={book}
@@ -42,7 +36,7 @@ Bible.propTypes = {
 
 export default connect(
   state => ({
-    book: state.bible.get('book'),
-    chapter: state.bible.get('chapter')
+    book: state.bible.get('selectedBook'),
+    chapter: state.bible.get('selectedChapter')
   })
 )(Bible)

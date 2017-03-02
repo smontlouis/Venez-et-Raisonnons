@@ -8,7 +8,7 @@ import { Router } from '../routes'
 class Link extends Component {
   static propTypes = {
     navigator: PropTypes.object.isRequired,
-    params: PropTypes.object.isRequired,
+    params: PropTypes.object,
     route: PropTypes.string.isRequired,
   }
 
