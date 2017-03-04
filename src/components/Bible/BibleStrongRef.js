@@ -3,6 +3,7 @@ import {
   Text,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
+import { withNavigation } from '@exponent/ex-navigation'
 
 const styles = EStyleSheet.create({
   text: {
@@ -11,19 +12,19 @@ const styles = EStyleSheet.create({
   },
 })
 
-const openModal = (ref) => {
-  console.log(ref)
-}
+const openModal = (navigator, ref, book) => navigator.push('strongModal', { ref, book })
 
-const BibleStrongRef = ({ reference }) => (
-  <Text style={styles.text} onPress={() => openModal(reference)} >
+const BibleStrongRef = ({ navigator, reference, book }) => (
+  <Text style={styles.text} onPress={() => openModal(navigator, reference, book)} >
     {reference}
   </Text>
 )
 
 
 BibleStrongRef.propTypes = {
-  reference: PropTypes.number.isRequired
+  navigator: PropTypes.object.isRequired,
+  reference: PropTypes.number.isRequired,
+  book: PropTypes.number.isRequired,
 }
 
-export default BibleStrongRef
+export default withNavigation(BibleStrongRef)

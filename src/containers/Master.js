@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import EIcon from 'react-native-vector-icons/Octicons'
 import { connect } from 'react-redux'
 import {
@@ -51,8 +51,8 @@ const links = [
   // },
   {
     to: 'bible',
-    icon: 'book',
-    label: 'Bible',
+    icon: 'book-open-page-variant',
+    label: 'Strong',
   },
   // {
   //   to: 'add',
@@ -101,7 +101,7 @@ const TabIcon = (label, icon, isSelected) =>
   <View style={styles.tabItemContainer}>
     {renderIcon(icon, isSelected)}
     {
-      (false && isSelected) &&
+      isSelected &&
       <Text style={styles.tabTitleText} numberOfLines={1}>
         {label.toUpperCase()}
       </Text>

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import Icon from 'react-native-vector-icons/Entypo'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {
   View,
   Text,
@@ -18,6 +18,11 @@ const styles = EStyleSheet.create({
     paddingTop: 18,
     alignItems: 'center',
     flexDirection: 'row',
+  },
+  containerLight: {
+    backgroundColor: 'white',
+    borderBottomWidth: 1,
+    borderBottomColor: '$color.grey',
   },
   containerTransparent: {
     position: 'absolute',
@@ -50,13 +55,22 @@ const styles = EStyleSheet.create({
     fontFamily: '$font.heading',
     fontSize: 20,
     color: 'white',
+  },
+  titleLight: {
+    color: 'black'
   }
 })
 
-const Header = ({ title, hasBackButton = true, isTransparent, isLoading }) => {
+const Header = ({ title, hasBackButton = true, isTransparent, isLight, isLoading, isModal }) => {
   const ContainerStyles = combineStyles({
     container: true,
     containerTransparent: isTransparent,
+    containerLight: isLight,
+  }, styles)
+
+  const TextStyles = combineStyles({
+    title: true,
+    titleLight: isLight,
   }, styles)
 
   return (
@@ -66,7 +80,7 @@ const Header = ({ title, hasBackButton = true, isTransparent, isLoading }) => {
       {
         title &&
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>{title.toUpperCase()}</Text>
+            <Text style={TextStyles}>{title.toUpperCase()}</Text>
           </View>
       }
       {
@@ -75,7 +89,7 @@ const Header = ({ title, hasBackButton = true, isTransparent, isLoading }) => {
           style={styles.back}
           underlayColor="transparent"
         >
-          <Icon name="chevron-left" size={20} color="white" />
+          <Icon name={isModal ? 'close' : 'chevron-left'} size={20} color={isLight ? 'black' : 'white'} />
         </Back>
       }
       {
@@ -92,6 +106,8 @@ Header.propTypes = {
   title: PropTypes.string.isRequired,
   hasBackButton: PropTypes.bool,
   isTransparent: PropTypes.bool,
+  isLight: PropTypes.bool,
+  isModal: PropTypes.bool,
   isLoading: PropTypes.bool.isRequired,
 }
 

@@ -27,7 +27,7 @@ class BibleVerse extends Component {
 
   static propTypes = {
     verse: PropTypes.object.isRequired,
-    getPosition: PropTypes.func.isRequired,
+    getPosition: PropTypes.func,
   }
 
   constructor(props) {
@@ -41,10 +41,10 @@ class BibleVerse extends Component {
   }
 
   componentWillMount() {
-    const { verse } = this.props
+    const { verse, getPosition } = this.props
     this.formatVerse(verse)
 
-    setTimeout(this.getVerseMeasure)
+    if (getPosition) setTimeout(this.getVerseMeasure)
   }
 
   getVerseMeasure() {
@@ -64,9 +64,12 @@ class BibleVerse extends Component {
     const { verse: { Verset } } = this.props
     return (
       <Text style={styles.text}>
-        <View style={styles.versetWrapper} ref={(r) => { this.bibleVerse = r }} >
-          <Text style={styles.verset}>{Verset}</Text>
-        </View>
+        {
+          Verset &&
+          <View style={styles.versetWrapper} ref={(r) => { this.bibleVerse = r }} >
+            <Text style={styles.verset}>{Verset}</Text>
+          </View>
+        }
         {this.state.element}
       </Text>
     )
