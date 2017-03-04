@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import Icon from 'react-native-vector-icons/Entypo'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import {
@@ -117,7 +117,7 @@ export default class TopicItem extends Component {
             <Text style={styles.count}>{questionsCount} questions</Text>
           </View>
           <View>
-            <Icon name="chevron-thin-right" size={22} color="rgba(0,0,0,0.5)" />
+            <Icon name="chevron-right" size={26} color="rgba(0,0,0,0.5)" />
           </View>
         </View>
       </Link>

@@ -20,7 +20,8 @@ import {
   Add,
   About,
   Bible,
-  BibleSelector
+  BibleSelector,
+  StrongModal,
 } from './containers'
 
 export const Router = createRouter(() => ({
@@ -39,6 +40,7 @@ export const Router = createRouter(() => ({
 
   bible: () => Bible,
   bibleSelector: () => BibleSelector,
+  strongModal: () => StrongModal,
 }))
 
 export default function () {
