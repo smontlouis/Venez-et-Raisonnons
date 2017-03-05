@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { NavigationStyles } from '@exponent/ex-navigation'
-import { connect } from 'react-redux'
+import { withNavigation } from '@exponent/ex-navigation'
 import {
   View,
   Text,
@@ -10,7 +10,6 @@ import {
 } from 'react-native'
 import getDB from '../helpers/database'
 import { capitalize } from '../helpers'
-import * as BibleActions from '../redux/modules/bible'
 import {
   Header,
   Loading,
@@ -63,13 +62,11 @@ const styles = EStyleSheet.create({
   },
 })
 
-@connect(
-  null,
-  BibleActions,
-)
+@withNavigation
 export default class BibleSelector extends Component {
 
   static propTypes = {
+    navigator: PropTypes.object.isRequired,
     route: PropTypes.object.isRequired,
   }
 
@@ -78,6 +75,12 @@ export default class BibleSelector extends Component {
       ...NavigationStyles.FloatVertical,
       gestures: null,
     }
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.linkToStrong = ::this.linkToStrong
   }
 
   state = { isLoading: true }
@@ -100,6 +103,14 @@ export default class BibleSelector extends Component {
       })
   }
 
+  linkToStrong(ref) {
+    const {
+      navigator,
+      route: { params: { book } },
+    } = this.props
+    navigator.push('strongModal', { ref: ref.replace(/\D/g, ''), book })
+  }
+
   render() {
     if (this.state.isLoading) {
       return (
@@ -107,7 +118,7 @@ export default class BibleSelector extends Component {
       )
     }
 
-    const { route: { params: { ref, book } } } = this.props
+    const { route: { params: { ref } } } = this.props
     const {
       Hebreu,
       Grec,
@@ -165,7 +176,7 @@ export default class BibleSelector extends Component {
               <Text style={styles.subtitle}>Définition</Text>
               <StylizedHTMLView
                 value={Definition}
-                onLinkPress={() => {}}
+                onLinkPress={this.linkToStrong}
               />
             </View>
           }
@@ -182,7 +193,7 @@ export default class BibleSelector extends Component {
               <Text style={styles.subtitle}>Origine du mot</Text>
               <StylizedHTMLView
                 value={Origine}
-                onLinkPress={() => {}}
+                onLinkPress={this.linkToStrong}
               />
             </View>
           }

@@ -42,6 +42,8 @@ android/app/libs
 android/keystores/debug.keystore
 
 env.js
+ios/PleadApp/www/venez-et-raisonnons-db.db
+
 *.keystore
 
 # fastlane

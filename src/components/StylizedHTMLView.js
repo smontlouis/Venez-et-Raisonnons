@@ -20,14 +20,20 @@ const styles = EStyleSheet.create({
     fontSize: 16,
   },
   a: {
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     color: '$color.primary',
     borderStyle: 'solid',
     borderWidth: 2,
     borderColor: '$color.primary',
   },
   li: {
-    lineHeight: 10,
+    lineHeight: 18,
+  },
+  ol: {
+    flexDirection: 'row',
+  },
+  ul: {
+    flexDirection: 'row',
   }
 })
 

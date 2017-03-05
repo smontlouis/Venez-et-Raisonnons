@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { withNavigation } from '@exponent/ex-navigation'
-import { Button } from 'react-native-elements'
 import {
   View,
   Text,
