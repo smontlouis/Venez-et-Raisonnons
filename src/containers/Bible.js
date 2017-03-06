@@ -31,14 +31,14 @@ const Bible = ({ book, chapter, verse }) =>
   </View>
 
 Bible.propTypes = {
-  book: PropTypes.number.isRequired,
+  book: PropTypes.object.isRequired,
   chapter: PropTypes.number.isRequired,
   verse: PropTypes.number.isRequired,
 }
 
 export default connect(
   state => ({
-    book: state.bible.get('selectedBook'),
+    book: state.bible.get('selectedBook').toJS(),
     chapter: state.bible.get('selectedChapter'),
     verse: state.bible.get('selectedVerse'),
   })

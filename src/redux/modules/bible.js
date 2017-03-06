@@ -1,5 +1,7 @@
 import { Map } from 'immutable'
 
+import books from '../../helpers/livres'
+
 const SET_TEMP_SELECTED_BOOK = 'bible/SET_TEMP_SELECTED_BOOK'
 const SET_TEMP_SELECTED_CHAPTER = 'bible/SET_TEMP_SELECTED_CHAPTER'
 const SET_TEMP_SELECTED_VERSE = 'bible/SET_TEMP_SELECTED_VERSE'
@@ -7,11 +9,12 @@ const VALIDATE_SELECTED = 'bible/VALIDATE_SELECTED'
 const RESET_TEMP_SELECTED = 'bible/RESET_TEMP_SELECTED'
 
 const initialState = Map({
-  selectedBook: 1,
+  books,
+  selectedBook: Map({ Numero: 1, Nom: 'Genèse', Chapitres: 50 }),
   selectedChapter: 1,
   selectedVerse: 1,
   temp: Map({
-    selectedBook: 1,
+    selectedBook: Map({ Numero: 1, Nom: 'Genèse', Chapitres: 50 }),
     selectedChapter: 1,
     selectedVerse: 1,
   })
@@ -47,6 +50,43 @@ export function validateSelected() {
 export function resetTempSelected() {
   return {
     type: RESET_TEMP_SELECTED,
+  }
+}
+
+export function goToPrevChapter() {
+  return (dispatch, getState) => {
+    const currentChapter = getState().bible.get('selectedChapter')
+    if (currentChapter === 1) {
+      const currentBook = getState().bible.get('selectedBook').toJS()
+      const currentBookIndex = getState().bible.get('books')
+        .findIndex(b => b.Numero === currentBook.Numero)
+
+      const prevBook = getState().bible.get('books')[currentBookIndex - 1]
+      dispatch(setTempSelectedBook(prevBook))
+      dispatch(setTempSelectedChapter(prevBook.Chapitres))
+      return dispatch(validateSelected())
+    }
+
+    dispatch(setTempSelectedChapter(currentChapter - 1))
+    return dispatch(validateSelected())
+  }
+}
+
+export function goToNextChapter() {
+  return (dispatch, getState) => {
+    const currentChapter = getState().bible.get('selectedChapter')
+    const currentBook = getState().bible.get('selectedBook').toJS()
+    if (currentChapter === currentBook.Chapitres) {
+      const currentBookIndex = getState().bible.get('books')
+        .findIndex(b => b.Numero === currentBook.Numero)
+
+      const nextBook = getState().bible.get('books')[currentBookIndex + 1]
+      dispatch(setTempSelectedBook(nextBook))
+      return dispatch(validateSelected())
+    }
+
+    dispatch(setTempSelectedChapter(currentChapter + 1))
+    return dispatch(validateSelected())
   }
 }
 

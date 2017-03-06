@@ -19,7 +19,7 @@ const styles = EStyleSheet.create({
 })
 
 const BookSelectorItem = ({ book, isSelected, onChange }) => (
-  <TouchableOpacity onPress={() => onChange(book.Numero)}>
+  <TouchableOpacity onPress={() => onChange(book)}>
     <Text style={[styles.text, isSelected && styles.selected]}>
       {book.Nom}
     </Text>

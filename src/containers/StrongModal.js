@@ -130,7 +130,6 @@ export default class BibleSelector extends Component {
       LSG,
     } = this.strongRef[0]
 
-    console.log(this.strongRef[0])
     return (
       <View style={styles.container}>
         <StatusBar barStyle="dark-content" />

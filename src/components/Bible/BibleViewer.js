@@ -1,24 +1,32 @@
 import React, { PropTypes, Component } from 'react'
 import {
+  Animated,
   ScrollView,
   Text,
+  View,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import getDB from '../../helpers/database'
 import {
-  BibleVerse
+  BibleVerse,
+  BibleFooter,
 } from '../../components'
 
 const styles = EStyleSheet.create({
   container: {
+    flex: 1,
+  },
+  scrollView: {
     padding: 20,
+  },
+  text: {
   },
 })
 
 
 export default class BibleViewer extends Component {
   static propTypes = {
-    book: PropTypes.number.isRequired,
+    book: PropTypes.object.isRequired,
     chapter: PropTypes.number.isRequired,
     verse: PropTypes.number.isRequired,
   }
@@ -28,10 +36,12 @@ export default class BibleViewer extends Component {
 
     this.getPosition = ::this.getPosition
     this.scrollToVerse = ::this.scrollToVerse
+    this.onScrollMoveFooter = ::this.onScrollMoveFooter
   }
 
   state = {
-    isLoaded: false
+    isLoading: false,
+    scrollY: new Animated.Value(0),
   }
 
   componentWillMount() {
@@ -40,7 +50,10 @@ export default class BibleViewer extends Component {
   }
 
   componentDidUpdate(oldProps) {
-    if ((this.props.chapter !== oldProps.chapter) || (this.props.book !== oldProps.book)) {
+    if (
+      (this.props.chapter !== oldProps.chapter)
+      || (this.props.book.Numero !== oldProps.book.Numero)
+    ) {
       setTimeout(() => this.loadVerses(), 0)
     }
 
@@ -48,9 +61,29 @@ export default class BibleViewer extends Component {
     if (
       (this.props.verse !== oldProps.verse)
       && (this.props.chapter === oldProps.chapter)
-      && (this.props.book === oldProps.book)
+      && (this.props.book.Numero === oldProps.book.Numero)
     ) {
       setTimeout(() => this.scrollToVerse(), 0)
+    }
+  }
+
+  onScrollMoveFooter(event) {
+    const currentOffset = event.nativeEvent.contentOffset.y
+    const direction = currentOffset > this.offset ? 'down' : 'up'
+    const distance = this.offset ? (this.offset - currentOffset) : 0
+    const newPosition = this.state.scrollY._value - distance
+    if (currentOffset > 0 && currentOffset < (this.contentHeight - this.scrollViewHeight)) {
+      if (direction === 'down') {
+        if (this.state.scrollY._value < 60) {
+          this.state.scrollY.setValue(newPosition > 60 ? 60 : newPosition)
+        }
+      }
+      if (direction === 'up') {
+        if (this.state.scrollY._value >= 0) {
+          this.state.scrollY.setValue(newPosition < 0 ? 0 : newPosition)
+        }
+      }
+      this.offset = currentOffset
     }
   }
 
@@ -76,42 +109,51 @@ export default class BibleViewer extends Component {
 
   loadVerses() {
     const { book, chapter } = this.props
-    const part = book > 39 ? 'LSGSNT2' : 'LSGSAT2'
+    const part = book.Numero > 39 ? 'LSGSNT2' : 'LSGSAT2'
     this.verses = []
     this.versesMeasure = {}
-    this.setState({ isLoaded: false })
-    this.DB.executeSql(`SELECT * FROM ${part} WHERE LIVRE = ${book} AND CHAPITRE  = ${chapter}`)
+    this.setState({ isLoading: true })
+    this.DB.executeSql(`SELECT * FROM ${part} WHERE LIVRE = ${book.Numero} AND CHAPITRE  = ${chapter}`)
       .then(([results]) => {
         const len = results.rows.length
         for (let i = 0; i < len; i += 1) { this.verses.push(results.rows.item(i)) }
-        this.setState({ isLoaded: true })
+        this.setState({ isLoading: false })
       })
   }
 
   render() {
-    const { isLoaded } = this.state
-    if (!isLoaded) {
-      return null
-    }
+    const { isLoading } = this.state
+    const { book, chapter } = this.props
+
     return (
-      <ScrollView
-        ref={(r) => { this.scrollView = r }}
-        onContentSizeChange={(w, h) => { this.contentHeight = h }}
-        onLayout={(ev) => { this.scrollViewHeight = ev.nativeEvent.layout.height }}
-        style={styles.container}
-      >
-        <Text>
-          {
-            this.verses.map((verse, i) =>
-              <BibleVerse
-                verse={verse}
-                key={i}
-                getPosition={this.getPosition}
-              />
-            )
-          }
-        </Text>
-      </ScrollView>
+      <View style={styles.container}>
+        <ScrollView
+          ref={(r) => { this.scrollView = r }}
+          onContentSizeChange={(w, h) => { this.contentHeight = h }}
+          onLayout={(ev) => { this.scrollViewHeight = ev.nativeEvent.layout.height }}
+          onScroll={this.onScrollMoveFooter}
+          scrollEventThrottle={16}
+          style={styles.scrollView}
+        >
+          <Text style={styles.text}>
+            {
+              this.verses.map((verse, i) =>
+                <BibleVerse
+                  verse={verse}
+                  key={i}
+                  getPosition={this.getPosition}
+                />
+              )
+            }
+          </Text>
+        </ScrollView>
+        <BibleFooter
+          disabled={isLoading}
+          book={book}
+          chapter={chapter}
+          scrollY={this.state.scrollY}
+        />
+      </View>
     )
   }
 }

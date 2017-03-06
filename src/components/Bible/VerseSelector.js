@@ -25,9 +25,9 @@ const styles = EStyleSheet.create({
 
 @connect(
   state => ({
-    selectedBook: state.bible.get('temp').get('selectedBook'),
-    selectedChapter: state.bible.get('temp').get('selectedChapter'),
-    selectedVerse: state.bible.get('temp').get('selectedVerse'),
+    selectedBook: state.bible.getIn(['temp', 'selectedBook']).toJS(),
+    selectedChapter: state.bible.getIn(['temp', 'selectedChapter']),
+    selectedVerse: state.bible.getIn(['temp', 'selectedVerse']),
   }),
   BibleActions,
 )
@@ -36,7 +36,7 @@ export default class VerseSelector extends Component {
     navigator: PropTypes.object.isRequired,
     setTempSelectedVerse: PropTypes.func.isRequired,
     validateSelected: PropTypes.func.isRequired,
-    selectedBook: PropTypes.number.isRequired,
+    selectedBook: PropTypes.object.isRequired,
     selectedChapter: PropTypes.number.isRequired,
     selectedVerse: PropTypes.number.isRequired,
   }
@@ -57,7 +57,9 @@ export default class VerseSelector extends Component {
   }
 
   componentDidUpdate(oldProps) {
-    if (this.props.selectedChapter !== oldProps.selectedChapter) {
+    if (
+      (this.props.selectedChapter !== oldProps.selectedChapter)
+      || this.props.selectedBook.Numero !== oldProps.selectedBook.Numero) {
       this.loadVerses()
     }
   }
@@ -70,10 +72,10 @@ export default class VerseSelector extends Component {
 
   loadVerses() {
     const { selectedBook, selectedChapter } = this.props
-    const part = selectedBook > 39 ? 'LSGSNT2' : 'LSGSAT2'
+    const part = selectedBook.Numero > 39 ? 'LSGSNT2' : 'LSGSAT2'
     this.verses = []
     this.setState({ isLoaded: false })
-    this.DB.executeSql(`SELECT count(*) as count FROM ${part} WHERE Livre = ${selectedBook} AND Chapitre = ${selectedChapter}`)
+    this.DB.executeSql(`SELECT count(*) as count FROM ${part} WHERE Livre = ${selectedBook.Numero} AND Chapitre = ${selectedChapter}`)
       .then(([results]) => {
         const len = results.rows.length
         for (let i = 0; i < len; i += 1) { this.verses.push(results.rows.item(i)) }

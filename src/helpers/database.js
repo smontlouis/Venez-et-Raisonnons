@@ -1,9 +1,9 @@
 import SQLite from 'react-native-sqlite-storage'
 
-SQLite.DEBUG(true)
+if (__DEV__) SQLite.DEBUG(true)
 SQLite.enablePromise(true)
 
-const okCallback = () => console.log('ok')
+const okCallback = () => {}
 const errorCallback = err => console.log('error', err)
 
 let DB

@@ -2,7 +2,6 @@ import React, { PropTypes, Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { fromJS } from 'immutable'
 import { connect } from 'react-redux'
-import getDB from '../../helpers/database'
 import * as BibleActions from '../../redux/modules/bible'
 import {
   BookSelectorItem,
@@ -20,30 +19,23 @@ const styles = EStyleSheet.create({
 
 @connect(
   state => ({
-    selectedBook: state.bible.get('temp').get('selectedBook'),
+    selectedBook: state.bible.getIn(['temp', 'selectedBook']).toJS(),
+    books: state.bible.get('books')
   }),
   BibleActions,
 )
 export default class BookSelector extends Component {
   static propTypes = {
+    books: PropTypes.array.isRequired,
     navigation: PropTypes.object.isRequired,
     setTempSelectedBook: PropTypes.func.isRequired,
-    selectedBook: PropTypes.number.isRequired,
+    selectedBook: PropTypes.object.isRequired,
   }
 
   constructor(props) {
     super(props)
 
     this.onBookChange = ::this.onBookChange
-  }
-
-  state = {
-    isLoaded: false
-  }
-
-  componentWillMount() {
-    this.DB = getDB()
-    this.loadBooks()
   }
 
   onBookChange(book) {
@@ -53,34 +45,20 @@ export default class BookSelector extends Component {
     this.props.setTempSelectedBook(book)
   }
 
-  loadBooks() {
-    this.books = []
-    this.setState({ isLoaded: false })
-    this.DB.executeSql('SELECT * FROM Livres')
-      .then(([results]) => {
-        const len = results.rows.length
-        for (let i = 0; i < len; i += 1) { this.books.push(results.rows.item(i)) }
-        this.setState({ isLoaded: true })
-      })
-  }
-
   render() {
-    const { isLoaded } = this.state
     const {
+      books,
       selectedBook,
     } = this.props
 
-    if (!isLoaded) {
-      return null
-    }
     return (
       <List
-        listItems={fromJS(this.books)}
+        listItems={fromJS(books)}
         renderRow={book =>
           <BookSelectorItem
             onChange={this.onBookChange}
             book={book}
-            isSelected={book.Numero === selectedBook}
+            isSelected={book.Numero === selectedBook.Numero}
           />
         }
         style={styles.container}
