@@ -102,7 +102,7 @@ export default class Question extends Component {
             </View>
             <LikeCount count={question.get('likeCount')} id={question.get('id')} />
             {
-              (question.get('parent')) &&
+              !!question.get('parent') &&
               <PrevNext
                 parentId={question.get('parent')}
                 questionId={question.get('id')}

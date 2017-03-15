@@ -47,7 +47,7 @@ const styles = EStyleSheet.create({
 const getParentQuestion = (state, props) => state.questions.get('questions').get(props.parentId)
 const getPrevNextQuestion = (state, props, isNext) => {
   const children = getParentQuestion(state, props).get('children')
-  const currentQuestionIndex = children.findIndex(q => q === props.questionId)
+  const currentQuestionIndex = children.toArray().findIndex(q => q === props.questionId)
 
   if (currentQuestionIndex === 0 && !isNext) return null
 
