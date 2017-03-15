@@ -11,11 +11,6 @@ Ceci est le code source de l'application, en cours de développement.
 - react-native-vector-icons
 - react-native-extended-stylesheet
 
-## Reste à faire
-- Ne pas faire apparaître les questions en standalone: false
-- Possibilité de partager une question
-- Vider la barre de recherche
-- Polir la version Android
-
 ### Mémo code push
-`code-push release-react PleadApp ios --plistFile ios/PleadApp/Info.plist -m --description "Commit message"`
+- Staging: `code-push release-react PleadApp-iOS ios -m --description "Lorem ipsum"`
+- Staging to Production: `code-push promote PleadApp-iOS Staging Development`

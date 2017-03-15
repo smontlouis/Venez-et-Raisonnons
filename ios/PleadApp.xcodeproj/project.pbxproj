@@ -1287,9 +1287,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fr.smontlouiscalixte.pleadapp;
-				PRODUCT_NAME = PleadAppDebug;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.smontlouiscalixte.pleadapp.debug;
+				PRODUCT_NAME = "Debug - Venez Et Raisonnons";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1321,8 +1322,9 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = fr.smontlouiscalixte.pleadapp;
-				PRODUCT_NAME = PleadApp;
+				PRODUCT_NAME = "Venez et Raisonnons";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1565,9 +1567,10 @@
 					"-lc++",
 				);
 				PODS_CONFIGURATION_BUILD_DIR = "$PODS_BUILD_DIR/Release$(EFFECTIVE_PLATFORM_NAME)";
-				PRODUCT_BUNDLE_IDENTIFIER = fr.smontlouiscalixte.pleadapp;
-				PRODUCT_NAME = PleadAppStaging;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.smontlouiscalixte.pleadapp.staging;
+				PRODUCT_NAME = "Staging - Venez Et Raisonnons";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Staging;
 		};
