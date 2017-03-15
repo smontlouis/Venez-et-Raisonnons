@@ -40,7 +40,6 @@ const Add = () =>
   <View style={styles.container}>
     <Header
       title="Poser une question"
-      hasBackButton={false}
     />
     <View style={styles.centered}>
       <Text style={styles.text}>
