@@ -38,6 +38,9 @@ const styles = EStyleSheet.create({
     height: 32,
     width: 32,
     marginLeft: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
   },
   indicator: {
     marginRight: 10,
