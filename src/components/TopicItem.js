@@ -55,7 +55,10 @@ const getQuestions = state => state.questions.get('questions')
 
 const getQuestionsNumberByTopic = createSelector(
   [getCurrentTopic, getQuestions],
-  (currentTopic, questions) => questions.filter(question => (question.get('topic') === currentTopic.get('id'))).count(),
+  (currentTopic, questions) => questions
+    .filter(question => question.get('topic') === currentTopic.get('id'))
+    .filter(question => question.get('standalone'))
+    .count(),
 )
 
 
@@ -114,7 +117,7 @@ export default class TopicItem extends Component {
           />
           <View style={styles.content}>
             <Text style={styles.title}>{title}</Text>
-            <Text style={styles.count}>{questionsCount} questions</Text>
+            <Text style={styles.count}>{questionsCount} question{questionsCount > 1 ? 's' : ''}</Text>
           </View>
           <View>
             <Icon name="chevron-right" size={26} color="rgba(0,0,0,0.5)" />

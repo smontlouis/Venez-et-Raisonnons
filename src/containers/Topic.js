@@ -18,7 +18,9 @@ const getQuestions = state => state.questions.get('questions')
 
 const getQuestionsByTopic = createSelector(
   [getCurrentTopic, getQuestions],
-  (currentTopic, questions) => R.filter(question => (question.get('topic') === currentTopic.get('id')), questions),
+  (currentTopic, questions) => questions
+    .filter(question => question.get('topic') === currentTopic.get('id'))
+    .filter(question => question.get('standalone')),
 )
 
 const styles = EStyleSheet.create({
