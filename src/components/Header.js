@@ -33,7 +33,7 @@ const styles = EStyleSheet.create({
   },
   back: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 5,
     left: 0,
     height: 32,
     width: 32,
@@ -89,7 +89,7 @@ const Header = ({ title, hasBackButton = true, isTransparent, isLight, isLoading
           style={styles.back}
           underlayColor="transparent"
         >
-          <Icon name={isModal ? 'close' : 'chevron-left'} size={20} color={isLight ? 'black' : 'white'} />
+          <Icon name={isModal ? 'close' : 'chevron-left'} size={isModal ? 20 : 28} color={isLight ? 'black' : 'white'} />
         </Back>
       }
       {

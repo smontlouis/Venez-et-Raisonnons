@@ -23,8 +23,8 @@ const styles = EStyleSheet.create({
   content: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
-    paddingRight: 15,
+    alignItems: 'flex-start',
+    paddingRight: 20,
   },
   title: {
     fontFamily: '$font.heading',
