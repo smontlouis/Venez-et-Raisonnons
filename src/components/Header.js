@@ -40,7 +40,6 @@ const styles = EStyleSheet.create({
     marginLeft: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    textAlign: 'center',
   },
   indicator: {
     marginRight: 10,

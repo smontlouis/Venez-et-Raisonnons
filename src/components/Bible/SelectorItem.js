@@ -24,9 +24,6 @@ const styles = EStyleSheet.create({
   text: {
     color: 'black',
     fontSize: 16,
-    padding: 15,
-    paddingTop: 10,
-    paddingBottom: 10,
     backgroundColor: 'transparent'
   },
 })
