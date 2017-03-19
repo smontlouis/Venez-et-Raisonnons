@@ -66,8 +66,8 @@ export default class VerseSelector extends Component {
 
   onValidate(verse) {
     this.props.setTempSelectedVerse(verse)
-    this.props.navigator.pop()
     this.props.validateSelected(verse)
+    setTimeout(() => this.props.navigator.pop(), 0)
   }
 
   loadVerses() {
@@ -89,12 +89,16 @@ export default class VerseSelector extends Component {
       selectedVerse,
     } = this.props
 
+
     if (!isLoaded) {
       return null
     }
+
+    const array = Array(...Array(this.verses[0].count)).map((_, i) => i)
+
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        {[...Array(this.verses[0].count).keys()].map(v =>
+        {array.map(v =>
           <SelectorItem
             key={v}
             item={v + 1}

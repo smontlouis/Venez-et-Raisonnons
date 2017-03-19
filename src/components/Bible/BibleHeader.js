@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import {
+  Platform,
   View,
   Text,
 } from 'react-native'
@@ -13,7 +14,7 @@ const styles = EStyleSheet.create({
   container: {
     backgroundColor: '$color.primaryDarken',
     height: '$header.height',
-    paddingTop: 18,
+    paddingTop: Platform.OS === 'ios' ? 18 : 24,
     alignItems: 'center',
     flexDirection: 'row',
     paddingLeft: 15,

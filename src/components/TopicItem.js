@@ -45,7 +45,6 @@ const styles = EStyleSheet.create({
     fontFamily: '$font.title_italic',
     color: '$color.darkGrey',
     fontSize: 12,
-    lineHeight: 15,
   },
 })
 

@@ -56,9 +56,11 @@ export default class ChapterSelector extends Component {
       selectedChapter,
     } = this.props
 
+    const array = Array(...Array(selectedBook.Chapitres)).map((_, i) => i)
+
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        {[...Array(selectedBook.Chapitres).keys()].map(c =>
+        {array.map(c =>
           <SelectorItem
             key={c}
             item={c + 1}

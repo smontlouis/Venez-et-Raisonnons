@@ -2,7 +2,6 @@ import React, { PropTypes, Component } from 'react'
 import {
   Animated,
   ScrollView,
-  Text,
   View,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
@@ -18,8 +17,7 @@ const styles = EStyleSheet.create({
   },
   scrollView: {
     padding: 20,
-  },
-  text: {
+    paddingLeft: 0,
   },
 })
 
@@ -89,7 +87,7 @@ export default class BibleViewer extends Component {
 
   getPosition(numVerset, measures) {
     this.versesMeasure[`verse${numVerset}`] = measures
-
+    console.log(measures)
     // We need to wait 'til every Bible verse component get calculated
     if (Object.keys(this.versesMeasure).length === this.verses.length) {
       setTimeout(() => this.scrollToVerse(), 0)
@@ -99,7 +97,8 @@ export default class BibleViewer extends Component {
   scrollToVerse() {
     const { verse } = this.props
     const scrollHeight = (this.contentHeight - this.scrollViewHeight) + 20
-    const y = (verse === 1) ? 0 : this.versesMeasure[`verse${verse}`].y + 17
+    const y = (verse === 1) ? 0 : this.versesMeasure[`verse${verse}`].py - 75
+
     this.scrollView.scrollTo({
       x: 0,
       y: (y >= scrollHeight) ? scrollHeight : y,
@@ -135,17 +134,15 @@ export default class BibleViewer extends Component {
           scrollEventThrottle={16}
           contentContainerStyle={styles.scrollView}
         >
-          <Text style={styles.text}>
-            {
-              this.verses.map((verse, i) =>
-                <BibleVerse
-                  verse={verse}
-                  key={i}
-                  getPosition={this.getPosition}
-                />
-              )
-            }
-          </Text>
+          {
+            this.verses.map((verse, i) =>
+              <BibleVerse
+                verse={verse}
+                key={i}
+                getPosition={this.getPosition}
+              />
+            )
+          }
         </ScrollView>
         <BibleFooter
           disabled={isLoading}

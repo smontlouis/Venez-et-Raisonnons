@@ -22,8 +22,8 @@ const styles = EStyleSheet.create({
     lineHeight: 25,
   },
   p: {
-    lineHeight: 23,
-    fontSize: 16,
+    lineHeight: 26,
+    fontSize: 18,
   },
   a: {
     // fontWeight: 'bold',
