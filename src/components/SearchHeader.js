@@ -10,7 +10,7 @@ import {
 const styles = EStyleSheet.create({
   container: {
     backgroundColor: '$color.primary',
-    height: 64,
+    height: '$header.height',
     paddingTop: 18,
   },
 })

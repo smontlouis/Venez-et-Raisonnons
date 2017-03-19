@@ -12,7 +12,7 @@ import {
 const styles = EStyleSheet.create({
   container: {
     backgroundColor: '$color.primaryDarken',
-    height: 64,
+    height: '$header.height',
     paddingTop: 18,
     alignItems: 'center',
     flexDirection: 'row',

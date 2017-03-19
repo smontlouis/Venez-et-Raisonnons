@@ -14,7 +14,7 @@ class List extends Component {
     listItems: PropTypes.object.isRequired,
     loadData: PropTypes.func.isRequired,
     refreshApp: PropTypes.bool,
-    style: PropTypes.any,
+    contentContainerStyle: PropTypes.any,
   }
 
   constructor(props) {
@@ -54,7 +54,7 @@ class List extends Component {
   }
 
   render() {
-    const { style, refreshApp, ...props } = this.props
+    const { contentContainerStyle, refreshApp, ...props } = this.props
     return (
       <ListView
         dataSource={this.state.dataSource}
@@ -66,7 +66,7 @@ class List extends Component {
             />
             : null
         }
-        style={style}
+        contentContainerStyle={contentContainerStyle}
         {...props}
       />
     )

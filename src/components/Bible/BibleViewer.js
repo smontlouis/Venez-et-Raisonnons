@@ -133,7 +133,7 @@ export default class BibleViewer extends Component {
           onLayout={(ev) => { this.scrollViewHeight = ev.nativeEvent.layout.height }}
           onScroll={this.onScrollMoveFooter}
           scrollEventThrottle={16}
-          style={styles.scrollView}
+          contentContainerStyle={styles.scrollView}
         >
           <Text style={styles.text}>
             {

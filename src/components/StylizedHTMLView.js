@@ -15,6 +15,12 @@ const styles = EStyleSheet.create({
     fontSize: 24,
     lineHeight: 25,
   },
+  h3: {
+    fontFamily: '$font.heading',
+    fontWeight: 'bold',
+    fontSize: 24,
+    lineHeight: 25,
+  },
   p: {
     lineHeight: 23,
     fontSize: 16,

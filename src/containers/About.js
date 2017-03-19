@@ -60,7 +60,7 @@ const About = () =>
     <Header
       title="À propos"
     />
-    <ScrollView style={styles.content}>
+    <ScrollView contentContainerStyle={styles.content}>
       <StylizedHTMLView
         value={markdownToHtml}
       />

@@ -58,14 +58,14 @@ const getStyles = (h) => {
       right: 0,
     },
     bar: {
-      marginTop: Platform.OS === 'ios' ? 20 : 38,
+      marginTop: 20,
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
     },
     back: {
       position: 'absolute',
-      height: 44,
+      height: (Platform.OS === 'ios') ? 44 : 53,
       left: 0,
       top: 0,
       width: 42,
@@ -77,7 +77,7 @@ const getStyles = (h) => {
       width: 42,
       // height: 44,
       right: 0,
-      top: 10,
+      top: (Platform.OS === 'ios') ? 10 : 15,
     },
     title: {
       color: 'white',
@@ -86,7 +86,7 @@ const getStyles = (h) => {
       backgroundColor: 'transparent',
     },
     scrollViewContent: {
-      marginTop: HEADER_MAX_HEIGHT,
+      paddingTop: HEADER_MAX_HEIGHT,
     },
     row: {
       height: 40,

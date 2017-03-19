@@ -14,8 +14,8 @@ import { combineStyles } from '../helpers'
 const styles = EStyleSheet.create({
   container: {
     backgroundColor: '$color.primaryDarken',
-    height: 64,
-    paddingTop: 18,
+    height: '$header.height',
+    paddingTop: 20,
     alignItems: 'center',
     flexDirection: 'row',
   },
@@ -33,7 +33,7 @@ const styles = EStyleSheet.create({
   },
   back: {
     position: 'absolute',
-    bottom: 5,
+    bottom: '$header.icon',
     left: 0,
     height: 32,
     width: 32,

@@ -10,13 +10,12 @@ import {
 
 const styles = EStyleSheet.create({
   container: {
-    flex: 1,
-    padding: 20,
     paddingTop: 0,
+    padding: 20,
   },
 })
 
-const QuestionsList = ({ questions, headerTitle, questionsCount, style, withCounting, ...props }) =>
+const QuestionsList = ({ questions, headerTitle, questionsCount, contentContainerStyle, withCounting, ...props }) =>
   <List
     refreshApp
     listItems={questions}
@@ -36,7 +35,7 @@ const QuestionsList = ({ questions, headerTitle, questionsCount, style, withCoun
         )
       }
     }
-    style={[styles.container, style]}
+    contentContainerStyle={[styles.container, contentContainerStyle]}
     {...props}
   />
 
@@ -45,7 +44,7 @@ QuestionsList.propTypes = {
   questions: PropTypes.object.isRequired,
   questionsCount: PropTypes.number,
   headerTitle: PropTypes.string,
-  style: PropTypes.number,
+  contentContainerStyle: PropTypes.number,
   withCounting: PropTypes.bool,
 }
 

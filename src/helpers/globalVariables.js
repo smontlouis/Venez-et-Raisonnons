@@ -1,8 +1,10 @@
+import { Platform } from 'react-native'
+
 export default {
   font: {
-    title: 'MetaSerifOT-Bold',
-    title_italic: 'MetaSerifOT-BookIta',
-    heading: 'Alternate Gothic No3 D',
+    title: (Platform.OS === 'ios') ? 'MetaSerifOT-Bold' : 'metaserif',
+    title_italic: (Platform.OS === 'ios') ? 'MetaSerifOT-BookIta' : 'metaserif_light_italic',
+    heading: (Platform.OS === 'ios') ? 'Alternate Gothic No3 D' : 'alternategothic',
     text: 'Arial',
   },
   color: {
@@ -13,5 +15,9 @@ export default {
     secondary: '#FFBC00',
     tertiary: 'rgb(98,113,122)',
     quart: '#1A806F'
+  },
+  header: {
+    height: (Platform.OS === 'ios') ? 64 : 73,
+    icon: (Platform.OS === 'ios') ? 5 : 10,
   }
 }

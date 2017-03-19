@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { NavigationStyles } from '@exponent/ex-navigation'
-import { withNavigation } from '@exponent/ex-navigation'
+import { NavigationStyles, withNavigation } from '@exponent/ex-navigation'
 import {
   View,
   Text,
@@ -138,7 +137,7 @@ export default class BibleSelector extends Component {
           isModal
           title={`Strong ${ref}`}
         />
-        <ScrollView style={styles.content}>
+        <ScrollView contentContainerStyle={styles.content}>
           <Text style={styles.mot}>
             {capitalize(Mot)}
             {
