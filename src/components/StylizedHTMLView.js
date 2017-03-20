@@ -35,6 +35,7 @@ const styles = EStyleSheet.create({
   },
   strong: {
     fontSize: 18,
+    fontWeight: 'bold',
   },
   li: {
     lineHeight: 18,
