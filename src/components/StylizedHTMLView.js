@@ -33,6 +33,9 @@ const styles = EStyleSheet.create({
     borderColor: '$color.primary',
     fontSize: 18,
   },
+  strong: {
+    fontSize: 18,
+  },
   li: {
     lineHeight: 18,
   },
