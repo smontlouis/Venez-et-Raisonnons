@@ -12,6 +12,7 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
   },
   text: {
+    flex: 1,
     lineHeight: 26,
     fontSize: 18,
   },
@@ -20,9 +21,9 @@ const styles = EStyleSheet.create({
     color: '$color.tertiary',
   },
   versetWrapper: {
-    flexBasis: 10,
+    marginTop: 3,
     marginRight: 5,
-    marginTop: 5,
+    marginLeft: 15,
   }
 })
 

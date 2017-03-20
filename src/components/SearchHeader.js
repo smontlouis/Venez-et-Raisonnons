@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import {
-  View
+  View,
+  Platform,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import {
@@ -11,7 +12,7 @@ const styles = EStyleSheet.create({
   container: {
     backgroundColor: '$color.primary',
     height: '$header.height',
-    paddingTop: 18,
+    paddingTop: (Platform.OS === 'ios') ? 18 : 23,
   },
 })
 

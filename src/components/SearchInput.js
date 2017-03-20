@@ -1,12 +1,12 @@
 import React, { PropTypes, Component } from 'react'
-import { View, TextInput } from 'react-native'
+import { View, TextInput, Platform } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    padding: 7,
+    padding: (Platform.OS === 'ios') ? 7 : 5,
   },
   icon: {
     backgroundColor: 'transparent',
@@ -25,6 +25,7 @@ const styles = EStyleSheet.create({
     color: 'white',
     textAlign: 'center',
     flex: 1,
+    borderBottomWidth: 0,
   }
 })
 
@@ -58,6 +59,7 @@ class Search extends Component {
           ref={textInputRef}
           {...props}
           placeholderTextColor="white"
+          underlineColorAndroid="transparent"
           style={[
             styles.input,
             noIcon && { paddingLeft: 9 },

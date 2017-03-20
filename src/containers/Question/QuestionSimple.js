@@ -42,6 +42,7 @@ export default class Question extends Component {
   onLinkPress(url, title) {
     this.modal.open()
     this.setState({ verseIsLoading: true })
+    console.log(`https://www.bible.com/fr/bible/93/${url}.json`)
     fetch(`https://www.bible.com/fr/bible/93/${url}.json`)
       .then(res => res.json())
       .then((json) => {
