@@ -50,6 +50,7 @@ const styles = EStyleSheet.create({
 
 const getBase64Img = (state, props) => state.topics.get('base64Images').get(props.id)
 const getCurrentTopic = (state, props) => state.topics.get('topics').get(props.id)
+const getPrevImgUrl = (state, props) => getCurrentTopic(state, props).get('image_url')
 const getQuestions = state => state.questions.get('questions')
 
 const getQuestionsNumberByTopic = createSelector(
@@ -64,6 +65,7 @@ const getQuestionsNumberByTopic = createSelector(
 @connect(
   (state, ownProps) => ({
     base64Img: getBase64Img(state, ownProps),
+    prevImgUrl: getPrevImgUrl(state, ownProps),
     questionsCount: getQuestionsNumberByTopic(state, ownProps),
   }),
 )
@@ -73,17 +75,21 @@ export default class TopicItem extends Component {
     dispatch: PropTypes.func.isRequired,
     id: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
+    prevImgUrl: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     questionsCount: PropTypes.number.isRequired,
   }
 
   componentWillMount() {
-    const { imageUrl, id, dispatch } = this.props
-    RNFetchBlob.fetch('GET', imageUrl)
+    const { imageUrl, id, dispatch, prevImgUrl, base64Img } = this.props
+
+    if ((imageUrl !== prevImgUrl) || !base64Img) {
+      RNFetchBlob.fetch('GET', imageUrl)
       .then((res) => {
         dispatch(saveBase64Image(id, res.base64()))
       })
       .catch(err => console.log(err))
+    }
   }
 
   render() {

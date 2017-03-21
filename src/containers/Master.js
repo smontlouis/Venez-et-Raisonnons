@@ -122,8 +122,8 @@ class Master extends Component {
     topics: PropTypes.object.isRequired,
   }
   componentWillMount() {
-    const { dispatch, topics } = this.props
-    topics.isEmpty() && dispatch(loadData())
+    const { dispatch } = this.props
+    dispatch(loadData())
     initDB()
   }
 
