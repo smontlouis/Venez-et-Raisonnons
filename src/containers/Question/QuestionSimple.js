@@ -16,6 +16,10 @@ import {
   StylizedHTMLView,
   PrevNext,
 } from '../../components'
+import {
+  loadDarby,
+  range,
+} from '../../helpers'
 import styles, { setDynamicFontSize } from './styles'
 
 export default class Question extends Component {
@@ -42,18 +46,54 @@ export default class Question extends Component {
   onLinkPress(url, title) {
     this.modal.open()
     this.setState({ verseIsLoading: true })
-    console.log(`https://www.bible.com/fr/bible/93/${url}.json`)
-    fetch(`https://www.bible.com/fr/bible/93/${url}.json`)
-      .then(res => res.json())
-      .then((json) => {
+    loadDarby()
+      .then((res) => {
+        const { book, chapter, verses } = this.parseUrl(url)
+        const bookIndex = Object.keys(res.books).find(key => (
+          res.books[key][0] === book
+                  || res.books[key][1] === book
+                  || res.books[key][2] === book
+        ))
+        const text = verses.map(v => ({
+          verse: v,
+          text: res.content[bookIndex][chapter][v]
+        }))
+
         this.setState({
           verseIsLoading: false,
           verse: {
             title,
-            text: json.reader_html
+            text
           },
         })
       })
+      .catch(() => {
+        this.setState({
+          verseIsLoading: false,
+          verse: {
+            title: 'Erreur',
+            text: 'Une erreur est survenue. Veuillez contacter l\'administrateur',
+          },
+        })
+      })
+  }
+
+  parseUrl(url) {
+    const [book, chapter, verses] = url.split('.')
+    let versesArray
+
+    if (verses.includes('-')) {
+      const [vStart, vEnd] = verses.split('-')
+      versesArray = range(Number(vStart), Number(vEnd) + 1)
+    } else {
+      versesArray = [Number(verses)]
+    }
+
+    return {
+      book,
+      chapter,
+      verses: versesArray
+    }
   }
 
   render() {

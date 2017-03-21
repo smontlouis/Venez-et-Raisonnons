@@ -40,33 +40,43 @@ const styles = EStyleSheet.create({
   },
 })
 
-const VerseModal = ({ isLoading, title, text, refValue }) => (
-  <Modal
-    style={styles.modal}
-    backButtonClose
-    position="bottom"
-    ref={refValue}
-  >
-    {
-      isLoading &&
-      <Loading />
-    }
-    {
-      !isLoading &&
-      <View>
-        <Text style={styles.title}>{title} (DBY)</Text>
-        <View style={styles.titleBorder} />
-        <Text style={styles.text}>{text}</Text>
-      </View>
-    }
-  </Modal>
-)
+const VerseModal = ({ isLoading, title, text, refValue }) => {
+  let content
+
+  // To be refactored
+  if (!Array.isArray(text)) {
+    content = text
+  } else {
+    content = text.map(t => <Text key={t.verse}> ({t.verse}) {t.text} </Text>)
+  }
+  return (
+    <Modal
+      style={styles.modal}
+      backButtonClose
+      position="bottom"
+      ref={refValue}
+    >
+      {
+        isLoading &&
+        <Loading />
+      }
+      {
+        !isLoading &&
+        <View>
+          <Text style={styles.title}>{title} (DBY)</Text>
+          <View style={styles.titleBorder} />
+          <Text style={styles.text}>{content}</Text>
+        </View>
+      }
+    </Modal>
+  )
+}
 
 
 VerseModal.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.any.isRequired,
   refValue: PropTypes.func.isRequired,
 }
 

@@ -87,7 +87,6 @@ export default class BibleViewer extends Component {
 
   getPosition(numVerset, measures) {
     this.versesMeasure[`verse${numVerset}`] = measures
-    console.log(measures)
     // We need to wait 'til every Bible verse component get calculated
     if (Object.keys(this.versesMeasure).length === this.verses.length) {
       setTimeout(() => this.scrollToVerse(), 0)

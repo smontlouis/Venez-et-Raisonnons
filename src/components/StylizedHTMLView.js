@@ -25,15 +25,22 @@ const styles = EStyleSheet.create({
     lineHeight: 26,
     fontSize: 18,
   },
+  em: {
+    lineHeight: 26,
+    fontSize: 18,
+    fontStyle: 'italic',
+  },
   a: {
     // fontWeight: 'bold',
     color: '$color.primary',
     borderStyle: 'solid',
     borderWidth: 2,
     borderColor: '$color.primary',
+    lineHeight: 26,
     fontSize: 18,
   },
   strong: {
+    lineHeight: 26,
     fontSize: 18,
     fontWeight: 'bold',
   },

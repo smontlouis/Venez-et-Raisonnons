@@ -42,6 +42,7 @@ android/app/libs
 android/keystores/debug.keystore
 
 env.js
+src/helpers/bible-darby.json
 *.db
 
 *.keystore
