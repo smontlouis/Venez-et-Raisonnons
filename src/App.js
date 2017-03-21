@@ -51,7 +51,7 @@ class App extends Component {
         console.log('Downloading package.')
         break
       case codePush.SyncStatus.INSTALLING_UPDATE:
-        persistedStore.purge()
+        persistedStore.purge(['bible', 'questions', 'search', 'studies', 'topics'])
         console.log('Installing update.')
         break
       case codePush.SyncStatus.UP_TO_DATE:
