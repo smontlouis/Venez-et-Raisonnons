@@ -8,6 +8,7 @@ import {
   ScrollView,
   Alert,
   Linking,
+  Platform,
 } from 'react-native'
 import { Router } from '../routes'
 import { persistedStore } from '../App'
@@ -33,10 +34,13 @@ const secondaryList = [
       navigator.push(Router.getRoute('about'))
     }
   },
-  // {
-  //   title: 'Aide',
-  //   icon: 'help-outline'
-  // },
+  {
+    title: 'Idées de fonctionnalités',
+    icon: 'lightbulb-outline',
+    onPress() {
+      Linking.openURL('https://venez-et-raisonnons.canny.io/fonctionnalites')
+    }
+  },
   {
     title: 'Nous soutenir',
     icon: 'thumb-up',
@@ -51,16 +55,22 @@ const secondaryList = [
   //   icon: 'share'
   // },
   {
-    title: 'Nous contacter',
-    icon: 'mail',
+    title: 'Noter l\'application',
+    icon: 'star',
     onPress() {
-      Linking
-        .openURL('mailto:venezetraisonnons@gmail.com')
+      const url = (Platform.OS === 'ios') ?
+      'https://itunes.apple.com/us/app/venez-et-raisonnons/id1206099949?mt=8'
+      : 'https://play.google.com/store/apps/details?id=com.pleadapp&hl=fr'
+
+      Linking.openURL(url)
     }
   },
   {
-    title: 'Noter l\'application',
-    icon: 'star'
+    title: 'Nous contacter',
+    icon: 'mail',
+    onPress() {
+      Linking.openURL('mailto:venezetraisonnons@gmail.com')
+    }
   },
   {
     title: 'Effacer les données sauvegardées',
