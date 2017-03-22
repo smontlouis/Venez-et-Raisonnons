@@ -38,8 +38,8 @@ Bible.propTypes = {
 
 export default connect(
   state => ({
-    book: state.bible.get('selectedBook').toJS(),
-    chapter: state.bible.get('selectedChapter'),
-    verse: state.bible.get('selectedVerse'),
+    book: state.getIn(['bible', 'selectedBook']).toJS(),
+    chapter: state.getIn(['bible', 'selectedChapter']),
+    verse: state.getIn(['bible', 'selectedVerse']),
   })
 )(Bible)

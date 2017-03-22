@@ -55,13 +55,13 @@ export function resetTempSelected() {
 
 export function goToPrevChapter() {
   return (dispatch, getState) => {
-    const currentChapter = getState().bible.get('selectedChapter')
+    const currentChapter = getState().get('bible').get('selectedChapter')
     if (currentChapter === 1) {
-      const currentBook = getState().bible.get('selectedBook').toJS()
-      const currentBookIndex = getState().bible.get('books')
+      const currentBook = getState().get('bible').get('selectedBook').toJS()
+      const currentBookIndex = getState().get('bible').get('books')
         .findIndex(b => b.Numero === currentBook.Numero)
 
-      const prevBook = getState().bible.get('books')[currentBookIndex - 1]
+      const prevBook = getState().get('bible').get('books')[currentBookIndex - 1]
       dispatch(setTempSelectedBook(prevBook))
       dispatch(setTempSelectedChapter(prevBook.Chapitres))
       return dispatch(validateSelected())
@@ -74,13 +74,13 @@ export function goToPrevChapter() {
 
 export function goToNextChapter() {
   return (dispatch, getState) => {
-    const currentChapter = getState().bible.get('selectedChapter')
-    const currentBook = getState().bible.get('selectedBook').toJS()
+    const currentChapter = getState().get('bible').get('selectedChapter')
+    const currentBook = getState().get('bible').get('selectedBook').toJS()
     if (currentChapter === currentBook.Chapitres) {
-      const currentBookIndex = getState().bible.get('books')
+      const currentBookIndex = getState().get('bible').get('books')
         .findIndex(b => b.Numero === currentBook.Numero)
 
-      const nextBook = getState().bible.get('books')[currentBookIndex + 1]
+      const nextBook = getState().get('bible').get('books')[currentBookIndex + 1]
       dispatch(setTempSelectedBook(nextBook))
       return dispatch(validateSelected())
     }

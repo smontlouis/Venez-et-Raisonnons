@@ -2925,13 +2925,13 @@ load-json-file@^1.0.0:
     pinkie-promise "^2.0.0"
     strip-bom "^2.0.0"
 
-lodash-es@^4.16.0, lodash-es@^4.2.1:
-  version "4.17.2"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.2.tgz#59011b585166e613eb9dd5fc256b2cd1a30f3712"
-
 lodash-es@^4.17.4:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
+
+lodash-es@^4.2.1:
+  version "4.17.2"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.2.tgz#59011b585166e613eb9dd5fc256b2cd1a30f3712"
 
 lodash._basecopy@^3.0.0:
   version "3.0.1"
@@ -3068,11 +3068,11 @@ lodash@^3.10.1, lodash@^3.5.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.11.1, lodash@^4.14.0, lodash@^4.16.6, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
+lodash@^4.0.0, lodash@^4.16.6, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.6.1:
   version "4.17.2"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.2.tgz#34a3055babe04ce42467b607d700072c7ff6bf42"
 
-lodash@^4.17.4:
+lodash@^4.11.1, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.3.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -3956,15 +3956,19 @@ redux-devtools-instrument@^1.2.0:
     lodash "^4.2.0"
     symbol-observable "^0.2.4"
 
+redux-immutable@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/redux-immutable/-/redux-immutable-4.0.0.tgz#3a1a32df66366462b63691f0e1dc35e472bbc9f3"
+
 redux-loop@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/redux-loop/-/redux-loop-2.2.2.tgz#1df804487be0f79daf7eff065ad8301ce255fd4e"
 
-redux-persist-immutable@^4.0.0-alpha6:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/redux-persist-immutable/-/redux-persist-immutable-4.0.1.tgz#fab9da5b1ad0a7346bcfeab82d9587b2be98d814"
+redux-persist-immutable@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/redux-persist-immutable/-/redux-persist-immutable-4.2.0.tgz#85e1bdb18c3ac8cc75c0e0dd43a3adee964d8af3"
   dependencies:
-    redux-persist "^4.0.0-alpha6"
+    redux-persist "^4.0.0"
     redux-persist-transform-immutable "^4.1.0"
 
 redux-persist-transform-filter@0.0.4:
@@ -3998,15 +4002,7 @@ redux-persist@^3.4.0:
     json-stringify-safe "^5.0.1"
     lodash "^4.11.1"
 
-redux-persist@^4.0.0-alpha6:
-  version "4.0.0-beta1"
-  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-4.0.0-beta1.tgz#accaaab9f369a8420b60d16c4f2ca0ce1de96312"
-  dependencies:
-    json-stringify-safe "^5.0.1"
-    lodash "^4.11.1"
-    lodash-es "^4.16.0"
-
-redux-persist@^4.5.0:
+redux-persist@^4.0.0, redux-persist@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-4.5.0.tgz#9730c93c1e3b3782cecf68ae5f4753d65d50c2b7"
   dependencies:

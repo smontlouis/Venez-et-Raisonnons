@@ -22,7 +22,7 @@ import * as AppActions from '../../redux/modules/app'
 
 
 const getCurrentChildrenIds = (state, props) => props.question.get('children')
-const getMarkedAsReadQuestionsIds = state => state.app.get('hasBeenRead')
+const getMarkedAsReadQuestionsIds = state => state.get('app').get('hasBeenRead')
 
 const checkIfAllMarkedQuestions = createSelector(
   [getCurrentChildrenIds, getMarkedAsReadQuestionsIds],
@@ -32,7 +32,7 @@ const checkIfAllMarkedQuestions = createSelector(
 @connect(
   (state, ownProps) => ({
     checkIfAllRead: checkIfAllMarkedQuestions(state, ownProps),
-    markedAsRead: !!state.app.getIn(['hasBeenRead', ownProps.question.get('id')])
+    markedAsRead: !!state.getIn(['app', 'hasBeenRead', ownProps.question.get('id')])
   }),
   AppActions,
 )

@@ -20,7 +20,7 @@ const styles = EStyleSheet.create({
 
 @connect(
   state => ({
-    studies: state.studies.get('studies'),
+    studies: state.getIn(['studies', 'studies']),
   }),
 )
 export default class Studies extends Component {

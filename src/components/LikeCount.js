@@ -48,7 +48,7 @@ LikeCount.propTypes = {
 
 export default connect(
   (state, ownProps) => ({
-    isActive: !!state.app.getIn(['likes', ownProps.id]),
+    isActive: !!state.getIn(['app', 'likes', ownProps.id]),
   }),
   AppActions,
 )(LikeCount)

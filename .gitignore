@@ -43,6 +43,7 @@ android/keystores/debug.keystore
 
 env.js
 src/helpers/bible-darby.json
+venez-et-raisonnons-firebase-adminsdk-4y0e9-09548c1dfe.json
 *.db
 
 *.keystore

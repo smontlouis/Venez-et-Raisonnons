@@ -38,7 +38,7 @@ export function loadDataSuccess(result) {
 
 export function toggleFavorite(id) {
   return (dispatch, getState) => {
-    if (getState().app.getIn(['favorites', id])) {
+    if (getState().getIn(['app', 'favorites', id])) {
       return dispatch({ type: REMOVE_FAVORITE, id })
     }
     return dispatch({ type: ADD_FAVORITE, id })
@@ -61,7 +61,7 @@ export function removeAsRead(id) {
 
 export function toggleMarkAsRead(id) {
   return (dispatch, getState) => {
-    if (getState().app.getIn(['hasBeenRead', id])) {
+    if (getState().getIn(['app', 'hasBeenRead', id])) {
       return dispatch({ type: REMOVE_AS_READ, id })
     }
     return dispatch({ type: MARK_AS_READ, id })
@@ -70,7 +70,7 @@ export function toggleMarkAsRead(id) {
 
 export function toggleLike(id) {
   return (dispatch, getState) => {
-    if (getState().app.getIn(['likes', id])) {
+    if (getState().getIn(['app', 'likes', id])) {
       return dispatch({ type: REMOVE_LIKE, id })
     }
     return dispatch({ type: ADD_LIKE, id })

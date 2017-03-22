@@ -1,11 +1,13 @@
 import { createStore, compose, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { install } from 'redux-loop'
-import { autoRehydrate } from 'redux-persist'
+import { autoRehydrate } from 'redux-persist-immutable'
+import { Map } from 'immutable'
 import reducer from './modules/reducer'
 
 export default function configureStore() {
   let store
+  const initialState = Map()
 
   if (__DEV__) {
     store = compose(
@@ -23,7 +25,7 @@ export default function configureStore() {
       module.hot.accept(() => {
         const nextRootReducer = require('./modules/reducer').default
 
-        store.replaceReducer(nextRootReducer)
+        store.replaceReducer(nextRootReducer, initialState)
       })
     }
   } else {
@@ -31,7 +33,7 @@ export default function configureStore() {
       install(),
       autoRehydrate(),
       applyMiddleware(thunk),
-    )(createStore)(reducer)
+    )(createStore)(reducer, initialState)
   }
 
   return store

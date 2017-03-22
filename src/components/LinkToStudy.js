@@ -61,6 +61,6 @@ LinkToStudy.propTypes = {
 
 export default connect(
   (state, ownProps) => ({
-    question: state.questions.getIn(['questions', ownProps.id])
+    question: state.getIn(['questions', 'questions', ownProps.id])
   }),
 )(LinkToStudy)

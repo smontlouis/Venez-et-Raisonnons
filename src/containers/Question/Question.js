@@ -7,11 +7,11 @@ import {
 } from '../../containers'
 import * as AppActions from '../../redux/modules/app'
 
-const getCurrentQuestion = (state, props) => state.questions.get('questions').get(props.questionId)
-const getTopics = state => state.topics.get('topics')
+const getCurrentQuestion = (state, props) => state.get('questions').get('questions').get(props.questionId)
+const getTopics = state => state.get('topics').get('topics')
 
 const getChildrenIdsByCurrentQuestion = (state, props) => getCurrentQuestion(state, props).get('children')
-const getQuestions = state => state.questions.get('questions')
+const getQuestions = state => state.get('questions').get('questions')
 
 const getCurrentTopic = createSelector(
   [getCurrentQuestion, getTopics],

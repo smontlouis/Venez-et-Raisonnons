@@ -14,8 +14,8 @@ import {
   NoItems,
 } from '../components'
 
-const getSearchInput = state => state.search.get('input')
-const getQuestions = state => state.questions.get('questions')
+const getSearchInput = state => state.get('search').get('input')
+const getQuestions = state => state.get('questions').get('questions')
 
 const findQuestion = input => question => question.get('title').toLowerCase().includes(input.toLowerCase())
 

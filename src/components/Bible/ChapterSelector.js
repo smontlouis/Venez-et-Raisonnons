@@ -24,8 +24,8 @@ const styles = EStyleSheet.create({
 
 @connect(
   state => ({
-    selectedBook: state.bible.getIn(['temp', 'selectedBook']).toJS(),
-    selectedChapter: state.bible.getIn(['temp', 'selectedChapter']),
+    selectedBook: state.getIn(['bible', 'temp', 'selectedBook']).toJS(),
+    selectedChapter: state.getIn(['bible', 'temp', 'selectedChapter']),
   }),
   BibleActions,
 )

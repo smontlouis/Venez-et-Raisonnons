@@ -59,9 +59,9 @@ const styles = EStyleSheet.create({
   },
 })
 
-const getCurrentStudy = (state, props) => state.studies.get('studies').get(props.studyId)
+const getCurrentStudy = (state, props) => state.get('studies').get('studies').get(props.studyId)
 const getQuestionsIdsByCurrentStudy = (state, props) => getCurrentStudy(state, props).get('questions')
-const getQuestions = state => state.questions.get('questions')
+const getQuestions = state => state.get('questions').get('questions')
 
 const getQuestionsByStudy = createSelector(
   [getQuestionsIdsByCurrentStudy, getQuestions],

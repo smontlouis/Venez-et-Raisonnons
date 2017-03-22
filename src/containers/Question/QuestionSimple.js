@@ -78,6 +78,9 @@ export default class Question extends Component {
       })
   }
 
+  /*
+  * @example - genese.1.4 - genese.1.4-8 - genese.1.4,8
+   */
   parseUrl(url) {
     const [book, chapter, verses] = url.split('.')
     let versesArray

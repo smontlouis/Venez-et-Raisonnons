@@ -12,9 +12,9 @@ import {
 } from '../components'
 
 
-const getCurrentTopic = (state, props) => state.topics.get('topics').get(props.topicId)
-const getBase64Img = (state, props) => state.topics.get('base64Images').get(props.topicId)
-const getQuestions = state => state.questions.get('questions')
+const getCurrentTopic = (state, props) => state.get('topics').get('topics').get(props.topicId)
+const getBase64Img = (state, props) => state.get('topics').get('base64Images').get(props.topicId)
+const getQuestions = state => state.get('questions').get('questions')
 
 const getQuestionsByTopic = createSelector(
   [getCurrentTopic, getQuestions],

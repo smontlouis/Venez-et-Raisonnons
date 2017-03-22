@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import immutableTransform from 'redux-persist-transform-immutable'
-import { persistStore } from 'redux-persist'
+import { persistStore } from 'redux-persist-immutable'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import codePush from 'react-native-code-push'
 import {
@@ -36,7 +35,6 @@ class App extends Component {
   componentWillMount() {
     persistedStore = persistStore(store, {
       storage: AsyncStorage,
-      transforms: [immutableTransform()],
     }, () => {
       this.setState({ rehydrated: true })
     })
@@ -51,7 +49,7 @@ class App extends Component {
         console.log('Downloading package.')
         break
       case codePush.SyncStatus.INSTALLING_UPDATE:
-        persistedStore.purge(['bible', 'questions', 'search', 'studies', 'topics'])
+        // persistedStore.purge(['bible', 'questions', 'search', 'studies', 'topics'])
         console.log('Installing update.')
         break
       case codePush.SyncStatus.UP_TO_DATE:

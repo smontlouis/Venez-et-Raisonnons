@@ -111,8 +111,8 @@ const TabIcon = (label, icon, isSelected) =>
 
 @connect(
   state => ({
-    topics: state.topics.get('topics'),
-    isLoading: state.app.get('isLoading'),
+    topics: state.getIn(['topics', 'topics']),
+    isLoading: state.getIn(['app', 'isLoading']),
   })
 )
 class Master extends Component {

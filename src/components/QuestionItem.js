@@ -88,6 +88,6 @@ QuestionItem.propTypes = {
 
 export default connect(
   (state, ownProps) => ({
-    hasBeenRead: !!state.app.getIn(['hasBeenRead', ownProps.id])
+    hasBeenRead: !!state.getIn(['app', 'hasBeenRead', ownProps.id])
   }),
 )(QuestionItem)

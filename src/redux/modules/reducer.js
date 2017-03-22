@@ -1,4 +1,5 @@
-import { combineReducers } from 'redux-loop'
+import { combineReducers } from 'redux-immutable'
+
 
 import questions from './questions'
 import topics from './topics'

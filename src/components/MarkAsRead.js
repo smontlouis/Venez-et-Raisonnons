@@ -71,7 +71,7 @@ MarkAsRead.propTypes = {
 
 export default connect(
   (state, ownProps) => ({
-    isActive: !!state.app.getIn(['hasBeenRead', ownProps.id])
+    isActive: !!state.getIn(['app', 'hasBeenRead', ownProps.id])
   }),
   AppActions,
 )(MarkAsRead)

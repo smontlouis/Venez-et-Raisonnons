@@ -115,6 +115,6 @@ Header.propTypes = {
 
 export default connect(
   state => ({
-    isLoading: state.app.get('isLoading'),
+    isLoading: state.get('app').get('isLoading'),
   })
 )(Header)

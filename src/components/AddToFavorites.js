@@ -71,7 +71,7 @@ AddToFavorites.propTypes = {
 
 export default connect(
   (state, ownProps) => ({
-    isActive: !!state.app.getIn(['favorites', ownProps.id])
+    isActive: !!state.getIn(['app', 'favorites', ownProps.id])
   }),
   AppActions,
 )(AddToFavorites)

@@ -44,7 +44,7 @@ const styles = EStyleSheet.create({
   }
 })
 
-const getParentQuestion = (state, props) => state.questions.get('questions').get(props.parentId)
+const getParentQuestion = (state, props) => state.get('questions').get('questions').get(props.parentId)
 const getPrevNextQuestion = (state, props, isNext) => {
   const children = getParentQuestion(state, props).get('children')
   const currentQuestionIndex = children.toArray().findIndex(q => q === props.questionId)
@@ -52,7 +52,7 @@ const getPrevNextQuestion = (state, props, isNext) => {
   if (currentQuestionIndex === 0 && !isNext) return null
 
   const prevNextQuestionIndex = children.get(currentQuestionIndex + (isNext ? 1 : -1))
-  return state.questions.get('questions').get(prevNextQuestionIndex)
+  return state.get('questions').get('questions').get(prevNextQuestionIndex)
 }
 
 const PrevNext = ({ previous, next }) => (

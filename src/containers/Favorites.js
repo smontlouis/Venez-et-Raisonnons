@@ -11,8 +11,8 @@ import {
   NoItems,
 } from '../components'
 
-const getFavoritesIds = state => state.app.get('favorites')
-const getQuestions = state => state.questions.get('questions')
+const getFavoritesIds = state => state.get('app').get('favorites')
+const getQuestions = state => state.get('questions').get('questions')
 
 const filterQuestionsByFavorites = createSelector(
   [getFavoritesIds, getQuestions],

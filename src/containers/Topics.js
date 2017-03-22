@@ -20,7 +20,7 @@ const styles = EStyleSheet.create({
 
 @connect(
   state => ({
-    topics: state.topics.get('topics'),
+    topics: state.getIn(['topics', 'topics']),
   }),
 )
 export default class Topics extends Component {

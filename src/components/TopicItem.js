@@ -48,10 +48,10 @@ const styles = EStyleSheet.create({
   },
 })
 
-const getBase64Img = (state, props) => state.topics.get('base64Images').get(props.id)
-const getCurrentTopic = (state, props) => state.topics.get('topics').get(props.id)
+const getBase64Img = (state, props) => state.get('topics').get('base64Images').get(props.id)
+const getCurrentTopic = (state, props) => state.get('topics').get('topics').get(props.id)
 const getPrevImgUrl = (state, props) => getCurrentTopic(state, props).get('image_url')
-const getQuestions = state => state.questions.get('questions')
+const getQuestions = state => state.get('questions').get('questions')
 
 const getQuestionsNumberByTopic = createSelector(
   [getCurrentTopic, getQuestions],
