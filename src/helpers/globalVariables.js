@@ -11,6 +11,7 @@ export default {
     grey: 'rgb(230,230,230)',
     darkGrey: 'rgba(0,0,0,0.5)',
     primary: '#C22839',
+    primaryLighten: 'rgba(194, 40, 57, 0.7)',
     primaryDarken: '#AE2333',
     secondary: '#FFBC00',
     tertiary: 'rgb(98,113,122)',

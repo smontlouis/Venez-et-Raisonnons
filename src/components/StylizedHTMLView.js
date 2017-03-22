@@ -29,6 +29,7 @@ const styles = EStyleSheet.create({
     lineHeight: 26,
     fontSize: 18,
     fontStyle: 'italic',
+    color: '$color.primaryLighten'
   },
   a: {
     // fontWeight: 'bold',

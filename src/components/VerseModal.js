@@ -31,6 +31,9 @@ const styles = EStyleSheet.create({
     lineHeight: 22,
     color: '$color.tertiary'
   },
+  strong: {
+    fontWeight: 'bold',
+  },
 
   // Modal
   modal: {
@@ -47,7 +50,9 @@ const VerseModal = ({ isLoading, title, text, refValue }) => {
   if (!Array.isArray(text)) {
     content = text
   } else {
-    content = text.map(t => <Text key={t.verse}> ({t.verse}) {t.text} </Text>)
+    content = text.map(t =>
+      <Text key={t.verse}> <Text style={styles.strong}>{t.verse}</Text> {t.text} </Text>
+    )
   }
   return (
     <Modal

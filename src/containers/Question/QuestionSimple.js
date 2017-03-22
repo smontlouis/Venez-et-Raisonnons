@@ -85,6 +85,9 @@ export default class Question extends Component {
     if (verses.includes('-')) {
       const [vStart, vEnd] = verses.split('-')
       versesArray = range(Number(vStart), Number(vEnd) + 1)
+    } else if (verses.includes(',')) {
+      const [vStart, vEnd] = verses.split(',')
+      versesArray = [vStart, vEnd]
     } else {
       versesArray = [Number(verses)]
     }
