@@ -1,4 +1,4 @@
-import { Map, List } from 'immutable'
+import { Map } from 'immutable'
 import { firebaseDb } from '../../services/firebase'
 
 const LOAD_DATA = 'app/LOAD_DATA'
@@ -10,19 +10,21 @@ const ADD_FAVORITE = 'app/ADD_FAVORITE'
 const REMOVE_FAVORITE = 'app/REMOVE_FAVORITE'
 export const ADD_LIKE = 'app/ADD_LIKE'
 export const REMOVE_LIKE = 'app/REMOVE_LIKE'
+export const SET_LAST_UPDATE = 'app/SET_LAST_UPDATE'
 
 const AppData = firebaseDb.ref('/')
 
-const connectedRef = firebaseDb.ref('.info/connected')
-connectedRef.on('value', (snap) => {
-  if (snap.val() === true) {
-    console.log('connected')
-  } else {
-    console.log('not connected')
-  }
-})
+// const connectedRef = firebaseDb.ref('.info/connected')
+// connectedRef.on('value', (snap) => {
+//   if (snap.val() === true) {
+//     console.log('connected')
+//   } else {
+//     console.log('not connected')
+//   }
+// })
 
 const initialState = Map({
+  lastUpdate: 0,
   isLoading: false,
   favorites: Map(),
   hasBeenRead: Map(),
@@ -77,20 +79,44 @@ export function toggleLike(id) {
   }
 }
 
+export function setLastUpdate(val) {
+  return {
+    type: SET_LAST_UPDATE,
+    val
+  }
+}
+
 export function loadData() {
-  return (dispatch) => {
-    dispatch({ type: LOAD_DATA })
-    const racePromise = Promise.race([
-      new Promise(resolve => AppData.once('value', snapshot => resolve(snapshot.val()))),
+  return (dispatch, getState) => {
+    const getLastUpdate = Promise.race([
+      new Promise(resolve => firebaseDb.ref('/app/last_update').once('value', snapshot => resolve(snapshot.val()))),
       new Promise((r, reject) => setTimeout(() => reject(), 10000))
     ])
 
-    racePromise
-      .then(val => dispatch(loadDataSuccess(val)))
-      .catch((e) => {
-        console.log(e)
-        return dispatch({ type: LOAD_DATA_FAIL })
+    getLastUpdate
+      .then((lastUpdate) => {
+        const stateUpdate = getState().getIn(['app', 'lastUpdate'])
+
+        // If update available
+        if (lastUpdate !== stateUpdate) {
+          dispatch({ type: LOAD_DATA })
+          const racePromise = Promise.race([
+            new Promise(resolve => AppData.once('value', snapshot => resolve(snapshot.val()))),
+            new Promise((r, reject) => setTimeout(() => reject(), 10000))
+          ])
+
+          racePromise
+            .then((val) => {
+              dispatch(setLastUpdate(lastUpdate))
+              dispatch(loadDataSuccess(val))
+            })
+            .catch((e) => {
+              console.log(e)
+              return dispatch({ type: LOAD_DATA_FAIL })
+            })
+        }
       })
+      .catch(() => console.log('No connection'))
   }
 }
 
@@ -122,6 +148,9 @@ export default function AppReducer(state = initialState, action = {}) {
     }
     case REMOVE_AS_READ: {
       return state.update('hasBeenRead', f => f.delete(action.id))
+    }
+    case SET_LAST_UPDATE: {
+      return state.set('lastUpdate', action.val)
     }
     default:
       return state
