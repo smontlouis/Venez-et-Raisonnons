@@ -6,11 +6,19 @@ Ceci est le code source de l'application, en cours de développement.
 - react-native
 - redux
 - redux-persist
+- immutable
 - firebase
 - ex-navigation
 - react-native-vector-icons
 - react-native-extended-stylesheet
+- code-push
+- reselect
 
-### Mémo code push
-- Staging: `code-push release-react PleadApp-iOS ios -m --description "Lorem ipsum"`
-- Staging to Production: `code-push promote PleadApp-iOS Staging Development`
+### Améliorations
+- Styled Components
+- Recompose
+- Redux observable
+- React navigation
+- Flow
+- Jest
+- Prettier
