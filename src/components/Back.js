@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import {
   TouchableHighlight,
 } from 'react-native'
-import { withNavigation } from '@exponent/ex-navigation'
+import { withNavigation } from '@expo/ex-navigation'
 
 class Back extends Component {
   static propTypes = {

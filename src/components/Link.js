@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import {
   TouchableOpacity,
 } from 'react-native'
-import { withNavigation } from '@exponent/ex-navigation'
+import { withNavigation } from '@expo/ex-navigation'
 import { Router } from '../routes'
 
 class Link extends Component {

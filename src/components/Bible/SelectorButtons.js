@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { withNavigation } from '@exponent/ex-navigation'
+import { withNavigation } from '@expo/ex-navigation'
 import {
   View,
   Text,

@@ -4,7 +4,7 @@ import {
   createRouter,
   NavigationProvider,
   StackNavigation,
-} from '@exponent/ex-navigation'
+} from '@expo/ex-navigation'
 
 import {
   Topics,
@@ -22,10 +22,12 @@ import {
   Bible,
   BibleSelector,
   StrongModal,
+  Modal,
 } from './containers'
 
 export const Router = createRouter(() => ({
   home: () => Master,
+  modal: () => Modal,
   topics: () => Topics,
   studies: () => Studies,
   favorites: () => Favorites,

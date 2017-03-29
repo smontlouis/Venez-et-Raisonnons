@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Toast from 'react-native-simple-toast'
 import { List, ListItem } from 'react-native-elements'
-import { withNavigation } from '@exponent/ex-navigation'
+import { withNavigation } from '@expo/ex-navigation'
 import {
   View,
   ScrollView,

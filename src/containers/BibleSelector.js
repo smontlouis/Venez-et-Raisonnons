@@ -8,7 +8,7 @@ import {
 import {
   SlidingTabNavigation,
   SlidingTabNavigationItem,
-} from '@exponent/ex-navigation'
+} from '@expo/ex-navigation'
 import * as BibleActions from '../redux/modules/bible'
 import {
   Header,

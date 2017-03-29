@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react'
-import { withNavigation } from '@exponent/ex-navigation'
+import { withNavigation } from '@expo/ex-navigation'
 import qs from 'query-string'
 import Toast from 'react-native-simple-toast'
 

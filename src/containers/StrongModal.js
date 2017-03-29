@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { NavigationStyles, withNavigation } from '@exponent/ex-navigation'
+import { NavigationStyles, withNavigation } from '@expo/ex-navigation'
 import {
   View,
   Text,

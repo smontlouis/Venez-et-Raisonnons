@@ -7,7 +7,7 @@ import {
   TabNavigation,
   TabNavigationItem as TabItem,
   StackNavigation,
-} from '@exponent/ex-navigation'
+} from '@expo/ex-navigation'
 import {
   View,
   Text,

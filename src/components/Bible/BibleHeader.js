@@ -6,6 +6,7 @@ import {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import EStyleSheet from 'react-native-extended-stylesheet'
+import bibleStrongText from '../../markdown/bibleStrong'
 import {
   Link,
 } from '../../components'
@@ -18,6 +19,7 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     paddingLeft: 15,
+    paddingRight: 10,
   },
   titleContainer: {
     flex: 1,
@@ -48,6 +50,13 @@ export default class BibleHeader extends Component {
             size={20}
             color="white"
           />
+        </Link>
+        <Link
+          route={'modal'}
+          params={{ title: 'Qu\'est-ce que la Bible Strong ?', text: bibleStrongText }}
+          style={styles.icon}
+        >
+          <Icon name="help" size={24} color="white" />
         </Link>
       </View>
     )

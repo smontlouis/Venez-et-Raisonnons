@@ -3,7 +3,7 @@ import {
   Text,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { withNavigation } from '@exponent/ex-navigation'
+import { withNavigation } from '@expo/ex-navigation'
 
 const styles = EStyleSheet.create({
   text: {
