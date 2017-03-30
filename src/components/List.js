@@ -1,19 +1,13 @@
 import React, { Component, PropTypes } from 'react'
-import Toast from 'react-native-simple-toast'
 import R from 'ramda'
 import {
   ListView,
-  RefreshControl,
 } from 'react-native'
-import { connect } from 'react-redux'
-import * as AppActions from '../redux/modules/app'
 
 
 class List extends Component {
   static propTypes = {
     listItems: PropTypes.object.isRequired,
-    loadData: PropTypes.func.isRequired,
-    refreshApp: PropTypes.bool,
     contentContainerStyle: PropTypes.any,
   }
 
@@ -26,10 +20,8 @@ class List extends Component {
 
     const data = props.listItems
 
-    this.onRefresh = ::this.onRefresh
     this.state = {
       dataSource: dataSource.cloneWithRows(R.values(data.toJS())),
-      refreshing: false,
     }
   }
 
@@ -44,28 +36,11 @@ class List extends Component {
     }
   }
 
-  onRefresh() {
-    const { loadData } = this.props
-    this.setState({ refreshing: true })
-    loadData().then(() => {
-      this.setState({ refreshing: false })
-      Toast.show('Application à jour')
-    })
-  }
-
   render() {
-    const { contentContainerStyle, refreshApp, ...props } = this.props
+    const { contentContainerStyle, ...props } = this.props
     return (
       <ListView
         dataSource={this.state.dataSource}
-        refreshControl={
-          refreshApp ?
-            <RefreshControl
-              refreshing={this.state.refreshing}
-              onRefresh={this.onRefresh}
-            />
-            : null
-        }
         contentContainerStyle={contentContainerStyle}
         {...props}
       />
@@ -73,7 +48,4 @@ class List extends Component {
   }
 }
 
-export default connect(
-  null,
-  AppActions
-)(List)
+export default List
