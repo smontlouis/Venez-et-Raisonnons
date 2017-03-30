@@ -1,9 +1,4 @@
 {
   "presets": ["react-native-stage-0/decorator-support"],
-  "sourceMaps": true,
-  "env": {
-    "development": {
-      "plugins": ["flow-react-proptypes"]
-    }
-  }
+  "sourceMaps": true
 }

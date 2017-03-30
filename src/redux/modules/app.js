@@ -1,5 +1,5 @@
 import { Map } from 'immutable'
-import { firebaseDb } from '../../services/firebase'
+import { firebaseDb } from '@src/services/firebase'
 
 const LOAD_DATA = 'app/LOAD_DATA'
 const MARK_AS_READ = 'app/MARK_AS_READ'

@@ -15,6 +15,7 @@
 .*/node_modules/fbemitter/lib/EmitterSubscription.js
 .*/node_modules/fbemitter/lib/EventSubscription.js
 .*/node_modules/fbemitter/lib/EventSubscriptionVendor.js
+.*/node_modules/@expo-navigation/.*
 
 ; Ignore duplicate module providers
 ; For RN Apps installed via npm, "Libraries" folder is inside
@@ -39,7 +40,7 @@ node_modules/iflow-react-intl/index.js.flow
 module.system=haste
 
 experimental.strict_type_args=true
-
+esproposal.export_star_as=enable
 munge_underscores=true
 
 module.name_mapper='^[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|webp\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|aac\|aiff\|caf\|m4a\|mp3\|wav\|html\|pdf\)$' -> 'RelativeImageStub'

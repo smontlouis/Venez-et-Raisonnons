@@ -9,7 +9,7 @@ import {
   Header,
   QuestionsList,
   NoItems,
-} from '../components'
+} from '@src/components'
 
 const getFavoritesIds = state => state.get('app').get('favorites')
 const getQuestions = state => state.get('questions').get('questions')

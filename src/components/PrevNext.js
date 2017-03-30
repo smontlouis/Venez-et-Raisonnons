@@ -8,8 +8,8 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import { connect } from 'react-redux'
 import {
   Link,
-} from '../components'
-import { truncate } from '../helpers'
+} from '@src/components'
+import { truncate } from '@src/helpers'
 
 const styles = EStyleSheet.create({
   container: {

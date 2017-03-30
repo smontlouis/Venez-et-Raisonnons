@@ -6,8 +6,8 @@ import Toast from 'react-native-simple-toast'
 import {
   Linking,
 } from 'react-native'
-import { store } from '../App'
-import { Router } from '../routes'
+import { store } from '@src/App'
+import { Router } from '@src/routes'
 
 @withNavigation
 export default class DeepLinking extends Component {

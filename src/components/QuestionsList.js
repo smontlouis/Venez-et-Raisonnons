@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { truncate } from '../helpers'
+import { truncate } from '@src/helpers'
 
 import {
   List,

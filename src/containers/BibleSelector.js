@@ -9,14 +9,14 @@ import {
   SlidingTabNavigation,
   SlidingTabNavigationItem,
 } from '@expo/ex-navigation'
-import * as BibleActions from '../redux/modules/bible'
+import * as BibleActions from '@src/redux/modules/bible'
 import {
   Header,
   BookSelector,
   ChapterSelector,
   VerseSelector,
   SelectorButtons,
-} from '../components'
+} from '@src/components'
 
 
 const styles = EStyleSheet.create({

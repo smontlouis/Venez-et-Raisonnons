@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import * as AppActions from '../redux/modules/app'
+import * as AppActions from '@src/redux/modules/app'
 
 const styles = EStyleSheet.create({
   container: {

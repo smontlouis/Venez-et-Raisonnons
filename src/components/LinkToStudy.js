@@ -6,7 +6,7 @@ import {
   Text,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { Link } from '../components'
+import { Link } from '@src/components'
 
 const styles = EStyleSheet.create({
   container: {

@@ -5,11 +5,11 @@ import {
   View,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import getDB from '../../helpers/database'
+import getDB from '@src/helpers/database'
 import {
   BibleVerse,
   BibleFooter,
-} from '../../components'
+} from '@src/components'
 
 const styles = EStyleSheet.create({
   container: {

@@ -1,6 +1,6 @@
 import { Map } from 'immutable'
 
-import books from '../../helpers/livres'
+import books from '@src/helpers/livres'
 
 const SET_TEMP_SELECTED_BOOK = 'bible/SET_TEMP_SELECTED_BOOK'
 const SET_TEMP_SELECTED_CHAPTER = 'bible/SET_TEMP_SELECTED_CHAPTER'

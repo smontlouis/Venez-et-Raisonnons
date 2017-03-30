@@ -4,10 +4,10 @@ import {
   ScrollView,
 } from 'react-native'
 import { connect } from 'react-redux'
-import * as BibleActions from '../../redux/modules/bible'
+import * as BibleActions from '@src/redux/modules/bible'
 import {
   SelectorItem,
-} from '../../components'
+} from '@src/components'
 
 
 const styles = EStyleSheet.create({

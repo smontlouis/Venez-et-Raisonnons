@@ -7,12 +7,12 @@ import {
   Text,
   View
 } from 'react-native'
-import * as SearchActions from '../redux/modules/search'
+import * as SearchActions from '@src/redux/modules/search'
 import {
   SearchHeader,
   QuestionsList,
   NoItems,
-} from '../components'
+} from '@src/components'
 
 const getSearchInput = state => state.get('search').get('input')
 const getQuestions = state => state.get('questions').get('questions')

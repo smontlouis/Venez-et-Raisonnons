@@ -10,8 +10,8 @@ import {
 import {
   QuestionsList,
   ScrollableHeader,
-} from '../components'
-import { HTMLView } from '../helpers'
+} from '@src/components'
+import { HTMLView } from '@src/helpers'
 
 
 const styles = EStyleSheet.create({

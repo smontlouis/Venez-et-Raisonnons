@@ -15,10 +15,10 @@ import {
 import {
   NoItems,
   Loading,
-} from '../components'
-import { Router } from '../routes'
-import { loadData } from '../redux/modules/app'
-import { initDB } from '../helpers/database'
+} from '@src/components'
+import { Router } from '@src/routes'
+import { loadData } from '@src/redux/modules/app'
+import { initDB } from '@src/helpers/database'
 
 const styles = EStyleSheet.create({
   icon: {

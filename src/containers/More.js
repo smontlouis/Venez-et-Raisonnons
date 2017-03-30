@@ -10,11 +10,11 @@ import {
   Linking,
   Platform,
 } from 'react-native'
-import { Router } from '../routes'
-import { persistedStore } from '../App'
+import { Router } from '@src/routes'
+import { persistedStore } from '@src/App'
 import {
   Header,
-} from '../components'
+} from '@src/components'
 
 const primaryList = [
   {

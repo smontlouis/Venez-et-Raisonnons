@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import * as BibleActions from '../../redux/modules/bible'
+import * as BibleActions from '@src/redux/modules/bible'
 
 const styles = EStyleSheet.create({
   container: {

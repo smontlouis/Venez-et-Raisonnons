@@ -6,7 +6,7 @@ import {
 import EStyleSheet from 'react-native-extended-stylesheet'
 import {
   SearchInput,
-} from '../components'
+} from '@src/components'
 
 const styles = EStyleSheet.create({
   container: {

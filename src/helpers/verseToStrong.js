@@ -1,5 +1,5 @@
 import React from 'react'
-import { BibleStrongRef } from '../components'
+import { BibleStrongRef } from '@src/components'
 
 const verseToStrong = ({ Texte, Livre }) => new Promise((resolve) => {
   const splittedTexte = Texte

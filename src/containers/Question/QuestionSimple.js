@@ -15,11 +15,11 @@ import {
   VerseModal,
   StylizedHTMLView,
   PrevNext,
-} from '../../components'
+} from '@src/components'
 import {
   loadDarby,
   range,
-} from '../../helpers'
+} from '@src/helpers'
 import styles, { setDynamicFontSize } from './styles'
 
 export default class Question extends Component {

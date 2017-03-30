@@ -7,8 +7,8 @@ import {
   ActivityIndicator,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { Back } from '../components'
-import { combineStyles } from '../helpers'
+import { Back } from '@src/components'
+import { combineStyles } from '@src/helpers'
 
 
 const styles = EStyleSheet.create({

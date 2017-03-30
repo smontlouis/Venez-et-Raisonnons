@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import {
   Header,
-} from '../components'
+} from '@src/components'
 
 
 const styles = EStyleSheet.create({

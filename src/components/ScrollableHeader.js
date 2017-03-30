@@ -7,8 +7,8 @@ import {
   StatusBar,
   View,
 } from 'react-native'
-import { truncate } from '../helpers'
-import { Back } from '../components'
+import { truncate } from '@src/helpers'
+import { Back } from '@src/components'
 
 const getStyles = (h) => {
   const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 64 : 73

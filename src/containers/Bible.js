@@ -7,7 +7,7 @@ import {
 import {
   BibleHeader,
   BibleViewer,
-} from '../components'
+} from '@src/components'
 
 
 const styles = EStyleSheet.create({

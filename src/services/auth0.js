@@ -1,9 +1,9 @@
 import Auth0Lock from 'react-native-lock'
 import { Platform } from 'react-native'
 
-import env from '../../env'
-import * as AuthStateActions from '../redux/modules/auth'
-import { store } from '../App'
+import env from '@src/env'
+import * as AuthStateActions from '@src/redux/modules/auth'
+import { store } from '@src/App'
 
 const {
   clientId,

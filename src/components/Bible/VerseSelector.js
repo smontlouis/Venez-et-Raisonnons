@@ -4,11 +4,11 @@ import {
   ScrollView,
 } from 'react-native'
 import { connect } from 'react-redux'
-import getDB from '../../helpers/database'
-import * as BibleActions from '../../redux/modules/bible'
+import getDB from '@src/helpers/database'
+import * as BibleActions from '@src/redux/modules/bible'
 import {
   SelectorItem,
-} from '../../components'
+} from '@src/components'
 
 
 const styles = EStyleSheet.create({

@@ -2,11 +2,11 @@ import React, { PropTypes, Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { fromJS } from 'immutable'
 import { connect } from 'react-redux'
-import * as BibleActions from '../../redux/modules/bible'
+import * as BibleActions from '@src/redux/modules/bible'
 import {
   BookSelectorItem,
   List,
-} from '../../components'
+} from '@src/components'
 
 
 const styles = EStyleSheet.create({

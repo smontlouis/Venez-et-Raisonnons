@@ -6,9 +6,9 @@ import {
   View,
 } from 'react-native'
 
-// import * as TopicsActions from '../redux/modules/topics'
+// import * as TopicsActions from '@src/redux/modules/topics'
 
-import * as auth0 from '../services/auth0'
+import * as auth0 from '@src/services/auth0'
 
 
 const styles = EStyleSheet.create({

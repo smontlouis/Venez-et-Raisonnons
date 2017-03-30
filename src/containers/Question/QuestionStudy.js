@@ -16,9 +16,9 @@ import {
   LikeCount,
   VerseModal,
   StylizedHTMLView
-} from '../../components'
+} from '@src/components'
 import styles, { setDynamicFontSize } from './styles'
-import * as AppActions from '../../redux/modules/app'
+import * as AppActions from '@src/redux/modules/app'
 
 
 const getCurrentChildrenIds = (state, props) => props.question.get('children')

@@ -9,8 +9,8 @@ import {
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import RNFetchBlob from 'react-native-fetch-blob'
-import { Link } from '../components'
-import { saveBase64Image } from '../redux/modules/topics'
+import { Link } from '@src/components'
+import { saveBase64Image } from '@src/redux/modules/topics'
 
 const styles = EStyleSheet.create({
   container: {

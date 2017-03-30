@@ -7,13 +7,13 @@ import {
   StatusBar,
   ScrollView,
 } from 'react-native'
-import getDB from '../helpers/database'
-import { capitalize } from '../helpers'
+import getDB from '@src/helpers/database'
+import { capitalize } from '@src/helpers'
 import {
   Header,
   Loading,
   StylizedHTMLView,
-} from '../components'
+} from '@src/components'
 
 
 const styles = EStyleSheet.create({

@@ -4,7 +4,7 @@ import {
   Text,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { verseToStrong } from '../../helpers'
+import { verseToStrong } from '@src/helpers'
 
 const styles = EStyleSheet.create({
   container: {

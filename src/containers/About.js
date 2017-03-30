@@ -9,7 +9,7 @@ import {
 import {
   Header,
   StylizedHTMLView
-} from '../components'
+} from '@src/components'
 
 const converter = new ShowDown.Converter()
 

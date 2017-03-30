@@ -3,7 +3,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { withNavigation } from '@expo/ex-navigation'
-import { Router } from '../routes'
+import { Router } from '@src/routes'
 
 class Link extends Component {
   static propTypes = {

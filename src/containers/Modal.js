@@ -12,7 +12,7 @@ import {
 import {
   Header,
   StylizedHTMLView
-} from '../components'
+} from '@src/components'
 
 const styles = EStyleSheet.create({
   container: {

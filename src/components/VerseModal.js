@@ -7,7 +7,7 @@ import {
 import EStyleSheet from 'react-native-extended-stylesheet'
 import {
   Loading,
-} from '../components'
+} from '@src/components'
 
 const styles = EStyleSheet.create({
   container: {

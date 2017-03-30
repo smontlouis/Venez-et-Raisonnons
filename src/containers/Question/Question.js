@@ -4,8 +4,8 @@ import { createSelector } from 'reselect'
 import {
   QuestionSimple,
   QuestionStudy,
-} from '../../containers'
-import * as AppActions from '../../redux/modules/app'
+} from '@src/containers'
+import * as AppActions from '@src/redux/modules/app'
 
 const getCurrentQuestion = (state, props) => state.get('questions').get('questions').get(props.questionId)
 const getTopics = state => state.get('topics').get('topics')

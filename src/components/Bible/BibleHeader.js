@@ -1,3 +1,5 @@
+// @flow
+
 import React, { PropTypes, Component } from 'react'
 import {
   Platform,
@@ -6,10 +8,10 @@ import {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import bibleStrongText from '../../markdown/bibleStrong'
+import bibleStrongText from '@src/markdown/bibleStrong'
 import {
   Link,
-} from '../../components'
+} from '@src/components'
 
 const styles = EStyleSheet.create({
   container: {

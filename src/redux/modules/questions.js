@@ -1,6 +1,6 @@
 import R from 'ramda'
 import { Map, fromJS } from 'immutable'
-import { firebaseDb } from '../../services/firebase'
+import { firebaseDb } from '@src/services/firebase'
 import {
   LOAD_DATA_SUCCESS,
   ADD_LIKE,

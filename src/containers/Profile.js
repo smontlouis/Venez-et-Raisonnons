@@ -5,7 +5,7 @@ import {
   Text,
   View
 } from 'react-native'
-// import * as FavoritesActions from '../redux/modules/favorites'
+// import * as FavoritesActions from '@src/redux/modules/favorites'
 
 
 const styles = EStyleSheet.create({

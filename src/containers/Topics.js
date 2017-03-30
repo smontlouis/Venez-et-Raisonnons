@@ -7,7 +7,7 @@ import {
 import {
   TopicsList,
   ScrollableHeader,
-} from '../components'
+} from '@src/components'
 
 
 const styles = EStyleSheet.create({

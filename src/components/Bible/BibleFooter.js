@@ -7,7 +7,7 @@ import {
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import * as BibleActions from '../../redux/modules/bible'
+import * as BibleActions from '@src/redux/modules/bible'
 
 const styles = EStyleSheet.create({
   container: {

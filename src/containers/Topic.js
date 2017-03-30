@@ -9,7 +9,7 @@ import {
 import {
   QuestionsList,
   ScrollableHeader,
-} from '../components'
+} from '@src/components'
 
 
 const getCurrentTopic = (state, props) => state.get('topics').get('topics').get(props.topicId)
