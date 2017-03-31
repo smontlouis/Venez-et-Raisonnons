@@ -2,19 +2,20 @@ import React, { PropTypes, Component } from 'react'
 import {
   View,
   Text,
+  Platform,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { verseToStrong } from '@src/helpers'
 
 const styles = EStyleSheet.create({
   container: {
-    marginBottom: 15,
+    marginBottom: Platform.OS === 'ios' ? 15 : 10,
     flexDirection: 'row',
   },
   text: {
     flex: 1,
-    lineHeight: 23,
-    fontSize: 16,
+    lineHeight: Platform.OS === 'ios' ? 23 : 26,
+    fontSize: Platform.OS === 'ios' ? 16 :18,
   },
   verset: {
     fontSize: 12,
@@ -31,6 +32,7 @@ class BibleVerse extends Component {
 
   static propTypes = {
     verse: PropTypes.object.isRequired,
+    version: PropTypes.string.isRequired,
     getPosition: PropTypes.func,
   }
 
@@ -45,9 +47,9 @@ class BibleVerse extends Component {
   }
 
   componentWillMount() {
-    const { verse, getPosition } = this.props
-    this.formatVerse(verse)
+    const { verse, getPosition, version } = this.props
 
+    this.formatVerse(verse, version)
     if (getPosition) setTimeout(this.getVerseMeasure)
   }
 
@@ -58,10 +60,14 @@ class BibleVerse extends Component {
     })
   }
 
-  formatVerse(verse) {
-    verseToStrong(verse)
-      .then(element => this.setState({ element }))
-      .catch(err => console.log(err))
+  formatVerse(verse, version) {
+    if (version === 'LSG' || version === 'STRONG') {
+      verseToStrong(verse, version)
+        .then(element => this.setState({ element }))
+        .catch(err => console.log(err))
+    } else {
+      this.setState({ element: verse.Texte })
+    }
   }
 
   render() {
@@ -70,7 +76,12 @@ class BibleVerse extends Component {
       <View style={styles.container}>
         {
           Verset &&
-          <View style={styles.versetWrapper} ref={(r) => { this.bibleVerse = r }} >
+          <View
+            style={styles.versetWrapper}
+            ref={(r) => { this.bibleVerse = r }}
+            collapsable={false}
+            onLayout={() => {}}
+          >
             <Text style={styles.verset}>{Verset}</Text>
           </View>
         }

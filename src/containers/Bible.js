@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import {
@@ -17,29 +17,33 @@ const styles = EStyleSheet.create({
   },
 })
 
-const Bible = ({ book, chapter, verse }) =>
+type BibleProps = {
+  book: object,
+  chapter: number,
+  verse: number,
+  version: string,
+}
+
+const Bible = ({ book, chapter, verse, version }: BibleProps) =>
   <View style={styles.container}>
     <BibleHeader
       book={book}
       chapter={chapter}
+      version={version}
     />
     <BibleViewer
       book={book}
       chapter={chapter}
       verse={verse}
+      version={version}
     />
   </View>
-
-Bible.propTypes = {
-  book: PropTypes.object.isRequired,
-  chapter: PropTypes.number.isRequired,
-  verse: PropTypes.number.isRequired,
-}
 
 export default connect(
   state => ({
     book: state.getIn(['bible', 'selectedBook']).toJS(),
     chapter: state.getIn(['bible', 'selectedChapter']),
     verse: state.getIn(['bible', 'selectedVerse']),
+    version: state.getIn(['bible', 'selectedVersion']),
   })
 )(Bible)

@@ -21,6 +21,7 @@ import {
   About,
   Bible,
   BibleSelector,
+  VersionSelector,
   StrongModal,
   Modal,
 } from './containers'
@@ -42,6 +43,7 @@ export const Router = createRouter(() => ({
 
   bible: () => Bible,
   bibleSelector: () => BibleSelector,
+  versionSelector: () => VersionSelector,
   strongModal: () => StrongModal,
 }))
 

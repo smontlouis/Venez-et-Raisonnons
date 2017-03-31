@@ -1,6 +1,6 @@
 // @flow
 
-import React, { PropTypes, Component } from 'react'
+import React from 'react'
 import {
   Platform,
   View,
@@ -20,47 +20,56 @@ const styles = EStyleSheet.create({
     paddingTop: Platform.OS === 'ios' ? 18 : 24,
     alignItems: 'center',
     flexDirection: 'row',
-    paddingLeft: 15,
     paddingRight: 10,
   },
   titleContainer: {
-    flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingLeft: 15,
   },
   title: {
     fontFamily: '$font.heading',
     fontSize: 20,
     color: 'white',
+  },
+  icon: {
+    flex: 1,
+    alignItems: 'flex-end'
   }
 })
 
-
-export default class BibleHeader extends Component {
-  static propTypes = {
-    book: PropTypes.object.isRequired,
-    chapter: PropTypes.number.isRequired,
-  }
-
-  render() {
-    const { book, chapter } = this.props
-    return (
-      <View style={styles.container}>
-        <Link route={'bibleSelector'} style={styles.titleContainer}>
-          <Text style={styles.title}>{book.Nom} {chapter}</Text>
-          <Icon
-            name="arrow-drop-down"
-            size={20}
-            color="white"
-          />
-        </Link>
-        <Link
-          route={'modal'}
-          params={{ title: 'Qu\'est-ce que la Bible Strong ?', text: bibleStrongText }}
-          style={styles.icon}
-        >
-          <Icon name="help" size={24} color="white" />
-        </Link>
-      </View>
-    )
-  }
+type Props = {
+  book: object,
+  chapter: number,
+  version: string,
 }
+
+export default ({ book, chapter, version }: Props) =>
+  <View style={styles.container}>
+    <Link route={'bibleSelector'} style={styles.titleContainer}>
+      <Text style={styles.title}>{book.Nom} {chapter}</Text>
+      <Icon
+        name="arrow-drop-down"
+        size={20}
+        color="white"
+      />
+    </Link>
+    <Link route={'versionSelector'} params={{ version }} style={styles.titleContainer}>
+      <Text style={styles.title}>{version}</Text>
+      <Icon
+        name="arrow-drop-down"
+        size={20}
+        color="white"
+      />
+    </Link>
+    {
+      version === 'STRONG' &&
+      <Link
+        route={'modal'}
+        params={{ title: 'Qu\'est-ce que la Bible Strong ?', text: bibleStrongText }}
+        style={styles.icon}
+      >
+        <Icon name="help" size={24} color="white" />
+      </Link>
+    }
+  </View>
+

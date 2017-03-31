@@ -1,8 +1,22 @@
 import React from 'react'
 import { BibleStrongRef } from '@src/components'
 
-const verseToStrong = ({ Texte, Livre }) => new Promise((resolve) => {
-  const splittedTexte = Texte
+const verseToStrong = ({ Texte, Livre }, version) => new Promise((resolve) => {
+  let splittedTexte
+  if (version === 'LSG') {
+    splittedTexte = Texte
+      .split(/( \d+| \(\d+\))/)
+      .map((t) => {
+        if (t.match(/\d+/g)) {
+          return null
+        }
+
+        return t
+      })
+    return resolve(splittedTexte)
+  }
+
+  splittedTexte = Texte
     .split(/(\d+)/)
     .map((t, i) => {
       if (Number.isInteger(Number(t)) && t !== ' ' && t !== '') {
@@ -17,7 +31,7 @@ const verseToStrong = ({ Texte, Livre }) => new Promise((resolve) => {
 
       return t
     })
-  resolve(splittedTexte)
+  return resolve(splittedTexte)
 })
 
 

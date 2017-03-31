@@ -10,6 +10,9 @@ import {
   BibleVerse,
   BibleFooter,
 } from '@src/components'
+import {
+  loadDarby,
+} from '@src/helpers'
 
 const styles = EStyleSheet.create({
   container: {
@@ -27,6 +30,7 @@ export default class BibleViewer extends Component {
     book: PropTypes.object.isRequired,
     chapter: PropTypes.number.isRequired,
     verse: PropTypes.number.isRequired,
+    version: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -51,6 +55,7 @@ export default class BibleViewer extends Component {
     if (
       (this.props.chapter !== oldProps.chapter)
       || (this.props.book.Numero !== oldProps.book.Numero)
+      || (this.props.version !== oldProps.version)
     ) {
       setTimeout(() => this.loadVerses(), 0)
     }
@@ -106,22 +111,35 @@ export default class BibleViewer extends Component {
   }
 
   loadVerses() {
-    const { book, chapter } = this.props
-    const part = book.Numero > 39 ? 'LSGSNT2' : 'LSGSAT2'
+    const { book, chapter, version } = this.props
+
     this.verses = []
     this.versesMeasure = {}
-    this.setState({ isLoading: true })
-    this.DB.executeSql(`SELECT * FROM ${part} WHERE LIVRE = ${book.Numero} AND CHAPITRE  = ${chapter}`)
-      .then(([results]) => {
-        const len = results.rows.length
-        for (let i = 0; i < len; i += 1) { this.verses.push(results.rows.item(i)) }
-        this.setState({ isLoading: false })
+
+    if (version === 'LSG' || version === 'STRONG') {
+      const part = book.Numero > 39 ? 'LSGSNT2' : 'LSGSAT2'
+      this.setState({ isLoading: true })
+      this.DB.executeSql(`SELECT * FROM ${part} WHERE LIVRE = ${book.Numero} AND CHAPITRE  = ${chapter}`)
+        .then(([results]) => {
+          const len = results.rows.length
+          for (let i = 0; i < len; i += 1) { this.verses.push(results.rows.item(i)) }
+          this.setState({ isLoading: false })
+        })
+    } else {
+      this.setState({ isLoading: true })
+      loadDarby()
+      .then((res) => {
+        const versesByChapter = res.content[book.Numero][chapter]
+        this.verses = Object.keys(versesByChapter)
+          .map(v => ({ Verset: v, Texte: versesByChapter[v] }))
+        setTimeout(() => this.setState({ isLoading: false }), 150)
       })
+    }
   }
 
   render() {
     const { isLoading } = this.state
-    const { book, chapter } = this.props
+    const { book, chapter, version } = this.props
 
     return (
       <View style={styles.container}>
@@ -136,6 +154,7 @@ export default class BibleViewer extends Component {
           {
             this.verses.map((verse, i) =>
               <BibleVerse
+                version={version}
                 verse={verse}
                 key={i}
                 getPosition={this.getPosition}

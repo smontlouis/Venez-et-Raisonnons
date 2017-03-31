@@ -52,7 +52,7 @@ const links = [
   {
     to: 'bible',
     icon: 'book-open-page-variant',
-    label: 'Strong',
+    label: 'Bible',
   },
   // {
   //   to: 'add',

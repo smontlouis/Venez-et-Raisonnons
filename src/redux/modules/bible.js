@@ -7,9 +7,11 @@ const SET_TEMP_SELECTED_CHAPTER = 'bible/SET_TEMP_SELECTED_CHAPTER'
 const SET_TEMP_SELECTED_VERSE = 'bible/SET_TEMP_SELECTED_VERSE'
 const VALIDATE_SELECTED = 'bible/VALIDATE_SELECTED'
 const RESET_TEMP_SELECTED = 'bible/RESET_TEMP_SELECTED'
+const SET_VERSION = 'bible/SET_VERSION'
 
 const initialState = Map({
   books,
+  selectedVersion: 'STRONG',
   selectedBook: Map({ Numero: 1, Nom: 'Genèse', Chapitres: 50 }),
   selectedChapter: 1,
   selectedVerse: 1,
@@ -50,6 +52,13 @@ export function validateSelected() {
 export function resetTempSelected() {
   return {
     type: RESET_TEMP_SELECTED,
+  }
+}
+
+export function setVersion(version) {
+  return {
+    type: SET_VERSION,
+    version,
   }
 }
 
@@ -126,6 +135,9 @@ export default function BibleReducer(state = initialState, action = {}) {
           selectedChapter: state.get('selectedChapter'),
           selectedVerse: state.get('selectedVerse'),
         }))
+    }
+    case SET_VERSION: {
+      return state.set('selectedVersion', action.version)
     }
     default:
       return state
