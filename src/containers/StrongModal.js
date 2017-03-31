@@ -82,11 +82,15 @@ export default class BibleSelector extends Component {
     this.linkToStrong = ::this.linkToStrong
   }
 
-  state = { isLoading: true }
+  state = {
+    isLoading: true,
+    isConcordanceLoading: true,
+  }
 
   componentWillMount() {
     this.DB = getDB()
     this.loadStrong()
+    this.loadConcordance()
   }
 
   loadStrong() {
@@ -99,6 +103,20 @@ export default class BibleSelector extends Component {
         const len = results.rows.length
         for (let i = 0; i < len; i += 1) { this.strongRef.push(results.rows.item(i)) }
         this.setState({ isLoading: false })
+      })
+  }
+
+  loadConcordance() {
+    const { route: { params: { ref, book } } } = this.props
+    this.concordancesTexts = []
+    this.setState({ isConcordanceLoading: true })
+    const part = book > 39 ? 'LSGSNT2' : 'LSGSAT2'
+    this.DB.executeSql(`SELECT * FROM ${part} WHERE Texte LIKE '%${ref}%'`)
+      .then(([results]) => {
+        const len = results.rows.length
+        for (let i = 0; i < len; i += 1) { this.concordancesTexts.push(results.rows.item(i)) }
+        this.setState({ isConcordanceLoading: false })
+        console.log(this.concordancesTexts, len)
       })
   }
 
