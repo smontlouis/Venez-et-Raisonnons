@@ -8,22 +8,31 @@ import { withNavigation } from '@expo/ex-navigation'
 const styles = EStyleSheet.create({
   text: {
     color: '$color.primary',
-    // backgroundColor: 'rgba(0,0,0,0.1)',
   },
+  textForConcordance: {
+    color: '$color.primary',
+    fontWeight: 'bold',
+    fontSize: 12,
+  }
 })
 
-const openModal = (navigator, ref, book) => navigator.push('strongModal', { ref, book })
+const openModal = (navigator, reference, book) => navigator.push('strongModal', { reference, book })
 
-const BibleStrongRef = ({ navigator, reference, book }) => (
-  <Text style={styles.text} onPress={() => openModal(navigator, reference, book)} >
+const BibleStrongRef = ({ navigator, reference, book, isFromConcordance }) => (
+  <Text
+    style={[styles.text, isFromConcordance && styles.textForConcordance]}
+    onPress={() => !isFromConcordance && openModal(navigator, reference, book)}
+  >
+    {isFromConcordance && ' '}
     {reference}
   </Text>
 )
 
 
 BibleStrongRef.propTypes = {
+  isFromConcordance: PropTypes.bool,
   navigator: PropTypes.object.isRequired,
-  reference: PropTypes.number.isRequired,
+  reference: PropTypes.string.isRequired,
   book: PropTypes.number.isRequired,
 }
 

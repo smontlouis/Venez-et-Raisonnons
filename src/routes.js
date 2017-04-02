@@ -20,10 +20,12 @@ import {
   Add,
   About,
   Bible,
+  BibleLight,
   BibleSelector,
   VersionSelector,
   StrongModal,
   Modal,
+  Concordance,
 } from './containers'
 
 export const Router = createRouter(() => ({
@@ -42,9 +44,11 @@ export const Router = createRouter(() => ({
   about: () => About,
 
   bible: () => Bible,
+  bibleLight: () => BibleLight,
   bibleSelector: () => BibleSelector,
   versionSelector: () => VersionSelector,
   strongModal: () => StrongModal,
+  concordance: () => Concordance,
 }))
 
 export default function () {

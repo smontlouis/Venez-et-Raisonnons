@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { NavigationStyles, withNavigation } from '@expo/ex-navigation'
+import { Button } from 'react-native-elements'
 import {
   View,
   Text,
@@ -13,8 +14,10 @@ import {
   Header,
   Loading,
   StylizedHTMLView,
+  ConcordanceList,
 } from '@src/components'
 
+const concordanceLimit = 30
 
 const styles = EStyleSheet.create({
   container: {
@@ -59,10 +62,14 @@ const styles = EStyleSheet.create({
     height: 3,
     backgroundColor: '$color.secondary',
   },
+  button: {
+    marginTop: 20,
+    backgroundColor: '$color.primary',
+  }
 })
 
 @withNavigation
-export default class BibleSelector extends Component {
+export default class StrongModal extends Component {
 
   static propTypes = {
     navigator: PropTypes.object.isRequired,
@@ -90,15 +97,15 @@ export default class BibleSelector extends Component {
   componentWillMount() {
     this.DB = getDB()
     this.loadStrong()
-    this.loadConcordance()
+    setTimeout(() => this.loadConcordance(), 500)
   }
 
   loadStrong() {
-    const { route: { params: { ref, book } } } = this.props
+    const { route: { params: { reference, book } } } = this.props
     this.strongRef = []
     this.setState({ isLoading: true })
     const part = book > 39 ? 'Grec' : 'Hebreu'
-    this.DB.executeSql(`SELECT * FROM ${part} WHERE Code = ${ref}`)
+    this.DB.executeSql(`SELECT * FROM ${part} WHERE Code = ${reference}`)
       .then(([results]) => {
         const len = results.rows.length
         for (let i = 0; i < len; i += 1) { this.strongRef.push(results.rows.item(i)) }
@@ -107,16 +114,15 @@ export default class BibleSelector extends Component {
   }
 
   loadConcordance() {
-    const { route: { params: { ref, book } } } = this.props
+    const { route: { params: { reference, book } } } = this.props
     this.concordancesTexts = []
     this.setState({ isConcordanceLoading: true })
     const part = book > 39 ? 'LSGSNT2' : 'LSGSAT2'
-    this.DB.executeSql(`SELECT * FROM ${part} WHERE Texte LIKE '%${ref}%'`)
+    this.DB.executeSql(`SELECT Livre, Chapitre, Verset, Texte FROM ${part} WHERE Texte LIKE '% ${reference}%' OR Texte LIKE '%(${reference}%' ORDER BY Livre ASC LIMIT ${concordanceLimit}`)
       .then(([results]) => {
         const len = results.rows.length
         for (let i = 0; i < len; i += 1) { this.concordancesTexts.push(results.rows.item(i)) }
         this.setState({ isConcordanceLoading: false })
-        console.log(this.concordancesTexts, len)
       })
   }
 
@@ -135,7 +141,11 @@ export default class BibleSelector extends Component {
       )
     }
 
-    const { route: { params: { ref } } } = this.props
+    const {
+      route: { params: { reference, book } },
+      navigator,
+    } = this.props
+    const { isConcordanceLoading } = this.state
     const {
       Hebreu,
       Grec,
@@ -153,7 +163,7 @@ export default class BibleSelector extends Component {
         <Header
           isLight
           isModal
-          title={`Strong ${ref}`}
+          title={`Strong ${reference}`}
         />
         <ScrollView contentContainerStyle={styles.content}>
           <Text style={styles.mot}>
@@ -213,6 +223,27 @@ export default class BibleSelector extends Component {
               />
             </View>
           }
+          <View style={styles.item}>
+            <Text style={styles.subtitle}>Concordance</Text>
+            {
+              !isConcordanceLoading &&
+              <View>
+                <ConcordanceList
+                  concordanceFor={reference}
+                  list={this.concordancesTexts}
+                  navigator={navigator}
+                />
+                {
+                  !(this.concordancesTexts.length < concordanceLimit) &&
+                  <Button
+                    title="Voir tous les versets"
+                    buttonStyle={styles.button}
+                    onPress={() => navigator.push('concordance', { reference, book })}
+                  />
+                }
+              </View>
+            }
+          </View>
         </ScrollView>
       </View>
     )

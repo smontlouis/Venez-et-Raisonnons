@@ -1,12 +1,24 @@
 import React from 'react'
 import { BibleStrongRef } from '@src/components'
 
-const verseToStrong = ({ Texte, Livre }, version) => new Promise((resolve) => {
+const verseToStrong = ({ Texte, Livre }, version, concordanceFor) => new Promise((resolve) => {
   let splittedTexte
-  if (version === 'LSG') {
+
+  // Hide codes when LSG, or only concordance
+  if (version === 'LSG' || concordanceFor) {
     splittedTexte = Texte
       .split(/( \d+| \(\d+\))/)
-      .map((t) => {
+      .map((t, i) => {
+        if (t.includes(concordanceFor)) {
+          return (
+            <BibleStrongRef
+              isFromConcordance
+              book={Livre}
+              reference={t}
+              key={i}
+            />
+          )
+        }
         if (t.match(/\d+/g)) {
           return null
         }
@@ -23,7 +35,7 @@ const verseToStrong = ({ Texte, Livre }, version) => new Promise((resolve) => {
         return (
           <BibleStrongRef
             book={Livre}
-            reference={Number(t)}
+            reference={t}
             key={i}
           />
         )

@@ -17,6 +17,7 @@ const styles = EStyleSheet.create({
     lineHeight: Platform.OS === 'ios' ? 23 : 26,
     fontSize: Platform.OS === 'ios' ? 16 :18,
   },
+
   verset: {
     fontSize: 12,
     color: '$color.tertiary',
@@ -85,7 +86,9 @@ class BibleVerse extends Component {
             <Text style={styles.verset}>{Verset}</Text>
           </View>
         }
-        <Text style={styles.text}>{this.state.element}</Text>
+        <Text style={styles.text}>
+          {this.state.element}
+          </Text>
       </View>
     )
   }

@@ -29,6 +29,7 @@ export default class BibleViewer extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
     chapter: PropTypes.number.isRequired,
+    noArrows: PropTypes.bool,
     verse: PropTypes.number.isRequired,
     version: PropTypes.string.isRequired,
   }
@@ -139,7 +140,7 @@ export default class BibleViewer extends Component {
 
   render() {
     const { isLoading } = this.state
-    const { book, chapter, version } = this.props
+    const { book, chapter, version, noArrows } = this.props
 
     return (
       <View style={styles.container}>
@@ -162,12 +163,15 @@ export default class BibleViewer extends Component {
             )
           }
         </ScrollView>
-        <BibleFooter
-          disabled={isLoading}
-          book={book}
-          chapter={chapter}
-          scrollY={this.state.scrollY}
-        />
+        {
+          !noArrows &&
+          <BibleFooter
+            disabled={isLoading}
+            book={book}
+            chapter={chapter}
+            scrollY={this.state.scrollY}
+          />
+        }
       </View>
     )
   }
