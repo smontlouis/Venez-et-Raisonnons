@@ -224,7 +224,7 @@ export default class StrongModal extends Component {
             </View>
           }
           <View style={styles.item}>
-            <Text style={styles.subtitle}>Concordance</Text>
+            <Text style={styles.subtitle}>Concordance (30 premiers résultats)</Text>
             {
               !isConcordanceLoading &&
               <View>

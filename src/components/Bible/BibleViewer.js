@@ -107,7 +107,7 @@ export default class BibleViewer extends Component {
     this.scrollView.scrollTo({
       x: 0,
       y: (y >= scrollHeight) ? scrollHeight : y,
-      animated: true
+      animated: false
     })
   }
 
