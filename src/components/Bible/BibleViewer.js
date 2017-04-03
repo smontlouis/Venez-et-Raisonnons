@@ -21,6 +21,7 @@ const styles = EStyleSheet.create({
   scrollView: {
     padding: 20,
     paddingLeft: 0,
+    paddingBottom: 40,
   },
 })
 
@@ -39,7 +40,6 @@ export default class BibleViewer extends Component {
 
     this.getPosition = ::this.getPosition
     this.scrollToVerse = ::this.scrollToVerse
-    this.onScrollMoveFooter = ::this.onScrollMoveFooter
   }
 
   state = {
@@ -68,26 +68,6 @@ export default class BibleViewer extends Component {
       && (this.props.book.Numero === oldProps.book.Numero)
     ) {
       setTimeout(() => this.scrollToVerse(), 0)
-    }
-  }
-
-  onScrollMoveFooter(event) {
-    const currentOffset = event.nativeEvent.contentOffset.y
-    const direction = currentOffset > this.offset ? 'down' : 'up'
-    const distance = this.offset ? (this.offset - currentOffset) : 0
-    const newPosition = this.state.scrollY._value - distance
-    if (currentOffset > 0 && currentOffset < (this.contentHeight - this.scrollViewHeight)) {
-      if (direction === 'down') {
-        if (this.state.scrollY._value < 60) {
-          this.state.scrollY.setValue(newPosition > 60 ? 60 : newPosition)
-        }
-      }
-      if (direction === 'up') {
-        if (this.state.scrollY._value >= 0) {
-          this.state.scrollY.setValue(newPosition < 0 ? 0 : newPosition)
-        }
-      }
-      this.offset = currentOffset
     }
   }
 
@@ -148,7 +128,6 @@ export default class BibleViewer extends Component {
           ref={(r) => { this.scrollView = r }}
           onContentSizeChange={(w, h) => { this.contentHeight = h }}
           onLayout={(ev) => { this.scrollViewHeight = ev.nativeEvent.layout.height }}
-          onScroll={this.onScrollMoveFooter}
           scrollEventThrottle={16}
           contentContainerStyle={styles.scrollView}
         >
