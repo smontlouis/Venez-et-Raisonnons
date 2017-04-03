@@ -22,7 +22,6 @@ const verseToStrong = ({ Texte, Livre }, version, concordanceFor) => new Promise
         if (t.match(/\d+/g)) {
           return null
         }
-
         return t
       })
     return resolve(splittedTexte)

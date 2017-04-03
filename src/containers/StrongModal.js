@@ -239,7 +239,7 @@ export default class StrongModal extends Component {
                 {
                   !(this.concordancesTexts.length < itemsPerPage) &&
                   <Button
-                    title="Voir tous les versets"
+                    title="Liste complète des versets"
                     buttonStyle={styles.button}
                     onPress={() => navigator.push('concordance', { reference, book })}
                   />
