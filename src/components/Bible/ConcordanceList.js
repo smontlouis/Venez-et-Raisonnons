@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react'
-import { FlatList } from 'react-native'
-import { VerseConcordance } from '@src/components'
+import { VerseConcordance, List } from '@src/components'
+import { fromJS } from 'immutable'
 
 type Props = {
   list: array,
@@ -11,10 +11,9 @@ type Props = {
 }
 
 const ConcordanceList = ({ list, concordanceFor, navigator } : Props) => (
-  <FlatList
-    data={list}
-    keyExtractor={(item, i) => i}
-    renderItem={({ item }) =>
+  <List
+    listItems={fromJS(list)}
+    renderRow={item =>
       <VerseConcordance
         concordanceFor={concordanceFor}
         navigator={navigator}
