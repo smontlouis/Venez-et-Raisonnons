@@ -8,10 +8,12 @@ import {
   ScrollView,
 } from 'react-native'
 import getDB from '@src/helpers/database'
+import { itemsPerPage } from '@src/helpers/globalVariables'
 import {
   Header,
   Loading,
   ConcordanceList,
+  PaginateSlider,
 } from '@src/components'
 
 
@@ -27,24 +29,41 @@ const styles = EStyleSheet.create({
     fontSize: 22,
     fontFamily: '$font.title',
     marginBottom: 15,
+  },
+  numPage: {
+    fontFamily: '$font.heading',
+    color: 'rgba(0,0,0,0.5)',
+    fontSize: 18,
   }
 })
 
 @withNavigation
-export default class StrongModal extends Component {
+export default class Concordance extends Component {
 
   static propTypes = {
     navigator: PropTypes.object.isRequired,
     route: PropTypes.object.isRequired,
   }
 
+  constructor(props) {
+    super(props)
+
+    this.getCurrentValue = ::this.getCurrentValue
+  }
+
   state = {
     isConcordanceLoading: true,
+    currentPage: 1,
   }
 
   componentWillMount() {
     this.DB = getDB()
     this.loadConcordance()
+  }
+
+  getCurrentValue(value) {
+    this.setState({ currentPage: value })
+    this.scrollView.scrollTo({ x: 0, y: 0, animated: false })
   }
 
   loadConcordance() {
@@ -67,6 +86,8 @@ export default class StrongModal extends Component {
     } = this.props
     const { isConcordanceLoading } = this.state
 
+    const pages = Math.ceil(this.concordancesTexts.length / itemsPerPage)
+
     return (
       <View style={styles.container}>
         <StatusBar barStyle="dark-content" />
@@ -79,14 +100,28 @@ export default class StrongModal extends Component {
         }
         {
           !isConcordanceLoading &&
-          <ScrollView contentContainerStyle={styles.content}>
-            <Text style={styles.total}>{this.concordancesTexts.length} occurences</Text>
-            <ConcordanceList
-              concordanceFor={reference}
-              list={this.concordancesTexts}
-              navigator={navigator}
+          <View style={{ flex: 1 }}>
+            <ScrollView
+              contentContainerStyle={styles.content}
+              ref={(r) => { this.scrollView = r }}
+            >
+              <Text style={styles.total}>
+                {this.concordancesTexts.length} occurences
+                <Text style={styles.numPage}> (Page {this.state.currentPage}) </Text>
+              </Text>
+              <ConcordanceList
+                currentPage={this.state.currentPage}
+                itemsPerPage={itemsPerPage}
+                concordanceFor={reference}
+                list={this.concordancesTexts}
+                navigator={navigator}
+              />
+            </ScrollView>
+            <PaginateSlider
+              pages={pages}
+              onSlidingComplete={this.getCurrentValue}
             />
-          </ScrollView>
+          </View>
         }
       </View>
     )

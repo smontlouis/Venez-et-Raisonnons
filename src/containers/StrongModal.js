@@ -10,14 +10,13 @@ import {
 } from 'react-native'
 import getDB from '@src/helpers/database'
 import { capitalize } from '@src/helpers'
+import { itemsPerPage } from '@src/helpers/globalVariables'
 import {
   Header,
   Loading,
   StylizedHTMLView,
   ConcordanceList,
 } from '@src/components'
-
-const concordanceLimit = 30
 
 const styles = EStyleSheet.create({
   container: {
@@ -65,6 +64,7 @@ const styles = EStyleSheet.create({
   button: {
     marginTop: 20,
     backgroundColor: '$color.primary',
+    borderRadius: 5,
   }
 })
 
@@ -118,7 +118,7 @@ export default class StrongModal extends Component {
     this.concordancesTexts = []
     this.setState({ isConcordanceLoading: true })
     const part = book > 39 ? 'LSGSNT2' : 'LSGSAT2'
-    this.DB.executeSql(`SELECT Livre, Chapitre, Verset, Texte FROM ${part} WHERE Texte LIKE '% ${reference}%' OR Texte LIKE '%(${reference}%' ORDER BY Livre ASC LIMIT ${concordanceLimit}`)
+    this.DB.executeSql(`SELECT Livre, Chapitre, Verset, Texte FROM ${part} WHERE Texte LIKE '% ${reference}%' OR Texte LIKE '%(${reference}%' ORDER BY Livre ASC LIMIT ${itemsPerPage}`)
       .then(([results]) => {
         const len = results.rows.length
         for (let i = 0; i < len; i += 1) { this.concordancesTexts.push(results.rows.item(i)) }
@@ -224,17 +224,20 @@ export default class StrongModal extends Component {
             </View>
           }
           <View style={styles.item}>
-            <Text style={styles.subtitle}>Concordance (30 premiers résultats)</Text>
+            <Text style={styles.subtitle}>
+              Concordance ({itemsPerPage} premiers résultats)
+            </Text>
             {
               !isConcordanceLoading &&
               <View>
                 <ConcordanceList
+                  itemsPerPage={itemsPerPage}
                   concordanceFor={reference}
                   list={this.concordancesTexts}
                   navigator={navigator}
                 />
                 {
-                  !(this.concordancesTexts.length < concordanceLimit) &&
+                  !(this.concordancesTexts.length < itemsPerPage) &&
                   <Button
                     title="Voir tous les versets"
                     buttonStyle={styles.button}

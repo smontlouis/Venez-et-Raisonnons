@@ -23,6 +23,8 @@ export MarkAsRead from './MarkAsRead'
 export CheckIfAllRead from './CheckIfAllRead'
 export LinkToStudy from './LinkToStudy'
 export PrevNext from './PrevNext'
+export PaginateList from './PaginateList'
+export PaginateSlider from './PaginateSlider'
 
 export BibleViewer from './Bible/BibleViewer'
 export BibleVerse from './Bible/BibleVerse'
@@ -38,3 +40,4 @@ export SelectorItem from './Bible/SelectorItem'
 export SelectorButtons from './Bible/SelectorButtons'
 export BibleFooter from './Bible/BibleFooter'
 export ConcordanceList from './Bible/ConcordanceList'
+

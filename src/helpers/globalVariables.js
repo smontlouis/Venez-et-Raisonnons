@@ -20,5 +20,7 @@ export default {
   header: {
     height: (Platform.OS === 'ios') ? 64 : 73,
     icon: (Platform.OS === 'ios') ? 5 : 10,
-  }
+  },
 }
+
+export const itemsPerPage = 20
