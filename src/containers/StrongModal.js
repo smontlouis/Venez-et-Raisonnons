@@ -118,7 +118,15 @@ export default class StrongModal extends Component {
     this.concordancesTexts = []
     this.setState({ isConcordanceLoading: true })
     const part = book > 39 ? 'LSGSNT2' : 'LSGSAT2'
-    this.DB.executeSql(`SELECT Livre, Chapitre, Verset, Texte FROM ${part} WHERE Texte LIKE '% ${reference}%' OR Texte LIKE '%(${reference}%' ORDER BY Livre ASC LIMIT ${itemsPerPage}`)
+    this.DB.executeSql(`
+      SELECT Livre, Chapitre, Verset, Texte 
+      FROM ${part} 
+      WHERE Texte LIKE '% ${reference}%' 
+      OR Texte LIKE '%(${reference}%'
+      OR Texte LIKE '% 0${reference}%' 
+      ORDER BY Livre ASC 
+      LIMIT ${itemsPerPage}
+    `)
       .then(([results]) => {
         const len = results.rows.length
         for (let i = 0; i < len; i += 1) { this.concordancesTexts.push(results.rows.item(i)) }
@@ -126,12 +134,12 @@ export default class StrongModal extends Component {
       })
   }
 
-  linkToStrong(ref) {
+  linkToStrong(reference) {
     const {
       navigator,
       route: { params: { book } },
     } = this.props
-    navigator.push('strongModal', { ref: ref.replace(/\D/g, ''), book })
+    navigator.push('strongModal', { reference: reference.replace(/\D/g, ''), book })
   }
 
   render() {

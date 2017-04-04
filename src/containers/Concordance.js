@@ -71,7 +71,14 @@ export default class Concordance extends Component {
     this.concordancesTexts = []
     this.setState({ isConcordanceLoading: true })
     const part = book > 39 ? 'LSGSNT2' : 'LSGSAT2'
-    this.DB.executeSql(`SELECT Livre, Chapitre, Verset, Texte FROM ${part} WHERE Texte LIKE '% ${reference}%' OR Texte LIKE '%(${reference}%' ORDER BY Livre ASC`)
+    this.DB.executeSql(`
+      SELECT Livre, Chapitre, Verset, Texte 
+      FROM ${part} 
+      WHERE Texte LIKE '% ${reference}%' 
+      OR Texte LIKE '%(${reference}%'
+      OR Texte LIKE '% 0${reference}%' 
+      ORDER BY Livre ASC 
+    `)
       .then(([results]) => {
         const len = results.rows.length
         for (let i = 0; i < len; i += 1) { this.concordancesTexts.push(results.rows.item(i)) }
