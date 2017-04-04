@@ -11,7 +11,7 @@ const styles = EStyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     borderTopColor: 'rgba(0,0,0,0.1)',
     borderTopWidth: 1,
   },
@@ -19,6 +19,7 @@ const styles = EStyleSheet.create({
     height: 50,
     marginLeft: 10,
     marginRight: 10,
+    backgroundColor: 'white'
   },
   track: {
     height: 2,
