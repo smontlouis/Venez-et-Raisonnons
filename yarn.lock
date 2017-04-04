@@ -3784,15 +3784,15 @@ react-mixin@^3.0.5:
     object-assign "^4.0.1"
     smart-mixin "^2.0.0"
 
-react-native-code-push@^1.17.3-beta:
-  version "1.17.3-beta"
-  resolved "https://registry.yarnpkg.com/react-native-code-push/-/react-native-code-push-1.17.3-beta.tgz#c92783f0087dda5e683f96a76ab76108c73b9015"
+react-native-code-push@latest:
+  version "2.0.1-beta"
+  resolved "https://registry.yarnpkg.com/react-native-code-push/-/react-native-code-push-2.0.1-beta.tgz#9857b73f259ada3847f39f84683c3e63cf94ca9b"
   dependencies:
     code-push "1.8.0-beta"
     glob "^5.0.15"
     inquirer "1.1.2"
     plist "1.2.0"
-    xcode "0.9.1"
+    xcode "0.9.2"
 
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
@@ -3882,9 +3882,9 @@ react-native-vector-icons@4.0.0:
     lodash "^4.0.0"
     yargs "^6.3.0"
 
-react-native@0.42.3:
-  version "0.42.3"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.42.3.tgz#450c8a03a5e3e991a08a426f22776dd8feb80b26"
+react-native@0.42.0:
+  version "0.42.0"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.42.0.tgz#59b501603a63232598fff653a36307a26010402e"
   dependencies:
     absolute-path "^0.0.0"
     art "^0.10.0"
@@ -4003,7 +4003,7 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react@^15.4.2:
+react@^15.4.1:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.4.2.tgz#41f7991b26185392ba9bae96c8889e7e018397ef"
   dependencies:
@@ -4985,13 +4985,13 @@ uuid-js@^0.7.5:
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/uuid-js/-/uuid-js-0.7.5.tgz#6c886d02a53d2d40dcf25d91a170b4a7b25b94d0"
 
+uuid@3.0.1, uuid@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
+
 uuid@^2.0.1:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-2.0.3.tgz#67e2e863797215530dff318e5bf9dcebfd47b21a"
-
-uuid@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
 
 v8flags@^2.0.10:
   version "2.0.11"
@@ -5147,13 +5147,13 @@ xcode@0.8.9, xcode@^0.8.8, xcode@^0.8.9:
     pegjs "0.9.0"
     simple-plist "0.1.4"
 
-xcode@0.9.1:
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/xcode/-/xcode-0.9.1.tgz#5b4e71b71b03573ff0cdb48439103e8107da0f95"
+xcode@0.9.2:
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/xcode/-/xcode-0.9.2.tgz#b8969a2d7bf8b5feafbad162bd97de39f16e2907"
   dependencies:
-    node-uuid "1.4.7"
     pegjs "0.9.0"
     simple-plist "0.1.4"
+    uuid "3.0.1"
 
 xdg-basedir@^2.0.0:
   version "2.0.0"
