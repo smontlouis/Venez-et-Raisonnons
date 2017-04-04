@@ -4,8 +4,21 @@ import { BibleStrongRef } from '@src/components'
 const verseToStrong = ({ Texte, Livre }, version, concordanceFor) => new Promise((resolve) => {
   let splittedTexte
 
-  // Hide codes when LSG, or only concordance
-  if (version === 'LSG' || concordanceFor) {
+  // Hide codes when LSG
+  if (version === 'LSG') {
+    splittedTexte = Texte
+      .split(/( \d+| \(\d+\))/)
+      .map((t) => {
+        if (t.match(/\d+/g)) {
+          return null
+        }
+        return t
+      })
+    return resolve(splittedTexte)
+  }
+
+  // Hide codes when concordance
+  if (concordanceFor) {
     splittedTexte = Texte
       .split(/( \d+| \(\d+\))/)
       .map((t, i) => {
