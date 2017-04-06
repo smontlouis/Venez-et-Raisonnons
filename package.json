@@ -1,9 +1,10 @@
 {
   "name": "PleadApp",
-  "version": "0.8.1",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "version": "./npm-version/version-ios.sh"
   },
   "dependencies": {
     "@expo/ex-navigation": "^2.9.4",
