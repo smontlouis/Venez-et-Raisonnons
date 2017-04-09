@@ -1,75 +1,42 @@
 PODS:
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
-  - AFNetworking/NSURLSession (3.1.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
-    - AFNetworking/NSURLSession
-  - CocoaLumberjack (2.3.0):
-    - CocoaLumberjack/Default (= 2.3.0)
-    - CocoaLumberjack/Extensions (= 2.3.0)
-  - CocoaLumberjack/Core (2.3.0)
-  - CocoaLumberjack/Default (2.3.0):
-    - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.3.0):
-    - CocoaLumberjack/Default
-  - Lock (1.26.2):
-    - CocoaLumberjack (~> 2.0)
-    - Lock/Core (= 1.26.2)
-    - Lock/UI (= 1.26.2)
-    - Lock/WebView (= 1.26.2)
-  - Lock/Core (1.26.2):
-    - AFNetworking (~> 3.0)
-    - CocoaLumberjack (~> 2.0)
-  - Lock/CoreUI (1.26.2):
-    - CocoaLumberjack (~> 2.0)
-    - Lock/Core
-    - Masonry (~> 0.6)
-  - Lock/Email (1.26.2):
-    - CocoaLumberjack (~> 2.0)
-    - Lock/UI
-  - Lock/SMS (1.26.2):
-    - CocoaLumberjack (~> 2.0)
-    - Lock/UI
-  - Lock/TouchID (1.26.2):
-    - CocoaLumberjack (~> 2.0)
-    - Lock/UI
-    - SimpleKeychain (~> 0.2)
-    - TouchIDAuth (~> 0.1)
-  - Lock/UI (1.26.2):
-    - CocoaLumberjack (~> 2.0)
-    - Lock/CoreUI
-  - Lock/WebView (1.26.2):
-    - CocoaLumberjack (~> 2.0)
-    - Lock/CoreUI
-  - Masonry (0.6.4)
-  - SimpleKeychain (0.7.0)
-  - TouchIDAuth (0.2.0):
-    - SimpleKeychain (~> 0.3)
+  - Firebase/Core (3.15.0):
+    - FirebaseAnalytics (= 3.7.0)
+    - FirebaseCore (= 3.5.2)
+  - Firebase/Messaging (3.15.0):
+    - Firebase/Core
+    - FirebaseMessaging (= 1.2.2)
+  - FirebaseAnalytics (3.7.0):
+    - FirebaseCore (~> 3.5)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (3.5.2):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseInstanceID (1.0.9)
+  - FirebaseMessaging (1.2.2):
+    - FirebaseAnalytics (~> 3.7)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - Protobuf (~> 3.1)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/Logger (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - Protobuf (3.2.1)
 
 DEPENDENCIES:
-  - Lock (~> 1.26)
-  - Lock/Email
-  - Lock/SMS
-  - Lock/TouchID
+  - Firebase/Core
+  - Firebase/Messaging
 
 SPEC CHECKSUMS:
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
-  Lock: 5aabf27ad5eb79f9faf43d34f3908479759aa8b3
-  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
-  SimpleKeychain: b50cef3b87939d480ea1143425c00f5b4b70fe21
-  TouchIDAuth: 0cf861f58a2cacfc1c12cb02de4850729d943c81
+  Firebase: 2b1cdfba1cda8589f32904a697cc753322bff9d8
+  FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
+  FirebaseCore: a024587e43778508700af8c6b1209f7c4516ba02
+  FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
+  FirebaseMessaging: df8267f378580a24174ce7861233aa11d5c90109
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  Protobuf: 2ccbaf193f6c65adc67745453ca0c13234c32796
 
-PODFILE CHECKSUM: e81858e6b9eb4d99bc251813f8ccf8c929ff68f0
+PODFILE CHECKSUM: c8af38cfb6d48ae20f01aa8be0032a0a94bc949f
 
 COCOAPODS: 1.0.1

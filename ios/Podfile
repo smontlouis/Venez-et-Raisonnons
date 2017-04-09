@@ -7,16 +7,12 @@ target 'PleadApp' do
 
   # Pods for PleadApp
 
-  target 'PleadAppTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  #target 'PleadAppTests' do
+  #  inherit! :search_paths
+  #  # Pods for testing
+  #end
 
 end
 
-# Auth0 Lock
-
-pod 'Lock', '~> 1.26'
-pod 'Lock/TouchID'
-pod 'Lock/SMS'
-pod 'Lock/Email'
+pod 'Firebase/Core'
+pod 'Firebase/Messaging'
