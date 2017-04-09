@@ -30,11 +30,11 @@
   }
 
   
-#ifdef DEBUG
-    jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
-#else
-    jsCodeLocation = [CodePush bundleURL];
-#endif
+  #ifdef DEBUG
+      jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
+  #else
+      jsCodeLocation = [CodePush bundleURL];
+  #endif
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"PleadApp"
@@ -47,11 +47,11 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  return YES;
 
-
-[FIRApp configure];
+  [FIRApp configure];
   [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
+
+  return YES;
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler

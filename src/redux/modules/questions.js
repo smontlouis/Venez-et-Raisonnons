@@ -17,11 +17,8 @@ const initialState = Map({
 export default function QuestionsReducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD_DATA_SUCCESS: {
-      // Here we're just adding id as a key (will be needed duh)
-      const { questions: response } = action.result
-      const questions = R.mapObjIndexed((val, id) => ({ id, ...val }), response)
       return state
-              .update('questions', q => q.merge(fromJS(questions)))
+              .update('questions', q => q.merge(fromJS(action.result.questions)))
     }
     case ADD_LIKE: {
       const count = state.getIn(['questions', action.id, 'likeCount'])

@@ -22,7 +22,7 @@ export let persistedStore = null // eslint-disable-line import/no-mutable-export
 
 EStyleSheet.build(globalVariables)
 
-const someAsyncCall = () => console.log('someAsyncCall')
+const someAsyncCall = () => console.log('Async Call')
 
 @codePush
 class App extends Component {
