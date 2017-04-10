@@ -1,7 +1,7 @@
-const shallowDiff = (base, compared) => Object.keys(compared).reduce((array, idx) => {
-  if (!(idx in base)) array.push(idx)
-  return array
-}, [])
+const shallowDiff = (base, compared) => Object.keys(compared).reduce((acc, idx) => {
+  if (!(idx in base)) return { ...acc, [idx]: compared[idx] }
+  return acc
+}, {})
 
 export default store => next => (action) => {
   const prevState = store.getState() || {}
@@ -17,7 +17,7 @@ export default store => next => (action) => {
   // }
 
   if (action.type === 'app/LOAD_DATA_SUCCESS' || action.type === 'persist/REHYDRATE') { // Remove persist/REHYDRATE After test
-    store.dispatch({ type: 'questions/NEW_QUESTIONS', result: shallowDiff(base, compared) })
+    store.dispatch({ type: 'questions/NOTIF_NEW_QUESTIONS', result: shallowDiff(base, compared) })
   }
 
   return returnValue
