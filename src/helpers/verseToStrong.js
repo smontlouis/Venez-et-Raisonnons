@@ -7,53 +7,51 @@ const verseToStrong = ({ Texte, Livre }, version, concordanceFor) => new Promise
   // Hide codes when LSG
   if (version === 'LSG') {
     splittedTexte = Texte
-      .split(/( \d+| \(\d+\))/)
-      .map((t) => {
-        if (t.match(/\d+/g)) {
-          return null
-        }
-        return t
-      })
+      .split(/ \d+/g)
+      .join('')
+      .split(/ \(\d+\)/g)
     return resolve(splittedTexte)
   }
 
   // Hide codes when concordance
   if (concordanceFor) {
     splittedTexte = Texte
-      .split(/( \d+| \(\d+\))/)
-      .map((t, i) => {
-        if (t.includes(concordanceFor)) {
+      .split(/ (\(?\d+[^{.|\s}]?\d+(?!\.?\d)\)?)/g)
+      .map((item, i) => {
+        if (item.match(/\d+/) && item.match(/\d+/)[0] === concordanceFor) {
           return (
             <BibleStrongRef
               isFromConcordance
               book={Livre}
-              reference={t}
+              reference={item.match(/\d+/)[0]}
               key={i}
             />
           )
         }
-        if (t.match(/\d+/g)) {
+
+        if (item.match(/\d+/) && !item.includes('.')) {
           return null
         }
-        return t
+        return item
       })
     return resolve(splittedTexte)
   }
 
+  // STRONG
   splittedTexte = Texte
-    .split(/(\d+)/)
-    .map((t, i) => {
-      if (Number.isInteger(Number(t)) && t !== ' ' && t !== '') {
+    .split(/(\d+[^{.|\s}]?\d+(?!\.?\d))/g)
+    .map((item, i) => {
+      if (Number.isInteger(Number(item))) {
         return (
           <BibleStrongRef
             book={Livre}
-            reference={t}
+            reference={item}
             key={i}
           />
         )
       }
 
-      return t
+      return item
     })
   return resolve(splittedTexte)
 })

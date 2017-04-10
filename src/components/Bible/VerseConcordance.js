@@ -52,8 +52,14 @@ class VerseConcordance extends Component {
 
   componentWillMount() {
     const { verse, concordanceFor } = this.props
-
     this.formatVerse(verse, concordanceFor)
+  }
+
+  componentDidUpdate(oldProps) {
+    if ((this.props.verse.Verset !== oldProps.verse.Verset)) {
+      const { verse, concordanceFor } = this.props
+      this.formatVerse(verse, concordanceFor)
+    }
   }
 
   formatVerse(verse, concordanceFor) {

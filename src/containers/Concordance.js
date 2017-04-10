@@ -74,9 +74,10 @@ export default class Concordance extends Component {
     this.DB.executeSql(`
       SELECT Livre, Chapitre, Verset, Texte 
       FROM ${part} 
-      WHERE Texte LIKE '% ${reference}%' 
-      OR Texte LIKE '%(${reference}%'
-      OR Texte LIKE '% 0${reference}%' 
+      WHERE Texte LIKE '% ${reference} %' 
+      OR Texte LIKE '%(${reference})%'
+      OR Texte LIKE '% ${reference}.%'
+      OR Texte LIKE '% ${reference},%'
       ORDER BY Livre ASC 
     `)
       .then(([results]) => {
