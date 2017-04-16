@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import {
@@ -6,6 +6,7 @@ import {
   QuestionStudy,
 } from '@src/containers'
 import * as AppActions from '@src/redux/modules/app'
+import * as QuestionActions from '@src/redux/modules/questions'
 
 const getCurrentQuestion = (state, props) => state.get('questions').get('questions').get(props.questionId)
 const getTopics = state => state.get('topics').get('topics')
@@ -23,35 +24,46 @@ const getChildrenByQuestion = createSelector(
   (questionsIds, questions) => questionsIds ? questionsIds.map(qID => questions.find(q => q.get('id') === qID)) : null, // eslint-disable-line no-confusing-arrow
 )
 
-const Question = ({ question, topic, markAsRead, children, fromStudy }) => {
-  if (children) {
-    return (
-      <QuestionStudy
-        {...{ question, topic, children }}
-      />
-    )
-  }
 
-  return (
-    <QuestionSimple
-      {...{ question, topic, markAsRead, fromStudy }}
-    />
-  )
-}
-
-Question.propTypes = {
-  children: PropTypes.object,
-  fromStudy: PropTypes.bool,
-  question: PropTypes.object.isRequired,
-  topic: PropTypes.object.isRequired,
-  markAsRead: PropTypes.func.isRequired,
-}
-
-export default connect(
+@connect(
   (state, ownProps) => ({
     question: getCurrentQuestion(state, ownProps),
     topic: getCurrentTopic(state, ownProps),
     children: getChildrenByQuestion(state, ownProps)
   }),
-  AppActions,
-)(Question)
+  { ...AppActions, ...QuestionActions },
+)
+export default class Question extends Component {
+  static propTypes = {
+    children: PropTypes.object,
+    fromStudy: PropTypes.bool,
+    question: PropTypes.object.isRequired,
+    topic: PropTypes.object.isRequired,
+    markAsRead: PropTypes.func.isRequired,
+    setNotNewQuestion: PropTypes.func.isRequired,
+    isNew: PropTypes.bool,
+  }
+
+  componentDidMount() {
+    const { isNew, setNotNewQuestion, question } = this.props
+    if (isNew) setNotNewQuestion(question.get('id'))
+  }
+
+  render() {
+    const { question, topic, markAsRead, children, fromStudy } = this.props
+
+    if (children) {
+      return (
+        <QuestionStudy
+          {...{ question, topic, children }}
+        />
+      )
+    }
+
+    return (
+      <QuestionSimple
+        {...{ question, topic, markAsRead, fromStudy }}
+      />
+    )
+  }
+}
