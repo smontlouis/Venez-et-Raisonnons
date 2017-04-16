@@ -61,11 +61,11 @@ const styles = EStyleSheet.create({
 const QuestionItem = ({ number, id, title, hasBeenRead, containerStyle, isStudy, isNew }) => (
   <Link
     route={'question'}
-    params={{ questionId: id, fromStudy: !!number }}
+    params={{ questionId: id, fromStudy: !!number, isNew }}
   >
     <View style={[styles.container, containerStyle]}>
       {
-        isNew &&
+        (isNew && !number) &&
         <View style={styles.badge} />
       }
       <View style={styles.content}>
@@ -106,6 +106,6 @@ QuestionItem.propTypes = {
 export default connect(
   (state, ownProps) => ({
     hasBeenRead: !!state.getIn(['app', 'hasBeenRead', ownProps.id]),
-    isNew: !!state.get(['questions', 'question'], ownProps.id)
+    isNew: !!state.getIn(['questions', 'newQuestions', ownProps.id])
   }),
 )(QuestionItem)

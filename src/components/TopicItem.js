@@ -135,7 +135,7 @@ export default class TopicItem extends Component {
             <Text style={styles.count}>{questionsCount} question{questionsCount > 1 ? 's' : ''}</Text>
           </View>
           {
-            newQuestionCount &&
+            !!newQuestionCount &&
             <View style={styles.badge}>
               <Text style={styles.badgeText}>{newQuestionCount}</Text>
             </View>

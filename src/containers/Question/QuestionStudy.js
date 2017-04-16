@@ -36,7 +36,7 @@ const checkIfAllMarkedQuestions = createSelector(
   }),
   AppActions,
 )
-export default class Question extends Component {
+export default class QuestionStudy extends Component {
   static propTypes = {
     children: PropTypes.object,
     checkIfAllRead: PropTypes.bool.isRequired,

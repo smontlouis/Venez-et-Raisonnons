@@ -121,9 +121,10 @@ export default class StrongModal extends Component {
     this.DB.executeSql(`
       SELECT Livre, Chapitre, Verset, Texte 
       FROM ${part} 
-      WHERE Texte LIKE '% ${reference}%' 
-      OR Texte LIKE '%(${reference}%'
-      OR Texte LIKE '% 0${reference}%' 
+      WHERE Texte LIKE '% ${reference} %' 
+      OR Texte LIKE '%(${reference})%'
+      OR Texte LIKE '% ${reference}.%'
+      OR Texte LIKE '% ${reference},%'
       ORDER BY Livre ASC 
       LIMIT ${itemsPerPage}
     `)

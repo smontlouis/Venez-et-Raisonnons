@@ -22,7 +22,7 @@ import {
 } from '@src/helpers'
 import styles, { setDynamicFontSize } from './styles'
 
-export default class Question extends Component {
+export default class QuestionSimple extends Component {
   static propTypes = {
     fromStudy: PropTypes.bool,
     question: PropTypes.object.isRequired,
