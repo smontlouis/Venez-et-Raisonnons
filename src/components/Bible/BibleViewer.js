@@ -11,7 +11,7 @@ import {
   BibleFooter,
 } from '@src/components'
 import {
-  loadDarby,
+  loadBible,
 } from '@src/helpers'
 
 const styles = EStyleSheet.create({
@@ -97,7 +97,7 @@ export default class BibleViewer extends Component {
     this.verses = []
     this.versesMeasure = {}
 
-    if (version === 'LSG' || version === 'STRONG') {
+    if (version === 'STRONG') {
       const part = book.Numero > 39 ? 'LSGSNT2' : 'LSGSAT2'
       this.setState({ isLoading: true })
       this.DB.executeSql(`SELECT * FROM ${part} WHERE LIVRE = ${book.Numero} AND CHAPITRE  = ${chapter}`)
@@ -108,9 +108,9 @@ export default class BibleViewer extends Component {
         })
     } else {
       this.setState({ isLoading: true })
-      loadDarby()
+      loadBible(version)
       .then((res) => {
-        const versesByChapter = res.content[book.Numero][chapter]
+        const versesByChapter = res[book.Numero][chapter]
         this.verses = Object.keys(versesByChapter)
           .map(v => ({ Verset: v, Texte: versesByChapter[v] }))
         setTimeout(() => this.setState({ isLoading: false }), 150)

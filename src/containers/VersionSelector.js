@@ -29,18 +29,22 @@ type Props = {
 }
 
 const versions = fromJS({
-  LSG: {
-    id: 'LSG',
-    name: 'Bible Second 1910',
-  },
   STRONG: {
     id: 'STRONG',
     name: 'Bible Second 1910 Strong',
   },
+  LSG: {
+    id: 'LSG',
+    name: 'Bible Second 1910',
+  },
   FRDBY: {
     id: 'FRDBY',
     name: 'Bible Darby en français'
-  }
+  },
+  OST: {
+    id: 'OST',
+    name: 'Ostervald'
+  },
 })
 
 const setAndClose = (setVersion, navigator, vers) => {

@@ -17,10 +17,12 @@ import {
   PrevNext,
 } from '@src/components'
 import {
-  loadDarby,
+  loadBible,
   range,
 } from '@src/helpers'
 import styles, { setDynamicFontSize } from './styles'
+
+const Books = require('../../helpers/books.json')
 
 export default class QuestionSimple extends Component {
   static propTypes = {
@@ -46,17 +48,17 @@ export default class QuestionSimple extends Component {
   onLinkPress(url, title) {
     this.modal.open()
     this.setState({ verseIsLoading: true })
-    loadDarby()
+    loadBible('Darby')
       .then((res) => {
         const { book, chapter, verses } = this.parseUrl(url)
-        const bookIndex = Object.keys(res.books).find(key => (
-          res.books[key][0] === book
-                  || res.books[key][1] === book
-                  || res.books[key][2] === book
+        const bookIndex = Object.keys(Books).find(key => (
+          Books[key][0] === book
+                  || Books[key][1] === book
+                  || Books[key][2] === book
         ))
         const text = verses.map(v => ({
           verse: v,
-          text: res.content[bookIndex][chapter][v]
+          text: res[bookIndex][chapter][v]
         }))
 
         this.setState({
@@ -67,7 +69,8 @@ export default class QuestionSimple extends Component {
           },
         })
       })
-      .catch(() => {
+      .catch((e) => {
+        console.log(e)
         this.setState({
           verseIsLoading: false,
           verse: {
