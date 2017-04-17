@@ -42,6 +42,8 @@ Une version de la Bible contenant les STRONG* hébreux et grec
 Ainsi que d'autres supports et outils d'études à venir par la suite.
 
 Nous sommes persuadés que tout cela sera d’une grande aide pour le monde francophone chrétien mais pour mener à terme un tel projet nous avons aussi besoin de votre aide. C’est la raison pour laquelle nous vous demandons de prendre part vous aussi à cette initiative en nous soutenant pour vos dons.
+
+v2.0.0
 `)
 
 
