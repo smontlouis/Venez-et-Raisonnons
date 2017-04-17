@@ -57,7 +57,7 @@
 		F41274D61DAB860A001C83BE /* metaserif_light.otf in Resources */ = {isa = PBXBuildFile; fileRef = F41274D21DAB860A001C83BE /* metaserif_light.otf */; };
 		F41274D71DAB860A001C83BE /* metaserif.otf in Resources */ = {isa = PBXBuildFile; fileRef = F41274D31DAB860A001C83BE /* metaserif.otf */; };
 		F41274D91DAB933B001C83BE /* alternategothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F41274D81DAB933B001C83BE /* alternategothic.otf */; };
-		F413D9FD1E9A72FE0062100A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F413D9FC1E9A72FE0062100A /* GoogleService-Info.plist */; };
+		F48C429F1EA4CDED008AAA89 /* GoogleService in Resources */ = {isa = PBXBuildFile; fileRef = F48C429E1EA4CDED008AAA89 /* GoogleService */; };
 		F4EE13AD1E65CBE600CA75F6 /* www in Resources */ = {isa = PBXBuildFile; fileRef = F4EE13AC1E65CBE600CA75F6 /* www */; };
 		FAFE5E443E2CC0CD95BB1E61 /* libPods-PleadApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE33BAB04D6F2120224852F7 /* libPods-PleadApp.a */; };
 		FF4877ECFE324CF39F072DF4 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAD2988DF70E42ED98E11B5F /* Entypo.ttf */; };
@@ -351,10 +351,10 @@
 		F41274D21DAB860A001C83BE /* metaserif_light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = metaserif_light.otf; sourceTree = "<group>"; };
 		F41274D31DAB860A001C83BE /* metaserif.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = metaserif.otf; sourceTree = "<group>"; };
 		F41274D81DAB933B001C83BE /* alternategothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alternategothic.otf; sourceTree = "<group>"; };
-		F413D9FC1E9A72FE0062100A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "PleadApp/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F432C0191E96ABE700B7DECA /* PleadApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = PleadApp.entitlements; path = PleadApp/PleadApp.entitlements; sourceTree = "<group>"; };
 		F473BA801E795EF600F24DC8 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../../../Library/Developer/Xcode/DerivedData/PleadApp-agaugqsmfwbqlraxpqfcuqrmlgag/Build/Products/Release-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		F48BB7C41E01EDBE007D4996 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		F48C429E1EA4CDED008AAA89 /* GoogleService */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GoogleService; path = PleadApp/GoogleService; sourceTree = "<group>"; };
 		F4E9700AAC37420DB4636BE3 /* CodePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		F4EE13AC1E65CBE600CA75F6 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = PleadApp/www; sourceTree = "<group>"; };
 		F6C81A8CA1DB4E388FF626A2 /* libSQLite.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libSQLite.a; sourceTree = "<group>"; };
@@ -512,7 +512,7 @@
 		13B07FAE1A68108700A75B9A /* PleadApp */ = {
 			isa = PBXGroup;
 			children = (
-				F413D9FC1E9A72FE0062100A /* GoogleService-Info.plist */,
+				F48C429E1EA4CDED008AAA89 /* GoogleService */,
 				F432C0191E96ABE700B7DECA /* PleadApp.entitlements */,
 				F4EE13AC1E65CBE600CA75F6 /* www */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -731,6 +731,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				0BE581C1F495C68F1F4F1574 /* [CP] Embed Pods Frameworks */,
 				1F1F843774FAC806C0765A71 /* [CP] Copy Pods Resources */,
+				F48C42981EA4CC6D008AAA89 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1154,9 +1155,9 @@
 				F41274D51DAB860A001C83BE /* metaserif_light_italic.otf in Resources */,
 				F41274D71DAB860A001C83BE /* metaserif.otf in Resources */,
 				2725A2C826A74F8EAB9F048A /* Foundation.ttf in Resources */,
+				F48C429F1EA4CDED008AAA89 /* GoogleService in Resources */,
 				25EF2630999849D6AF669CDC /* Ionicons.ttf in Resources */,
 				57BF0D050D6049E288530CC5 /* MaterialIcons.ttf in Resources */,
-				F413D9FD1E9A72FE0062100A /* GoogleService-Info.plist in Resources */,
 				1DA6E0003B6141F484EF1C3E /* Octicons.ttf in Resources */,
 				0607D5C56BFE4123B8FB3F10 /* Zocial.ttf in Resources */,
 				F41274D41DAB860A001C83BE /* metaserif_bold_italic.otf in Resources */,
@@ -1256,6 +1257,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		F48C42981EA4CC6D008AAA89 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" == \"Release\" ]; then\ncp -r \"${PROJECT_DIR}/PleadApp/GoogleService/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n\necho \"Production plist copied\"\n\nelif [ \"${CONFIGURATION}\" == \"Debug\" ]; then\n\ncp -r \"${PROJECT_DIR}/PleadApp/GoogleService/GoogleService-Info-Debug.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n\necho \"Development plist copied\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1396,7 +1410,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fr.smontlouiscalixte.pleadapp;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.smontlouiscalixte.pleadapp.debugthis;
 				PRODUCT_NAME = PleadApp;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1706,7 +1720,7 @@
 					"-lc++",
 				);
 				PODS_CONFIGURATION_BUILD_DIR = "$PODS_BUILD_DIR/Release$(EFFECTIVE_PLATFORM_NAME)";
-				PRODUCT_BUNDLE_IDENTIFIER = fr.smontlouiscalixte.pleadapp;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.smontlouiscalixte.pleadapp.stagingthis;
 				PRODUCT_NAME = PleadApp;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
