@@ -22,8 +22,6 @@ export let persistedStore = null // eslint-disable-line import/no-mutable-export
 
 EStyleSheet.build(globalVariables)
 
-const someAsyncCall = () => console.log('Async Call')
-
 @codePush
 class App extends Component {
   static propTypes = {
@@ -50,8 +48,9 @@ class App extends Component {
       console.log(token)
       // store fcm token in your server
     })
-    this.notificationListener = FCM.on(FCMEvent.Notification, async (notif) => {
-      // there are two parts of notif. notif.notification contains the notification payload, notif.data contains data payload
+    this.notificationListener = FCM.on(FCMEvent.Notification, (notif) => {
+      // there are two parts of notif. notif.notification
+      // contains the notification payload, notif.data contains data payload
       if (notif.local_notification) {
         // this is a local notification
         console.log('localnotification')
@@ -60,22 +59,28 @@ class App extends Component {
         // app is open/resumed because user clicked banner
         console.log('openedfromtray')
       }
-      await someAsyncCall()
 
       if (Platform.OS ==='ios') {
         // optional
-        // iOS requires developers to call completionHandler to end notification process. If you do not call it your background remote notifications could be throttled, to read more about it see the above documentation link.
-        // This library handles it for you automatically with default behavior (for remote notification, finish with NoData; for WillPresent, finish depend on "show_in_foreground"). However if you want to return different result, follow the following code to override
+        // iOS requires developers to call completionHandler to end notification process.
+        // If you do not call it your background remote notifications could be throttled,
+        // to read more about it see the above documentation link.
+
+        // This library handles it for you automatically with default behavior
+        // However if you want to return different result, follow the following code to override
         // notif._notificationType is available for iOS platfrom
         switch (notif._notificationType) {
           case NotificationType.Remote:
-            notif.finish(RemoteNotificationResult.NewData) // other types available: RemoteNotificationResult.NewData, RemoteNotificationResult.ResultFailed
+            notif.finish(RemoteNotificationResult.NewData)
+            // other types available: RemoteNotificationResult.NewData, 
+            // RemoteNotificationResult.ResultFailed
             break
           case NotificationType.NotificationResponse:
             notif.finish()
             break
           case NotificationType.WillPresent:
-            notif.finish(WillPresentNotificationResult.All) // other types available: WillPresentNotificationResult.None
+            notif.finish(WillPresentNotificationResult.All) 
+            // other types available: WillPresentNotificationResult.None
             break
           default:
             console.log('default')
