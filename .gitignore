@@ -43,6 +43,8 @@ android/keystores/debug.keystore
 
 env.js
 src/helpers/bible-darby.json
+src/helpers/bible-ostervald.json
+src/helpers/bible-lsg-1910.json
 venez-et-raisonnons-firebase-adminsdk-4y0e9-09548c1dfe.json
 *.db
 
