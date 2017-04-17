@@ -9,6 +9,7 @@ import {
   Alert,
   Linking,
   Platform,
+  Share,
 } from 'react-native'
 import { Router } from '@src/routes'
 import { persistedStore } from '@src/App'
@@ -63,6 +64,20 @@ const secondaryList = [
       : 'https://play.google.com/store/apps/details?id=com.pleadapp&hl=fr'
 
       Linking.openURL(url)
+    }
+  },
+  {
+    title: 'Partager l\'application',
+    icon: 'share',
+    onPress() {
+      const url = 'https://itunes.apple.com/us/app/venez-et-raisonnons/id1206099949?mt=8' // iOS only
+
+      Share.share({
+        message: (Platform.OS === 'ios') ? 'Venez et Raisonnons !' : 'Venez et Raisonnons ! https://play.google.com/store/apps/details?id=com.pleadapp&hl=fr',
+        url,
+      })
+      .then(result => console.log(result))
+      .catch(err => console.log(err))
     }
   },
   {
