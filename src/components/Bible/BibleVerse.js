@@ -1,26 +1,13 @@
 import React, { PropTypes, Component } from 'react'
-import {
-  View,
-  Text,
-  Platform,
-} from 'react-native'
+import { View, Platform } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { verseToStrong } from '@src/helpers'
+import { Text } from '@src/styled'
 
 const styles = EStyleSheet.create({
   container: {
     marginBottom: Platform.OS === 'ios' ? 15 : 10,
     flexDirection: 'row',
-  },
-  text: {
-    flex: 1,
-    lineHeight: Platform.OS === 'ios' ? 23 : 26,
-    fontSize: Platform.OS === 'ios' ? 16 :18,
-  },
-
-  verset: {
-    fontSize: 12,
-    color: '$color.tertiary',
   },
   versetWrapper: {
     marginTop: 3,
@@ -83,12 +70,12 @@ class BibleVerse extends Component {
             collapsable={false}
             onLayout={() => {}}
           >
-            <Text style={styles.verset}>{Verset}</Text>
+            <Text tertiary small>{Verset}</Text>
           </View>
         }
-        <Text style={styles.text}>
+        <Text flex>
           {this.state.element}
-          </Text>
+        </Text>
       </View>
     )
   }

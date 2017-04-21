@@ -2,13 +2,11 @@ import React, { PropTypes, Component } from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
-import {
-  Text,
-  View,
-  Image,
-} from 'react-native'
+import { View, Image } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import RNFetchBlob from 'react-native-fetch-blob'
+
+import { Title, Text } from '@src/styled'
 import { Link } from '@src/components'
 import { saveBase64Image } from '@src/redux/modules/topics'
 
@@ -35,16 +33,6 @@ const styles = EStyleSheet.create({
   },
   content: {
     flex: 1,
-  },
-  title: {
-    fontFamily: '$font.heading',
-    lineHeight: 30,
-    fontSize: 30,
-  },
-  count: {
-    fontFamily: '$font.title_italic',
-    color: '$color.darkGrey',
-    fontSize: 12,
   },
   badge: {
     borderRadius: 20,
@@ -131,8 +119,8 @@ export default class TopicItem extends Component {
             source={{ uri: `data:image/gif;base64,${base64Img}` }}
           />
           <View style={styles.content}>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.count}>{questionsCount} question{questionsCount > 1 ? 's' : ''}</Text>
+            <Title secondaryFont>{title}</Title>
+            <Text tertiaryFont small tertiary>{questionsCount} question{questionsCount > 1 ? 's' : ''}</Text>
           </View>
           {
             !!newQuestionCount &&

@@ -39,7 +39,10 @@
     "redux-persist-transform-immutable": "^3.2.0",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.4",
-    "showdown": "^1.6.4"
+    "showdown": "^1.6.4",
+    "styled-components": "^1.4.5",
+    "styled-props": "^0.2.0",
+    "styled-tools": "^0.1.4"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",

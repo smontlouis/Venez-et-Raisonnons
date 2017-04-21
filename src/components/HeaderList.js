@@ -1,21 +1,11 @@
 import React, { PropTypes } from 'react'
-import {
-  View,
-  Text,
-} from 'react-native'
+import { View } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
+import { Title, Text } from '@src/styled'
+
+
 const styles = EStyleSheet.create({
-  titleText: {
-    fontFamily: '$font.title',
-    fontSize: 30,
-    marginTop: 20,
-  },
-  subTitleText: {
-    fontFamily: '$font.title_italic',
-    color: '$color.darkGrey',
-    fontSize: 13,
-  },
   titleBorder: {
     marginTop: 20,
     marginBottom: 30,
@@ -27,10 +17,10 @@ const styles = EStyleSheet.create({
 
 const HeaderList = ({ title, subtitle }) => (
   <View>
-    <Text style={styles.titleText}>{title}</Text>
+    <Title marginTop={20}>{title}</Title>
     {
       subtitle &&
-      <Text style={styles.subTitleText}>{subtitle}</Text>
+      <Text tertiaryFont small tertiary>{subtitle}</Text>
     }
     <View style={styles.titleBorder} />
   </View>

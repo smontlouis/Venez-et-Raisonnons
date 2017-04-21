@@ -2,11 +2,10 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/Ionicons'
 import MIcon from 'react-native-vector-icons/MaterialIcons'
-import {
-  Text,
-  View,
-} from 'react-native'
+import { Text, View, } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
+
+import { Title } from '@src/styled'
 import { Link } from '@src/components'
 
 const styles = EStyleSheet.create({
@@ -25,11 +24,6 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     paddingRight: 20,
-  },
-  title: {
-    fontFamily: '$font.heading',
-    fontSize: 21,
-    lineHeight: 24,
   },
   number: {
     color: '$color.primary',
@@ -77,7 +71,7 @@ const QuestionItem = ({ number, id, title, hasBeenRead, containerStyle, isStudy,
           isStudy &&
           <MIcon name="description" size={20} style={styles.studyIcon} />
         }
-        <Text style={styles.title}>{title}</Text>
+        <Title medium secondaryFont>{title}</Title>
       </View>
       <View>
         {

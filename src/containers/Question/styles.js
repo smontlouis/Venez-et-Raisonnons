@@ -16,14 +16,6 @@ const styles = EStyleSheet.create({
   header: {
     padding: 35,
   },
-  title: {
-    fontFamily: '$font.title',
-    color: 'white',
-    fontSize: 27,
-    lineHeight: 38,
-    width: '80%',
-    marginTop: 5,
-  },
   subTitle: {
     fontFamily: '$font.heading',
     fontSize: 18,

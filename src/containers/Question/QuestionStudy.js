@@ -17,8 +17,9 @@ import {
   VerseModal,
   StylizedHTMLView
 } from '@src/components'
-import styles, { setDynamicFontSize } from './styles'
 import * as AppActions from '@src/redux/modules/app'
+import { Title } from '@src/styled'
+import styles, { setDynamicFontSize } from './styles'
 
 
 const getCurrentChildrenIds = (state, props) => props.question.get('children')
@@ -111,7 +112,7 @@ export default class QuestionStudy extends Component {
           header={(
             <View style={styles.header}>
               <Text style={styles.topic}>{ topic.get('title') } | Étude biblique</Text>
-              <Text style={[styles.title, setDynamicFontSize(question.get('title'))]}>{ question.get('title') }</Text>
+              <Title reverse style={setDynamicFontSize(question.get('title'))}>{ question.get('title') }</Title>
             </View>
           )}
           rightComponent={(

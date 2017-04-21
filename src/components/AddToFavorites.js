@@ -56,7 +56,7 @@ const AddToFavorites = ({ id, toggleFavorite, isActive, hasIconOnly }) => (
       {renderIcon(hasIconOnly, isActive)}
       {
         !hasIconOnly &&
-        <Text style={styles.text}>Ajouter aux favoris</Text>
+        <Text style={styles.text}>Favori</Text>
       }
     </View>
   </TouchableOpacity>

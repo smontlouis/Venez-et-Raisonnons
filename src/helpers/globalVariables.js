@@ -8,6 +8,8 @@ export default {
     text: 'Arial',
   },
   color: {
+    black: 'black',
+    white: 'white',
     grey: 'rgb(230,230,230)',
     darkGrey: 'rgba(0,0,0,0.5)',
     primary: '#C22839',

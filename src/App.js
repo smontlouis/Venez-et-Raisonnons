@@ -3,19 +3,15 @@ import { Provider } from 'react-redux'
 import { persistStore } from 'redux-persist-immutable'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import codePush from 'react-native-code-push'
-import {
-  AsyncStorage,
-  Platform,
-} from 'react-native'
+import { AsyncStorage, Platform } from 'react-native'
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm'
+import { ThemeProvider } from 'styled-components'
 
 import routes from './routes'
 import configureStore from './redux/store'
+import theme from './themes/default'
 import { globalVariables } from './helpers'
-
-import {
-  Loading
-} from './components'
+import { Loading } from './components'
 
 export const store = configureStore()
 export let persistedStore = null // eslint-disable-line import/no-mutable-exports
@@ -131,7 +127,9 @@ class App extends Component {
     }
     return (
       <Provider store={store}>
-        { routes(store) }
+        <ThemeProvider theme={theme}>
+          { routes(store) }
+        </ThemeProvider>
       </Provider>
     )
   }

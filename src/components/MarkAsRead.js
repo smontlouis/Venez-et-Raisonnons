@@ -56,7 +56,7 @@ const MarkAsRead = ({ id, toggleMarkAsRead, isActive, hasIconOnly }) => (
       {renderIcon(hasIconOnly, isActive)}
       {
         !hasIconOnly &&
-        <Text style={styles.text}>Marquer comme lu</Text>
+        <Text style={styles.text}>Marquer comme Lu</Text>
       }
     </View>
   </TouchableOpacity>

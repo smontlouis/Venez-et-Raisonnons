@@ -16,10 +16,8 @@ import {
   StylizedHTMLView,
   PrevNext,
 } from '@src/components'
-import {
-  loadBible,
-  range,
-} from '@src/helpers'
+import { loadBible, range } from '@src/helpers'
+import { Title } from '@src/styled'
 import styles, { setDynamicFontSize } from './styles'
 
 const Books = require('../../helpers/books.json')
@@ -121,7 +119,7 @@ export default class QuestionSimple extends Component {
           header={(
             <View style={styles.header}>
               <Text style={styles.topic}>{ topic.get('title') }</Text>
-              <Text style={[styles.title, setDynamicFontSize(question.get('title'))]}>{ question.get('title') }</Text>
+              <Title reverse style={setDynamicFontSize(question.get('title'))}>{ question.get('title') }</Title>
             </View>
           )}
           rightComponent={(
