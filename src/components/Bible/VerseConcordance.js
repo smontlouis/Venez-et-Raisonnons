@@ -24,6 +24,7 @@ const styles = EStyleSheet.create({
     flex: 1,
     lineHeight: 16,
     fontSize: 14,
+    color: '$color.black',
   },
   versetWrapper: {
     marginTop: 3,

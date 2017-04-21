@@ -29,6 +29,7 @@ const styles = EStyleSheet.create({
   mot: {
     fontFamily: '$font.title',
     fontSize: 22,
+    color: '$color.black',
   },
   type: {
     fontFamily: '$font.title_italic',
@@ -49,10 +50,12 @@ const styles = EStyleSheet.create({
   },
   line: {
     fontSize: 16,
+    color: '$color.black',
   },
   word: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: '$color.black',
   },
   titleBorder: {
     marginTop: 20,
