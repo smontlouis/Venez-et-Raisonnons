@@ -98,7 +98,7 @@ export default class Concordance extends Component {
 
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar barStyle="light-content" />
         <Header
           title={`Concordance ${reference}`}
         />

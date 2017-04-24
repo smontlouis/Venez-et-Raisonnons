@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { verseToStrong } from '@src/helpers'
+import { verseToStrong, globalVariables } from '@src/helpers'
 
 const styles = EStyleSheet.create({
   container: {
@@ -22,9 +22,8 @@ const styles = EStyleSheet.create({
   },
   text: {
     flex: 1,
-    lineHeight: 16,
-    fontSize: 14,
     color: '$color.black',
+    ...globalVariables.textStyle,
   },
   versetWrapper: {
     marginTop: 3,
@@ -72,7 +71,7 @@ class VerseConcordance extends Component {
   render() {
     const { book, verse: { Chapitre, Verset }, navigator } = this.props
     return (
-      <TouchableOpacity style={styles.container} onPress={() => navigator.push('bibleLight', { book, chapter: Chapitre, verse: Verset })}>
+      <TouchableOpacity style={styles.container} onPress={() => navigator.push('bible', { book, chapter: Chapitre, verse: Verset })}>
         <Text style={styles.title}>{book.Nom} {Chapitre}:{Verset}</Text>
         <Text style={styles.text}>
           {this.state.element}

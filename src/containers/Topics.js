@@ -1,10 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import {
-  View,
-  Text,
-} from 'react-native'
+import { View, Text, StatusBar } from 'react-native'
 import {
   TopicsList,
   ScrollableHeader,
@@ -57,11 +54,11 @@ export default class Topics extends Component {
 
   render() {
     const { topics, newQuestionsCount } = this.props
-    
     const renderBadgeText = newQuestionsCount > 1 ? 'nouvelles questions' : 'nouvelle question'
 
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
         <ScrollableHeader
           title="Venez Et Raisonnons"
           header={(

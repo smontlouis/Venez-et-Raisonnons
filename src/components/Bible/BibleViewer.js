@@ -1,18 +1,11 @@
 import React, { PropTypes, Component } from 'react'
-import {
-  Animated,
-  ScrollView,
-  View,
-} from 'react-native'
+import { Animated, ScrollView, View } from 'react-native'
+import { Button } from 'react-native-elements'
 import EStyleSheet from 'react-native-extended-stylesheet'
+
 import getDB from '@src/helpers/database'
-import {
-  BibleVerse,
-  BibleFooter,
-} from '@src/components'
-import {
-  loadBible,
-} from '@src/helpers'
+import { BibleVerse, BibleFooter } from '@src/components'
+import { loadBible } from '@src/helpers'
 
 const styles = EStyleSheet.create({
   container: {
@@ -23,14 +16,27 @@ const styles = EStyleSheet.create({
     paddingLeft: 0,
     paddingBottom: 40,
   },
+  button: {
+    marginTop: 10,
+    marginBottom: 30,
+    marginLeft: 20,
+    backgroundColor: 'white',
+    borderColor: '$color.primary',
+    borderRadius: 5,
+    borderWidth: 2,
+  },
+  buttonText: {
+    color: '$color.primary',
+  }
 })
 
 
 export default class BibleViewer extends Component {
   static propTypes = {
+    arrayVerses: PropTypes.object,
     book: PropTypes.object.isRequired,
     chapter: PropTypes.number.isRequired,
-    noArrows: PropTypes.bool,
+    navigator: PropTypes.object.isRequired,
     verse: PropTypes.number.isRequired,
     version: PropTypes.string.isRequired,
   }
@@ -40,11 +46,12 @@ export default class BibleViewer extends Component {
 
     this.getPosition = ::this.getPosition
     this.scrollToVerse = ::this.scrollToVerse
+    this.renderVerses = ::this.renderVerses
   }
 
   state = {
     isLoading: false,
-    scrollY: new Animated.Value(0),
+    verses: [],
   }
 
   componentWillMount() {
@@ -71,56 +78,78 @@ export default class BibleViewer extends Component {
     }
   }
 
+
   getPosition(numVerset, measures) {
     this.versesMeasure[`verse${numVerset}`] = measures
     // We need to wait 'til every Bible verse component get calculated
-    if (Object.keys(this.versesMeasure).length === this.verses.length) {
+    if (Object.keys(this.versesMeasure).length === this.state.verses.length) {
       setTimeout(() => this.scrollToVerse(), 0)
     }
   }
 
   scrollToVerse() {
     const { verse } = this.props
-    const scrollHeight = (this.contentHeight - this.scrollViewHeight) + 20
-    const y = (verse === 1) ? 0 : this.versesMeasure[`verse${verse}`].py - 75
+    if (this.versesMeasure[`verse${verse}`] && this.scrollView) {
+      const scrollHeight = (this.contentHeight - this.scrollViewHeight) + 20
+      const y = (verse === 1) ? 0 : this.versesMeasure[`verse${verse}`].py - 75
 
-    this.scrollView.scrollTo({
-      x: 0,
-      y: (y >= scrollHeight) ? scrollHeight : y,
-      animated: false
-    })
-  }
-
-  loadVerses() {
-    const { book, chapter, version } = this.props
-
-    this.verses = []
-    this.versesMeasure = {}
-
-    if (version === 'STRONG') {
-      const part = book.Numero > 39 ? 'LSGSNT2' : 'LSGSAT2'
-      this.setState({ isLoading: true })
-      this.DB.executeSql(`SELECT * FROM ${part} WHERE LIVRE = ${book.Numero} AND CHAPITRE  = ${chapter}`)
-        .then(([results]) => {
-          const len = results.rows.length
-          for (let i = 0; i < len; i += 1) { this.verses.push(results.rows.item(i)) }
-          this.setState({ isLoading: false })
-        })
-    } else {
-      this.setState({ isLoading: true })
-      loadBible(version)
-      .then((res) => {
-        const versesByChapter = res[book.Numero][chapter]
-        this.verses = Object.keys(versesByChapter)
-          .map(v => ({ Verset: v, Texte: versesByChapter[v] }))
-        setTimeout(() => this.setState({ isLoading: false }), 150)
+      this.scrollView.scrollTo({
+        x: 0,
+        y: (y >= scrollHeight) ? scrollHeight : y,
+        animated: false
       })
     }
   }
 
+  loadVerses() {
+    const { book, chapter, version } = this.props
+    let tempVerses
+    this.versesMeasure = {}
+
+    if (version === 'STRONG') {
+      const part = book.Numero > 39 ? 'LSGSNT2' : 'LSGSAT2'
+      this.setState({ isLoading: true, verses: [] })
+      this.DB.executeSql(`SELECT * FROM ${part} WHERE LIVRE = ${book.Numero} AND CHAPITRE  = ${chapter}`)
+        .then(([results]) => {
+          const len = results.rows.length
+          tempVerses = []
+          for (let i = 0; i < len; i += 1) { tempVerses.push(results.rows.item(i)) }
+          this.setState({ isLoading: false, verses: tempVerses })
+        })
+    } else {
+      this.setState({ isLoading: true, verses: [] })
+      loadBible(version)
+      .then((res) => {
+        const versesByChapter = res[book.Numero][chapter]
+        tempVerses = []
+        tempVerses = Object.keys(versesByChapter)
+          .map(v => ({ Verset: v, Texte: versesByChapter[v] }))
+        setTimeout(() => this.setState({ isLoading: false, verses: tempVerses }), 0)
+      })
+    }
+  }
+
+  renderVerses() {
+    const { version, arrayVerses, book, chapter } = this.props
+    let array = this.state.verses
+
+    if (arrayVerses && book.Numero === arrayVerses.book.Numero && chapter === arrayVerses.chapter) {
+      array = array.filter(v => arrayVerses.verses.find(aV => aV === Number(v.Verset)))
+    }
+
+    return array.map(verse =>
+      <BibleVerse
+        version={version}
+        verse={verse}
+        key={`${verse.Verset}${verse.Livre}${verse.Chapitre}`}
+        getPosition={this.getPosition}
+      />
+    )
+  }
+
   render() {
     const { isLoading } = this.state
-    const { book, chapter, version, noArrows } = this.props
+    const { book, chapter, arrayVerses, navigator } = this.props
 
     return (
       <View style={styles.container}>
@@ -131,24 +160,23 @@ export default class BibleViewer extends Component {
           scrollEventThrottle={16}
           contentContainerStyle={styles.scrollView}
         >
+          {this.renderVerses()}
           {
-            this.verses.map((verse, i) =>
-              <BibleVerse
-                version={version}
-                verse={verse}
-                key={i}
-                getPosition={this.getPosition}
-              />
-            )
+            !!arrayVerses &&
+            <Button
+              title="Lire le chapitre entier"
+              buttonStyle={styles.button}
+              textStyle={styles.buttonText}
+              onPress={() => navigator.replace('bible', { hasBack: true, verse: arrayVerses.verses[0] })}
+            />
           }
         </ScrollView>
         {
-          !noArrows &&
+          !arrayVerses &&
           <BibleFooter
             disabled={isLoading}
             book={book}
             chapter={chapter}
-            scrollY={this.state.scrollY}
           />
         }
       </View>

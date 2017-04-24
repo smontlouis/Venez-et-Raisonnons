@@ -14,7 +14,10 @@ const styles = EStyleSheet.create({
     paddingBottom: 25,
   },
   header: {
-    padding: 35,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 35,
+    paddingBottom: 35,
   },
   subTitle: {
     fontFamily: '$font.heading',
@@ -45,7 +48,7 @@ export default styles
 export function setDynamicFontSize(title) {
   const longTitle = title.length > 100
   return {
-    fontSize: longTitle ? 22 : 27,
-    lineHeight: longTitle ? 26 : 36,
+    fontSize: longTitle ? 26 : 34,
+    lineHeight: longTitle ? 28 : 36,
   }
 }

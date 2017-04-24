@@ -42,6 +42,7 @@ export default class Question extends Component {
     markAsRead: PropTypes.func.isRequired,
     setNotNewQuestion: PropTypes.func.isRequired,
     isNew: PropTypes.bool,
+    navigator: PropTypes.object,
   }
 
   componentDidMount() {
@@ -50,7 +51,7 @@ export default class Question extends Component {
   }
 
   render() {
-    const { question, topic, markAsRead, children, fromStudy } = this.props
+    const { question, topic, markAsRead, children, fromStudy, navigator } = this.props
 
     if (children) {
       return (
@@ -62,7 +63,7 @@ export default class Question extends Component {
 
     return (
       <QuestionSimple
-        {...{ question, topic, markAsRead, fromStudy }}
+        {...{ question, topic, markAsRead, fromStudy, navigator }}
       />
     )
   }

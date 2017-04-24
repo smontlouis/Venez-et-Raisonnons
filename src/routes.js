@@ -20,7 +20,6 @@ import {
   Add,
   About,
   Bible,
-  BibleLight,
   BibleSelector,
   VersionSelector,
   StrongModal,
@@ -44,7 +43,6 @@ export const Router = createRouter(() => ({
   about: () => About,
 
   bible: () => Bible,
-  bibleLight: () => BibleLight,
   bibleSelector: () => BibleSelector,
   versionSelector: () => VersionSelector,
   strongModal: () => StrongModal,

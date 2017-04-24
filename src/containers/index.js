@@ -17,7 +17,4 @@ export BibleSelector from './BibleSelector'
 export VersionSelector from './VersionSelector'
 export StrongModal from './StrongModal'
 export Modal from './Modal'
-export BibleLight from './BibleLight'
 export Concordance from './Concordance'
-
-// export Login from './Login'

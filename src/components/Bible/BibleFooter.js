@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import {
-  Animated,
   TouchableOpacity,
   View,
 } from 'react-native'
@@ -37,13 +36,8 @@ const styles = EStyleSheet.create({
   }
 })
 
-const BibleFooter = ({ book, chapter, scrollY, goToNextChapter, goToPrevChapter, disabled }) => (
-  <Animated.View
-    style={[
-      styles.container,
-      { transform: [{ translateY: scrollY }] },
-    ]}
-  >
+const BibleFooter = ({ book, chapter, goToNextChapter, goToPrevChapter, disabled }) => (
+  <View style={styles.container}>
     { !(book.Numero === 1 && chapter === 1) &&
       <TouchableOpacity
         disabled={disabled}
@@ -71,14 +65,13 @@ const BibleFooter = ({ book, chapter, scrollY, goToNextChapter, goToPrevChapter,
         />
       </TouchableOpacity>
     }
-  </Animated.View>
+  </View>
 )
 
 
 BibleFooter.propTypes = {
   book: PropTypes.object.isRequired,
   chapter: PropTypes.number.isRequired,
-  scrollY: PropTypes.object.isRequired,
   goToPrevChapter: PropTypes.func.isRequired,
   goToNextChapter: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,

@@ -48,11 +48,6 @@ export default class QuestionStudy extends Component {
     removeAsRead: PropTypes.func.isRequired,
   }
 
-  constructor(props) {
-    super(props)
-    this.onLinkPress = ::this.onLinkPress
-  }
-
   state = {
     verseIsLoading: false,
     verse: {
@@ -67,22 +62,6 @@ export default class QuestionStudy extends Component {
 
   componentWillReceiveProps() {
     this.markOrRemoveReadByCheckingChildren()
-  }
-
-  onLinkPress(url, title) {
-    this.modal.open()
-    this.setState({ verseIsLoading: true })
-    fetch(`https://www.bible.com/fr/bible/93/${url}.json`)
-      .then(res => res.json())
-      .then((json) => {
-        this.setState({
-          verseIsLoading: false,
-          verse: {
-            title,
-            text: json.reader_html
-          },
-        })
-      })
   }
 
   markOrRemoveReadByCheckingChildren() {
@@ -112,7 +91,7 @@ export default class QuestionStudy extends Component {
           header={(
             <View style={styles.header}>
               <Text style={styles.topic}>{ topic.get('title') } | Étude biblique</Text>
-              <Title reverse style={setDynamicFontSize(question.get('title'))}>{ question.get('title') }</Title>
+              <Title reverse secondaryFont style={setDynamicFontSize(question.get('title'))}>{ question.get('title') }</Title>
             </View>
           )}
           rightComponent={(
@@ -129,7 +108,6 @@ export default class QuestionStudy extends Component {
               <Text style={styles.subTitle}>Introduction</Text>
               <StylizedHTMLView
                 value={question.get('description')}
-                onLinkPress={this.onLinkPress}
               />
             </View>
             <QuestionsList

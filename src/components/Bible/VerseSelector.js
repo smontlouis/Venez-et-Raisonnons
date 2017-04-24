@@ -66,7 +66,7 @@ export default class VerseSelector extends Component {
 
   onValidate(verse) {
     this.props.setTempSelectedVerse(verse)
-    this.props.validateSelected(verse)
+    this.props.validateSelected()
     setTimeout(() => this.props.navigator.pop(), 0)
   }
 

@@ -2,9 +2,7 @@ import React, { PropTypes } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
-import {
-  View,
-} from 'react-native'
+import { View, StatusBar } from 'react-native'
 import {
   Header,
   QuestionsList,
@@ -45,6 +43,7 @@ const IfQuestions = (questions) => {
 
 const Favorites = ({ questions }) => (
   <View style={styles.container}>
+    <StatusBar barStyle="light-content" />
     <Header
       title="Favoris"
       hasBackButton={false}

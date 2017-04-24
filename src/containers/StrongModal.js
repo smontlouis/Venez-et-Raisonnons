@@ -9,7 +9,7 @@ import {
   ScrollView,
 } from 'react-native'
 import getDB from '@src/helpers/database'
-import { capitalize } from '@src/helpers'
+import { capitalize, globalVariables } from '@src/helpers'
 import { itemsPerPage } from '@src/helpers/globalVariables'
 import {
   Header,
@@ -49,8 +49,7 @@ const styles = EStyleSheet.create({
     marginBottom: 5,
   },
   line: {
-    fontSize: 16,
-    color: '$color.black',
+    ...globalVariables.textStyle,
   },
   word: {
     fontSize: 18,
@@ -100,6 +99,7 @@ export default class StrongModal extends Component {
   componentWillMount() {
     this.DB = getDB()
     this.loadStrong()
+    this.concordancesTexts = []
     setTimeout(() => this.loadConcordance(), 500)
   }
 
@@ -138,12 +138,12 @@ export default class StrongModal extends Component {
       })
   }
 
-  linkToStrong(reference) {
+  linkToStrong(url, reference) {
     const {
       navigator,
       route: { params: { book } },
     } = this.props
-    navigator.push('strongModal', { reference: reference.replace(/\D/g, ''), book })
+    navigator.push('strongModal', { reference, book })
   }
 
   render() {
@@ -237,7 +237,11 @@ export default class StrongModal extends Component {
           }
           <View style={styles.item}>
             <Text style={styles.subtitle}>
-              Concordance ({itemsPerPage} premiers résultats)
+              {
+                !(this.concordancesTexts.length < itemsPerPage) ?
+                  `Concordance - ${itemsPerPage} premiers résultats`
+                : `Concordance - ${this.concordancesTexts.length} résultats`
+              }
             </Text>
             {
               !isConcordanceLoading &&

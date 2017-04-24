@@ -43,9 +43,11 @@ class BibleVerse extends Component {
 
   getVerseMeasure() {
     const { verse, getPosition } = this.props
-    this.bibleVerse.measure((x, y, width, height, px, py) => {
-      getPosition(verse.Verset, { x, y, width, height, px, py })
-    })
+    if (this.bibleVerse) {
+      this.bibleVerse.measure((x, y, width, height, px, py) => {
+        getPosition(verse.Verset, { x, y, width, height, px, py })
+      })
+    }
   }
 
   formatVerse(verse, version) {

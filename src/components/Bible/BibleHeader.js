@@ -9,9 +9,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import bibleStrongText from '@src/markdown/bibleStrong'
-import {
-  Link,
-} from '@src/components'
+import { Link, Back } from '@src/components'
 
 const styles = EStyleSheet.create({
   container: {
@@ -40,11 +38,21 @@ const styles = EStyleSheet.create({
 type Props = {
   book: object,
   chapter: number,
+  hasBack: bool,
   version: string,
 }
 
-export default ({ book, chapter, version }: Props) =>
+export default ({ book, chapter, version, hasBack }: Props) =>
   <View style={styles.container}>
+    {
+      hasBack &&
+      <Back
+        style={styles.back}
+        underlayColor="transparent"
+      >
+        <Icon name="chevron-left" size={28} color="white" />
+      </Back>
+    }
     <Link route={'bibleSelector'} style={styles.titleContainer}>
       <Text style={styles.title}>{book.Nom} {chapter}</Text>
       <Icon

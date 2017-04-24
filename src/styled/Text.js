@@ -3,7 +3,7 @@ import { styled, bind, prop, ifProp, globals } from '@styled-components'
 const s = bind({
   size: {
     small: 12,
-    medium: 16,
+    medium: 18,
   },
   lineHeight: {
     small: 16,

@@ -1,4 +1,4 @@
-import { Map } from 'immutable'
+import { Map, fromJS } from 'immutable'
 
 import books from '@src/helpers/livres'
 
@@ -6,6 +6,7 @@ const SET_TEMP_SELECTED_BOOK = 'bible/SET_TEMP_SELECTED_BOOK'
 const SET_TEMP_SELECTED_CHAPTER = 'bible/SET_TEMP_SELECTED_CHAPTER'
 const SET_TEMP_SELECTED_VERSE = 'bible/SET_TEMP_SELECTED_VERSE'
 const VALIDATE_SELECTED = 'bible/VALIDATE_SELECTED'
+const SET_ALL_AND_VALIDATE_SELECTED = 'bible/SET_ALL_AND_VALIDATE_SELECTED'
 const RESET_TEMP_SELECTED = 'bible/RESET_TEMP_SELECTED'
 const SET_VERSION = 'bible/SET_VERSION'
 
@@ -46,6 +47,13 @@ export function setTempSelectedVerse(verse) {
 export function validateSelected() {
   return {
     type: VALIDATE_SELECTED,
+  }
+}
+
+export function setAllAndValidateSelected(selected) {
+  return {
+    type: SET_ALL_AND_VALIDATE_SELECTED,
+    selected
   }
 }
 
@@ -121,6 +129,18 @@ export default function BibleReducer(state = initialState, action = {}) {
         .update('temp', t => t.merge({
           selectedVerse: action.verse,
         }))
+    }
+    case SET_ALL_AND_VALIDATE_SELECTED: {
+      return state
+        .update('temp', t => t.merge({
+          selectedBook: fromJS(action.selected.book) || state.get('temp').get('selectedBook'),
+          selectedChapter: action.selected.chapter || state.get('temp').get('selectedChapter'),
+          selectedVerse: action.selected.verse || state.get('temp').get('selectedVerse'),
+        }))
+        .set('selectedVersion', action.selected.version || state.get('selectedVersion'))
+        .set('selectedBook', fromJS(action.selected.book) || state.get('temp').get('selectedBook'))
+        .set('selectedChapter', action.selected.chapter || state.get('temp').get('selectedChapter'))
+        .set('selectedVerse', action.selected.verse || state.get('temp').get('selectedVerse'))
     }
     case VALIDATE_SELECTED: {
       return state

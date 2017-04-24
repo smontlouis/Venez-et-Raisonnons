@@ -19,6 +19,7 @@ import {
 import { loadBible, range } from '@src/helpers'
 import { Title } from '@src/styled'
 import styles, { setDynamicFontSize } from './styles'
+import Livres from '../../helpers/livres'
 
 const Books = require('../../helpers/books.json')
 
@@ -28,6 +29,7 @@ export default class QuestionSimple extends Component {
     question: PropTypes.object.isRequired,
     topic: PropTypes.object.isRequired,
     markAsRead: PropTypes.func.isRequired,
+    navigator: PropTypes.object.isRequired,
   }
 
   constructor(props) {
@@ -43,40 +45,24 @@ export default class QuestionSimple extends Component {
     }
   }
 
-  onLinkPress(url, title) {
-    this.modal.open()
-    this.setState({ verseIsLoading: true })
-    loadBible('Darby')
-      .then((res) => {
-        const { book, chapter, verses } = this.parseUrl(url)
-        const bookIndex = Object.keys(Books).find(key => (
-          Books[key][0] === book
-                  || Books[key][1] === book
-                  || Books[key][2] === book
-        ))
-        const text = verses.map(v => ({
-          verse: v,
-          text: res[bookIndex][chapter][v]
-        }))
-
-        this.setState({
-          verseIsLoading: false,
-          verse: {
-            title,
-            text
-          },
-        })
-      })
-      .catch((e) => {
-        console.log(e)
-        this.setState({
-          verseIsLoading: false,
-          verse: {
-            title: 'Erreur',
-            text: 'Une erreur est survenue. Veuillez contacter l\'administrateur',
-          },
-        })
-      })
+  onLinkPress(url) {
+    const { navigator } = this.props
+    const { book, chapter, verses } = this.parseUrl(url)
+    const bookIndex = Object.keys(Books).find(key => (
+      Books[key][0] === book
+      || Books[key][1] === book
+      || Books[key][2] === book
+    ))
+    const bookObject = Livres[bookIndex - 1]
+    navigator.push('bible', {
+      book: bookObject,
+      chapter: Number(chapter),
+      arrayVerses: {
+        verses,
+        book: bookObject,
+        chapter: Number(chapter),
+      },
+    })
   }
 
   /*
@@ -119,7 +105,7 @@ export default class QuestionSimple extends Component {
           header={(
             <View style={styles.header}>
               <Text style={styles.topic}>{ topic.get('title') }</Text>
-              <Title reverse style={setDynamicFontSize(question.get('title'))}>{ question.get('title') }</Title>
+              <Title reverse secondaryFont style={setDynamicFontSize(question.get('title'))}>{ question.get('title') }</Title>
             </View>
           )}
           rightComponent={(

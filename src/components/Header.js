@@ -1,11 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import {
-  View,
-  Text,
-  ActivityIndicator,
-} from 'react-native'
+import { View, Text, ActivityIndicator } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { Back } from '@src/components'
 import { combineStyles } from '@src/helpers'

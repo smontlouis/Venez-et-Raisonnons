@@ -1,6 +1,6 @@
 import React from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { HTMLView } from '@src/helpers'
+import { HTMLView, globalVariables } from '@src/helpers'
 
 const styles = EStyleSheet.create({
   h1: {
@@ -25,15 +25,13 @@ const styles = EStyleSheet.create({
     color: '$color.black',
   },
   p: {
-    lineHeight: 27,
-    fontSize: 16,
     color: '$color.black',
+    ...globalVariables.textStyle,
   },
   em: {
-    lineHeight: 27,
-    fontSize: 16,
-    fontStyle: 'italic',
-    color: '$color.primaryLighten'
+    // fontStyle: 'italic',
+    color: '$color.primaryLighten',
+    ...globalVariables.textStyle,
   },
   a: {
     // fontWeight: 'bold',
@@ -41,14 +39,12 @@ const styles = EStyleSheet.create({
     borderStyle: 'solid',
     borderWidth: 2,
     borderColor: '$color.primary',
-    lineHeight: 27,
-    fontSize: 16,
+    ...globalVariables.textStyle,
   },
   strong: {
-    lineHeight: 27,
-    fontSize: 16,
     fontWeight: 'bold',
     color: '$color.black',
+    ...globalVariables.textStyle,
   },
   li: {
     lineHeight: 18,

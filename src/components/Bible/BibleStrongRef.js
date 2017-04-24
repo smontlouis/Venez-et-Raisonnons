@@ -8,6 +8,8 @@ import { withNavigation } from '@expo/ex-navigation'
 const styles = EStyleSheet.create({
   text: {
     color: '$color.primary',
+    fontFamily: '$font.text_alternative',
+    fontSize: 14,
   },
   textForConcordance: {
     color: '$color.primary',

@@ -5,7 +5,8 @@ export default {
     title: (Platform.OS === 'ios') ? 'MetaSerifOT-Bold' : 'metaserif',
     title_italic: (Platform.OS === 'ios') ? 'MetaSerifOT-BookIta' : 'metaserif_light_italic',
     heading: (Platform.OS === 'ios') ? 'Alternate Gothic No3 D' : 'alternategothic',
-    text: 'Arial',
+    text: (Platform.OS === 'ios') ? 'Iowan Old Style' : 'serif',
+    text_alternative: 'Arial',
   },
   color: {
     black: 'black',
@@ -23,6 +24,11 @@ export default {
     height: (Platform.OS === 'ios') ? 64 : 73,
     icon: (Platform.OS === 'ios') ? 5 : 10,
   },
+  textStyle: {
+    lineHeight: 27,
+    fontSize: 18,
+    fontFamily: '$font.text'
+  }
 }
 
 export const itemsPerPage = 20
