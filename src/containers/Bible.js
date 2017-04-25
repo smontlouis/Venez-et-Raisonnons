@@ -37,23 +37,32 @@ type BibleProps = {
       book: state.getIn(['bible', 'selectedBook']).toJS(),
       chapter: state.getIn(['bible', 'selectedChapter']),
       verse: state.getIn(['bible', 'selectedVerse']),
-      version: state.getIn(['bible', 'selectedVersion'])
+      version: state.getIn(['bible', 'selectedVersion']),
+      isLoading: state.getIn(['bible', 'isLoading']),
     },
   }),
   BibleActions
 )
 export default class Bible extends Component {
 
-  componentWillMount() {
+  state = {
+    isLoading: true
+  }
+
+  componentDidMount() {
     const { book, chapter, verse, version } = this.props
     if (book || chapter || verse) {
       this.props.setAllAndValidateSelected({ book, chapter, verse, version })
+      .then(() => this.setState({ isLoading: false }))
+    } else {
+      this.setState({ isLoading: false })
     }
   }
 
   props: BibleProps
 
   render() {
+    const { isLoading } = this.state
     const { arrayVerses, app, hasBack, navigator } = this.props
     return (
       <View style={styles.container}>
@@ -64,14 +73,17 @@ export default class Bible extends Component {
           chapter={app.chapter}
           version={app.version}
         />
-        <BibleViewer
-          arrayVerses={arrayVerses}
-          book={app.book}
-          chapter={app.chapter}
-          verse={app.verse}
-          version={app.version}
-          navigator={navigator}
-        />
+        {
+          !isLoading &&
+          <BibleViewer
+            arrayVerses={arrayVerses}
+            book={app.book}
+            chapter={app.chapter}
+            verse={app.verse}
+            version={app.version}
+            navigator={navigator}
+          />
+        }
       </View>
     )
   }

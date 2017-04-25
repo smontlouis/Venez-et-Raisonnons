@@ -17,7 +17,7 @@ const styles = EStyleSheet.create({
 const Loading = () => (
   <View style={styles.container}>
     <ActivityIndicator />
-    <Text>Un petit instant svp...</Text>
+    {/* <Text>Un petit instant svp...</Text> */}
   </View>
 )
 

@@ -20,7 +20,7 @@ const initialState = Map({
     selectedBook: Map({ Numero: 1, Nom: 'Genèse', Chapitres: 50 }),
     selectedChapter: 1,
     selectedVerse: 1,
-  })
+  }),
 })
 
 export function setTempSelectedBook(book) {
@@ -51,10 +51,13 @@ export function validateSelected() {
 }
 
 export function setAllAndValidateSelected(selected) {
-  return {
-    type: SET_ALL_AND_VALIDATE_SELECTED,
-    selected
-  }
+  return dispatch => new Promise((resolve) => {
+    dispatch({
+      type: SET_ALL_AND_VALIDATE_SELECTED,
+      selected
+    })
+    resolve()
+  })
 }
 
 export function resetTempSelected() {

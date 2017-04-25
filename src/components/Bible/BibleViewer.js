@@ -1,10 +1,10 @@
 import React, { PropTypes, Component } from 'react'
-import { Animated, ScrollView, View } from 'react-native'
+import { ScrollView, View } from 'react-native'
 import { Button } from 'react-native-elements'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
 import getDB from '@src/helpers/database'
-import { BibleVerse, BibleFooter } from '@src/components'
+import { BibleVerse, BibleFooter, Loading } from '@src/components'
 import { loadBible } from '@src/helpers'
 
 const styles = EStyleSheet.create({
@@ -50,16 +50,16 @@ export default class BibleViewer extends Component {
   }
 
   state = {
-    isLoading: false,
+    isLoading: true,
     verses: [],
   }
 
   componentWillMount() {
     this.DB = getDB()
-    this.loadVerses()
+    setTimeout(() => this.loadVerses(), 500)
   }
 
-  componentDidUpdate(oldProps) {
+  componentWillReceiveProps(oldProps) {
     if (
       (this.props.chapter !== oldProps.chapter)
       || (this.props.book.Numero !== oldProps.book.Numero)
@@ -108,7 +108,7 @@ export default class BibleViewer extends Component {
 
     if (version === 'STRONG') {
       const part = book.Numero > 39 ? 'LSGSNT2' : 'LSGSAT2'
-      this.setState({ isLoading: true, verses: [] })
+      this.setState({ isLoading: true })
       this.DB.executeSql(`SELECT * FROM ${part} WHERE LIVRE = ${book.Numero} AND CHAPITRE  = ${chapter}`)
         .then(([results]) => {
           const len = results.rows.length
@@ -117,14 +117,14 @@ export default class BibleViewer extends Component {
           this.setState({ isLoading: false, verses: tempVerses })
         })
     } else {
-      this.setState({ isLoading: true, verses: [] })
+      this.setState({ isLoading: true })
       loadBible(version)
       .then((res) => {
         const versesByChapter = res[book.Numero][chapter]
         tempVerses = []
         tempVerses = Object.keys(versesByChapter)
           .map(v => ({ Verset: v, Texte: versesByChapter[v] }))
-        setTimeout(() => this.setState({ isLoading: false, verses: tempVerses }), 0)
+        this.setState({ isLoading: false, verses: tempVerses })
       })
     }
   }
@@ -150,6 +150,10 @@ export default class BibleViewer extends Component {
   render() {
     const { isLoading } = this.state
     const { book, chapter, arrayVerses, navigator } = this.props
+
+    if (isLoading) {
+      return (<Loading />)
+    }
 
     return (
       <View style={styles.container}>
