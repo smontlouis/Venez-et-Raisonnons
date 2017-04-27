@@ -24,7 +24,7 @@ const styles = EStyleSheet.create({
 
 type Props = {
   version: string,
-  navigator: object,
+  navigation: object,
   setVersion: func,
 }
 
@@ -47,19 +47,19 @@ const versions = fromJS({
   },
 })
 
-const setAndClose = (setVersion, navigator, vers) => {
+const setAndClose = (setVersion, navigation, vers) => {
   setVersion(vers)
-  navigator.pop()
+  navigation.back()
 }
 
-const VersionSelector = ({ version, setVersion, navigator }: Props) => (
+const VersionSelector = ({ version, setVersion, navigation }: Props) => (
   <View style={styles.container}>
     <Header title="Versions" />
     <List
       listItems={versions}
       renderRow={v =>
         <VersionSelectorItem
-          onChange={vers => setAndClose(setVersion, navigator, vers)}
+          onChange={vers => setAndClose(setVersion, navigation, vers)}
           version={v}
           isSelected={v.id === version}
         />

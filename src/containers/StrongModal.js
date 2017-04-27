@@ -74,7 +74,7 @@ const styles = EStyleSheet.create({
 export default class StrongModal extends Component {
 
   static propTypes = {
-    navigator: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired,
     route: PropTypes.object.isRequired,
   }
 
@@ -140,10 +140,10 @@ export default class StrongModal extends Component {
 
   linkToStrong(url, reference) {
     const {
-      navigator,
+      navigation,
       route: { params: { book } },
     } = this.props
-    navigator.push('strongModal', { reference, book })
+    navigation.navigate('strongModal', { reference, book })
   }
 
   render() {
@@ -155,7 +155,7 @@ export default class StrongModal extends Component {
 
     const {
       route: { params: { reference, book } },
-      navigator,
+      navigation,
     } = this.props
     const { isConcordanceLoading } = this.state
     const {
@@ -250,14 +250,14 @@ export default class StrongModal extends Component {
                   itemsPerPage={itemsPerPage}
                   concordanceFor={reference}
                   list={this.concordancesTexts}
-                  navigator={navigator}
+                  navigation={navigation}
                 />
                 {
                   !(this.concordancesTexts.length < itemsPerPage) &&
                   <Button
                     title="Liste complète des versets"
                     buttonStyle={styles.button}
-                    onPress={() => navigator.push('concordance', { reference, book })}
+                    onPress={() => navigation.navigate('concordance', { reference, book })}
                   />
                 }
               </View>

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Toast from 'react-native-simple-toast'
 import { List, ListItem } from 'react-native-elements'
-import { withNavigation } from '@expo/ex-navigation'
+import { withNavigation } from 'react-navigation'
 import {
   View,
   ScrollView,
@@ -11,7 +11,6 @@ import {
   Platform,
   Share,
 } from 'react-native'
-import { Router } from '@src/routes'
 import { persistedStore } from '@src/App'
 import {
   Header,
@@ -21,8 +20,8 @@ const primaryList = [
   {
     title: 'Poser une question',
     icon: 'add-circle',
-    onPress(navigator) {
-      navigator.push(Router.getRoute('add'))
+    onPress(navigation) {
+      navigation.navigate('add')
     }
   }
 ]
@@ -31,8 +30,8 @@ const secondaryList = [
   {
     title: 'À propos',
     icon: 'info-outline',
-    onPress(navigator) {
-      navigator.push(Router.getRoute('about'))
+    onPress(navigation) {
+      navigation.navigate('about')
     }
   },
   {
@@ -116,7 +115,7 @@ const styles = EStyleSheet.create({
   },
 })
 
-const More = ({ navigator }) =>
+const More = ({ navigation }) =>
   <View style={styles.container}>
     <Header
       title="Plus"
@@ -130,7 +129,7 @@ const More = ({ navigator }) =>
               key={i}
               title={item.title}
               leftIcon={{ name: item.icon }}
-              onPress={() => item.onPress && item.onPress(navigator)}
+              onPress={() => item.onPress && item.onPress(navigation)}
             />
           ))
         }
@@ -142,7 +141,7 @@ const More = ({ navigator }) =>
               key={i}
               title={item.title}
               leftIcon={{ name: item.icon }}
-              onPress={() => item.onPress && item.onPress(navigator)}
+              onPress={() => item.onPress && item.onPress(navigation)}
             />
           ))
         }
@@ -151,7 +150,7 @@ const More = ({ navigator }) =>
   </View>
 
 More.propTypes = {
-  navigator: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired,
 }
 
 

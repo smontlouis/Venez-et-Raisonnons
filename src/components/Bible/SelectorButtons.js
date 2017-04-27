@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { withNavigation } from '@expo/ex-navigation'
+import { withNavigation } from 'react-navigation'
 import {
   View,
   Text,
@@ -28,12 +28,12 @@ const styles = EStyleSheet.create({
   }
 })
 
-const SelectorButtons = ({ navigator, validateSelected }) => (
+const SelectorButtons = ({ navigation, validateSelected }) => (
   <View style={styles.container}>
-    <TouchableOpacity style={styles.button} onPress={() => navigator.pop()}>
+    <TouchableOpacity style={styles.button} onPress={() => navigation.back()}>
       <Text>ANNULER</Text>
     </TouchableOpacity>
-    <TouchableOpacity style={styles.button} onPress={() => { navigator.pop(); validateSelected() }}>
+    <TouchableOpacity style={styles.button} onPress={() => { navigation.back(); validateSelected() }}>
       <Text style={styles.text}>SÉLECTIONNER</Text>
     </TouchableOpacity>
   </View>
@@ -41,7 +41,7 @@ const SelectorButtons = ({ navigator, validateSelected }) => (
 
 
 SelectorButtons.propTypes = {
-  navigator: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired,
   validateSelected: PropTypes.func.isRequired,
 }
 

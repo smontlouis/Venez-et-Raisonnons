@@ -36,7 +36,7 @@ export default class BibleViewer extends Component {
     arrayVerses: PropTypes.object,
     book: PropTypes.object.isRequired,
     chapter: PropTypes.number.isRequired,
-    navigator: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired,
     verse: PropTypes.number.isRequired,
     version: PropTypes.string.isRequired,
   }
@@ -149,7 +149,7 @@ export default class BibleViewer extends Component {
 
   render() {
     const { isLoading } = this.state
-    const { book, chapter, arrayVerses, navigator } = this.props
+    const { book, chapter, arrayVerses, navigation } = this.props
 
     if (isLoading) {
       return (<Loading />)
@@ -171,7 +171,7 @@ export default class BibleViewer extends Component {
               title="Lire le chapitre entier"
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
-              onPress={() => navigator.replace('bible', { hasBack: true, verse: arrayVerses.verses[0] })}
+              onPress={() => navigation.replace('bible', { hasBack: true, verse: arrayVerses.verses[0] })}
             />
           }
         </ScrollView>

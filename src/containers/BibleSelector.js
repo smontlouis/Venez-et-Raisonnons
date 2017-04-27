@@ -41,7 +41,6 @@ export default class BibleSelector extends Component {
 
   static propTypes = {
     navigation: PropTypes.object.isRequired,
-    navigator: PropTypes.object.isRequired,
     resetTempSelected: PropTypes.func.isRequired,
   }
 
@@ -59,14 +58,15 @@ export default class BibleSelector extends Component {
   render() {
     const {
       navigation,
-      navigator,
     } = this.props
+
+    return null
     return (
       <View style={styles.container}>
         <Header title="Livres" />
         <SlidingTabNavigation
           id="sliding-tab-navigation"
-          navigatorUID="sliding-tab-navigation"
+          navigationUID="sliding-tab-navigation"
           initialTab="livres"
           renderLabel={this.renderLabel}
           indicatorStyle={styles.tabIndicator}
@@ -78,7 +78,7 @@ export default class BibleSelector extends Component {
             <ChapterSelector navigation={navigation} />
           </SlidingTabNavigationItem>
           <SlidingTabNavigationItem id="verset">
-            <VerseSelector navigator={navigator} />
+            <VerseSelector navigation={navigation} />
           </SlidingTabNavigationItem>
         </SlidingTabNavigation>
         <SelectorButtons />

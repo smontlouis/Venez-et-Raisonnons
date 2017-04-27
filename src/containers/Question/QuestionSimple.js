@@ -29,7 +29,7 @@ export default class QuestionSimple extends Component {
     question: PropTypes.object.isRequired,
     topic: PropTypes.object.isRequired,
     markAsRead: PropTypes.func.isRequired,
-    navigator: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired,
   }
 
   constructor(props) {
@@ -46,7 +46,7 @@ export default class QuestionSimple extends Component {
   }
 
   onLinkPress(url) {
-    const { navigator } = this.props
+    const { navigation } = this.props
     const { book, chapter, verses } = this.parseUrl(url)
     const bookIndex = Object.keys(Books).find(key => (
       Books[key][0] === book
@@ -54,7 +54,7 @@ export default class QuestionSimple extends Component {
       || Books[key][2] === book
     ))
     const bookObject = Livres[bookIndex - 1]
-    navigator.push('bible', {
+    navigation.navigate('bible', {
       book: bookObject,
       chapter: Number(chapter),
       arrayVerses: {

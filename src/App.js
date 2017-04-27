@@ -7,7 +7,7 @@ import { AsyncStorage, Platform } from 'react-native'
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm'
 import { ThemeProvider } from 'styled-components'
 
-import routes from './routes'
+import Routes from './routes'
 import configureStore from './redux/store'
 import theme from './themes/default'
 import { globalVariables } from './helpers'
@@ -128,7 +128,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          { routes(store) }
+          <Routes />
         </ThemeProvider>
       </Provider>
     )

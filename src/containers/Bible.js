@@ -15,7 +15,7 @@ const styles = EStyleSheet.create({
 
 type BibleProps = {
   arrayVerses?: object,
-  navigator: object,
+  navigation: object,
   hasBack: bool,
   app: {
     book: object,
@@ -63,7 +63,7 @@ export default class Bible extends Component {
 
   render() {
     const { isLoading } = this.state
-    const { arrayVerses, app, hasBack, navigator } = this.props
+    const { arrayVerses, app, hasBack, navigation } = this.props
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -81,7 +81,7 @@ export default class Bible extends Component {
             chapter={app.chapter}
             verse={app.verse}
             version={app.version}
-            navigator={navigator}
+            navigation={navigation}
           />
         }
       </View>

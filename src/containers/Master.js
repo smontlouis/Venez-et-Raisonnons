@@ -1,113 +1,65 @@
 import React, { Component, PropTypes } from 'react'
-import EStyleSheet from 'react-native-extended-stylesheet'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import EIcon from 'react-native-vector-icons/Octicons'
 import { connect } from 'react-redux'
-import {
-  TabNavigation,
-  TabNavigationItem as TabItem,
-  StackNavigation,
-} from '@expo/ex-navigation'
-import {
-  View,
-  Text,
-} from 'react-native'
+import { NavigationComponent } from 'react-native-material-bottom-navigation'
+import { TabNavigator } from 'react-navigation'
 import {
   NoItems,
   Loading,
 } from '@src/components'
-import { Router } from '@src/routes'
 import { loadData } from '@src/redux/modules/app'
 import { initDB } from '@src/helpers/database'
 
-const styles = EStyleSheet.create({
-  icon: {
-    color: 'rgba(99, 113, 122, 0.5)',
-  },
-  iconActive: {
-    color: '$color.secondary',
-  },
-  tabItemContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  tabTitleText: {
-    fontSize: 11,
-    fontWeight: 'bold',
-    color: '$color.secondary',
+import Topics from './Topics'
+import Bible from './Bible'
+import Search from './Search'
+import Favorites from './Favorites'
+import More from './More'
+
+const MainScreenNavigator = TabNavigator({
+  topics: { screen: Topics },
+  bible: { screen: Bible },
+  search: { screen: Search },
+  favorites: { screen: Favorites },
+  more: { screen: More },
+}, {
+  tabBarComponent: NavigationComponent,
+  tabBarPosition: 'bottom',
+  tabBarOptions: {
+    bottomNavigationOptions: {
+      labelColor: 'white',
+      rippleColor: 'white',
+      tabs: {
+        topics: {
+          barBackgroundColor: '#37474F',
+          label: 'Accueil',
+          icon: () => (<Icon size={27} color="white" name="home" />)
+        },
+        bible: {
+          barBackgroundColor: '#37474F',
+          label: 'Bible',
+          icon: () => (<Icon size={27} color="white" name="book-open-page-variant" />)
+        },
+        search: {
+          barBackgroundColor: '#37474F',
+          label: 'Chercher',
+          icon: () => (<EIcon size={24} color="white" name="search" />)
+        },
+        favorites: {
+          barBackgroundColor: '#37474F',
+          label: 'Favoris',
+          icon: () => (<Icon size={27} color="white" name="bookmark" />)
+        },
+        more: {
+          barBackgroundColor: '#37474F',
+          label: 'Plus',
+          icon: () => (<Icon size={27} color="white" name="menu" />)
+        },
+      }
+    }
   }
 })
-
-const links = [
-  {
-    to: 'topics',
-    icon: 'home',
-    label: 'Accueil',
-  },
-  // {
-  //   to: 'studies',
-  //   icon: 'description',
-  //   label: 'Études',
-  // },
-  {
-    to: 'bible',
-    icon: 'book-open-page-variant',
-    label: 'Bible',
-  },
-  // {
-  //   to: 'add',
-  //   icon: 'add-circle',
-  //   label: 'Poser',
-  // },
-  {
-    to: 'search',
-    icon: 'search',
-    label: 'Chercher',
-  },
-  {
-    to: 'favorites',
-    icon: 'bookmark',
-    label: 'Favoris',
-  },
-  {
-    to: 'more',
-    icon: 'menu',
-    label: 'Plus',
-  }
-]
-
-const renderIcon = (icon, isSelected) => {
-  if (icon === 'search') {
-    return (
-      <EIcon
-        name={icon}
-        size={24}
-        color={isSelected ? styles._iconActive.color : styles._icon.color}
-      />
-    )
-  }
-
-  return (
-    <Icon
-      name={icon}
-      size={27}
-      color={isSelected ? styles._iconActive.color : styles._icon.color}
-    />
-  )
-}
-
-
-const TabIcon = (label, icon, isSelected) =>
-  <View style={styles.tabItemContainer}>
-    {renderIcon(icon, isSelected)}
-    {
-      isSelected &&
-      <Text style={styles.tabTitleText} numberOfLines={1}>
-        {label.toUpperCase()}
-      </Text>
-    }
-  </View>
-
 
 @connect(
   state => ({
@@ -148,23 +100,7 @@ class Master extends Component {
     }
 
     return (
-      <TabNavigation
-        id="main"
-        navigatorUID="main"
-        initialTab="topics"
-      >
-        {links.map(({ to, icon, label }, i) =>
-          <TabItem
-            key={i}
-            id={to}
-            renderIcon={isSelected => TabIcon(label, icon, isSelected)}
-          >
-            <StackNavigation
-              initialRoute={Router.getRoute(to)}
-            />
-          </TabItem>
-        )}
-      </TabNavigation>
+      <MainScreenNavigator />
     )
   }
 }

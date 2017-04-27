@@ -3,7 +3,7 @@ import {
   Text,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { withNavigation } from '@expo/ex-navigation'
+import { withNavigation } from 'react-navigation'
 
 const styles = EStyleSheet.create({
   text: {
@@ -18,12 +18,12 @@ const styles = EStyleSheet.create({
   }
 })
 
-const openModal = (navigator, reference, book) => navigator.push('strongModal', { reference, book })
+const openModal = (navigation, reference, book) => navigation.navigate('strongModal', { reference, book })
 
-const BibleStrongRef = ({ navigator, reference, book, isFromConcordance }) => (
+const BibleStrongRef = ({ navigation, reference, book, isFromConcordance }) => (
   <Text
     style={[styles.text, isFromConcordance && styles.textForConcordance]}
-    onPress={() => !isFromConcordance && openModal(navigator, reference, book)}
+    onPress={() => !isFromConcordance && openModal(navigation, reference, book)}
   >
     {isFromConcordance && ' '}
     {reference}
@@ -33,7 +33,7 @@ const BibleStrongRef = ({ navigator, reference, book, isFromConcordance }) => (
 
 BibleStrongRef.propTypes = {
   isFromConcordance: PropTypes.bool,
-  navigator: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired,
   reference: PropTypes.string.isRequired,
   book: PropTypes.number.isRequired,
 }

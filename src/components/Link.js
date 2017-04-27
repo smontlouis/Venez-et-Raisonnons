@@ -2,12 +2,11 @@ import React, { Component, PropTypes } from 'react'
 import {
   TouchableOpacity,
 } from 'react-native'
-import { withNavigation } from '@expo/ex-navigation'
-import { Router } from '@src/routes'
+import { withNavigation } from 'react-navigation'
 
 class Link extends Component {
   static propTypes = {
-    navigator: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired,
     params: PropTypes.object,
     route: PropTypes.string.isRequired,
   }
@@ -19,9 +18,9 @@ class Link extends Component {
   }
 
   handlePress() {
-    const { navigator, route, params } = this.props
-
-    navigator.push(Router.getRoute(route, params))
+    const { navigation, route, params } = this.props
+    console.log(route, params)
+    navigation.navigate(route, params)
   }
 
   render() {

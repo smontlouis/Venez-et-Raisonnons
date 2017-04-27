@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { withNavigation } from '@expo/ex-navigation'
+import { withNavigation } from 'react-navigation'
 import {
   View,
   StatusBar,
@@ -41,7 +41,7 @@ const styles = EStyleSheet.create({
 export default class Concordance extends Component {
 
   static propTypes = {
-    navigator: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired,
     route: PropTypes.object.isRequired,
   }
 
@@ -90,7 +90,7 @@ export default class Concordance extends Component {
   render() {
     const {
       route: { params: { reference } },
-      navigator,
+      navigation,
     } = this.props
     const { isConcordanceLoading } = this.state
 
@@ -122,7 +122,7 @@ export default class Concordance extends Component {
                 itemsPerPage={itemsPerPage}
                 concordanceFor={reference}
                 list={this.concordancesTexts}
-                navigator={navigator}
+                navigation={navigation}
               />
             </ScrollView>
             <PaginateSlider

@@ -42,7 +42,7 @@ class VerseConcordance extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
     concordanceFor: PropTypes.string,
-    navigator: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired,
     verse: PropTypes.object.isRequired,
   }
 
@@ -69,9 +69,9 @@ class VerseConcordance extends Component {
   }
 
   render() {
-    const { book, verse: { Chapitre, Verset }, navigator } = this.props
+    const { book, verse: { Chapitre, Verset }, navigation } = this.props
     return (
-      <TouchableOpacity style={styles.container} onPress={() => navigator.push('bible', { book, chapter: Chapitre, verse: Verset })}>
+      <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('bible', { book, chapter: Chapitre, verse: Verset })}>
         <Text style={styles.title}>{book.Nom} {Chapitre}:{Verset}</Text>
         <Text style={styles.text}>
           {this.state.element}

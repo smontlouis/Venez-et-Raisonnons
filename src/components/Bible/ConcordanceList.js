@@ -9,10 +9,10 @@ type Props = {
   itemsPerPage: number,
   list: array,
   concordanceFor: string,
-  navigator: object,
+  navigation: object,
 }
 
-const ConcordanceList = ({ list, concordanceFor, navigator, itemsPerPage, currentPage } : Props) => (
+const ConcordanceList = ({ list, concordanceFor, navigation, itemsPerPage, currentPage } : Props) => (
   <PaginateList
     currentPage={currentPage}
     list={fromJS(list)}
@@ -20,7 +20,7 @@ const ConcordanceList = ({ list, concordanceFor, navigator, itemsPerPage, curren
     renderRow={item =>
       <VerseConcordance
         concordanceFor={concordanceFor}
-        navigator={navigator}
+        navigation={navigation}
         verse={item}
       />}
   />

@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from 'react'
 import {
   TouchableHighlight,
 } from 'react-native'
-import { withNavigation } from '@expo/ex-navigation'
+import { withNavigation } from 'react-navigation'
 
 class Back extends Component {
   static propTypes = {
-    navigator: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired,
   }
 
   constructor(props) {
@@ -16,9 +16,9 @@ class Back extends Component {
   }
 
   handlePress() {
-    const { navigator } = this.props
+    const { navigation } = this.props
 
-    navigator.pop()
+    navigation.back()
   }
 
   render() {
