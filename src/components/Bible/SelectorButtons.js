@@ -30,10 +30,10 @@ const styles = EStyleSheet.create({
 
 const SelectorButtons = ({ navigation, validateSelected }) => (
   <View style={styles.container}>
-    <TouchableOpacity style={styles.button} onPress={() => navigation.back()}>
+    <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
       <Text>ANNULER</Text>
     </TouchableOpacity>
-    <TouchableOpacity style={styles.button} onPress={() => { navigation.back(); validateSelected() }}>
+    <TouchableOpacity style={styles.button} onPress={() => { navigation.goBack(); validateSelected() }}>
       <Text style={styles.text}>SÉLECTIONNER</Text>
     </TouchableOpacity>
   </View>

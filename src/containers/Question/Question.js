@@ -8,7 +8,7 @@ import {
 import * as AppActions from '@src/redux/modules/app'
 import * as QuestionActions from '@src/redux/modules/questions'
 
-const getCurrentQuestion = (state, props) => state.get('questions').get('questions').get(props.questionId)
+const getCurrentQuestion = (state, props) => state.get('questions').get('questions').get(props.navigation.state.params.questionId)
 const getTopics = state => state.get('topics').get('topics')
 
 const getChildrenIdsByCurrentQuestion = (state, props) => getCurrentQuestion(state, props).get('children')

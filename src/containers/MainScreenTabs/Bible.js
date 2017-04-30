@@ -32,7 +32,7 @@ type BibleProps = {
 
 @connect(
   (state, ownProps) => ({
-    hasBack: ownProps.hasBack || !!ownProps.book,
+    hasBack: ownProps.navigation.state.params && !!ownProps.navigation.state.params.book,
     app: {
       book: state.getIn(['bible', 'selectedBook']).toJS(),
       chapter: state.getIn(['bible', 'selectedChapter']),
@@ -50,7 +50,7 @@ export default class Bible extends Component {
   }
 
   componentDidMount() {
-    const { book, chapter, verse, version } = this.props
+    const { book, chapter, verse, version } = this.props.navigation.state.params || {}
     if (book || chapter || verse) {
       this.props.setAllAndValidateSelected({ book, chapter, verse, version })
       .then(() => this.setState({ isLoading: false }))
@@ -63,7 +63,8 @@ export default class Bible extends Component {
 
   render() {
     const { isLoading } = this.state
-    const { arrayVerses, app, hasBack, navigation } = this.props
+    const { app, navigation, hasBack } = this.props
+    const { arrayVerses } = this.props.navigation.state.params || {}
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />

@@ -12,8 +12,8 @@ import {
 } from '@src/components'
 
 
-const getCurrentTopic = (state, props) => state.get('topics').get('topics').get(props.topicId)
-const getBase64Img = (state, props) => state.get('topics').get('base64Images').get(props.topicId)
+const getCurrentTopic = (state, props) => state.get('topics').get('topics').get(props.navigation.state.params.topicId)
+const getBase64Img = (state, props) => state.get('topics').get('base64Images').get(props.navigation.state.params.topicId)
 const getQuestions = state => state.get('questions').get('questions')
 
 const getQuestionsByTopic = createSelector(

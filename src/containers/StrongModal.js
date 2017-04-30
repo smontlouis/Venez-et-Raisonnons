@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { NavigationStyles, withNavigation } from '@expo/ex-navigation'
+import { NavigationStyles } from '@expo/ex-navigation'
+import { withNavigation } from 'react-navigation'
 import { Button } from 'react-native-elements'
 import {
   View,
@@ -75,14 +76,6 @@ export default class StrongModal extends Component {
 
   static propTypes = {
     navigation: PropTypes.object.isRequired,
-    route: PropTypes.object.isRequired,
-  }
-
-  static route = {
-    styles: {
-      ...NavigationStyles.FloatVertical,
-      gestures: null,
-    }
   }
 
   constructor(props) {
@@ -104,7 +97,7 @@ export default class StrongModal extends Component {
   }
 
   loadStrong() {
-    const { route: { params: { reference, book } } } = this.props
+    const { navigation: { state: { params: { reference, book } } } } = this.props
     this.strongRef = []
     this.setState({ isLoading: true })
     const part = book > 39 ? 'Grec' : 'Hebreu'
@@ -117,7 +110,7 @@ export default class StrongModal extends Component {
   }
 
   loadConcordance() {
-    const { route: { params: { reference, book } } } = this.props
+    const { navigation: { state: { params: { reference, book } } } } = this.props
     this.concordancesTexts = []
     this.setState({ isConcordanceLoading: true })
     const part = book > 39 ? 'LSGSNT2' : 'LSGSAT2'
@@ -141,7 +134,7 @@ export default class StrongModal extends Component {
   linkToStrong(url, reference) {
     const {
       navigation,
-      route: { params: { book } },
+      navigation: { state: { params: { book } } },
     } = this.props
     navigation.navigate('strongModal', { reference, book })
   }
@@ -154,7 +147,7 @@ export default class StrongModal extends Component {
     }
 
     const {
-      route: { params: { reference, book } },
+      navigation: { state: { params: { reference, book } } },
       navigation,
     } = this.props
     const { isConcordanceLoading } = this.state

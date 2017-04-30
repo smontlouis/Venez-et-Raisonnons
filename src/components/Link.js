@@ -19,7 +19,7 @@ class Link extends Component {
 
   handlePress() {
     const { navigation, route, params } = this.props
-    console.log(route, params)
+    console.log(navigation, route, params)
     navigation.navigate(route, params)
   }
 

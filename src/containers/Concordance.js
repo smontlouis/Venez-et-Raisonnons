@@ -42,7 +42,6 @@ export default class Concordance extends Component {
 
   static propTypes = {
     navigation: PropTypes.object.isRequired,
-    route: PropTypes.object.isRequired,
   }
 
   constructor(props) {
@@ -67,7 +66,7 @@ export default class Concordance extends Component {
   }
 
   loadConcordance() {
-    const { route: { params: { reference, book } } } = this.props
+    const { state: { params: { reference, book } } } = this.props.navigation
     this.concordancesTexts = []
     this.setState({ isConcordanceLoading: true })
     const part = book > 39 ? 'LSGSNT2' : 'LSGSAT2'
@@ -89,7 +88,7 @@ export default class Concordance extends Component {
 
   render() {
     const {
-      route: { params: { reference } },
+      navigation: { state: { params: { reference } } },
       navigation,
     } = this.props
     const { isConcordanceLoading } = this.state

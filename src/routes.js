@@ -1,27 +1,29 @@
 import { StackNavigator } from 'react-navigation'
 
-import Topics from '@src/containers/Topics'
 import Studies from '@src/containers/Studies'
 import Topic from '@src/containers/Topic'
 import Study from '@src/containers/Study'
-import Favorites from '@src/containers/Favorites'
 import Profile from '@src/containers/Profile'
-import More from '@src/containers/More'
-import Search from '@src/containers/Search'
 import Question from '@src/containers/Question/Question'
-import Master from '@src/containers/Master'
 import Add from '@src/containers/Add'
 import About from '@src/containers/About'
-import Bible from '@src/containers/Bible'
 import BibleSelector from '@src/containers/BibleSelector'
 import VersionSelector from '@src/containers/VersionSelector'
 import StrongModal from '@src/containers/StrongModal'
 import Modal from '@src/containers/Modal'
 import Concordance from '@src/containers/Concordance'
 
+import More from '@src/containers/MainScreenTabs/More'
+import Favorites from '@src/containers/MainScreenTabs/Favorites'
+import Search from '@src/containers/MainScreenTabs/Search'
+import Bible from '@src/containers/MainScreenTabs/Bible'
+import Topics from '@src/containers/MainScreenTabs/Topics'
+import MainScreen from '@src/containers/MainScreenTabs/MainScreenNavigator'
+
 
 const routesConfigs = {
-  home: { screen: Master },
+  home: { screen: MainScreen },
+
   modal: { screen: Modal },
   topics: { screen: Topics },
   studies: { screen: Studies },
@@ -43,7 +45,8 @@ const routesConfigs = {
 }
 
 const stackNavigatorConfig = {
-  headerMode: 'none'
+  headerMode: 'none',
+  initialRouteName: 'home',
 }
 
 export default StackNavigator(routesConfigs, stackNavigatorConfig)

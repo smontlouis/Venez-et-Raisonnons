@@ -49,7 +49,7 @@ const versions = fromJS({
 
 const setAndClose = (setVersion, navigation, vers) => {
   setVersion(vers)
-  navigation.back()
+  navigation.goBack()
 }
 
 const VersionSelector = ({ version, setVersion, navigation }: Props) => (

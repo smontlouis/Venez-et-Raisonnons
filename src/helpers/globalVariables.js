@@ -18,6 +18,7 @@ export default {
     primaryDarken: '#AE2333',
     secondary: '#FFBC00',
     tertiary: 'rgb(98,113,122)',
+    tertiaryLighten: 'rgba(99, 113, 122, 0.5)',
     quart: '#1A806F'
   },
   header: {

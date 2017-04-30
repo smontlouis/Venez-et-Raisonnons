@@ -18,7 +18,7 @@ class Back extends Component {
   handlePress() {
     const { navigation } = this.props
 
-    navigation.back()
+    navigation.goBack()
   }
 
   render() {

@@ -7,11 +7,14 @@ import { AsyncStorage, Platform } from 'react-native'
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm'
 import { ThemeProvider } from 'styled-components'
 
+import Master from './containers/Master'
 import Routes from './routes'
 import configureStore from './redux/store'
 import theme from './themes/default'
 import { globalVariables } from './helpers'
 import { Loading } from './components'
+import { initDB } from './helpers/database'
+
 
 export const store = configureStore()
 export let persistedStore = null // eslint-disable-line import/no-mutable-exports
@@ -31,11 +34,17 @@ class App extends Component {
   }
 
   componentWillMount() {
-    persistedStore = persistStore(store, {
-      storage: AsyncStorage,
-    }, () => {
-      this.setState({ rehydrated: true })
+    const persistStorePromise = new Promise((resolve) => {
+      persistedStore = persistStore(store, {
+        storage: AsyncStorage,
+      }, () => resolve())
+      return persistStore
     })
+
+    Promise.all([
+      persistStorePromise,
+      initDB,
+    ]).then(() => this.setState({ rehydrated: true }))
   }
 
   componentDidMount() {
@@ -128,7 +137,9 @@ class App extends Component {
     return (
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          <Routes />
+          <Master>
+            <Routes />
+          </Master>
         </ThemeProvider>
       </Provider>
     )
