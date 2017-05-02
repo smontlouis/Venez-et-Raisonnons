@@ -39,6 +39,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    FCM.setBadgeNumber(0)
     FCM.requestPermissions() // for iOS
     FCM.getFCMToken().then((token) => {
       console.log(token)
