@@ -1,13 +1,9 @@
 import React, { PropTypes, Component } from 'react'
-import {
-  TouchableOpacity,
-  Text,
-  View,
-  Platform,
-} from 'react-native'
+import { TouchableOpacity, Text, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { verseToStrong, globalVariables } from '@src/helpers'
+import books from '@src/helpers/livres'
 
 const styles = EStyleSheet.create({
   container: {
@@ -34,7 +30,7 @@ const styles = EStyleSheet.create({
 
 @connect(
   (state, ownProps) => ({
-    book: state.getIn(['bible', 'books'])[ownProps.verse.Livre - 1],
+    book: books[ownProps.verse.Livre - 1],
   })
 )
 class VerseConcordance extends Component {

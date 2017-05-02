@@ -11,7 +11,6 @@ const RESET_TEMP_SELECTED = 'bible/RESET_TEMP_SELECTED'
 const SET_VERSION = 'bible/SET_VERSION'
 
 const initialState = Map({
-  books,
   selectedVersion: 'STRONG',
   selectedBook: Map({ Numero: 1, Nom: 'Genèse', Chapitres: 50 }),
   selectedChapter: 1,
@@ -78,10 +77,10 @@ export function goToPrevChapter() {
     const currentChapter = getState().get('bible').get('selectedChapter')
     if (currentChapter === 1) {
       const currentBook = getState().get('bible').get('selectedBook').toJS()
-      const currentBookIndex = getState().get('bible').get('books')
+      const currentBookIndex = books
         .findIndex(b => b.Numero === currentBook.Numero)
 
-      const prevBook = getState().get('bible').get('books')[currentBookIndex - 1]
+      const prevBook = books[currentBookIndex - 1]
       dispatch(setTempSelectedBook(prevBook))
       dispatch(setTempSelectedChapter(prevBook.Chapitres))
       return dispatch(validateSelected())
@@ -97,10 +96,10 @@ export function goToNextChapter() {
     const currentChapter = getState().get('bible').get('selectedChapter')
     const currentBook = getState().get('bible').get('selectedBook').toJS()
     if (currentChapter === currentBook.Chapitres) {
-      const currentBookIndex = getState().get('bible').get('books')
+      const currentBookIndex = books
         .findIndex(b => b.Numero === currentBook.Numero)
 
-      const nextBook = getState().get('bible').get('books')[currentBookIndex + 1]
+      const nextBook = books[currentBookIndex + 1]
       dispatch(setTempSelectedBook(nextBook))
       return dispatch(validateSelected())
     }
