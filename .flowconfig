@@ -4,18 +4,9 @@
 
 ; Ignore "BUCK" generated dirs
 <PROJECT_ROOT>/\.buckd/
-<PROJECT_ROOT>/android
-<PROJECT_ROOT>/ios
 
 ; Ignore unexpected extra "@providesModule"
 .*/node_modules/.*/node_modules/fbjs/.*
-
-; These errors occur from importing ex-navigation
-.*/node_modules/react-static-container/.*
-.*/node_modules/fbemitter/lib/EmitterSubscription.js
-.*/node_modules/fbemitter/lib/EventSubscription.js
-.*/node_modules/fbemitter/lib/EventSubscriptionVendor.js
-.*/node_modules/@expo-navigation/.*
 
 ; Ignore duplicate module providers
 ; For RN Apps installed via npm, "Libraries" folder is inside
@@ -23,6 +14,14 @@
 .*/Libraries/react-native/React.js
 .*/Libraries/react-native/ReactNative.js
 
+; ex-navigation isn't compatible with the newest flow version, ignore it
+.*/node_modules/@exponent/*
+
+; These errors occur from importing ex-navigation
+.*/node_modules/react-static-container/.*
+.*/node_modules/fbemitter/lib/EmitterSubscription.js
+.*/node_modules/fbemitter/lib/EventSubscription.js
+.*/node_modules/fbemitter/lib/EventSubscriptionVendor.js
 
 [include]
 
@@ -31,16 +30,13 @@ node_modules/react-native/Libraries/react-native/react-native-interface.js
 node_modules/react-native/flow
 flow/
 
-; Este
-; github.com/marudor/flowInterfaces/issues/6
-node_modules/iflow-react-intl/index.js.flow
-
 [options]
+emoji=true
 
 module.system=haste
 
 experimental.strict_type_args=true
-esproposal.export_star_as=enable
+
 munge_underscores=true
 
 module.name_mapper='^[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|webp\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|aac\|aiff\|caf\|m4a\|mp3\|wav\|html\|pdf\)$' -> 'RelativeImageStub'
@@ -49,8 +45,8 @@ suppress_type=$FlowIssue
 suppress_type=$FlowFixMe
 suppress_type=$FixMe
 
-suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(>=0\\.\\(4[0-0]\\|[1-3][0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)
-suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(4[0-0]\\|[1-3][0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)?:? #[0-9]+
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(>=0\\.\\(4[0-2]\\|[1-3][0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)
+suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(4[0-2]\\|[1-3][0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)?:? #[0-9]+
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
 suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 
@@ -58,7 +54,3 @@ unsafe.enable_getters_and_setters=true
 
 [version]
 ^0.38.0
-
-// $FlowFixMe
-import {} from '@expo/ex-navigation';
-
