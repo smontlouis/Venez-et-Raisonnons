@@ -24,6 +24,13 @@ const primaryList = [
     onPress(navigator) {
       navigator.push(Router.getRoute('add'))
     }
+  },
+  {
+    title: 'Chercher une question',
+    icon: 'search',
+    onPress(navigator) {
+      navigator.push(Router.getRoute('search'))
+    }
   }
 ]
 

@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {
   View,
   Platform,
@@ -6,28 +7,42 @@ import {
 import EStyleSheet from 'react-native-extended-stylesheet'
 import {
   SearchInput,
+  Back,
 } from '@src/components'
 
 const styles = EStyleSheet.create({
   container: {
-    backgroundColor: '$color.primary',
+    backgroundColor: '$color.primaryDarken',
     height: '$header.height',
     paddingTop: (Platform.OS === 'ios') ? 18 : 23,
+    flexDirection: 'row',
+  },
+  back: {
+    height: 32,
+    width: 32,
+    marginLeft: 10,
+    paddingTop: (Platform.OS === 'ios') ? 18 : 23,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
 
-const SearchHeader = ({ onChangeText, placeholder }) => {
-  return (
-    <View
-      style={styles.container}
+const SearchHeader = ({ onChangeText, placeholder }) => (
+  <View
+    style={styles.container}
+  >
+    <Back
+      style={styles.back}
+      underlayColor="transparent"
     >
-      <SearchInput
-        placeholder={placeholder}
-        onChangeText={onChangeText}
-      />
-    </View>
-  )
-}
+      <Icon name="chevron-left" size={28} color="white" />
+    </Back>
+    <SearchInput
+      placeholder={placeholder}
+      onChangeText={onChangeText}
+    />
+  </View>
+)
 
 SearchHeader.propTypes = {
   onChangeText: PropTypes.func.isRequired,

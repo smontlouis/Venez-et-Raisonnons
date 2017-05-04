@@ -44,11 +44,6 @@ const links = [
     icon: 'home',
     label: 'Accueil',
   },
-  // {
-  //   to: 'studies',
-  //   icon: 'description',
-  //   label: 'Études',
-  // },
   {
     to: 'bible',
     icon: 'book-open-page-variant',
@@ -61,9 +56,14 @@ const links = [
   // },
   {
     to: 'search',
-    icon: 'search',
-    label: 'Chercher',
+    icon: 'omega',
+    label: 'Lexique',
   },
+  // {
+  //   to: 'search',
+  //   icon: 'search',
+  //   label: 'Chercher',
+  // },
   {
     to: 'favorites',
     icon: 'bookmark',
@@ -76,25 +76,14 @@ const links = [
   }
 ]
 
-const renderIcon = (icon, isSelected) => {
-  if (icon === 'search') {
-    return (
-      <EIcon
-        name={icon}
-        size={24}
-        color={isSelected ? styles._iconActive.color : styles._icon.color}
-      />
-    )
-  }
+const renderIcon = (icon, isSelected) => (
+  <Icon
+    name={icon}
+    size={27}
+    color={isSelected ? styles._iconActive.color : styles._icon.color}
+  />
+)
 
-  return (
-    <Icon
-      name={icon}
-      size={27}
-      color={isSelected ? styles._iconActive.color : styles._icon.color}
-    />
-  )
-}
 
 
 const TabIcon = (label, icon, isSelected) =>
