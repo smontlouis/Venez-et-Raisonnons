@@ -21,7 +21,7 @@ export default [
   },
   {
     Numero: 5,
-    Nom: 'Déutéronome',
+    Nom: 'Deutéronome',
     Chapitres: 34
   },
   {
@@ -196,7 +196,7 @@ export default [
   },
   {
     Numero: 40,
-    Nom: 'Mathieu',
+    Nom: 'Matthieu',
     Chapitres: 28
   },
   {

@@ -42,6 +42,13 @@ const secondaryList = [
     }
   },
   {
+    title: 'Signaler un bug',
+    icon: 'bug-report',
+    onPress() {
+      Linking.openURL('https://venez-et-raisonnons.canny.io/bugs')
+    }
+  },
+  {
     title: 'Nous soutenir',
     icon: 'thumb-up',
     onPress() {

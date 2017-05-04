@@ -53,16 +53,23 @@ export default class QuestionSimple extends Component {
       || Books[key][1] === book
       || Books[key][2] === book
     ))
+
     const bookObject = Livres[bookIndex - 1]
-    navigation.navigate('bible', {
+
+    const params = {
       book: bookObject,
       chapter: Number(chapter),
-      arrayVerses: {
-        verses,
+    }
+
+    if (verses) {
+      params.arrayVerses = {
         book: bookObject,
         chapter: Number(chapter),
-      },
-    })
+        verses
+      }
+    }
+
+    navigation.navigate('bible', params)
   }
 
   /*
@@ -72,14 +79,14 @@ export default class QuestionSimple extends Component {
     const [book, chapter, verses] = url.split('.')
     let versesArray
 
-    if (verses.includes('-')) {
+    if (verses && verses.includes('-')) {
       const [vStart, vEnd] = verses.split('-')
       versesArray = range(Number(vStart), Number(vEnd) + 1)
-    } else if (verses.includes(',')) {
-      const [vStart, vEnd] = verses.split(',')
-      versesArray = [vStart, vEnd]
+    } else if (verses && verses.includes(',')) {
+      const splittedVersesByComma = verses.split(',')
+      versesArray = splittedVersesByComma.map(v => Number(v))
     } else {
-      versesArray = [Number(verses)]
+      versesArray = verses ? [Number(verses)] : null
     }
 
     return {
