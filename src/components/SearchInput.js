@@ -19,7 +19,7 @@ const styles = EStyleSheet.create({
     paddingRight: 19,
     borderRadius: 3,
     overflow: 'hidden',
-    backgroundColor: 'rgba(0,0,0,0.2)',
+    backgroundColor: 'rgba(0,0,0,0.1)',
     fontFamily: '$font.heading',
     fontSize: 20,
     color: 'white',
@@ -45,6 +45,7 @@ class Search extends Component {
     /* inherited props */
     textInputRef,
     containerRef,
+    isLight,
     ...props,
   } = this.props
     return (
@@ -52,18 +53,19 @@ class Search extends Component {
         ref={containerRef}
         style={[
           styles.container,
-          containerStyle && containerStyle
+          containerStyle && containerStyle,
         ]}
       >
         <TextInput
           ref={textInputRef}
           {...props}
-          placeholderTextColor="white"
+          placeholderTextColor={isLight ? 'black' : 'white'}
           underlineColorAndroid="transparent"
           style={[
             styles.input,
             noIcon && { paddingLeft: 9 },
             round && { borderRadius: 15 },
+            isLight && { backgroundColor: 'white', color: 'black' },
             inputStyle && inputStyle
           ]}
         />
@@ -76,7 +78,7 @@ class Search extends Component {
                 icon.style && icon.style
               ]}
               name={icon.name || 'search'}
-              color="white"
+              color={isLight ? 'black' : 'white'}
             />
           )
         }
@@ -87,6 +89,7 @@ class Search extends Component {
 
 Search.propTypes = {
   icon: PropTypes.object,
+  isLight: PropTypes.bool,
   noIcon: PropTypes.bool,
   containerStyle: PropTypes.any,
   inputStyle: PropTypes.any,

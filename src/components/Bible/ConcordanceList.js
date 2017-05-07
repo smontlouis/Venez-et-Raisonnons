@@ -7,9 +7,9 @@ import { fromJS } from 'immutable'
 type Props = {
   currentPage?: number,
   itemsPerPage: number,
-  list: array,
+  list: Array<Object>,
   concordanceFor: string,
-  navigation: object,
+  navigation: Object,
 }
 
 const ConcordanceList = ({ list, concordanceFor, navigation, itemsPerPage, currentPage } : Props) => (

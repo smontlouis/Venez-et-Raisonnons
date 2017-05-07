@@ -37,6 +37,10 @@ export default class ChapterSelector extends Component {
     selectedChapter: PropTypes.number.isRequired,
   }
 
+  static navigationOptions = {
+    tabBarLabel: 'Chapitre',
+  }
+
   constructor(props) {
     super(props)
 
@@ -44,9 +48,7 @@ export default class ChapterSelector extends Component {
   }
 
   onChapterChange(chapter) {
-    this.props.navigation.performAction(({ tabs }) => {
-      tabs('sliding-tab-navigation').jumpToTab('verset')
-    })
+    this.props.navigation.navigate('verset')
     this.props.setTempSelectedChapter(chapter)
   }
 

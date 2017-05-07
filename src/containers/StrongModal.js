@@ -1,14 +1,8 @@
 import React, { PropTypes, Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { NavigationStyles } from '@expo/ex-navigation'
 import { withNavigation } from 'react-navigation'
 import { Button } from 'react-native-elements'
-import {
-  View,
-  Text,
-  StatusBar,
-  ScrollView,
-} from 'react-native'
+import { View, Text, StatusBar, ScrollView } from 'react-native'
 import getDB from '@src/helpers/database'
 import { capitalize, globalVariables } from '@src/helpers'
 import { itemsPerPage } from '@src/helpers/globalVariables'
@@ -118,6 +112,7 @@ export default class StrongModal extends Component {
       SELECT Livre, Chapitre, Verset, Texte 
       FROM ${part} 
       WHERE Texte LIKE '% ${reference} %' 
+      OR Texte LIKE '% 0${reference}%'
       OR Texte LIKE '%(${reference})%'
       OR Texte LIKE '% ${reference}.%'
       OR Texte LIKE '% ${reference},%'
@@ -167,7 +162,6 @@ export default class StrongModal extends Component {
         <StatusBar barStyle="dark-content" />
         <Header
           isLight
-          isModal
           title={`Strong ${reference}`}
         />
         <ScrollView contentContainerStyle={styles.content}>

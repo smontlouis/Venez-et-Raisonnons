@@ -33,12 +33,16 @@ const styles = EStyleSheet.create({
 )
 export default class VerseSelector extends Component {
   static propTypes = {
-    navigation: PropTypes.object.isRequired,
+    screenProps: PropTypes.object.isRequired,
     setTempSelectedVerse: PropTypes.func.isRequired,
     validateSelected: PropTypes.func.isRequired,
     selectedBook: PropTypes.object.isRequired,
     selectedChapter: PropTypes.number.isRequired,
     selectedVerse: PropTypes.number.isRequired,
+  }
+
+  static navigationOptions = {
+    tabBarLabel: 'Verset',
   }
 
   constructor(props) {
@@ -67,7 +71,7 @@ export default class VerseSelector extends Component {
   onValidate(verse) {
     this.props.setTempSelectedVerse(verse)
     this.props.validateSelected()
-    setTimeout(() => this.props.navigation.goBack(), 0)
+    setTimeout(() => this.props.screenProps.mainNavigation.goBack(), 0)
   }
 
   loadVerses() {

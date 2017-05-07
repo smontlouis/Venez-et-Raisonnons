@@ -25,11 +25,10 @@ const styles = EStyleSheet.create({
 })
 
 type ModalProps = {
-  title: string,
-  text: string,
+  navigation: Object
 }
 
-const Modal = ({ title, text }: ModalProps) => {
+const Modal = ({ navigation: { state: { params: { title, text } } } }: ModalProps) => {
   const converter = new ShowDown.Converter()
   const markdownToHtml = converter.makeHtml(text)
 
@@ -39,7 +38,6 @@ const Modal = ({ title, text }: ModalProps) => {
       <Header
         title={title}
         isLight
-        isModal
       />
       <ScrollView contentContainerStyle={styles.content}>
         <StylizedHTMLView

@@ -23,6 +23,13 @@ const primaryList = [
     onPress(navigation) {
       navigation.navigate('add')
     }
+  },
+  {
+    title: 'Chercher une question',
+    icon: 'search',
+    onPress(navigator) {
+      navigator.navigate('search')
+    }
   }
 ]
 

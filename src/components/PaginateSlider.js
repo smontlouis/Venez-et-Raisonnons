@@ -40,7 +40,7 @@ const styles = EStyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.6)',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '85%',
+    height: '95%',
   },
   pageIndicatorText: {
     fontFamily: '$font.heading',
@@ -54,6 +54,7 @@ const styles = EStyleSheet.create({
 
 export default class PaginateSlider extends Component {
   static propTypes = {
+    currentPage: PropTypes.number,
     onSlidingComplete: PropTypes.func.isRequired,
     pages: PropTypes.number.isRequired,
   }
@@ -69,6 +70,12 @@ export default class PaginateSlider extends Component {
     this.onSlidingComplete = ::this.onSlidingComplete
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.currentPage !== nextProps.currentPage) {
+      this.setState({ value: nextProps.currentPage })
+    }
+  }
+
   onSlidingStart() {
     this.setState({ slidingStart: true })
   }
@@ -81,6 +88,11 @@ export default class PaginateSlider extends Component {
 
   render() {
     const { pages } = this.props
+
+    if (pages < 2) {
+      return null
+    }
+
     return (
       <View style={styles.container}>
         {

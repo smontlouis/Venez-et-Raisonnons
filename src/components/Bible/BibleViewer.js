@@ -171,7 +171,7 @@ export default class BibleViewer extends Component {
               title="Lire le chapitre entier"
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
-              onPress={() => navigation.replace('bible', { hasBack: true, verse: arrayVerses.verses[0] })}
+              onPress={() => navigation.navigate('bible', { hasBack: true, verse: arrayVerses.verses[0] })}
             />
           }
         </ScrollView>

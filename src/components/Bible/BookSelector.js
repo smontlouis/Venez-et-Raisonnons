@@ -28,6 +28,10 @@ export default class BookSelector extends Component {
     selectedBook: PropTypes.object.isRequired,
   }
 
+  static navigationOptions = {
+    tabBarLabel: 'Livres',
+  }
+
   constructor(props) {
     super(props)
 
@@ -35,9 +39,7 @@ export default class BookSelector extends Component {
   }
 
   onBookChange(book) {
-    this.props.navigation.performAction(({ tabs }) => {
-      tabs('sliding-tab-navigation').jumpToTab('chapitre')
-    })
+    this.props.navigation.navigate('chapitre')
     this.props.setTempSelectedBook(book)
   }
 

@@ -62,8 +62,8 @@ const Search = ({ questions, setSearchInput, input }) => (
     <StatusBar barStyle="light-content" />
     <SearchHeader
       placeholder="RECHERCHE"
-      hasBackButton={false}
       onChangeText={setSearchInput}
+      hasBackButton
     />
     {IfQuestions(input, questions)}
   </View>

@@ -9,7 +9,7 @@ const verseToStrong = ({ Texte, Livre }, version, concordanceFor) => new Promise
     splittedTexte = Texte
       .split(/ (\(?\d+[^{.|\s}]?\d+(?!\.?\d)\)?)/g)
       .map((item, i) => {
-        if (item.match(/\d+/) && item.match(/\d+/)[0] === concordanceFor) {
+        if (item.match(/\d+/) && (item.match(/\d+/)[0] === concordanceFor || item.match(/\d+/)[0] === `0${concordanceFor}`)) {
           return (
             <BibleStrongRef
               isFromConcordance

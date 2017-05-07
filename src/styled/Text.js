@@ -16,6 +16,7 @@ const s = bind({
   },
   color: {
     default: prop('theme.colors.default'),
+    secondary: prop('theme.colors.secondary'),
     reverse: prop('theme.colors.reverse'),
     tertiary: prop('theme.colors.tertiary'),
   }
@@ -27,6 +28,7 @@ const Text = styled.Text`
   font-family: ${s.fontFamily};
   line-height: ${s.lineHeight};
   flex: ${ifProp({ flex: true }, 1)};
+  background-color: transparent;
 `
 
 Text.defaultProps = {

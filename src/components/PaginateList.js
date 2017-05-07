@@ -26,9 +26,10 @@ export default class PaginateList extends Component {
     this.numberOfPages = Math.ceil(this.list.count() / this.itemsPerPage)
   }
 
-  componentWillUpdate(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.list !== nextProps.list) {
       this.list = nextProps.list
+      this.numberOfPages = Math.ceil(this.list.count() / this.itemsPerPage)
     }
   }
 

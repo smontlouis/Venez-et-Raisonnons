@@ -1,22 +1,13 @@
 import React, { PropTypes, Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { connect } from 'react-redux'
-import {
-  Text,
-  View,
-} from 'react-native'
-import {
-  SlidingTabNavigation,
-  SlidingTabNavigationItem,
-} from '@expo/ex-navigation'
+import { View } from 'react-native'
 import * as BibleActions from '@src/redux/modules/bible'
 import {
   Header,
-  BookSelector,
-  ChapterSelector,
-  VerseSelector,
   SelectorButtons,
 } from '@src/components'
+import BibleTabNavigator from './BibleTabNavigator'
 
 
 const styles = EStyleSheet.create({
@@ -49,38 +40,12 @@ export default class BibleSelector extends Component {
     resetTempSelected()
   }
 
-  renderLabel(param) {
-    return (
-      <Text style={styles.tabLabel}>{param.route.key.toUpperCase()}</Text>
-    )
-  }
-
   render() {
-    const {
-      navigation,
-    } = this.props
-
-    return null
+    const { navigation } = this.props
     return (
       <View style={styles.container}>
         <Header title="Livres" />
-        <SlidingTabNavigation
-          id="sliding-tab-navigation"
-          navigationUID="sliding-tab-navigation"
-          initialTab="livres"
-          renderLabel={this.renderLabel}
-          indicatorStyle={styles.tabIndicator}
-        >
-          <SlidingTabNavigationItem id="livres">
-            <BookSelector navigation={navigation} />
-          </SlidingTabNavigationItem>
-          <SlidingTabNavigationItem id="chapitre">
-            <ChapterSelector navigation={navigation} />
-          </SlidingTabNavigationItem>
-          <SlidingTabNavigationItem id="verset">
-            <VerseSelector navigation={navigation} />
-          </SlidingTabNavigationItem>
-        </SlidingTabNavigation>
+        <BibleTabNavigator screenProps={{ mainNavigation: navigation }} />
         <SelectorButtons />
       </View>
     )

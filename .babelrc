@@ -3,5 +3,6 @@
     "react-native-stage-0/decorator-support", 
     "flow"
   ],
+  "plugins": ["flow-react-proptypes"],
   "sourceMaps": true
 }

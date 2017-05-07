@@ -21,6 +21,7 @@ export default {
     tertiaryLighten: 'rgba(99, 113, 122, 0.5)',
     quart: '#1A806F'
   },
+  paddingTop: (Platform.OS === 'ios') ? 15 : 10,
   header: {
     height: (Platform.OS === 'ios') ? 64 : 73,
     icon: (Platform.OS === 'ios') ? 5 : 10,

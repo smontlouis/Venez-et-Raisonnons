@@ -36,7 +36,7 @@ const styles = EStyleSheet.create({
 })
 
 type Props = {
-  book: object,
+  book: Object,
   chapter: number,
   hasBack: bool,
   version: string,

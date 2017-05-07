@@ -16,7 +16,7 @@ import {
   StylizedHTMLView,
   PrevNext,
 } from '@src/components'
-import { loadBible, range } from '@src/helpers'
+import { range } from '@src/helpers'
 import { Title } from '@src/styled'
 import styles, { setDynamicFontSize } from './styles'
 import Livres from '../../helpers/livres'

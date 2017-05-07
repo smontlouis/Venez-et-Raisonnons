@@ -14,31 +14,25 @@ const styles = EStyleSheet.create({
 })
 
 type BibleProps = {
-  arrayVerses?: object,
-  navigation: object,
-  hasBack: bool,
-  app: {
-    book: object,
+  navigation: Object,
+  hasBack: ?bool,
+  app: ?{
+    book: Object,
     chapter: number,
     verse: number,
     version: string,
   },
-  book: object,
-  chapter: number,
-  verse: number,
-  version: string,
-  setAllAndValidateSelected: func,
+  setAllAndValidateSelected?: Function,
 }
 
 @connect(
   (state, ownProps) => ({
-    hasBack: ownProps.navigation.state.params && !!ownProps.navigation.state.params.book,
+    hasBack: !!ownProps.navigation.state.params,
     app: {
       book: state.getIn(['bible', 'selectedBook']).toJS(),
       chapter: state.getIn(['bible', 'selectedChapter']),
       verse: state.getIn(['bible', 'selectedVerse']),
       version: state.getIn(['bible', 'selectedVersion']),
-      isLoading: state.getIn(['bible', 'isLoading']),
     },
   }),
   BibleActions

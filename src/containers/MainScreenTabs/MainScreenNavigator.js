@@ -1,29 +1,29 @@
 import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import EIcon from 'react-native-vector-icons/Octicons'
-import { NavigationComponent } from 'react-native-material-bottom-navigation'
 import { TabNavigator } from 'react-navigation'
 
 import { globalVariables as global } from '@src/helpers'
+import { NavigationComponent } from '../../components/react-native-material-bottom-navigation'
 
 import Topics from './Topics'
 import Bible from './Bible'
-import Search from './Search'
+import LexiqueNavigator from './LexiqueNavigator'
 import Favorites from './Favorites'
 import More from './More'
 
 const MainScreenNavigator = TabNavigator({
   topics: { screen: Topics },
   bible: { screen: Bible },
-  search: { screen: Search },
+  lexique: { screen: LexiqueNavigator },
   favorites: { screen: Favorites },
   more: { screen: More },
 }, {
   tabBarComponent: NavigationComponent,
   tabBarPosition: 'bottom',
-  swipeEnabled: true,
+  // swipeEnabled: true,
+  animationEnabled: true,
   tabBarOptions: {
-    style: { height: 56, elevation: 8, position: 'absolute', left: 0, bottom: 0, right: 0, borderTopColor: '#EEECEE', borderTopWidth: 1 },
+    style: { height: 56, elevation: 8, left: 0, bottom: 0, right: 0, borderTopColor: '#EEECEE', borderTopWidth: 1 },
     bottomNavigationOptions: {
       activeLabelColor: global.color.secondary,
       labelColor: global.color.tertiaryLighten,
@@ -40,10 +40,10 @@ const MainScreenNavigator = TabNavigator({
           icon: (<Icon size={24} color={global.color.tertiaryLighten} name="book-open-page-variant" />),
           activeIcon: (<Icon size={24} color={global.color.secondary} name="book-open-page-variant" />)
         },
-        search: {
-          label: 'Chercher',
-          icon: (<EIcon size={22} color={global.color.tertiaryLighten} name="search" />),
-          activeIcon: (<EIcon size={22} color={global.color.secondary} name="search" />)
+        lexique: {
+          label: 'Lexique',
+          icon: (<Icon size={24} color={global.color.tertiaryLighten} name="omega" />),
+          activeIcon: (<Icon size={24} color={global.color.secondary} name="omega" />)
         },
         favorites: {
           label: 'Favoris',

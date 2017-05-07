@@ -35,10 +35,13 @@ const styles = EStyleSheet.create({
   },
   a: {
     // fontWeight: 'bold',
-    color: '$color.primary',
+    color: '$color.black',
     borderStyle: 'solid',
     borderWidth: 2,
     borderColor: '$color.primary',
+    textDecorationLine: 'underline',
+    textDecorationStyle: 'solid',
+    textDecorationColor: '$color.primary',
     ...globalVariables.textStyle,
   },
   strong: {
