@@ -7,6 +7,7 @@ import Profile from '@src/containers/Profile'
 import Question from '@src/containers/Question/Question'
 import Add from '@src/containers/Add'
 import About from '@src/containers/About'
+import Astuces from '@src/containers/Astuces'
 import BibleSelector from '@src/containers/BibleSelector'
 import VersionSelector from '@src/containers/VersionSelector'
 import StrongModal from '@src/containers/StrongModal'
@@ -36,6 +37,7 @@ const routesConfigs = {
   add: { screen: Add },
   question: { screen: Question },
   about: { screen: About },
+  astuces: { screen: Astuces },
 
   bible: { screen: Bible },
   bibleSelector: { screen: BibleSelector },
