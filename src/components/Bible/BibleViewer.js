@@ -1,11 +1,14 @@
 import React, { PropTypes, Component } from 'react'
-import { ScrollView, View } from 'react-native'
+import { ScrollView } from 'react-native'
 import { Button } from 'react-native-elements'
 import EStyleSheet from 'react-native-extended-stylesheet'
-
+import { connect } from 'react-redux'
 import getDB from '@src/helpers/database'
 import { BibleVerse, BibleFooter, Loading } from '@src/components'
 import { loadBible } from '@src/helpers'
+import GestureRecognizer from '@src/helpers/swipe-gestures'
+import * as BibleActions from '@src/redux/modules/bible'
+
 
 const styles = EStyleSheet.create({
   container: {
@@ -30,12 +33,17 @@ const styles = EStyleSheet.create({
   }
 })
 
-
+@connect(
+  null,
+  BibleActions
+)
 export default class BibleViewer extends Component {
   static propTypes = {
     arrayVerses: PropTypes.object,
     book: PropTypes.object.isRequired,
     chapter: PropTypes.number.isRequired,
+    goToPrevChapter: PropTypes.func.isRequired,
+    goToNextChapter: PropTypes.func.isRequired,
     navigation: PropTypes.object.isRequired,
     verse: PropTypes.number.isRequired,
     version: PropTypes.string.isRequired,
@@ -149,14 +157,19 @@ export default class BibleViewer extends Component {
 
   render() {
     const { isLoading } = this.state
-    const { book, chapter, arrayVerses, navigation } = this.props
+    const { book, chapter, arrayVerses, navigation, goToPrevChapter, goToNextChapter } = this.props
 
     if (isLoading) {
       return (<Loading />)
     }
 
     return (
-      <View style={styles.container}>
+      <GestureRecognizer
+        onSwipeRight={goToPrevChapter}
+        onSwipeLeft={goToNextChapter}
+        config={{ velocityThreshold: 0.3, directionalOffsetThreshold: 80 }}
+        style={styles.container}
+      >
         <ScrollView
           ref={(r) => { this.scrollView = r }}
           onContentSizeChange={(w, h) => { this.contentHeight = h }}
@@ -181,9 +194,11 @@ export default class BibleViewer extends Component {
             disabled={isLoading}
             book={book}
             chapter={chapter}
+            goToPrevChapter={goToPrevChapter}
+            goToNextChapter={goToNextChapter}
           />
         }
-      </View>
+      </GestureRecognizer>
     )
   }
 }

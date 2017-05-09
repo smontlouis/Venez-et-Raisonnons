@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { View, StatusBar, Text, ScrollView } from 'react-native'
 import { fromJS } from 'immutable'
 import debounce from 'debounce'
 import getDB from '@src/helpers/database'
-import * as BibleActions from '@src/redux/modules/bible'
-import { SearchInput, PaginateList, Loading, PaginateSlider, LexiqueMot } from '@src/components'
+import { SearchInput, PaginateList, Loading, PaginateSlider, LexiqueMot, NoItems } from '@src/components'
 import { itemsPerPage } from '@src/helpers/globalVariables'
+import GestureRecognizer from '@src/helpers/swipe-gestures'
 
 
 const styles = EStyleSheet.create({
@@ -46,12 +45,6 @@ type LexiqueProps = {
   type: string,
 }
 
-@connect(
-  (state, ownProps) => ({
-
-  }),
-  BibleActions
-)
 export default class Bible extends Component {
 
   constructor(props) {
@@ -59,6 +52,8 @@ export default class Bible extends Component {
 
     this.getCurrentValue = ::this.getCurrentValue
     this.filterResults = debounce(::this.filterResults, 500)
+    this.nextPage = ::this.nextPage
+    this.prevPage = ::this.prevPage
   }
 
   state = {
@@ -83,7 +78,6 @@ export default class Bible extends Component {
       SELECT *
       FROM ${type} 
       WHERE Code != 0
-      ORDER BY Mot COLLATE NOCASE
     `)
       .then(([results]) => {
         const len = results.rows.length
@@ -99,6 +93,18 @@ export default class Bible extends Component {
   getCurrentValue(value) {
     this.setState({ currentPage: value })
     this.scrollView.scrollTo({ x: 0, y: 0, animated: false })
+  }
+
+  prevPage() {
+    if (this.state.currentPage !== 1) {
+      this.setState({ currentPage: this.state.currentPage - 1 })
+    }
+  }
+
+  nextPage(nbPages) {
+    if (this.state.currentPage !== nbPages) {
+      this.setState({ currentPage: this.state.currentPage + 1 })
+    }
   }
 
   render() {
@@ -132,8 +138,20 @@ export default class Bible extends Component {
           <Loading />
         }
         {
-          !isLoading &&
-          <View style={{ flex: 1 }}>
+          !!!filteredStrongCodes.length &&
+          <NoItems
+            icon="sentiment-dissatisfied"
+            text="Aucun mot strong trouvé"
+          />
+        }
+        {
+          (!isLoading && !!filteredStrongCodes.length) &&
+          <GestureRecognizer
+            onSwipeRight={this.prevPage}
+            onSwipeLeft={() => this.nextPage(pages)}
+            config={{ velocityThreshold: 0.3, directionalOffsetThreshold: 80 }}
+            style={{ flex: 1 }}
+          >
             <ScrollView
               contentContainerStyle={styles.scrollView}
               ref={(r) => { this.scrollView = r }}
@@ -162,7 +180,7 @@ export default class Bible extends Component {
               currentPage={this.state.currentPage}
               onSlidingComplete={this.getCurrentValue}
             />
-          </View>
+          </GestureRecognizer>
         }
       </View>
     )

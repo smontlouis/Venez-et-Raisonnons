@@ -42,6 +42,13 @@ const secondaryList = [
     }
   },
   {
+    title: 'Astuces',
+    icon: 'help-outline',
+    onPress(navigation) {
+      navigation.navigate('astuces')
+    }
+  },
+  {
     title: 'Idées de fonctionnalités',
     icon: 'lightbulb-outline',
     onPress() {
@@ -100,6 +107,9 @@ const secondaryList = [
       Linking.openURL('mailto:venezetraisonnons@gmail.com')
     }
   },
+]
+
+const tertiaryList = [
   {
     title: 'Effacer les données sauvegardées',
     icon: 'delete-forever',
@@ -121,7 +131,6 @@ const secondaryList = [
     },
   },
 ]
-
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
@@ -151,6 +160,18 @@ const More = ({ navigation }) =>
       <List>
         {
           secondaryList.map((item, i) => (
+            <ListItem
+              key={i}
+              title={item.title}
+              leftIcon={{ name: item.icon }}
+              onPress={() => item.onPress && item.onPress(navigation)}
+            />
+          ))
+        }
+      </List>
+      <List>
+        {
+          tertiaryList.map((item, i) => (
             <ListItem
               key={i}
               title={item.title}

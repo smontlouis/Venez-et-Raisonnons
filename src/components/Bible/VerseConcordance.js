@@ -71,7 +71,7 @@ class VerseConcordance extends Component {
         <Text style={styles.title}>{book.Nom} {Chapitre}:{Verset}</Text>
         <Text style={styles.text}>
           {this.state.element}
-          </Text>
+        </Text>
       </TouchableOpacity>
     )
   }

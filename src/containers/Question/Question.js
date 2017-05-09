@@ -41,13 +41,12 @@ export default class Question extends Component {
     topic: PropTypes.object.isRequired,
     markAsRead: PropTypes.func.isRequired,
     setNotNewQuestion: PropTypes.func.isRequired,
-    isNew: PropTypes.bool,
     navigation: PropTypes.object,
   }
 
   componentDidMount() {
-    const { isNew, setNotNewQuestion, question } = this.props
-    if (isNew) setNotNewQuestion(question.get('id'))
+    const { navigation, setNotNewQuestion, question } = this.props
+    if (navigation.state.params && navigation.state.params.isNew) setNotNewQuestion(question.get('id'))
   }
 
   render() {

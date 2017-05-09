@@ -23,7 +23,6 @@ const styles = EStyleSheet.create({
 })
 
 type Props = {
-  version: string,
   navigation: object,
   setVersion: func,
 }
@@ -52,7 +51,7 @@ const setAndClose = (setVersion, navigation, vers) => {
   navigation.goBack()
 }
 
-const VersionSelector = ({ version, setVersion, navigation }: Props) => (
+const VersionSelector = ({ setVersion, navigation }: Props) => (
   <View style={styles.container}>
     <Header title="Versions" />
     <List
@@ -61,7 +60,7 @@ const VersionSelector = ({ version, setVersion, navigation }: Props) => (
         <VersionSelectorItem
           onChange={vers => setAndClose(setVersion, navigation, vers)}
           version={v}
-          isSelected={v.id === version}
+          isSelected={v.id === navigation.state.params.version}
         />
       }
       style={styles.list}

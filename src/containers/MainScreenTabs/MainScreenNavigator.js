@@ -20,7 +20,7 @@ const MainScreenNavigator = TabNavigator({
 }, {
   tabBarComponent: NavigationComponent,
   tabBarPosition: 'bottom',
-  // swipeEnabled: true,
+  swipeEnabled: false,
   animationEnabled: true,
   tabBarOptions: {
     style: { height: 56, elevation: 8, left: 0, bottom: 0, right: 0, borderTopColor: '#EEECEE', borderTopWidth: 1 },

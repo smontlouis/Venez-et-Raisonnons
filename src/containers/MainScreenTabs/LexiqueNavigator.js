@@ -1,3 +1,4 @@
+import { Platform } from 'react-native'
 import { TabNavigator, TabBarTop } from 'react-navigation'
 import { globalVariables as global } from '@src/helpers'
 import { LexiqueGrec, LexiqueHebreu } from '@src/containers'
@@ -10,7 +11,7 @@ const RouteConfigs = {
 const TabNavigatorConfig = {
   tabBarComponent: TabBarTop,
   tabBarPosition: 'top',
-  // swipeEnabled: true,
+  swipeEnabled: false,
   animationEnabled: true,
   pressColor: 'black',
   tabBarOptions: {
@@ -20,7 +21,7 @@ const TabNavigatorConfig = {
       fontSize: 12,
     },
     style: {
-      paddingTop: global.paddingTop,
+      paddingTop: (Platform.OS === 'ios') ? 15 : 20,
       backgroundColor: global.color.primaryDarken,
     },
     indicatorStyle: {

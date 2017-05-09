@@ -1,20 +1,12 @@
 import React, { PropTypes, Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { withNavigation } from 'react-navigation'
-import {
-  View,
-  StatusBar,
-  Text,
-  ScrollView,
-} from 'react-native'
+import { View, StatusBar, Text, ScrollView } from 'react-native'
 import getDB from '@src/helpers/database'
 import { itemsPerPage } from '@src/helpers/globalVariables'
-import {
-  Header,
-  Loading,
-  ConcordanceList,
-  PaginateSlider,
-} from '@src/components'
+import { Header, Loading, ConcordanceList, PaginateSlider } from '@src/components'
+import GestureRecognizer from '@src/helpers/swipe-gestures'
+
 
 
 const styles = EStyleSheet.create({
@@ -48,6 +40,8 @@ export default class Concordance extends Component {
     super(props)
 
     this.getCurrentValue = ::this.getCurrentValue
+    this.nextPage = ::this.nextPage
+    this.prevPage = ::this.prevPage
   }
 
   state = {
@@ -77,6 +71,11 @@ export default class Concordance extends Component {
       OR Texte LIKE '%(${reference})%'
       OR Texte LIKE '% ${reference}.%'
       OR Texte LIKE '% ${reference},%'
+
+      OR Texte LIKE '% 0${reference} %' 
+      OR Texte LIKE '%(0${reference})%'
+      OR Texte LIKE '% 0${reference}.%'
+      OR Texte LIKE '% 0${reference},%'
       ORDER BY Livre ASC 
     `)
       .then(([results]) => {
@@ -84,6 +83,18 @@ export default class Concordance extends Component {
         for (let i = 0; i < len; i += 1) { this.concordancesTexts.push(results.rows.item(i)) }
         this.setState({ isConcordanceLoading: false })
       })
+  }
+
+  prevPage() {
+    if (this.state.currentPage !== 1) {
+      this.setState({ currentPage: this.state.currentPage - 1 })
+    }
+  }
+
+  nextPage(nbPages) {
+    if (this.state.currentPage !== nbPages) {
+      this.setState({ currentPage: this.state.currentPage + 1 })
+    }
   }
 
   render() {
@@ -94,7 +105,7 @@ export default class Concordance extends Component {
     const { isConcordanceLoading } = this.state
 
     const pages = Math.ceil(this.concordancesTexts.length / itemsPerPage)
-
+    console.log(pages)
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -107,7 +118,12 @@ export default class Concordance extends Component {
         }
         {
           !isConcordanceLoading &&
-          <View style={{ flex: 1 }}>
+          <GestureRecognizer
+            onSwipeRight={this.prevPage}
+            onSwipeLeft={() => this.nextPage(pages)}
+            config={{ velocityThreshold: 0.3, directionalOffsetThreshold: 80 }}
+            style={{ flex: 1 }}
+          >
             <ScrollView
               contentContainerStyle={styles.content}
               ref={(r) => { this.scrollView = r }}
@@ -126,9 +142,10 @@ export default class Concordance extends Component {
             </ScrollView>
             <PaginateSlider
               pages={pages}
+              currentPage={this.state.currentPage}
               onSlidingComplete={this.getCurrentValue}
             />
-          </View>
+          </GestureRecognizer>
         }
       </View>
     )
