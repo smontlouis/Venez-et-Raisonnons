@@ -21,7 +21,7 @@ export let persistedStore = null // eslint-disable-line import/no-mutable-export
 
 EStyleSheet.build(globalVariables)
 
-@codePush
+@codePush({ checkFrequency: codePush.CheckFrequency.ON_APP_RESUME })
 class App extends Component {
   static propTypes = {
 
