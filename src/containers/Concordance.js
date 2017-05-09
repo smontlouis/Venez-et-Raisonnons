@@ -5,8 +5,6 @@ import { View, StatusBar, Text, ScrollView } from 'react-native'
 import getDB from '@src/helpers/database'
 import { itemsPerPage } from '@src/helpers/globalVariables'
 import { Header, Loading, ConcordanceList, PaginateSlider } from '@src/components'
-import GestureRecognizer from '@src/helpers/swipe-gestures'
-
 
 
 const styles = EStyleSheet.create({
@@ -105,7 +103,6 @@ export default class Concordance extends Component {
     const { isConcordanceLoading } = this.state
 
     const pages = Math.ceil(this.concordancesTexts.length / itemsPerPage)
-    console.log(pages)
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -118,10 +115,7 @@ export default class Concordance extends Component {
         }
         {
           !isConcordanceLoading &&
-          <GestureRecognizer
-            onSwipeRight={this.prevPage}
-            onSwipeLeft={() => this.nextPage(pages)}
-            config={{ velocityThreshold: 0.3, directionalOffsetThreshold: 80 }}
+          <View
             style={{ flex: 1 }}
           >
             <ScrollView
@@ -145,7 +139,7 @@ export default class Concordance extends Component {
               currentPage={this.state.currentPage}
               onSlidingComplete={this.getCurrentValue}
             />
-          </GestureRecognizer>
+          </View>
         }
       </View>
     )

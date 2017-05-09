@@ -6,7 +6,6 @@ import debounce from 'debounce'
 import getDB from '@src/helpers/database'
 import { SearchInput, PaginateList, Loading, PaginateSlider, LexiqueMot, NoItems } from '@src/components'
 import { itemsPerPage } from '@src/helpers/globalVariables'
-import GestureRecognizer from '@src/helpers/swipe-gestures'
 
 
 const styles = EStyleSheet.create({
@@ -146,10 +145,7 @@ export default class Bible extends Component {
         }
         {
           (!isLoading && !!filteredStrongCodes.length) &&
-          <GestureRecognizer
-            onSwipeRight={this.prevPage}
-            onSwipeLeft={() => this.nextPage(pages)}
-            config={{ velocityThreshold: 0.3, directionalOffsetThreshold: 80 }}
+          <View
             style={{ flex: 1 }}
           >
             <ScrollView
@@ -180,7 +176,7 @@ export default class Bible extends Component {
               currentPage={this.state.currentPage}
               onSlidingComplete={this.getCurrentValue}
             />
-          </GestureRecognizer>
+          </View>
         }
       </View>
     )

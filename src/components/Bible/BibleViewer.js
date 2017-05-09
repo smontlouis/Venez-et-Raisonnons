@@ -1,12 +1,11 @@
 import React, { PropTypes, Component } from 'react'
-import { ScrollView } from 'react-native'
+import { ScrollView, View } from 'react-native'
 import { Button } from 'react-native-elements'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { connect } from 'react-redux'
 import getDB from '@src/helpers/database'
 import { BibleVerse, BibleFooter, Loading } from '@src/components'
 import { loadBible } from '@src/helpers'
-import GestureRecognizer from '@src/helpers/swipe-gestures'
 import * as BibleActions from '@src/redux/modules/bible'
 
 
@@ -164,10 +163,7 @@ export default class BibleViewer extends Component {
     }
 
     return (
-      <GestureRecognizer
-        onSwipeRight={goToPrevChapter}
-        onSwipeLeft={goToNextChapter}
-        config={{ velocityThreshold: 0.3, directionalOffsetThreshold: 80 }}
+      <View
         style={styles.container}
       >
         <ScrollView
@@ -198,7 +194,7 @@ export default class BibleViewer extends Component {
             goToNextChapter={goToNextChapter}
           />
         }
-      </GestureRecognizer>
+      </View>
     )
   }
 }
