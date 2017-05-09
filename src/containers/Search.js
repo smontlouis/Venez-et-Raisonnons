@@ -3,6 +3,7 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import R from 'ramda'
+import debounce from 'debounce'
 import { View, StatusBar } from 'react-native'
 import * as SearchActions from '@src/redux/modules/search'
 import {
@@ -62,7 +63,7 @@ const Search = ({ questions, setSearchInput, input }) => (
     <StatusBar barStyle="light-content" />
     <SearchHeader
       placeholder="RECHERCHE"
-      onChangeText={setSearchInput}
+      onChangeText={value => debounce(setSearchInput(value), 500)}
       hasBackButton
     />
     {IfQuestions(input, questions)}

@@ -45,6 +45,7 @@ const styles = EStyleSheet.create({
   },
   badgeText: {
     color: 'white',
+    lineHeight: 18,
   }
 })
 
@@ -125,7 +126,7 @@ export default class TopicItem extends Component {
           {
             !!newQuestionCount &&
             <View style={styles.badge}>
-              <Text style={styles.badgeText}>{newQuestionCount}</Text>
+              <Text secondaryFont style={styles.badgeText}>{newQuestionCount}</Text>
             </View>
           }
           <View>

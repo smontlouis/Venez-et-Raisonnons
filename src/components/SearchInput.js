@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import { View, TextInput, Platform } from 'react-native'
+import { View, TextInput, Platform, TouchableOpacity } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
@@ -12,6 +12,12 @@ const styles = EStyleSheet.create({
     backgroundColor: 'transparent',
     position: 'absolute',
     left: 16,
+    top: 13,
+  },
+  close: {
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    right: 16,
     top: 13,
   },
   input: {
@@ -31,10 +37,31 @@ const styles = EStyleSheet.create({
 
 
 class Search extends Component {
-  focus() {
-    const ref = this.props.textInputRef
-    ref.focus()
+
+  constructor(props) {
+    super(props)
+
+    this.onChangeText = ::this.onChangeText
+    this.onClear = ::this.onClear
   }
+
+  state = {
+    hasText: false,
+  }
+
+  onChangeText(value) {
+    if (value) this.setState({ hasText: true })
+    else this.setState({ hasText: false })
+
+    this.props.onChangeText(value)
+  }
+
+  onClear() {
+    this.props.onChangeText('')
+    this.setState({ hasText: false })
+    this.input.clear()
+  }
+
   render() {
     const {
     containerStyle,
@@ -42,23 +69,22 @@ class Search extends Component {
     icon,
     noIcon,
     round,
-    /* inherited props */
-    textInputRef,
-    containerRef,
     isLight,
     ...props,
   } = this.props
     return (
       <View
-        ref={containerRef}
         style={[
           styles.container,
           containerStyle && containerStyle,
         ]}
       >
         <TextInput
-          ref={textInputRef}
           {...props}
+          ref={c => this.input = c}
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChangeText={this.onChangeText}
           placeholderTextColor={isLight ? 'black' : 'white'}
           underlineColorAndroid="transparent"
           style={[
@@ -82,6 +108,20 @@ class Search extends Component {
             />
           )
         }
+        {
+          this.state.hasText && (
+            <TouchableOpacity
+              onPress={this.onClear}
+              style={styles.close}
+            >
+              <Icon
+                size={20}
+                name={'close'}
+                color={isLight ? 'black' : 'white'}
+              />
+            </TouchableOpacity>
+          )
+        }
       </View>
     )
   }
@@ -93,6 +133,7 @@ Search.propTypes = {
   noIcon: PropTypes.bool,
   containerStyle: PropTypes.any,
   inputStyle: PropTypes.any,
+  onChangeText: PropTypes.func.isRequired,
   round: PropTypes.bool,
   textInputRef: PropTypes.string,
   containerRef: PropTypes.string,
