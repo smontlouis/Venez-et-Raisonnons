@@ -20,7 +20,9 @@ import {
 import * as AppActions from '@src/redux/modules/app'
 import { Title } from '@src/styled'
 import styles, { setDynamicFontSize } from './styles'
+import Livres from '../../helpers/livres'
 
+const Books = require('../../helpers/books.json')
 
 const getCurrentChildrenIds = (state, props) => props.question.get('children')
 const getMarkedAsReadQuestionsIds = state => state.get('app').get('hasBeenRead')
@@ -46,6 +48,12 @@ export default class QuestionStudy extends Component {
     topic: PropTypes.object.isRequired,
     markAsRead: PropTypes.func.isRequired,
     removeAsRead: PropTypes.func.isRequired,
+    navigation: PropTypes.object.isRequired,
+  }
+
+  constructor(props) {
+    super(props)
+    this.onLinkPress = ::this.onLinkPress
   }
 
   state = {
@@ -56,12 +64,64 @@ export default class QuestionStudy extends Component {
     }
   }
 
+
   componentDidMount() {
     this.markOrRemoveReadByCheckingChildren()
   }
 
   componentWillReceiveProps() {
     this.markOrRemoveReadByCheckingChildren()
+  }
+
+  onLinkPress(url) {
+    const { navigation } = this.props
+    const { book, chapter, verses } = this.parseUrl(url)
+    const bookIndex = Object.keys(Books).find(key => (
+      Books[key][0] === book
+      || Books[key][1] === book
+      || Books[key][2] === book
+    ))
+
+    const bookObject = Livres[bookIndex - 1]
+
+    const params = {
+      book: bookObject,
+      chapter: Number(chapter),
+    }
+
+    if (verses) {
+      params.arrayVerses = {
+        book: bookObject,
+        chapter: Number(chapter),
+        verses
+      }
+    }
+
+    navigation.navigate('bible', params)
+  }
+
+  /*
+  * @example - genese.1.4 - genese.1.4-8 - genese.1.4,8
+   */
+  parseUrl(url) {
+    const [book, chapter, verses] = url.split('.')
+    let versesArray
+
+    if (verses && verses.includes('-')) {
+      const [vStart, vEnd] = verses.split('-')
+      versesArray = range(Number(vStart), Number(vEnd) + 1)
+    } else if (verses && verses.includes(',')) {
+      const splittedVersesByComma = verses.split(',')
+      versesArray = splittedVersesByComma.map(v => Number(v))
+    } else {
+      versesArray = verses ? [Number(verses)] : null
+    }
+
+    return {
+      book,
+      chapter,
+      verses: versesArray
+    }
   }
 
   markOrRemoveReadByCheckingChildren() {
@@ -108,6 +168,7 @@ export default class QuestionStudy extends Component {
               <Text style={styles.subTitle}>Introduction</Text>
               <StylizedHTMLView
                 value={question.get('description')}
+                onLinkPress={this.onLinkPress}
               />
             </View>
             <QuestionsList
