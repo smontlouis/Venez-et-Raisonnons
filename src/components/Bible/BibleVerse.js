@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import { View, Platform } from 'react-native'
+import { View, Platform, TouchableOpacity } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { verseToStrong } from '@src/helpers'
 import { Text } from '@src/styled'
@@ -41,6 +41,10 @@ class BibleVerse extends Component {
     if (getPosition) setTimeout(this.getVerseMeasure)
   }
 
+  onVersePress() {
+    console.log('presse')
+  }
+
   getVerseMeasure() {
     const { verse, getPosition } = this.props
     if (this.bibleVerse) {
@@ -63,7 +67,7 @@ class BibleVerse extends Component {
   render() {
     const { verse: { Verset } } = this.props
     return (
-      <View style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={this.onVersePress}>
         {
           Verset &&
           <View
@@ -74,11 +78,13 @@ class BibleVerse extends Component {
           >
             <Text tertiary small>{Verset}</Text>
           </View>
-        }
-        <Text flex>
+        }{}
+        <Text
+          flex
+        >
           {this.state.element}
         </Text>
-      </View>
+      </TouchableOpacity>
     )
   }
 }
