@@ -7,19 +7,19 @@ const styles = EStyleSheet.create({
   container: {
     padding: 15,
     paddingTop: 10,
-    paddingBottom: 10,
+    paddingBottom: 10
   },
   text: {
     color: 'black',
-    fontSize: 16,
+    fontSize: 16
   },
   name: {
     color: '$color.tertiary',
-    fontSize: 12,
+    fontSize: 12
   },
   selected: {
     color: '$color.primary',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   }
 })
 
@@ -37,6 +37,5 @@ const VersionSelectorItem = ({ version, isSelected, onChange }: Props) => (
     <Text style={[styles.name, isSelected && styles.selected]}>{version.name}</Text>
   </TouchableOpacity>
 )
-
 
 export default pure(VersionSelectorItem)

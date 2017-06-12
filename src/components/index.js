@@ -42,4 +42,3 @@ export SelectorItem from './Bible/SelectorItem'
 export SelectorButtons from './Bible/SelectorButtons'
 export BibleFooter from './Bible/BibleFooter'
 export ConcordanceList from './Bible/ConcordanceList'
-

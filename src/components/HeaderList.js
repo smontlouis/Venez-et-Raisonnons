@@ -4,14 +4,13 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import { pure, compose } from 'recompose'
 import { Title, Text } from '@src/styled'
 
-
 const styles = EStyleSheet.create({
   titleBorder: {
     marginTop: 20,
     marginBottom: 30,
     width: 35,
     height: 3,
-    backgroundColor: '$color.primary',
+    backgroundColor: '$color.primary'
   }
 })
 
@@ -26,10 +25,9 @@ const HeaderList = ({ title, subtitle }) => (
   </View>
 )
 
-
 HeaderList.propTypes = {
   title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
+  subtitle: PropTypes.string
 }
 
 export default pure(HeaderList)

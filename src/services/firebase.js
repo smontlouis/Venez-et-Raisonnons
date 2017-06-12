@@ -3,12 +3,12 @@ import env from '../../env'
 
 const {
   apiKey,
-  databaseURL,
+  databaseURL
 } = env.firebase
 
 export const firebaseDb = firebase.initializeApp({
   apiKey,
-  databaseURL,
+  databaseURL
 }).database()
 
 firebase.auth().signInAnonymously().catch(error => console.log(error))

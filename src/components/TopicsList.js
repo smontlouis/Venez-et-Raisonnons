@@ -7,8 +7,8 @@ import { List, TopicItem, HeaderList } from './index'
 const styles = EStyleSheet.create({
   container: {
     paddingTop: 0,
-    padding: 20,
-  },
+    padding: 20
+  }
 })
 
 const TopicsList = ({ headerTitle, topics, contentContainerStyle, ...props }) =>
@@ -30,11 +30,10 @@ const TopicsList = ({ headerTitle, topics, contentContainerStyle, ...props }) =>
     {...props}
   />
 
-
 TopicsList.propTypes = {
   headerTitle: PropTypes.string,
   topics: PropTypes.object.isRequired,
-  contentContainerStyle: PropTypes.number,
+  contentContainerStyle: PropTypes.number
 }
 
 export default pure(TopicsList)

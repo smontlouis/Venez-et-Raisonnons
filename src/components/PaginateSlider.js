@@ -14,7 +14,7 @@ const styles = EStyleSheet.create({
     right: 0,
     backgroundColor: 'transparent',
     borderTopColor: 'rgba(0,0,0,0.1)',
-    borderTopWidth: 1,
+    borderTopWidth: 1
   },
   slider: {
     height: 50,
@@ -24,7 +24,7 @@ const styles = EStyleSheet.create({
   },
   track: {
     height: 2,
-    borderRadius: 1,
+    borderRadius: 1
   },
   thumb: {
     width: 20,
@@ -35,13 +35,13 @@ const styles = EStyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 2,
     shadowOpacity: 0.35,
-    top: 26,
+    top: 26
   },
   pageIndicator: {
     backgroundColor: 'rgba(0,0,0,0.6)',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '95%',
+    height: '95%'
   },
   pageIndicatorText: {
     fontFamily: '$font.heading',
@@ -49,7 +49,7 @@ const styles = EStyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     paddingTop: 50,
-    paddingBottom: 50,
+    paddingBottom: 50
   }
 })
 
@@ -58,37 +58,37 @@ export default class PaginateSlider extends Component {
   static propTypes = {
     currentPage: PropTypes.number,
     onSlidingComplete: PropTypes.func.isRequired,
-    pages: PropTypes.number.isRequired,
+    pages: PropTypes.number.isRequired
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       value: 1,
-      slidingStart: false,
+      slidingStart: false
     }
 
     this.onSlidingStart = ::this.onSlidingStart
     this.onSlidingComplete = ::this.onSlidingComplete
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (this.props.currentPage !== nextProps.currentPage) {
       this.setState({ value: nextProps.currentPage })
     }
   }
 
-  onSlidingStart() {
+  onSlidingStart () {
     this.setState({ slidingStart: true })
   }
 
-  onSlidingComplete(value) {
+  onSlidingComplete (value) {
     const { onSlidingComplete } = this.props
     this.setState({ slidingStart: false })
     onSlidingComplete(value)
   }
 
-  render() {
+  render () {
     const { pages } = this.props
 
     if (pages < 2) {
@@ -112,8 +112,8 @@ export default class PaginateSlider extends Component {
           style={styles.slider}
           trackStyle={styles.track}
           thumbStyle={styles.thumb}
-          minimumTrackTintColor="#1A806F"
-          maximumTrackTintColor="#b7b7b7"
+          minimumTrackTintColor='#1A806F'
+          maximumTrackTintColor='#b7b7b7'
           minimumValue={1}
           maximumValue={pages}
         />

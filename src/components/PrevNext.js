@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { connect } from 'react-redux'
 import {
-  Link,
+  Link
 } from '@src/components'
 import { truncate } from '@src/helpers'
 
@@ -15,7 +15,7 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: '$color.grey',
+    borderColor: '$color.grey'
   },
   centered: {
     flex: 1,
@@ -24,7 +24,7 @@ const styles = EStyleSheet.create({
   prev: {
     borderRightWidth: 1,
     borderRightColor: '$color.grey',
-    alignItems: 'flex-start',
+    alignItems: 'flex-start'
   },
   prevNext: {
     flex: 1,
@@ -38,7 +38,7 @@ const styles = EStyleSheet.create({
     fontSize: 16,
     color: '$color.primary',
     fontWeight: 'bold',
-    paddingBottom: 15,
+    paddingBottom: 15
   }
 })
 
@@ -65,7 +65,7 @@ const PrevNext = ({ previous, next }) => (
         <Text style={styles.prevNextText}>
           {truncate(previous.get('title'), 50)}
         </Text>
-        <Icon name="md-arrow-round-back" size={22} color="#C22839" />
+        <Icon name='md-arrow-round-back' size={22} color='#C22839' />
       </Link>
     }
     {
@@ -78,7 +78,7 @@ const PrevNext = ({ previous, next }) => (
         <Text style={styles.prevNextText}>
           {truncate(next.get('title'), 50)}
         </Text>
-        <Icon name="md-arrow-round-forward" size={22} color="#C22839" />
+        <Icon name='md-arrow-round-forward' size={22} color='#C22839' />
       </Link>
     }
   </View>
@@ -86,9 +86,8 @@ const PrevNext = ({ previous, next }) => (
 
 PrevNext.propTypes = {
   previous: PropTypes.object,
-  next: PropTypes.object,
+  next: PropTypes.object
 }
-
 
 export default compose(
   connect(

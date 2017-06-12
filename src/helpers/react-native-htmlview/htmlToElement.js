@@ -4,16 +4,15 @@ const htmlparser = require('./vendor/htmlparser2')
 const entities = require('./vendor/entities')
 
 const {
-  Text,
+  Text
 } = ReactNative
-
 
 const LINE_BREAK = '\n'
 const PARAGRAPH_BREAK = '\n'
 const BULLET = '\u2022 '
 
-function htmlToElement(rawHtml, opts, done) {
-  function domToElement(dom, parent) {
+function htmlToElement (rawHtml, opts, done) {
+  function domToElement (dom, parent) {
     if (!dom) return null
 
     return dom.map((node, index, list) => {

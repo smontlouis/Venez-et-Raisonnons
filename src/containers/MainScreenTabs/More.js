@@ -9,25 +9,25 @@ import {
   Alert,
   Linking,
   Platform,
-  Share,
+  Share
 } from 'react-native'
 import { persistedStore } from '@src/App'
 import {
-  Header,
+  Header
 } from '@src/components'
 
 const primaryList = [
   {
     title: 'Poser une question',
     icon: 'add-circle',
-    onPress(navigation) {
+    onPress (navigation) {
       navigation.navigate('add')
     }
   },
   {
     title: 'Chercher une question',
     icon: 'search',
-    onPress(navigator) {
+    onPress (navigator) {
       navigator.navigate('search')
     }
   }
@@ -37,35 +37,35 @@ const secondaryList = [
   {
     title: 'À propos',
     icon: 'info-outline',
-    onPress(navigation) {
+    onPress (navigation) {
       navigation.navigate('about')
     }
   },
   {
     title: 'Astuces',
     icon: 'help-outline',
-    onPress(navigation) {
+    onPress (navigation) {
       navigation.navigate('astuces')
     }
   },
   {
     title: 'Idées de fonctionnalités',
     icon: 'lightbulb-outline',
-    onPress() {
+    onPress () {
       Linking.openURL('https://venez-et-raisonnons.canny.io/fonctionnalites')
     }
   },
   {
     title: 'Signaler un bug',
     icon: 'bug-report',
-    onPress() {
+    onPress () {
       Linking.openURL('https://venez-et-raisonnons.canny.io/bugs')
     }
   },
   {
     title: 'Nous soutenir',
     icon: 'thumb-up',
-    onPress() {
+    onPress () {
       Linking
         .openURL('https://igg.me/at/CVE7THZnG6w')
         .catch(err => console.log(err))
@@ -78,9 +78,9 @@ const secondaryList = [
   {
     title: 'Noter l\'application',
     icon: 'star',
-    onPress() {
-      const url = (Platform.OS === 'ios') ?
-      'https://itunes.apple.com/us/app/venez-et-raisonnons/id1206099949?mt=8'
+    onPress () {
+      const url = (Platform.OS === 'ios')
+      ? 'https://itunes.apple.com/us/app/venez-et-raisonnons/id1206099949?mt=8'
       : 'https://play.google.com/store/apps/details?id=com.pleadapp&hl=fr'
 
       Linking.openURL(url)
@@ -89,12 +89,12 @@ const secondaryList = [
   {
     title: 'Partager l\'application',
     icon: 'share',
-    onPress() {
+    onPress () {
       const url = 'https://itunes.apple.com/us/app/venez-et-raisonnons/id1206099949?mt=8' // iOS only
 
       Share.share({
         message: (Platform.OS === 'ios') ? 'Venez et Raisonnons !' : 'Venez et Raisonnons ! https://play.google.com/store/apps/details?id=com.pleadapp&hl=fr',
-        url,
+        url
       })
       .then(result => console.log(result))
       .catch(err => console.log(err))
@@ -103,17 +103,17 @@ const secondaryList = [
   {
     title: 'Nous contacter',
     icon: 'mail',
-    onPress() {
+    onPress () {
       Linking.openURL('mailto:venezetraisonnons@gmail.com')
     }
-  },
+  }
 ]
 
 const tertiaryList = [
   {
     title: 'Effacer les données sauvegardées',
     icon: 'delete-forever',
-    onPress() {
+    onPress () {
       Alert.alert(
         'Effacer les données',
         'Toutes les données sauvegardées (questions, images, favoris) seront définitivement effacées à votre prochaine connexion et devront être re-téléchargées. Êtes-vous sur de vouloir tout supprimer ?',
@@ -125,23 +125,23 @@ const tertiaryList = [
               persistedStore.purge()
               Toast.show('Toutes les données ont été effacées.')
             }
-          },
+          }
         ]
       )
-    },
-  },
+    }
+  }
 ]
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EFF0F4',
-  },
+    backgroundColor: '#EFF0F4'
+  }
 })
 
 const More = ({ navigation }) =>
   <View style={styles.container}>
     <Header
-      title="Plus"
+      title='Plus'
       hasBackButton={false}
     />
     <ScrollView>
@@ -185,8 +185,7 @@ const More = ({ navigation }) =>
   </View>
 
 More.propTypes = {
-  navigation: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired
 }
-
 
 export default withNavigation(More)

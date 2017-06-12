@@ -5,7 +5,7 @@ import { fromJS } from 'immutable'
 import * as BibleActions from '@src/redux/modules/bible'
 
 import {
-  View,
+  View
 } from 'react-native'
 
 import { Header, VersionSelectorItem, List } from '@src/components'
@@ -13,13 +13,13 @@ import { Header, VersionSelectorItem, List } from '@src/components'
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   list: {
     flex: 1,
     paddingTop: 10,
-    paddingBottom: 20,
-  },
+    paddingBottom: 20
+  }
 })
 
 type Props = {
@@ -30,11 +30,11 @@ type Props = {
 const versions = fromJS({
   STRONG: {
     id: 'STRONG',
-    name: 'Bible Second 1910 Strong',
+    name: 'Bible Second 1910 Strong'
   },
   LSG: {
     id: 'LSG',
-    name: 'Bible Second 1910',
+    name: 'Bible Second 1910'
   },
   FRDBY: {
     id: 'FRDBY',
@@ -43,7 +43,7 @@ const versions = fromJS({
   OST: {
     id: 'OST',
     name: 'Ostervald'
-  },
+  }
 })
 
 const setAndClose = (setVersion, navigation, vers) => {
@@ -53,7 +53,7 @@ const setAndClose = (setVersion, navigation, vers) => {
 
 const VersionSelector = ({ setVersion, navigation }: Props) => (
   <View style={styles.container}>
-    <Header title="Versions" />
+    <Header title='Versions' />
     <List
       listItems={versions}
       renderRow={v =>

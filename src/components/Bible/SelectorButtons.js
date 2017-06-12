@@ -5,7 +5,7 @@ import { pure, compose } from 'recompose'
 import {
   View,
   Text,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import * as BibleActions from '@src/redux/modules/bible'
@@ -17,12 +17,12 @@ const styles = EStyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'stretch',
     borderTopWidth: 1,
-    borderTopColor: '$color.grey',
+    borderTopColor: '$color.grey'
   },
   button: {
     paddingLeft: 15,
     paddingRight: 15,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   text: {
     color: '$color.primary'
@@ -40,16 +40,15 @@ const SelectorButtons = ({ navigation, validateSelected }) => (
   </View>
 )
 
-
 SelectorButtons.propTypes = {
   navigation: PropTypes.object.isRequired,
-  validateSelected: PropTypes.func.isRequired,
+  validateSelected: PropTypes.func.isRequired
 }
 
 export default compose(
   connect(
     null,
-    BibleActions,
+    BibleActions
   ),
   withNavigation,
   pure

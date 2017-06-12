@@ -4,7 +4,7 @@ import { pure, compose } from 'recompose'
 
 import {
   View,
-  Text,
+  Text
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
@@ -14,17 +14,17 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 10,
-    paddingRight: 10,
+    paddingRight: 10
   },
   text: {
-    marginLeft: 10,
+    marginLeft: 10
   }
 })
 
 const CheckIfAllRead = ({ markedAsRead }) => (
   <View style={styles.container}>
     <Icon
-      name="check"
+      name='check'
       size={24}
       color={markedAsRead ? '#2ecc71' : 'rgb(230,230,230)'}
     />
@@ -33,7 +33,7 @@ const CheckIfAllRead = ({ markedAsRead }) => (
 )
 
 CheckIfAllRead.propTypes = {
-  markedAsRead: PropTypes.bool.isRequired,
+  markedAsRead: PropTypes.bool.isRequired
 }
 
 export default compose(

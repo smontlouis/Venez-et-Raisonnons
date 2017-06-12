@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/Ionicons'
 import MIcon from 'react-native-vector-icons/MaterialIcons'
-import { Text, View, } from 'react-native'
+import { Text, View } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { pure, compose } from 'recompose'
 
@@ -18,22 +18,22 @@ const styles = EStyleSheet.create({
     borderColor: '$color.grey',
     paddingRight: 10,
     paddingTop: 20,
-    paddingBottom: 20,
+    paddingBottom: 20
   },
   content: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    paddingRight: 20,
+    paddingRight: 20
   },
   number: {
     color: '$color.primary',
     fontFamily: '$font.heading',
     fontSize: 20,
-    lineHeight: 24,
+    lineHeight: 24
   },
   icon: {
-    color: '$color.primary',
+    color: '$color.primary'
   },
   studyIcon: {
     color: '$color.quart',
@@ -46,10 +46,10 @@ const styles = EStyleSheet.create({
     backgroundColor: '$color.primary',
     alignSelf: 'flex-start',
     marginRight: 10,
-    marginTop: 8,
+    marginTop: 8
   },
   badgeText: {
-    color: 'white',
+    color: 'white'
   }
 })
 
@@ -70,18 +70,18 @@ const QuestionItem = ({ number, id, title, hasBeenRead, containerStyle, isStudy,
         }
         {
           isStudy &&
-          <MIcon name="description" size={20} style={styles.studyIcon} />
+          <MIcon name='description' size={20} style={styles.studyIcon} />
         }
         <Title medium secondaryFont>{title}</Title>
       </View>
       <View>
         {
           hasBeenRead &&
-          <Icon name="md-checkmark" size={20} color={isStudy ? 'rgba(26, 128, 111, 0.5)' : 'rgba(194, 40, 57, 0.5)'} />
+          <Icon name='md-checkmark' size={20} color={isStudy ? 'rgba(26, 128, 111, 0.5)' : 'rgba(194, 40, 57, 0.5)'} />
         }
         {
           !hasBeenRead &&
-          <Icon name="md-arrow-round-forward" size={18} color={isStudy ? '#1A806F' : '#C22839'} />
+          <Icon name='md-arrow-round-forward' size={18} color={isStudy ? '#1A806F' : '#C22839'} />
         }
       </View>
     </View>
@@ -95,7 +95,7 @@ QuestionItem.propTypes = {
   title: PropTypes.string.isRequired,
   hasBeenRead: PropTypes.bool,
   isStudy: PropTypes.bool,
-  isNew: PropTypes.bool,
+  isNew: PropTypes.bool
 }
 
 export default compose(
@@ -103,7 +103,7 @@ export default compose(
     (state, ownProps) => ({
       hasBeenRead: !!state.getIn(['app', 'hasBeenRead', ownProps.id]),
       isNew: !!state.getIn(['questions', 'newQuestions', ownProps.id])
-    }),
+    })
   ),
   pure
 )(QuestionItem)

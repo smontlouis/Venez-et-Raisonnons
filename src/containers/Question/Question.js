@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import {
   QuestionSimple,
-  QuestionStudy,
+  QuestionStudy
 } from '@src/containers'
 import * as AppActions from '@src/redux/modules/app'
 import * as QuestionActions from '@src/redux/modules/questions'
@@ -21,9 +21,8 @@ const getCurrentTopic = createSelector(
 
 const getChildrenByQuestion = createSelector(
   [getChildrenIdsByCurrentQuestion, getQuestions],
-  (questionsIds, questions) => questionsIds ? questionsIds.map(qID => questions.find(q => q.get('id') === qID)) : null, // eslint-disable-line no-confusing-arrow
+  (questionsIds, questions) => questionsIds ? questionsIds.map(qID => questions.find(q => q.get('id') === qID)) : null // eslint-disable-line no-confusing-arrow
 )
-
 
 @connect(
   (state, ownProps) => ({
@@ -31,7 +30,7 @@ const getChildrenByQuestion = createSelector(
     topic: getCurrentTopic(state, ownProps),
     children: getChildrenByQuestion(state, ownProps)
   }),
-  { ...AppActions, ...QuestionActions },
+  { ...AppActions, ...QuestionActions }
 )
 export default class Question extends Component {
   static propTypes = {
@@ -40,15 +39,15 @@ export default class Question extends Component {
     topic: PropTypes.object.isRequired,
     markAsRead: PropTypes.func.isRequired,
     setNotNewQuestion: PropTypes.func.isRequired,
-    navigation: PropTypes.object,
+    navigation: PropTypes.object
   }
 
-  componentDidMount() {
+  componentDidMount () {
     const { navigation, setNotNewQuestion, question } = this.props
     if (navigation.state.params && navigation.state.params.isNew) setNotNewQuestion(question.get('id'))
   }
 
-  render() {
+  render () {
     const { question, topic, markAsRead, children, navigation } = this.props
     const { fromStudy } = navigation.state.params || {}
 

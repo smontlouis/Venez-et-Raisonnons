@@ -7,8 +7,8 @@ const styles = EStyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 })
 
 const Loading = () => (
@@ -17,6 +17,5 @@ const Loading = () => (
     {/* <Text>Un petit instant svp...</Text> */}
   </View>
 )
-
 
 export default pure(Loading)

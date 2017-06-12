@@ -10,7 +10,6 @@ const {
   domain
 } = env.auth0
 
-
 const authenticationEnabled = clientId && domain
 
 let lock = null
@@ -23,7 +22,7 @@ if (authenticationEnabled) {
   console.warn('Authentication not enabled: Auth0 configuration not provided')
 }
 
-export function showLogin() {
+export function showLogin () {
   if (!authenticationEnabled) {
     return
   }
@@ -32,7 +31,7 @@ export function showLogin() {
     closable: false,
     dict: 'fr',
     icon: 'https://image.freepik.com/icones-gratuites/facebook-logo-bouton_318-84980.png',
-    socialBigButtons: true,
+    socialBigButtons: true
   }
 
   if (Platform.OS === 'ios') {

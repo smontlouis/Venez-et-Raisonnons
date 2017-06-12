@@ -7,7 +7,6 @@ import getDB from '@src/helpers/database'
 import * as BibleActions from '@src/redux/modules/bible'
 import { SelectorItem } from '@src/components'
 
-
 const styles = EStyleSheet.create({
   container: {
     flexWrap: 'wrap',
@@ -16,17 +15,17 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     padding: 20,
     paddingLeft: 10,
-    paddingRight: 10,
-  },
+    paddingRight: 10
+  }
 })
 
 @connect(
   state => ({
     selectedBook: state.getIn(['bible', 'temp', 'selectedBook']).toJS(),
     selectedChapter: state.getIn(['bible', 'temp', 'selectedChapter']),
-    selectedVerse: state.getIn(['bible', 'temp', 'selectedVerse']),
+    selectedVerse: state.getIn(['bible', 'temp', 'selectedVerse'])
   }),
-  BibleActions,
+  BibleActions
 )
 @pure
 export default class VerseSelector extends Component {
@@ -36,14 +35,14 @@ export default class VerseSelector extends Component {
     validateSelected: PropTypes.func.isRequired,
     selectedBook: PropTypes.object.isRequired,
     selectedChapter: PropTypes.number.isRequired,
-    selectedVerse: PropTypes.number.isRequired,
+    selectedVerse: PropTypes.number.isRequired
   }
 
   static navigationOptions = {
-    tabBarLabel: 'Verset',
+    tabBarLabel: 'Verset'
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.onValidate = ::this.onValidate
@@ -53,26 +52,26 @@ export default class VerseSelector extends Component {
     isLoaded: false
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.DB = getDB()
     this.loadVerses()
   }
 
-  componentDidUpdate(oldProps) {
+  componentDidUpdate (oldProps) {
     if (
-      (this.props.selectedChapter !== oldProps.selectedChapter)
-      || this.props.selectedBook.Numero !== oldProps.selectedBook.Numero) {
+      (this.props.selectedChapter !== oldProps.selectedChapter) ||
+      this.props.selectedBook.Numero !== oldProps.selectedBook.Numero) {
       this.loadVerses()
     }
   }
 
-  onValidate(verse) {
+  onValidate (verse) {
     this.props.setTempSelectedVerse(verse)
     this.props.validateSelected()
     setTimeout(() => this.props.screenProps.mainNavigation.goBack(), 0)
   }
 
-  loadVerses() {
+  loadVerses () {
     const { selectedBook, selectedChapter } = this.props
     const part = selectedBook.Numero > 39 ? 'LSGSNT2' : 'LSGSAT2'
     this.verses = []
@@ -85,12 +84,11 @@ export default class VerseSelector extends Component {
       })
   }
 
-  render() {
+  render () {
     const { isLoaded } = this.state
     const {
-      selectedVerse,
+      selectedVerse
     } = this.props
-
 
     if (!isLoaded) {
       return null

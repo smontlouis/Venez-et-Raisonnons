@@ -10,7 +10,7 @@ const styles = EStyleSheet.create({
     backgroundColor: '$color.primaryDarken',
     height: '$header.height',
     paddingTop: (Platform.OS === 'ios') ? 18 : 23,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   back: {
     height: 32,
@@ -18,8 +18,8 @@ const styles = EStyleSheet.create({
     marginLeft: 10,
     paddingTop: (Platform.OS === 'ios') ? 18 : 23,
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 })
 
 const SearchHeader = ({ onChangeText, placeholder, hasBackButton }) => (
@@ -30,9 +30,9 @@ const SearchHeader = ({ onChangeText, placeholder, hasBackButton }) => (
       hasBackButton &&
       <Back
         style={styles.back}
-        underlayColor="transparent"
+        underlayColor='transparent'
       >
-        <Icon name="chevron-left" size={28} color="white" />
+        <Icon name='chevron-left' size={28} color='white' />
       </Back>
     }
     <SearchInput
@@ -45,7 +45,7 @@ const SearchHeader = ({ onChangeText, placeholder, hasBackButton }) => (
 SearchHeader.propTypes = {
   hasBackButton: PropTypes.bool,
   onChangeText: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired
 }
 
 export default pure(SearchHeader)

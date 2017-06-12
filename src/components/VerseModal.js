@@ -10,18 +10,18 @@ const styles = EStyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   title: {
     fontFamily: '$font.title',
-    fontSize: 20,
+    fontSize: 20
   },
   titleBorder: {
     marginTop: 20,
     marginBottom: 20,
     width: 35,
     height: 3,
-    backgroundColor: '$color.secondary',
+    backgroundColor: '$color.secondary'
   },
   text: {
     fontSize: 16,
@@ -29,7 +29,7 @@ const styles = EStyleSheet.create({
     color: '$color.tertiary'
   },
   strong: {
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
 
   // Modal
@@ -37,7 +37,7 @@ const styles = EStyleSheet.create({
     backgroundColor: '#EFF0F4',
     padding: 20,
     height: '80%'
-  },
+  }
 })
 
 const VerseModal = ({ isLoading, title, text, refValue }) => {
@@ -55,7 +55,7 @@ const VerseModal = ({ isLoading, title, text, refValue }) => {
     <Modal
       style={styles.modal}
       backButtonClose
-      position="bottom"
+      position='bottom'
       ref={refValue}
     >
       {
@@ -74,12 +74,11 @@ const VerseModal = ({ isLoading, title, text, refValue }) => {
   )
 }
 
-
 VerseModal.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   text: PropTypes.any.isRequired,
-  refValue: PropTypes.func.isRequired,
+  refValue: PropTypes.func.isRequired
 }
 
 export default pure(VerseModal)

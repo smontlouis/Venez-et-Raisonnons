@@ -17,16 +17,16 @@ const styles = EStyleSheet.create({
     backgroundColor: 'rgba(26, 128, 111, 0.1)',
     marginLeft: 20,
     marginRight: 20,
-    borderRadius: 3,
+    borderRadius: 3
   },
   icon: {
-    color: '$color.quart',
+    color: '$color.quart'
   },
   text: {
     color: '$color.quart',
     flex: 1,
     paddingLeft: 10,
-    paddingRight: 10,
+    paddingRight: 10
   }
 })
 
@@ -37,13 +37,13 @@ const LinkToStudy = ({ id, question }) => (
   >
     <View style={styles.container}>
       <Icon
-        name="description"
+        name='description'
         size={24}
         style={styles.icon}
       />
       <Text style={styles.text}>{`Voir l'étude "${question.get('title')}"`}</Text>
       <Icon
-        name="chevron-right"
+        name='chevron-right'
         size={24}
         style={styles.icon}
       />
@@ -51,17 +51,16 @@ const LinkToStudy = ({ id, question }) => (
   </Link>
 )
 
-
 LinkToStudy.propTypes = {
   id: PropTypes.string.isRequired,
-  question: PropTypes.object.isRequired,
+  question: PropTypes.object.isRequired
 }
 
 export default compose(
   connect(
     (state, ownProps) => ({
       question: state.getIn(['questions', 'questions', ownProps.id])
-    }),
+    })
   ),
   pure
 )(LinkToStudy)

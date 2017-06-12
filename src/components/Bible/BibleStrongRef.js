@@ -8,12 +8,12 @@ const styles = EStyleSheet.create({
   text: {
     color: '$color.primary',
     fontFamily: '$font.text_alternative',
-    fontSize: 14,
+    fontSize: 14
   },
   textForConcordance: {
     color: '$color.primary',
     fontWeight: 'bold',
-    fontSize: 12,
+    fontSize: 12
   }
 })
 
@@ -29,12 +29,11 @@ const BibleStrongRef = ({ navigation, reference, book, isFromConcordance }) => (
   </Text>
 )
 
-
 BibleStrongRef.propTypes = {
   isFromConcordance: PropTypes.bool,
   navigation: PropTypes.object.isRequired,
   reference: PropTypes.string.isRequired,
-  book: PropTypes.number.isRequired,
+  book: PropTypes.number.isRequired
 }
 
 export default compose(

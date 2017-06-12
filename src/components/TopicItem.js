@@ -21,7 +21,7 @@ const styles = EStyleSheet.create({
     paddingRight: 10,
     borderBottomWidth: 1,
     borderStyle: 'solid',
-    borderBottomColor: '$color.grey',
+    borderBottomColor: '$color.grey'
   },
   containerGrey: {
     opacity: 0.3
@@ -30,10 +30,10 @@ const styles = EStyleSheet.create({
     width: 72,
     height: 53,
     marginRight: 20,
-    borderRadius: 3,
+    borderRadius: 3
   },
   content: {
-    flex: 1,
+    flex: 1
   },
   badge: {
     borderRadius: 20,
@@ -42,11 +42,11 @@ const styles = EStyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     backgroundColor: '$color.primary',
-    marginRight: 10,
+    marginRight: 10
   },
   badgeText: {
     color: 'white',
-    lineHeight: 18,
+    lineHeight: 18
   }
 })
 
@@ -61,7 +61,7 @@ const getNewQuestionsCountByTopic = createSelector(
   (currentTopic, questions) => questions
     .filter(question => question.get('topic') === currentTopic.get('id'))
     .filter(question => question.get('standalone'))
-    .count(),
+    .count()
 )
 
 const getQuestionsNumberByTopic = createSelector(
@@ -69,9 +69,8 @@ const getQuestionsNumberByTopic = createSelector(
   (currentTopic, questions) => questions
     .filter(question => question.get('topic') === currentTopic.get('id'))
     .filter(question => question.get('standalone'))
-    .count(),
+    .count()
 )
-
 
 @connect(
   (state, ownProps) => ({
@@ -79,7 +78,7 @@ const getQuestionsNumberByTopic = createSelector(
     prevImgUrl: getPrevImgUrl(state, ownProps),
     questionsCount: getQuestionsNumberByTopic(state, ownProps),
     newQuestionCount: getNewQuestionsCountByTopic(state, ownProps)
-  }),
+  })
 )
 @pure
 export default class TopicItem extends Component {
@@ -91,10 +90,10 @@ export default class TopicItem extends Component {
     prevImgUrl: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     questionsCount: PropTypes.number.isRequired,
-    newQuestionCount: PropTypes.number,
+    newQuestionCount: PropTypes.number
   }
 
-  componentWillMount() {
+  componentWillMount () {
     const { imageUrl, id, dispatch, prevImgUrl, base64Img } = this.props
 
     if ((imageUrl !== prevImgUrl) || !base64Img) {
@@ -106,7 +105,7 @@ export default class TopicItem extends Component {
     }
   }
 
-  render() {
+  render () {
     const { id, title, questionsCount, base64Img, newQuestionCount } = this.props
 
     if (!questionsCount) return null
@@ -132,7 +131,7 @@ export default class TopicItem extends Component {
             </View>
           }
           <View>
-            <Icon name="chevron-right" size={26} color="rgba(0,0,0,0.5)" />
+            <Icon name='chevron-right' size={26} color='rgba(0,0,0,0.5)' />
           </View>
         </View>
       </Link>

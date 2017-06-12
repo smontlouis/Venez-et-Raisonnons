@@ -15,7 +15,7 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginLeft: 10,
-    marginRight: 10,
+    marginRight: 10
   },
   button: {
     width: 40,
@@ -28,7 +28,7 @@ const styles = EStyleSheet.create({
     borderColor: '$color.grey',
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.3
   }
 })
 
@@ -64,13 +64,12 @@ const BibleFooter = ({ book, chapter, goToNextChapter, goToPrevChapter, disabled
   </View>
 )
 
-
 BibleFooter.propTypes = {
   book: PropTypes.object.isRequired,
   chapter: PropTypes.number.isRequired,
   goToPrevChapter: PropTypes.func.isRequired,
   goToNextChapter: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool.isRequired
 }
 
 export default pure(BibleFooter)

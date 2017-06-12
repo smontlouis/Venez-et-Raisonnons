@@ -8,8 +8,8 @@ const styles = EStyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    paddingTop: 0,
-  },
+    paddingTop: 0
+  }
 })
 
 const StudiesList = ({ headerTitle, studies, style, ...props }) =>
@@ -30,11 +30,10 @@ const StudiesList = ({ headerTitle, studies, style, ...props }) =>
     {...props}
   />
 
-
 StudiesList.propTypes = {
   headerTitle: PropTypes.string,
   studies: PropTypes.object.isRequired,
-  style: PropTypes.number,
+  style: PropTypes.number
 }
 
 export default pure(StudiesList)

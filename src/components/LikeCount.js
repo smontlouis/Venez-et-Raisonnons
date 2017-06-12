@@ -13,13 +13,13 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 50,
-    marginBottom: 30,
+    marginBottom: 30
   },
   text: {
     marginLeft: 10,
     fontSize: 44,
     fontFamily: '$font.heading',
-    color: '$color.tertiary',
+    color: '$color.tertiary'
   }
 })
 
@@ -27,7 +27,7 @@ const LikeCount = ({ id, toggleLike, isActive, count }) => (
   <TouchableOpacity onPress={() => toggleLike(id)}>
     <View style={styles.container}>
       <Icon
-        name="favorite"
+        name='favorite'
         size={40}
         color={isActive ? '#C22839' : 'rgb(230,230,230)'}
       />
@@ -40,15 +40,15 @@ LikeCount.propTypes = {
   id: PropTypes.string.isRequired,
   isActive: PropTypes.bool,
   toggleLike: PropTypes.func.isRequired,
-  count: PropTypes.number.isRequired,
+  count: PropTypes.number.isRequired
 }
 
 export default compose(
   connect(
     (state, ownProps) => ({
-      isActive: !!state.getIn(['app', 'likes', ownProps.id]),
+      isActive: !!state.getIn(['app', 'likes', ownProps.id])
     }),
-    AppActions,
+    AppActions
   ),
   pure
 )(LikeCount)

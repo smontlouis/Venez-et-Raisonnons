@@ -5,7 +5,7 @@ import { LexiqueGrec, LexiqueHebreu } from '@src/containers'
 
 const RouteConfigs = {
   lexiqueGrec: { screen: LexiqueGrec },
-  lexiqueHebreu: { screen: LexiqueHebreu },
+  lexiqueHebreu: { screen: LexiqueHebreu }
 }
 
 const TabNavigatorConfig = {
@@ -18,14 +18,14 @@ const TabNavigatorConfig = {
     activeTintColor: global.color.white,
     inactiveTintColor: 'rgba(255, 255, 255, 0.7)',
     labelStyle: {
-      fontSize: 12,
+      fontSize: 12
     },
     style: {
       paddingTop: (Platform.OS === 'ios') ? 15 : 20,
-      backgroundColor: global.color.primaryDarken,
+      backgroundColor: global.color.primaryDarken
     },
     indicatorStyle: {
-      backgroundColor: global.color.white,
+      backgroundColor: global.color.white
     }
   }
 }

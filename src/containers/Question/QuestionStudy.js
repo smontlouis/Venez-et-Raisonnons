@@ -38,7 +38,7 @@ const checkIfAllMarkedQuestions = createSelector(
     checkIfAllRead: checkIfAllMarkedQuestions(state, ownProps),
     markedAsRead: !!state.getIn(['app', 'hasBeenRead', ownProps.question.get('id')])
   }),
-  AppActions,
+  AppActions
 )
 export default class QuestionStudy extends Component {
   static propTypes = {
@@ -49,10 +49,10 @@ export default class QuestionStudy extends Component {
     topic: PropTypes.object.isRequired,
     markAsRead: PropTypes.func.isRequired,
     removeAsRead: PropTypes.func.isRequired,
-    navigation: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.onLinkPress = ::this.onLinkPress
   }
@@ -61,33 +61,32 @@ export default class QuestionStudy extends Component {
     verseIsLoading: false,
     verse: {
       title: '',
-      text: '',
+      text: ''
     }
   }
 
-
-  componentDidMount() {
+  componentDidMount () {
     this.markOrRemoveReadByCheckingChildren()
   }
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps () {
     this.markOrRemoveReadByCheckingChildren()
   }
 
-  onLinkPress(url) {
+  onLinkPress (url) {
     const { navigation } = this.props
     const { book, chapter, verses } = this.parseUrl(url)
     const bookIndex = Object.keys(Books).find(key => (
-      Books[key][0] === book
-      || Books[key][1] === book
-      || Books[key][2] === book
+      Books[key][0] === book ||
+      Books[key][1] === book ||
+      Books[key][2] === book
     ))
 
     const bookObject = Livres[bookIndex - 1]
 
     const params = {
       book: bookObject,
-      chapter: Number(chapter),
+      chapter: Number(chapter)
     }
 
     if (verses) {
@@ -104,7 +103,7 @@ export default class QuestionStudy extends Component {
   /*
   * @example - genese.1.4 - genese.1.4-8 - genese.1.4,8
    */
-  parseUrl(url) {
+  parseUrl (url) {
     const [book, chapter, verses] = url.split('.')
     let versesArray
 
@@ -125,7 +124,7 @@ export default class QuestionStudy extends Component {
     }
   }
 
-  markOrRemoveReadByCheckingChildren() {
+  markOrRemoveReadByCheckingChildren () {
     const { markedAsRead, markAsRead, removeAsRead, checkIfAllRead, question } = this.props
     if (checkIfAllRead !== markedAsRead) {
       if (checkIfAllRead) {
@@ -136,12 +135,12 @@ export default class QuestionStudy extends Component {
     }
   }
 
-  render() {
+  render () {
     const {
       question,
       topic,
       children,
-      markedAsRead,
+      markedAsRead
     } = this.props
 
     return (

@@ -13,7 +13,7 @@
 *     defaults to 1.
 * @return {!Array.<number>}  Array of numbers in the specified range.
 */
-export default function range(start, edge, step) {
+export default function range (start, edge, step) {
   // If only one number was passed in make it the edge and 0 the start.
   if (arguments.length === 1) {
     edge = start

@@ -6,7 +6,7 @@ export default {
     title_italic: (Platform.OS === 'ios') ? 'MetaSerifOT-BookIta' : 'metaserif_light_italic',
     heading: (Platform.OS === 'ios') ? 'Alternate Gothic No3 D' : 'alternategothic',
     text: (Platform.OS === 'ios') ? 'Iowan Old Style' : 'serif',
-    text_alternative: 'Arial',
+    text_alternative: 'Arial'
   },
   color: {
     black: 'black',
@@ -24,7 +24,7 @@ export default {
   paddingTop: (Platform.OS === 'ios') ? 15 : 10,
   header: {
     height: (Platform.OS === 'ios') ? 64 : 73,
-    icon: (Platform.OS === 'ios') ? 5 : 10,
+    icon: (Platform.OS === 'ios') ? 5 : 10
   },
   textStyle: {
     lineHeight: 27,

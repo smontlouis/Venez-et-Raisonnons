@@ -4,7 +4,7 @@ import ShowDown from 'showdown'
 
 import {
   View,
-  ScrollView,
+  ScrollView
 } from 'react-native'
 import {
   Header,
@@ -46,21 +46,20 @@ Nous sommes persuadés que tout cela sera d’une grande aide pour le monde fran
 v2.0.0
 `)
 
-
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   content: {
-    padding: 25,
+    padding: 25
   }
 })
 
 const About = () =>
   <View style={styles.container}>
     <Header
-      title="À propos"
+      title='À propos'
     />
     <ScrollView contentContainerStyle={styles.content}>
       <StylizedHTMLView
@@ -69,6 +68,5 @@ const About = () =>
     </ScrollView>
 
   </View>
-
 
 export default About

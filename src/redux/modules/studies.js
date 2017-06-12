@@ -3,10 +3,10 @@ import { Map, fromJS } from 'immutable'
 import { LOAD_DATA_SUCCESS } from './app'
 
 const initialState = Map({
-  studies: Map(),
+  studies: Map()
 })
 
-export default function TopicsReducer(state = initialState, action = {}) {
+export default function TopicsReducer (state = initialState, action = {}) {
   switch (action.type) {
     case LOAD_DATA_SUCCESS: {
       const { meditations: response } = action.result

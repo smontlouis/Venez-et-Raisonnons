@@ -18,7 +18,6 @@ export const initDB = SQLite.openDatabase({
     return DB
   })
 
-
-export default function getDB() {
+export default function getDB () {
   return DB
 }

@@ -9,13 +9,13 @@ const styles = EStyleSheet.create({
   button: {
     marginTop: 30,
     backgroundColor: '$color.primary',
-    borderRadius: 5,
+    borderRadius: 5
   },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#EFF0F4',
+    backgroundColor: '#EFF0F4'
   },
   text: {
     fontSize: 20,
@@ -34,7 +34,7 @@ const NoItems = ({ icon, text, buttonTitle, buttonAction }) => (
     {
       buttonTitle &&
       <Button
-        title="Réessayer"
+        title='Réessayer'
         buttonStyle={styles.button}
         onPress={buttonAction}
       />
@@ -42,12 +42,11 @@ const NoItems = ({ icon, text, buttonTitle, buttonAction }) => (
   </View>
 )
 
-
 NoItems.propTypes = {
   buttonTitle: PropTypes.string,
   buttonAction: PropTypes.func,
   icon: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
 }
 
 export default pure(NoItems)

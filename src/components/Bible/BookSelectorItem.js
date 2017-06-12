@@ -9,7 +9,7 @@ const styles = EStyleSheet.create({
     fontSize: 16,
     padding: 15,
     paddingTop: 10,
-    paddingBottom: 10,
+    paddingBottom: 10
   },
   selected: {
     color: '$color.primary'
@@ -24,11 +24,10 @@ const BookSelectorItem = ({ book, isSelected, onChange }) => (
   </TouchableOpacity>
 )
 
-
 BookSelectorItem.propTypes = {
   book: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
-  isSelected: PropTypes.bool,
+  isSelected: PropTypes.bool
 }
 
 export default pure(BookSelectorItem)

@@ -5,7 +5,7 @@ import { Map } from 'immutable'
 import questionsNotifier from './questionsNotifier'
 import reducer from './modules/reducer'
 
-export default function configureStore() {
+export default function configureStore () {
   let store
   const initialState = Map()
 
@@ -13,7 +13,7 @@ export default function configureStore() {
     store = compose(
       autoRehydrate(),
       applyMiddleware(thunk, questionsNotifier),
-      global.reduxNativeDevTools ? global.reduxNativeDevTools() : noop => noop,
+      global.reduxNativeDevTools ? global.reduxNativeDevTools() : noop => noop
     )(createStore)(reducer)
 
     if (global.reduxNativeDevTools) {
@@ -30,7 +30,7 @@ export default function configureStore() {
   } else {
     store = compose(
       autoRehydrate(),
-      applyMiddleware(thunk, questionsNotifier),
+      applyMiddleware(thunk, questionsNotifier)
     )(createStore)(reducer, initialState)
   }
 

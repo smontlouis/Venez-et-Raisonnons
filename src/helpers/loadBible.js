@@ -2,7 +2,7 @@ const DarbyBible = require('./bible-darby.json')
 const OSTBible = require('./bible-ostervald.json')
 const LSGBible = require('./bible-lsg-1910.json')
 
-export default function loadBible(bible) {
+export default function loadBible (bible) {
   return new Promise((resolve, reject) => {
     try {
       switch (bible) {

@@ -21,7 +21,6 @@ import Bible from '@src/containers/MainScreenTabs/Bible'
 import Topics from '@src/containers/MainScreenTabs/Topics'
 import MainScreen from '@src/containers/MainScreenTabs/MainScreenNavigator'
 
-
 const routesConfigs = {
   home: { screen: MainScreen },
 
@@ -43,12 +42,12 @@ const routesConfigs = {
   bibleSelector: { screen: BibleSelector },
   versionSelector: { screen: VersionSelector },
   strongModal: { screen: StrongModal },
-  concordance: { screen: Concordance },
+  concordance: { screen: Concordance }
 }
 
 const stackNavigatorConfig = {
   headerMode: 'none',
-  initialRouteName: 'home',
+  initialRouteName: 'home'
 }
 
 export default StackNavigator(routesConfigs, stackNavigatorConfig)

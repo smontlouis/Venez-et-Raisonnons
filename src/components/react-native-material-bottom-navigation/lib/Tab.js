@@ -17,7 +17,6 @@ import {
 } from 'react-native'
 import { easeInOut } from './utils/easing'
 
-
 const useNativeDriver = Platform.OS === 'android'
 
 type TabProps = {
@@ -49,12 +48,11 @@ type TabState = {
 }
 
 export default class Tab extends Component {
-
   props: TabProps
   state: TabState
   didOnceBecameActive: boolean
 
-  constructor(props: TabProps) {
+  constructor (props: TabProps) {
     super(props)
     const { active } = props
 
@@ -64,7 +62,7 @@ export default class Tab extends Component {
     //   active. Then we can catch that case and manually move it up before
     //   animating. This only happens in Android, not iOS.
     //   Is this a bug in react-native or somewhere here?
-    this.didOnceBecameActive = props.active ? true : false
+    this.didOnceBecameActive = !!props.active
 
     this.state = {
       fixed: {
@@ -83,7 +81,7 @@ export default class Tab extends Component {
   }
 
   // Animations will start as soon as new props are passed through
-  componentWillReceiveProps(nextProps: TabProps) {
+  componentWillReceiveProps (nextProps: TabProps) {
     const { props } = this
 
     const fixedMode = !props.shifting
@@ -102,7 +100,7 @@ export default class Tab extends Component {
     }
   }
 
-  render() {
+  render () {
     const { icon, label, active } = this.props
 
     return (
@@ -133,7 +131,7 @@ export default class Tab extends Component {
           { opacity: this.state[mode].iconOpacity }
         ]}
       >
-        <View ref="_bnic" collapsable={false}>
+        <View ref='_bnic' collapsable={false}>
           {active && activeIcon ? activeIcon : icon}
         </View>
       </Animated.View>
@@ -262,7 +260,6 @@ export default class Tab extends Component {
     return this.refs._bnic
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {

@@ -18,38 +18,38 @@ const initialState = Map({
   temp: Map({
     selectedBook: Map({ Numero: 1, Nom: 'Genèse', Chapitres: 50 }),
     selectedChapter: 1,
-    selectedVerse: 1,
-  }),
+    selectedVerse: 1
+  })
 })
 
-export function setTempSelectedBook(book) {
+export function setTempSelectedBook (book) {
   return {
     type: SET_TEMP_SELECTED_BOOK,
-    book,
+    book
   }
 }
 
-export function setTempSelectedChapter(chapter) {
+export function setTempSelectedChapter (chapter) {
   return {
     type: SET_TEMP_SELECTED_CHAPTER,
-    chapter,
+    chapter
   }
 }
 
-export function setTempSelectedVerse(verse) {
+export function setTempSelectedVerse (verse) {
   return {
     type: SET_TEMP_SELECTED_VERSE,
-    verse,
+    verse
   }
 }
 
-export function validateSelected() {
+export function validateSelected () {
   return {
-    type: VALIDATE_SELECTED,
+    type: VALIDATE_SELECTED
   }
 }
 
-export function setAllAndValidateSelected(selected) {
+export function setAllAndValidateSelected (selected) {
   return dispatch => new Promise((resolve) => {
     dispatch({
       type: SET_ALL_AND_VALIDATE_SELECTED,
@@ -59,20 +59,20 @@ export function setAllAndValidateSelected(selected) {
   })
 }
 
-export function resetTempSelected() {
+export function resetTempSelected () {
   return {
-    type: RESET_TEMP_SELECTED,
+    type: RESET_TEMP_SELECTED
   }
 }
 
-export function setVersion(version) {
+export function setVersion (version) {
   return {
     type: SET_VERSION,
-    version,
+    version
   }
 }
 
-export function goToPrevChapter() {
+export function goToPrevChapter () {
   return (dispatch, getState) => {
     const currentChapter = getState().get('bible').get('selectedChapter')
     if (currentChapter === 1) {
@@ -91,7 +91,7 @@ export function goToPrevChapter() {
   }
 }
 
-export function goToNextChapter() {
+export function goToNextChapter () {
   return (dispatch, getState) => {
     const currentChapter = getState().get('bible').get('selectedChapter')
     const currentBook = getState().get('bible').get('selectedBook').toJS()
@@ -109,27 +109,27 @@ export function goToNextChapter() {
   }
 }
 
-export default function BibleReducer(state = initialState, action = {}) {
+export default function BibleReducer (state = initialState, action = {}) {
   switch (action.type) {
     case SET_TEMP_SELECTED_BOOK: {
       return state
         .update('temp', t => t.merge({
           selectedBook: action.book,
           selectedChapter: 1,
-          selectedVerse: 1,
+          selectedVerse: 1
         }))
     }
     case SET_TEMP_SELECTED_CHAPTER: {
       return state
         .update('temp', t => t.merge({
           selectedChapter: action.chapter,
-          selectedVerse: 1,
+          selectedVerse: 1
         }))
     }
     case SET_TEMP_SELECTED_VERSE: {
       return state
         .update('temp', t => t.merge({
-          selectedVerse: action.verse,
+          selectedVerse: action.verse
         }))
     }
     case SET_ALL_AND_VALIDATE_SELECTED: {
@@ -137,7 +137,7 @@ export default function BibleReducer(state = initialState, action = {}) {
         .update('temp', t => t.merge({
           selectedBook: fromJS(action.selected.book) || state.get('temp').get('selectedBook'),
           selectedChapter: action.selected.chapter || state.get('temp').get('selectedChapter'),
-          selectedVerse: action.selected.verse || state.get('temp').get('selectedVerse'),
+          selectedVerse: action.selected.verse || state.get('temp').get('selectedVerse')
         }))
         .set('selectedVersion', action.selected.version || state.get('selectedVersion'))
         .set('selectedBook', fromJS(action.selected.book) || state.get('temp').get('selectedBook'))
@@ -155,7 +155,7 @@ export default function BibleReducer(state = initialState, action = {}) {
         .update('temp', t => t.merge({
           selectedBook: state.get('selectedBook'),
           selectedChapter: state.get('selectedChapter'),
-          selectedVerse: state.get('selectedVerse'),
+          selectedVerse: state.get('selectedVerse')
         }))
     }
     case SET_VERSION: {

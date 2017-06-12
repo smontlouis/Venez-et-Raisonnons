@@ -7,12 +7,12 @@ import { List, QuestionItem, HeaderList } from './index'
 const styles = EStyleSheet.create({
   container: {
     paddingTop: 0,
-    padding: 20,
-  },
+    padding: 20
+  }
 })
 
 const QuestionsList = ({
-  questions, headerTitle, questionsCount, contentContainerStyle, withCounting, 
+  questions, headerTitle, questionsCount, contentContainerStyle, withCounting,
   ...props
 }) =>
   <List
@@ -37,13 +37,12 @@ const QuestionsList = ({
     {...props}
   />
 
-
 QuestionsList.propTypes = {
   questions: PropTypes.object.isRequired,
   questionsCount: PropTypes.number,
   headerTitle: PropTypes.string,
   contentContainerStyle: PropTypes.number,
-  withCounting: PropTypes.bool,
+  withCounting: PropTypes.bool
 }
 
 export default pure(QuestionsList)

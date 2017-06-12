@@ -9,7 +9,7 @@ import * as SearchActions from '@src/redux/modules/search'
 import {
   SearchHeader,
   QuestionsList,
-  NoItems,
+  NoItems
 } from '@src/components'
 
 const getSearchInput = state => state.get('search').get('input')
@@ -28,7 +28,7 @@ const filterQuestionsBySearch = createSelector(
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   }
 })
 
@@ -36,8 +36,8 @@ const IfQuestions = (input, questions) => {
   if (!input) {
     return (
       <NoItems
-        icon="search"
-        text="Rechercher une question"
+        icon='search'
+        text='Rechercher une question'
       />
     )
   }
@@ -45,8 +45,8 @@ const IfQuestions = (input, questions) => {
   if (questions.isEmpty()) {
     return (
       <NoItems
-        icon="sentiment-dissatisfied"
-        text="Aucune question trouvée"
+        icon='sentiment-dissatisfied'
+        text='Aucune question trouvée'
       />
     )
   }
@@ -60,9 +60,9 @@ const IfQuestions = (input, questions) => {
 
 const Search = ({ questions, setSearchInput, input }) => (
   <View style={styles.container}>
-    <StatusBar barStyle="light-content" />
+    <StatusBar barStyle='light-content' />
     <SearchHeader
-      placeholder="RECHERCHE"
+      placeholder='RECHERCHE'
       onChangeText={value => debounce(setSearchInput(value), 500)}
       hasBackButton
     />
@@ -70,17 +70,16 @@ const Search = ({ questions, setSearchInput, input }) => (
   </View>
 )
 
-
 Search.propTypes = {
   input: PropTypes.string.isRequired,
   questions: PropTypes.object.isRequired,
-  setSearchInput: PropTypes.func.isRequired,
+  setSearchInput: PropTypes.func.isRequired
 }
 
 export default connect(
   state => ({
     questions: filterQuestionsBySearch(state),
-    input: getSearchInput(state),
+    input: getSearchInput(state)
   }),
-  SearchActions,
+  SearchActions
 )(Search)

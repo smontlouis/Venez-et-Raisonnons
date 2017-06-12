@@ -13,10 +13,10 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 10,
-    paddingRight: 10,
+    paddingRight: 10
   },
   text: {
-    marginLeft: 10,
+    marginLeft: 10
   }
 })
 
@@ -26,14 +26,14 @@ const renderIcon = (hasIconOnly, isActive) => {
       <Icon
         name={isActive ? 'bookmark' : 'bookmark-border'}
         size={24}
-        color="white"
+        color='white'
       />
     )
   }
 
   return (
     <Icon
-      name="check"
+      name='check'
       size={24}
       color={isActive ? '#2ecc71' : 'rgb(230,230,230)'}
     />
@@ -62,7 +62,7 @@ MarkAsRead.propTypes = {
   id: PropTypes.string.isRequired,
   toggleMarkAsRead: PropTypes.func.isRequired,
   isActive: PropTypes.bool,
-  hasIconOnly: PropTypes.bool,
+  hasIconOnly: PropTypes.bool
 }
 
 export default compose(
@@ -70,7 +70,7 @@ export default compose(
     (state, ownProps) => ({
       isActive: !!state.getIn(['app', 'hasBeenRead', ownProps.id])
     }),
-    AppActions,
+    AppActions
   ),
   pure
 )(MarkAsRead)

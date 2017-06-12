@@ -10,21 +10,21 @@ import {
   Header,
   Loading,
   StylizedHTMLView,
-  ConcordanceList,
+  ConcordanceList
 } from '@src/components'
 
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   content: {
-    padding: 20,
+    padding: 20
   },
   mot: {
     fontFamily: '$font.title',
     fontSize: 22,
-    color: '$color.black',
+    color: '$color.black'
   },
   type: {
     fontFamily: '$font.title_italic',
@@ -36,43 +36,42 @@ const styles = EStyleSheet.create({
     color: '$color.darkGrey'
   },
   item: {
-    marginTop: 25,
+    marginTop: 25
   },
   subtitle: {
     fontFamily: '$font.heading',
     fontSize: 20,
-    marginBottom: 5,
+    marginBottom: 5
   },
   line: {
-    ...globalVariables.textStyle,
+    ...globalVariables.textStyle
   },
   word: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '$color.black',
+    color: '$color.black'
   },
   titleBorder: {
     marginTop: 20,
     marginBottom: 20,
     width: 35,
     height: 3,
-    backgroundColor: '$color.secondary',
+    backgroundColor: '$color.secondary'
   },
   button: {
     marginTop: 20,
     backgroundColor: '$color.primary',
-    borderRadius: 5,
+    borderRadius: 5
   }
 })
 
 @withNavigation
 export default class StrongModal extends Component {
-
   static propTypes = {
-    navigation: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.linkToStrong = ::this.linkToStrong
@@ -80,17 +79,17 @@ export default class StrongModal extends Component {
 
   state = {
     isLoading: true,
-    isConcordanceLoading: true,
+    isConcordanceLoading: true
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.DB = getDB()
     this.loadStrong()
     this.concordancesTexts = []
     setTimeout(() => this.loadConcordance(), 500)
   }
 
-  loadStrong() {
+  loadStrong () {
     const { navigation: { state: { params: { reference, book } } } } = this.props
     this.strongRef = []
     this.setState({ isLoading: true })
@@ -103,7 +102,7 @@ export default class StrongModal extends Component {
       })
   }
 
-  loadConcordance() {
+  loadConcordance () {
     const { navigation: { state: { params: { reference, book } } } } = this.props
     this.concordancesTexts = []
     this.setState({ isConcordanceLoading: true })
@@ -130,15 +129,15 @@ export default class StrongModal extends Component {
       })
   }
 
-  linkToStrong(url, reference) {
+  linkToStrong (url, reference) {
     const {
       navigation,
-      navigation: { state: { params: { book } } },
+      navigation: { state: { params: { book } } }
     } = this.props
     navigation.navigate('strongModal', { reference, book })
   }
 
-  render() {
+  render () {
     if (this.state.isLoading) {
       return (
         <Loading />
@@ -147,7 +146,7 @@ export default class StrongModal extends Component {
 
     const {
       navigation: { state: { params: { reference, book } } },
-      navigation,
+      navigation
     } = this.props
     const { isConcordanceLoading } = this.state
     const {
@@ -158,12 +157,12 @@ export default class StrongModal extends Component {
       Definition,
       Origine,
       Type,
-      LSG,
+      LSG
     } = this.strongRef[0]
 
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar barStyle='dark-content' />
         <Header
           isLight
           title={`Strong ${reference}`}
@@ -229,8 +228,8 @@ export default class StrongModal extends Component {
           <View style={styles.item}>
             <Text style={styles.subtitle}>
               {
-                !(this.concordancesTexts.length < itemsPerPage) ?
-                  `Concordance - ${itemsPerPage} premiers résultats`
+                !(this.concordancesTexts.length < itemsPerPage)
+                  ? `Concordance - ${itemsPerPage} premiers résultats`
                 : `Concordance - ${this.concordancesTexts.length} résultats`
               }
             </Text>
@@ -246,7 +245,7 @@ export default class StrongModal extends Component {
                 {
                   !(this.concordancesTexts.length < itemsPerPage) &&
                   <Button
-                    title="Liste complète des versets"
+                    title='Liste complète des versets'
                     buttonStyle={styles.button}
                     onPress={() => navigation.navigate('concordance', { reference, book })}
                   />

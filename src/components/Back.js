@@ -5,22 +5,22 @@ import { withNavigation, NavigationActions } from 'react-navigation'
 
 class Back extends Component {
   static propTypes = {
-    navigation: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.handlePress = ::this.handlePress
     this.handleLongPress = ::this.handleLongPress
   }
 
-  handlePress() {
+  handlePress () {
     const { navigation } = this.props
     navigation.goBack()
   }
 
-  handleLongPress() {
+  handleLongPress () {
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
@@ -30,7 +30,7 @@ class Back extends Component {
     this.props.navigation.dispatch(resetAction)
   }
 
-  render() {
+  render () {
     return (
       <TouchableHighlight
         {...this.props}

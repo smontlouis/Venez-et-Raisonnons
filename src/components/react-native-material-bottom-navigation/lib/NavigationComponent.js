@@ -9,7 +9,6 @@
 import React, { PureComponent } from 'react'
 import BottomNavigation, { Tab } from '../'
 
-
 type NCProps = {
   // I could use react-navigation's type definitions, but I don't want to
   // include it as a dependency or risk throwing an error because the package
@@ -27,7 +26,7 @@ type NCProps = {
 
 export default
 class NavigationComponent extends PureComponent<void, NCProps, void> {
-  render() {
+  render () {
     // react-navigation passed props
     const {
       activeTintColor,

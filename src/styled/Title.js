@@ -3,15 +3,15 @@ import { styled, bind, prop, globals } from '@styled-components'
 const s = bind({
   size: {
     big: 30,
-    medium: 21,
+    medium: 21
   },
   lineHeight: {
     big: 30,
-    medium: 24,
+    medium: 24
   },
   fontFamily: {
     primaryFont: globals.font.title,
-    secondaryFont: globals.font.heading,
+    secondaryFont: globals.font.heading
   },
   color: {
     default: prop('theme.colors.default'),
@@ -31,7 +31,7 @@ Title.defaultProps = {
   color: 'default',
   size: 'big',
   lineHeight: 'big',
-  fontFamily: 'primaryFont',
+  fontFamily: 'primaryFont'
 }
 
 export default Title

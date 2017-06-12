@@ -9,7 +9,7 @@ const initialState = Map({
   authenticationToken: null
 })
 
-export default function AuthReducer(state = initialState, action = {}) {
+export default function AuthReducer (state = initialState, action = {}) {
   switch (action.type) {
     case USER_LOGIN_SUCCESS: {
       return state
@@ -25,7 +25,7 @@ export default function AuthReducer(state = initialState, action = {}) {
   }
 }
 
-export function onUserLoginSuccess(profile, token) {
+export function onUserLoginSuccess (profile, token) {
   return {
     type: USER_LOGIN_SUCCESS,
     payload: {
@@ -35,7 +35,7 @@ export function onUserLoginSuccess(profile, token) {
   }
 }
 
-export function onUserLoginError(error) {
+export function onUserLoginError (error) {
   return {
     type: USER_LOGIN_ERROR,
     payload: error,

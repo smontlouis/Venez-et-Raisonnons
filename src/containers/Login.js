@@ -3,20 +3,19 @@ import { connect } from 'react-redux'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import {
   Text,
-  View,
+  View
 } from 'react-native'
 
 // import * as TopicsActions from '@src/redux/modules/topics'
 
 import * as auth0 from '@src/services/auth0'
 
-
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#F5FCFF'
   },
   centered: {
     flex: 1,
@@ -24,26 +23,25 @@ const styles = EStyleSheet.create({
   }
 })
 
-
 @connect(
   ({ auth }) => ({
-    isLoggedIn: auth.get('isLoggedIn'),
+    isLoggedIn: auth.get('isLoggedIn')
   }),
-  null,
+  null
 )
 export default class Login extends Component {
   static propTypes = {
-    isLoggedIn: PropTypes.bool.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired
   }
 
-  componentDidMount() {
+  componentDidMount () {
     const { isLoggedIn } = this.props
     if (!isLoggedIn) {
       auth0.showLogin()
     }
   }
 
-  componentWillReceiveProps({ isLoggedIn, router }) {
+  componentWillReceiveProps ({ isLoggedIn, router }) {
     if (isLoggedIn) {
       router.push('/')
     } else {
@@ -51,7 +49,7 @@ export default class Login extends Component {
     }
   }
 
-  render() {
+  render () {
     return (
       <View style={styles.container}>
         <Text>

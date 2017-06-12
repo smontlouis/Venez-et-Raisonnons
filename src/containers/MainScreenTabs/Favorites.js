@@ -6,7 +6,7 @@ import { View, StatusBar } from 'react-native'
 import {
   Header,
   QuestionsList,
-  NoItems,
+  NoItems
 } from '@src/components'
 
 const getFavoritesIds = state => state.get('app').get('favorites')
@@ -20,16 +20,16 @@ const filterQuestionsByFavorites = createSelector(
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
-  },
+    backgroundColor: 'white'
+  }
 })
 
 const IfQuestions = (questions) => {
   if (questions.isEmpty()) {
     return (
       <NoItems
-        icon="bookmark-border"
-        text="Aucun favori"
+        icon='bookmark-border'
+        text='Aucun favori'
       />
     )
   }
@@ -43,9 +43,9 @@ const IfQuestions = (questions) => {
 
 const Favorites = ({ questions }) => (
   <View style={styles.container}>
-    <StatusBar barStyle="light-content" />
+    <StatusBar barStyle='light-content' />
     <Header
-      title="Favoris"
+      title='Favoris'
       hasBackButton={false}
     />
     {IfQuestions(questions)}
@@ -53,11 +53,11 @@ const Favorites = ({ questions }) => (
 )
 
 Favorites.propTypes = {
-  questions: PropTypes.object.isRequired,
+  questions: PropTypes.object.isRequired
 }
 
 export default connect(
   state => ({
-    questions: filterQuestionsByFavorites(state),
-  }),
+    questions: filterQuestionsByFavorites(state)
+  })
 )(Favorites)

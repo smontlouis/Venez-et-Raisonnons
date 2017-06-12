@@ -19,7 +19,6 @@ import RippleBackgroundTransition from './RippleBackgroundTransition'
 import PressRipple from './PressRipple'
 import Tab from './Tab'
 
-
 type BottomNavigationProps = {
   activeTab: number,
   labelColor: string,
@@ -51,7 +50,6 @@ const defaultProps = {
 }
 
 export default class BottomNavigation extends Component {
-
   static defaultProps: typeof defaultProps
   props: BottomNavigationProps
   state: BottomNavigationState
@@ -62,7 +60,7 @@ export default class BottomNavigation extends Component {
 
   static defaultProps = defaultProps
 
-  constructor(props: BottomNavigationProps) {
+  constructor (props: BottomNavigationProps) {
     super(props)
 
     // Default values
@@ -88,7 +86,7 @@ export default class BottomNavigation extends Component {
     }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     const { children } = this.props
     const { activeTab } = this.state
     const { barBackgroundColor } = children[activeTab].props
@@ -112,12 +110,12 @@ export default class BottomNavigation extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     // Measure all icons in order to display Ripples correctly
     setTimeout(() => this._measureIcons())
   }
 
-  componentDidUpdate() {
+  componentDidUpdate () {
     // `this.layoutWillChange` will be set to true right before state.activeTab
     // is updated. Then, and only then, we had a true layout change, and thus
     // we want to measure the icons.
@@ -127,7 +125,7 @@ export default class BottomNavigation extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps: BottomNavigationProps) {
+  componentWillReceiveProps (nextProps: BottomNavigationProps) {
     const { activeTab: newTabIndex } = nextProps
     const { activeTab: oldTabIndex } = this.state
     const tabAmount = this.props.children.length
@@ -143,7 +141,7 @@ export default class BottomNavigation extends Component {
     }
   }
 
-  render() {
+  render () {
     const {
       backgroundColor,
       pressRippleColor,
@@ -154,7 +152,7 @@ export default class BottomNavigation extends Component {
 
     return (
       <View
-        ref="navigation"
+        ref='navigation'
         style={[ { overflow: 'hidden' }, this.props.style ]}
         onLayout={this._handleOnLayout}
       >
@@ -164,13 +162,13 @@ export default class BottomNavigation extends Component {
           { backgroundColor }
         ]}>
           <RippleBackgroundTransition
-            ref="backgroundRipple"
+            ref='backgroundRipple'
             color={pressRippleColor}
             posX={rippleX}
             posY={rippleY}
           />
           <PressRipple
-            ref="pressRipple"
+            ref='pressRipple'
             color={this.props.rippleColor}
             x={rippleX}
             y={rippleY}
@@ -201,7 +199,6 @@ export default class BottomNavigation extends Component {
 
     // Delegation to next tick will cause smoother animations
     setTimeout(() => {
-
       // Call onTabChange Event Callback
       this.props.onTabChange(tabIndex, this.state.activeTab)
 

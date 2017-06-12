@@ -15,7 +15,6 @@ import { globalVariables } from './helpers'
 import { Loading } from './components'
 import { initDB } from './helpers/database'
 
-
 export const store = configureStore()
 export let persistedStore = null // eslint-disable-line import/no-mutable-exports
 
@@ -27,27 +26,27 @@ class App extends Component {
 
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = { rehydrated: false }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     const persistStorePromise = new Promise((resolve) => {
       persistedStore = persistStore(store, {
-        storage: AsyncStorage,
+        storage: AsyncStorage
       }, () => resolve())
       return persistStore
     })
 
     Promise.all([
       persistStorePromise,
-      initDB,
+      initDB
     ]).then(() => this.setState({ rehydrated: true }))
   }
 
-  componentDidMount() {
+  componentDidMount () {
     FCM.setBadgeNumber(0)
     FCM.requestPermissions() // for iOS
     FCM.getFCMToken().then((token) => {
@@ -66,7 +65,7 @@ class App extends Component {
         console.log('openedfromtray')
       }
 
-      if (Platform.OS ==='ios') {
+      if (Platform.OS === 'ios') {
         // optional
         // iOS requires developers to call completionHandler to end notification process.
         // If you do not call it your background remote notifications could be throttled,
@@ -78,14 +77,14 @@ class App extends Component {
         switch (notif._notificationType) {
           case NotificationType.Remote:
             notif.finish(RemoteNotificationResult.NewData)
-            // other types available: RemoteNotificationResult.NewData, 
+            // other types available: RemoteNotificationResult.NewData,
             // RemoteNotificationResult.ResultFailed
             break
           case NotificationType.NotificationResponse:
             notif.finish()
             break
           case NotificationType.WillPresent:
-            notif.finish(WillPresentNotificationResult.All) 
+            notif.finish(WillPresentNotificationResult.All)
             // other types available: WillPresentNotificationResult.None
             break
           default:
@@ -100,13 +99,13 @@ class App extends Component {
     })
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     // stop listening for events
     this.notificationListener.remove()
     this.refreshTokenListener.remove()
   }
 
-  codePushStatusDidChange(status) {
+  codePushStatusDidChange (status) {
     switch (status) {
       case codePush.SyncStatus.CHECKING_FOR_UPDATE:
         console.log('Checking for updates.')
@@ -125,11 +124,10 @@ class App extends Component {
         console.log('Update installed.')
         break
       default:
-        return
     }
   }
 
-  render() {
+  render () {
     if (!this.state.rehydrated) {
       return (
         <Loading />

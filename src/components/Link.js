@@ -7,21 +7,21 @@ class Link extends Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired,
     params: PropTypes.object,
-    route: PropTypes.string.isRequired,
+    route: PropTypes.string.isRequired
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.handlePress = ::this.handlePress
   }
 
-  handlePress() {
+  handlePress () {
     const { navigation, route, params } = this.props
     navigation.navigate(route, params)
   }
 
-  render() {
+  render () {
     return (
       <TouchableOpacity {...this.props} onPress={this.handlePress} />
     )

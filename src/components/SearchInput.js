@@ -7,19 +7,19 @@ import { pure } from 'recompose'
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    padding: (Platform.OS === 'ios') ? 7 : 5,
+    padding: (Platform.OS === 'ios') ? 7 : 5
   },
   icon: {
     backgroundColor: 'transparent',
     position: 'absolute',
     left: 16,
-    top: 13,
+    top: 13
   },
   close: {
     backgroundColor: 'transparent',
     position: 'absolute',
     right: 16,
-    top: 13,
+    top: 13
   },
   input: {
     paddingLeft: 35,
@@ -32,14 +32,13 @@ const styles = EStyleSheet.create({
     color: 'white',
     textAlign: 'center',
     flex: 1,
-    borderBottomWidth: 0,
+    borderBottomWidth: 0
   }
 })
 
 @pure
 class Search extends Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.onChangeText = ::this.onChangeText
@@ -47,23 +46,23 @@ class Search extends Component {
   }
 
   state = {
-    hasText: false,
+    hasText: false
   }
 
-  onChangeText(value) {
+  onChangeText (value) {
     if (value) this.setState({ hasText: true })
     else this.setState({ hasText: false })
 
     this.props.onChangeText(value)
   }
 
-  onClear() {
+  onClear () {
     this.props.onChangeText('')
     this.setState({ hasText: false })
     this.input.clear()
   }
 
-  render() {
+  render () {
     const {
     containerStyle,
     inputStyle,
@@ -71,23 +70,23 @@ class Search extends Component {
     noIcon,
     round,
     isLight,
-    ...props,
+    ...props
   } = this.props
     return (
       <View
         style={[
           styles.container,
-          containerStyle && containerStyle,
+          containerStyle && containerStyle
         ]}
       >
         <TextInput
           {...props}
           ref={c => this.input = c}
-          autoCapitalize="none"
+          autoCapitalize='none'
           autoCorrect={false}
           onChangeText={this.onChangeText}
           placeholderTextColor={isLight ? 'black' : 'white'}
-          underlineColorAndroid="transparent"
+          underlineColorAndroid='transparent'
           style={[
             styles.input,
             noIcon && { paddingLeft: 9 },
@@ -137,7 +136,7 @@ Search.propTypes = {
   onChangeText: PropTypes.func.isRequired,
   round: PropTypes.bool,
   textInputRef: PropTypes.string,
-  containerRef: PropTypes.string,
+  containerRef: PropTypes.string
 }
 
 Search.defaultProps = {

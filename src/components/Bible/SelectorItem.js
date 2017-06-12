@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import {
   Text,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { pure } from 'recompose'
@@ -14,19 +14,19 @@ const styles = EStyleSheet.create({
     borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    alignSelf: 'flex-start',
+    alignSelf: 'flex-start'
   },
   selectedItem: {
-    backgroundColor: '$color.primary',
+    backgroundColor: '$color.primary'
   },
   selectedText: {
-    color: 'white',
+    color: 'white'
   },
   text: {
     color: 'black',
     fontSize: 16,
     backgroundColor: 'transparent'
-  },
+  }
 })
 
 const SelectorItem = ({ item, isSelected, onChange }) => (
@@ -40,11 +40,10 @@ const SelectorItem = ({ item, isSelected, onChange }) => (
   </TouchableOpacity>
 )
 
-
 SelectorItem.propTypes = {
   item: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
-  isSelected: PropTypes.bool,
+  isSelected: PropTypes.bool
 }
 
 export default pure(SelectorItem)

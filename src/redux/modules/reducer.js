@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux-immutable'
 
-
 import questions from './questions'
 import topics from './topics'
 import studies from './studies'
@@ -16,5 +15,5 @@ export default combineReducers({
   studies,
   auth,
   search,
-  bible,
+  bible
 })

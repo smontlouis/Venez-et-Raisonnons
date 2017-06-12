@@ -28,17 +28,17 @@ const initialState = Map({
   isLoading: false,
   favorites: Map(),
   hasBeenRead: Map(),
-  likes: Map(),
+  likes: Map()
 })
 
-export function loadDataSuccess(result) {
+export function loadDataSuccess (result) {
   return {
     type: LOAD_DATA_SUCCESS,
-    result,
+    result
   }
 }
 
-export function toggleFavorite(id) {
+export function toggleFavorite (id) {
   return (dispatch, getState) => {
     if (getState().getIn(['app', 'favorites', id])) {
       return dispatch({ type: REMOVE_FAVORITE, id })
@@ -47,21 +47,21 @@ export function toggleFavorite(id) {
   }
 }
 
-export function markAsRead(id) {
+export function markAsRead (id) {
   return {
     type: MARK_AS_READ,
     id
   }
 }
 
-export function removeAsRead(id) {
+export function removeAsRead (id) {
   return {
     type: REMOVE_AS_READ,
     id
   }
 }
 
-export function toggleMarkAsRead(id) {
+export function toggleMarkAsRead (id) {
   return (dispatch, getState) => {
     if (getState().getIn(['app', 'hasBeenRead', id])) {
       return dispatch({ type: REMOVE_AS_READ, id })
@@ -70,7 +70,7 @@ export function toggleMarkAsRead(id) {
   }
 }
 
-export function toggleLike(id) {
+export function toggleLike (id) {
   return (dispatch, getState) => {
     if (getState().getIn(['app', 'likes', id])) {
       return dispatch({ type: REMOVE_LIKE, id })
@@ -79,14 +79,14 @@ export function toggleLike(id) {
   }
 }
 
-export function setLastUpdate(val) {
+export function setLastUpdate (val) {
   return {
     type: SET_LAST_UPDATE,
     val
   }
 }
 
-export function loadData() {
+export function loadData () {
   return (dispatch, getState) => {
     const getLastUpdate = Promise.race([
       new Promise(resolve => firebaseDb.ref('/app/last_update').once('value', snapshot => resolve(snapshot.val()))),
@@ -120,7 +120,7 @@ export function loadData() {
   }
 }
 
-export default function AppReducer(state = initialState, action = {}) {
+export default function AppReducer (state = initialState, action = {}) {
   switch (action.type) {
     case LOAD_DATA: {
       return state.set('isLoading', true)
