@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { View, Text, ActivityIndicator } from 'react-native'
@@ -59,7 +59,16 @@ const styles = EStyleSheet.create({
   }
 })
 
-const Header = ({ title, hasBackButton = true, isTransparent, isLight, isLoading, isModal }) => {
+type Props = {
+  title: string,
+  hasBackButto?: bool,
+  isTransparen?: bool,
+  isLigh?: bool,
+  isModa?: bool,
+  isLoading: bool
+}
+
+const Header = ({ title, hasBackButton = true, isTransparent, isLight, isLoading, isModal }: Props) => {
   const ContainerStyles = combineStyles({
     container: true,
     containerTransparent: isTransparent,
@@ -98,15 +107,6 @@ const Header = ({ title, hasBackButton = true, isTransparent, isLight, isLoading
       }
     </View>
   )
-}
-
-Header.propTypes = {
-  title: PropTypes.string.isRequired,
-  hasBackButton: PropTypes.bool,
-  isTransparent: PropTypes.bool,
-  isLight: PropTypes.bool,
-  isModal: PropTypes.bool,
-  isLoading: PropTypes.bool.isRequired
 }
 
 export default compose(

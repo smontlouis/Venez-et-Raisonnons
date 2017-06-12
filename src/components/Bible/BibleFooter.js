@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import EStyleSheet from 'react-native-extended-stylesheet'
@@ -32,7 +32,15 @@ const styles = EStyleSheet.create({
   }
 })
 
-const BibleFooter = ({ book, chapter, goToNextChapter, goToPrevChapter, disabled }) => (
+type Props = {
+  book: Object,
+  chapter: number,
+  goToPrevChapter: Function,
+  goToNextChapter: Function,
+  disabled: boolean
+}
+
+const BibleFooter = ({ book, chapter, goToNextChapter, goToPrevChapter, disabled }: Props) => (
   <View style={styles.container}>
     { !(book.Numero === 1 && chapter === 1) &&
       <TouchableOpacity
@@ -63,13 +71,5 @@ const BibleFooter = ({ book, chapter, goToNextChapter, goToPrevChapter, disabled
     }
   </View>
 )
-
-BibleFooter.propTypes = {
-  book: PropTypes.object.isRequired,
-  chapter: PropTypes.number.isRequired,
-  goToPrevChapter: PropTypes.func.isRequired,
-  goToNextChapter: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired
-}
 
 export default pure(BibleFooter)

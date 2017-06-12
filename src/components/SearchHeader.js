@@ -22,7 +22,13 @@ const styles = EStyleSheet.create({
   }
 })
 
-const SearchHeader = ({ onChangeText, placeholder, hasBackButton }) => (
+type Props = {
+  onChangeText?: Function,
+  placeholder: string,
+  hasBackButton?: boolean
+}
+
+const SearchHeader = ({ onChangeText, placeholder, hasBackButton }: Props) => (
   <View
     style={styles.container}
   >

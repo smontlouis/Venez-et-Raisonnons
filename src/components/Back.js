@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { pure, compose } from 'recompose'
 import { TouchableHighlight } from 'react-native'
 import { withNavigation, NavigationActions } from 'react-navigation'
 
 class Back extends Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired
+  props: {
+    navigation: Object
   }
 
   constructor (props) {

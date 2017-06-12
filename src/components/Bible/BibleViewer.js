@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 import { ScrollView, View } from 'react-native'
 import { Button } from 'react-native-elements'
 import EStyleSheet from 'react-native-extended-stylesheet'
@@ -38,15 +38,15 @@ const styles = EStyleSheet.create({
 )
 @pure
 export default class BibleViewer extends Component {
-  static propTypes = {
-    arrayVerses: PropTypes.object,
-    book: PropTypes.object.isRequired,
-    chapter: PropTypes.number.isRequired,
-    goToPrevChapter: PropTypes.func.isRequired,
-    goToNextChapter: PropTypes.func.isRequired,
-    navigation: PropTypes.object.isRequired,
-    verse: PropTypes.number.isRequired,
-    version: PropTypes.string.isRequired
+  props: {
+    arrayVerses?: Object,
+    book: Object,
+    chapter: number,
+    goToPrevChapter?: Function,
+    goToNextChapter?: Function,
+    navigation: Object,
+    verse: number,
+    version: string
   }
 
   constructor (props) {

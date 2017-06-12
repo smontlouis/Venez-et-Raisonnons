@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 import { TouchableOpacity, Text, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import EStyleSheet from 'react-native-extended-stylesheet'
@@ -35,11 +35,11 @@ const styles = EStyleSheet.create({
   })
 )
 class VerseConcordance extends Component {
-  static propTypes = {
-    book: PropTypes.object.isRequired,
-    concordanceFor: PropTypes.string,
-    navigation: PropTypes.object.isRequired,
-    verse: PropTypes.object.isRequired
+  props: {
+    book?: Object,
+    concordanceFor: string,
+    navigation: Object,
+    verse: Object
   }
 
   state = {

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/Ionicons'
 import MIcon from 'react-native-vector-icons/MaterialIcons'
@@ -53,7 +53,17 @@ const styles = EStyleSheet.create({
   }
 })
 
-const QuestionItem = ({ number, id, title, hasBeenRead, containerStyle, isStudy, isNew }) => (
+type Props = {
+  containerStyle?: Object,
+  number?: number,
+  id: string,
+  title: string,
+  hasBeenRead?: bool,
+  isStudy?: bool,
+  isNew?: bool
+}
+
+const QuestionItem = ({ number, id, title, hasBeenRead, containerStyle, isStudy, isNew }: Props) => (
   <Link
     route={'question'}
     params={{ questionId: id, fromStudy: !!number, isNew }}
@@ -87,16 +97,6 @@ const QuestionItem = ({ number, id, title, hasBeenRead, containerStyle, isStudy,
     </View>
   </Link>
 )
-
-QuestionItem.propTypes = {
-  containerStyle: PropTypes.object,
-  number: PropTypes.number,
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  hasBeenRead: PropTypes.bool,
-  isStudy: PropTypes.bool,
-  isNew: PropTypes.bool
-}
 
 export default compose(
   connect(

@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 import Icon from 'react-native-vector-icons/Entypo'
 import {
   Text,
@@ -36,9 +36,9 @@ const styles = EStyleSheet.create({
 })
 
 export default class StudyItem extends Component {
-  static propTypes = {
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired
+  props: {
+    id: string,
+    title: string
   }
 
   render () {

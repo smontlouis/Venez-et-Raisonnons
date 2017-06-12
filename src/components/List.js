@@ -1,12 +1,12 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import R from 'ramda'
 import { ListView } from 'react-native'
 import { pure } from 'recompose'
 
 class List extends Component {
-  static propTypes = {
-    listItems: PropTypes.object.isRequired,
-    contentContainerStyle: PropTypes.any
+  props: {
+    listItems: Object,
+    contentContainerStyle?: any
   }
 
   constructor (props) {

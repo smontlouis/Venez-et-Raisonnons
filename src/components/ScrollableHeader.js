@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react'
+/* global React$Element */
+
+import React, { Component } from 'react'
 import Icon from 'react-native-vector-icons/Entypo'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { pure } from 'recompose'
@@ -104,17 +106,17 @@ const getStyles = (h) => {
 
 @pure
 export default class ScrollableHeader extends Component {
-  static propTypes = {
-    headerStyle: PropTypes.object,
-    hasBackButton: PropTypes.bool,
-    title: PropTypes.string,
-    children: PropTypes.element.isRequired,
-    header: PropTypes.element,
-    image: PropTypes.string,
-    rightComponent: PropTypes.element,
-    onScrollViewEnd: PropTypes.func,
-    isHome: PropTypes.bool,
-    isStudies: PropTypes.bool
+  props: {
+    headerStyle?: Object,
+    hasBackButton?: boolean,
+    title: string,
+    children: React$Element,
+    header?: React$Element,
+    image?: string,
+    rightComponent?: React$Element,
+    onScrollViewEnd?: Function,
+    isHome?: boolean,
+    isStudies?: boolean
   }
 
   constructor (props) {

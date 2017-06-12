@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { View, Text } from 'react-native'
 import { pure, compose } from 'recompose'
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -42,6 +42,11 @@ const styles = EStyleSheet.create({
   }
 })
 
+type Props = {
+  previous?: Object,
+  next?: Object
+}
+
 const getParentQuestion = (state, props) => state.get('questions').get('questions').get(props.parentId)
 const getPrevNextQuestion = (state, props, isNext) => {
   const children = getParentQuestion(state, props).get('children')
@@ -53,7 +58,7 @@ const getPrevNextQuestion = (state, props, isNext) => {
   return state.get('questions').get('questions').get(prevNextQuestionIndex)
 }
 
-const PrevNext = ({ previous, next }) => (
+const PrevNext = ({ previous, next }: Props) => (
   <View style={styles.container}>
     {
       previous &&
@@ -83,11 +88,6 @@ const PrevNext = ({ previous, next }) => (
     }
   </View>
 )
-
-PrevNext.propTypes = {
-  previous: PropTypes.object,
-  next: PropTypes.object
-}
 
 export default compose(
   connect(

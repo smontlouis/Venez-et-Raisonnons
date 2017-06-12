@@ -2,7 +2,7 @@ import { Component, PropTypes } from 'react'
 import { withNavigation } from 'react-navigation'
 import qs from 'query-string'
 import Toast from 'react-native-simple-toast'
-import { pure, compose } from 'recompose'
+import { pure } from 'recompose'
 
 import {
   Linking

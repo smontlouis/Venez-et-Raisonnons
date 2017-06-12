@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 import { View, Platform } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { verseToStrong } from '@src/helpers'
@@ -19,10 +19,10 @@ const styles = EStyleSheet.create({
 
 @pure
 class BibleVerse extends Component {
-  static propTypes = {
-    verse: PropTypes.object.isRequired,
-    version: PropTypes.string.isRequired,
-    getPosition: PropTypes.func
+  props: {
+    verse: Object,
+    version: string,
+    getPosition: Function
   }
 
   constructor (props) {

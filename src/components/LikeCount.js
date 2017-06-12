@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { pure, compose } from 'recompose'
@@ -23,7 +23,14 @@ const styles = EStyleSheet.create({
   }
 })
 
-const LikeCount = ({ id, toggleLike, isActive, count }) => (
+type Props = {
+  id: string,
+  isActive?: bool,
+  toggleLike: Function,
+  count: number
+}
+
+const LikeCount = ({ id, toggleLike, isActive, count }: Props) => (
   <TouchableOpacity onPress={() => toggleLike(id)}>
     <View style={styles.container}>
       <Icon
@@ -35,13 +42,6 @@ const LikeCount = ({ id, toggleLike, isActive, count }) => (
     </View>
   </TouchableOpacity>
 )
-
-LikeCount.propTypes = {
-  id: PropTypes.string.isRequired,
-  isActive: PropTypes.bool,
-  toggleLike: PropTypes.func.isRequired,
-  count: PropTypes.number.isRequired
-}
 
 export default compose(
   connect(

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, Box } from '@src/styled'
 import { Link } from '@src/components'
-import { pure, compose } from 'recompose'
+import { pure } from 'recompose'
 
 type Props = {
   strong: Object,

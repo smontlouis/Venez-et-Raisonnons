@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import Modal from 'react-native-modalbox'
 import { Text, View } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
@@ -40,7 +40,14 @@ const styles = EStyleSheet.create({
   }
 })
 
-const VerseModal = ({ isLoading, title, text, refValue }) => {
+type Props = {
+  isLoading: boolean,
+  title: string,
+  text: any,
+  refValue: Function
+}
+
+const VerseModal = ({ isLoading, title, text, refValue }: Props) => {
   let content
 
   // To be refactored
@@ -72,13 +79,6 @@ const VerseModal = ({ isLoading, title, text, refValue }) => {
       }
     </Modal>
   )
-}
-
-VerseModal.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
-  text: PropTypes.any.isRequired,
-  refValue: PropTypes.func.isRequired
 }
 
 export default pure(VerseModal)

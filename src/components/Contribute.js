@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import { pure, compose } from 'recompose'
+import { pure } from 'recompose'
 import {
   View,
   Text,
@@ -32,11 +32,16 @@ const styles = EStyleSheet.create({
   }
 })
 
+type Props = {
+  id: string,
+  title: string
+}
+
 const mailTo = (id, title) => {
   Linking.openURL(`mailto:venezetraisonnons@gmail.com?subject=Question ${id} - ${title}&body=Vos suggestions ici...`)
 }
 
-const Contribute = ({ id, title }) => (
+const Contribute = ({ id, title }: Props) => (
   <TouchableOpacity
     onPress={() => mailTo(id, title)}
   >
@@ -55,10 +60,5 @@ const Contribute = ({ id, title }) => (
     </View>
   </TouchableOpacity>
 )
-
-Contribute.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
-}
 
 export default pure(Contribute)

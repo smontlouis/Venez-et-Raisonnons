@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { pure } from 'recompose'
 
@@ -12,7 +12,13 @@ const styles = EStyleSheet.create({
   }
 })
 
-const StudiesList = ({ headerTitle, studies, style, ...props }) =>
+type Props = {
+  headerTitle?: string,
+  studies: Object,
+  style?: number
+}
+
+const StudiesList = ({ headerTitle, studies, style, ...props }: Props) =>
   <List
     listItems={studies}
     renderHeader={() => headerTitle && <HeaderList title={headerTitle} />}
@@ -29,11 +35,5 @@ const StudiesList = ({ headerTitle, studies, style, ...props }) =>
     style={[styles.container, style]}
     {...props}
   />
-
-StudiesList.propTypes = {
-  headerTitle: PropTypes.string,
-  studies: PropTypes.object.isRequired,
-  style: PropTypes.number
-}
 
 export default pure(StudiesList)

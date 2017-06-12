@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import {
   Text,
   TouchableOpacity
@@ -29,7 +29,13 @@ const styles = EStyleSheet.create({
   }
 })
 
-const SelectorItem = ({ item, isSelected, onChange }) => (
+type Props = {
+  item: number,
+  onChange: Function,
+  isSelected: boolean
+}
+
+const SelectorItem = ({ item, isSelected, onChange }: Props) => (
   <TouchableOpacity
     onPress={() => onChange(item)}
     style={[styles.item, isSelected && styles.selectedItem]}
@@ -39,11 +45,5 @@ const SelectorItem = ({ item, isSelected, onChange }) => (
     </Text>
   </TouchableOpacity>
 )
-
-SelectorItem.propTypes = {
-  item: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired,
-  isSelected: PropTypes.bool
-}
 
 export default pure(SelectorItem)

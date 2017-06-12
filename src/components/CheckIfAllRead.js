@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { pure, compose } from 'recompose'
 
@@ -21,7 +21,11 @@ const styles = EStyleSheet.create({
   }
 })
 
-const CheckIfAllRead = ({ markedAsRead }) => (
+type Props = {
+  markedAsRead: boolean
+}
+
+const CheckIfAllRead = ({ markedAsRead }: Props) => (
   <View style={styles.container}>
     <Icon
       name='check'
@@ -31,10 +35,6 @@ const CheckIfAllRead = ({ markedAsRead }) => (
     <Text style={styles.text}>Étude complétée</Text>
   </View>
 )
-
-CheckIfAllRead.propTypes = {
-  markedAsRead: PropTypes.bool.isRequired
-}
 
 export default compose(
   pure

@@ -24,9 +24,9 @@ const styles = EStyleSheet.create({
 })
 
 type Props = {
-  version: object,
-  onChange: func,
-  isSelected?: bool,
+  version: Object,
+  onChange: Function,
+  isSelected?: boolean,
 }
 
 const VersionSelectorItem = ({ version, isSelected, onChange }: Props) => (

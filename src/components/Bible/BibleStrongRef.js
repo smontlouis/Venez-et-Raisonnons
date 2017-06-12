@@ -1,4 +1,6 @@
-import React, { PropTypes } from 'react'
+// @flow
+
+import React from 'react'
 import { Text } from 'react-native'
 import { pure, compose } from 'recompose'
 import EStyleSheet from 'react-native-extended-stylesheet'
@@ -17,9 +19,16 @@ const styles = EStyleSheet.create({
   }
 })
 
+type Props = {
+  isFromConcordance?: boolean,
+  navigation: Object,
+  reference: string,
+  book: number
+}
+
 const openModal = (navigation, reference, book) => navigation.navigate('strongModal', { reference, book })
 
-const BibleStrongRef = ({ navigation, reference, book, isFromConcordance }) => (
+const BibleStrongRef = ({ navigation, reference, book, isFromConcordance }: Props) => (
   <Text
     style={[styles.text, isFromConcordance && styles.textForConcordance]}
     onPress={() => !isFromConcordance && openModal(navigation, reference, book)}
@@ -28,13 +37,6 @@ const BibleStrongRef = ({ navigation, reference, book, isFromConcordance }) => (
     {reference}
   </Text>
 )
-
-BibleStrongRef.propTypes = {
-  isFromConcordance: PropTypes.bool,
-  navigation: PropTypes.object.isRequired,
-  reference: PropTypes.string.isRequired,
-  book: PropTypes.number.isRequired
-}
 
 export default compose(
   withNavigation,

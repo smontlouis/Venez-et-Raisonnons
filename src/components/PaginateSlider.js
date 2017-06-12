@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Slider from 'react-native-slider'
 import { View, Text, Platform } from 'react-native'
@@ -55,10 +55,10 @@ const styles = EStyleSheet.create({
 
 @pure
 export default class PaginateSlider extends Component {
-  static propTypes = {
-    currentPage: PropTypes.number,
-    onSlidingComplete: PropTypes.func.isRequired,
-    pages: PropTypes.number.isRequired
+  props: {
+    currentPage: number,
+    onSlidingComplete: Function,
+    pages: Number
   }
 
   constructor (props) {

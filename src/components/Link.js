@@ -1,13 +1,13 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { pure, compose } from 'recompose'
 import { TouchableOpacity } from 'react-native'
 import { withNavigation } from 'react-navigation'
 
 class Link extends Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired,
-    params: PropTypes.object,
-    route: PropTypes.string.isRequired
+  props: {
+    navigation: Object,
+    params?: Object,
+    route: string
   }
 
   constructor (props) {

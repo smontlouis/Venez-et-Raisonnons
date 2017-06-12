@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
@@ -82,15 +82,15 @@ const getQuestionsNumberByTopic = createSelector(
 )
 @pure
 export default class TopicItem extends Component {
-  static propTypes = {
-    base64Img: PropTypes.string,
-    dispatch: PropTypes.func.isRequired,
-    id: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
-    prevImgUrl: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    questionsCount: PropTypes.number.isRequired,
-    newQuestionCount: PropTypes.number
+  props: {
+    base64Img?: string,
+    dispatch?: Function,
+    id: string,
+    imageUrl: string,
+    prevImgUrl?: string,
+    title: string,
+    questionsCount?: number,
+    newQuestionCount?: number
   }
 
   componentWillMount () {

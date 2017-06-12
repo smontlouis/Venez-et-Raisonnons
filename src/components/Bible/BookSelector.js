@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { fromJS } from 'immutable'
 import { connect } from 'react-redux'
@@ -23,10 +23,10 @@ const styles = EStyleSheet.create({
 )
 @pure
 export default class BookSelector extends Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired,
-    setTempSelectedBook: PropTypes.func.isRequired,
-    selectedBook: PropTypes.object.isRequired
+  props: {
+    navigation: Object,
+    setTempSelectedBook: Function,
+    selectedBook: Object
   }
 
   static navigationOptions = {

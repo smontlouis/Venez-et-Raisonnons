@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { pure } from 'recompose'
 import { ScrollView } from 'react-native'
@@ -27,11 +27,11 @@ const styles = EStyleSheet.create({
 )
 @pure
 export default class ChapterSelector extends Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired,
-    setTempSelectedChapter: PropTypes.func.isRequired,
-    selectedBook: PropTypes.object.isRequired,
-    selectedChapter: PropTypes.number.isRequired
+  props: {
+    navigation: Object,
+    setTempSelectedChapter: Function,
+    selectedBook: Object,
+    selectedChapter: number
   }
 
   static navigationOptions = {

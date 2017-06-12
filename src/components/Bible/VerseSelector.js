@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { ScrollView } from 'react-native'
 import { connect } from 'react-redux'
@@ -29,13 +29,13 @@ const styles = EStyleSheet.create({
 )
 @pure
 export default class VerseSelector extends Component {
-  static propTypes = {
-    screenProps: PropTypes.object.isRequired,
-    setTempSelectedVerse: PropTypes.func.isRequired,
-    validateSelected: PropTypes.func.isRequired,
-    selectedBook: PropTypes.object.isRequired,
-    selectedChapter: PropTypes.number.isRequired,
-    selectedVerse: PropTypes.number.isRequired
+  props: {
+    screenProps: Object,
+    setTempSelectedVerse: Function,
+    validateSelected: Function,
+    selectedBook: Object,
+    selectedChapter: number,
+    selectedVerse: number
   }
 
   static navigationOptions = {

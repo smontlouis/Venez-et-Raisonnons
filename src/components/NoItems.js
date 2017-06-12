@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { pure } from 'recompose'
 import { Button } from 'react-native-elements'
@@ -23,7 +23,14 @@ const styles = EStyleSheet.create({
   }
 })
 
-const NoItems = ({ icon, text, buttonTitle, buttonAction }) => (
+type Props = {
+  buttonTitle?: string,
+  buttonAction?: Function,
+  icon: string,
+  text: string
+}
+
+const NoItems = ({ icon, text, buttonTitle, buttonAction }: Props) => (
   <View style={styles.container}>
     <Icon
       name={icon}
@@ -41,12 +48,5 @@ const NoItems = ({ icon, text, buttonTitle, buttonAction }) => (
     }
   </View>
 )
-
-NoItems.propTypes = {
-  buttonTitle: PropTypes.string,
-  buttonAction: PropTypes.func,
-  icon: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired
-}
 
 export default pure(NoItems)

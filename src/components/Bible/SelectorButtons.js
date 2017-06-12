@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
 import { pure, compose } from 'recompose'
@@ -29,7 +29,12 @@ const styles = EStyleSheet.create({
   }
 })
 
-const SelectorButtons = ({ navigation, validateSelected }) => (
+type Props = {
+  navigation: Object,
+  validateSelected: Function
+}
+
+const SelectorButtons = ({ navigation, validateSelected }: Props) => (
   <View style={styles.container}>
     <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
       <Text>ANNULER</Text>
@@ -39,11 +44,6 @@ const SelectorButtons = ({ navigation, validateSelected }) => (
     </TouchableOpacity>
   </View>
 )
-
-SelectorButtons.propTypes = {
-  navigation: PropTypes.object.isRequired,
-  validateSelected: PropTypes.func.isRequired
-}
 
 export default compose(
   connect(

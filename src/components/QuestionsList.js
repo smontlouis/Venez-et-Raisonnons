@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { truncate } from '@src/helpers'
 import { pure } from 'recompose'
@@ -11,10 +11,18 @@ const styles = EStyleSheet.create({
   }
 })
 
+type Props = {
+  questions: Object,
+  questionsCount?: number,
+  headerTitle?: string,
+  contentContainerStyle?: number,
+  withCounting?: bool
+}
+
 const QuestionsList = ({
   questions, headerTitle, questionsCount, contentContainerStyle, withCounting,
   ...props
-}) =>
+}: Props) =>
   <List
     listItems={questions}
     renderHeader={() => headerTitle && <HeaderList title={headerTitle} subtitle={`${questionsCount} questions`} />}
@@ -36,13 +44,5 @@ const QuestionsList = ({
     contentContainerStyle={[styles.container, contentContainerStyle]}
     {...props}
   />
-
-QuestionsList.propTypes = {
-  questions: PropTypes.object.isRequired,
-  questionsCount: PropTypes.number,
-  headerTitle: PropTypes.string,
-  contentContainerStyle: PropTypes.number,
-  withCounting: PropTypes.bool
-}
 
 export default pure(QuestionsList)

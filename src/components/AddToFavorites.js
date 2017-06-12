@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { compose, pure } from 'recompose'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -25,6 +25,13 @@ const styles = EStyleSheet.create({
   }
 })
 
+type Props = {
+  id: string,
+  toggleFavorite: Function,
+  isActive: boolean,
+  hasIconOnly?: boolean
+}
+
 const renderIcon = (hasIconOnly, isActive) => {
   if (hasIconOnly) {
     return (
@@ -45,7 +52,7 @@ const renderIcon = (hasIconOnly, isActive) => {
   )
 }
 
-const AddToFavorites = ({ id, toggleFavorite, isActive, hasIconOnly }) => (
+const AddToFavorites = ({ id, toggleFavorite, isActive, hasIconOnly }: Props) => (
   <TouchableOpacity
     onPress={() => {
       Toast.show(isActive ? 'Supprimé des favoris' : 'Ajouté aux favoris')
@@ -62,13 +69,6 @@ const AddToFavorites = ({ id, toggleFavorite, isActive, hasIconOnly }) => (
     </View>
   </TouchableOpacity>
 )
-
-AddToFavorites.propTypes = {
-  id: PropTypes.string.isRequired,
-  toggleFavorite: PropTypes.func.isRequired,
-  isActive: PropTypes.bool,
-  hasIconOnly: PropTypes.bool
-}
 
 export default compose(
   connect(

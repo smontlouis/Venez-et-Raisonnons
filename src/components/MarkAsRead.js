@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import Toast from 'react-native-simple-toast'
@@ -20,6 +20,13 @@ const styles = EStyleSheet.create({
   }
 })
 
+type Props = {
+  id: string,
+  toggleMarkAsRead: Function,
+  isActive?: boolean,
+  hasIconOnly?: boolean
+}
+
 const renderIcon = (hasIconOnly, isActive) => {
   if (hasIconOnly) {
     return (
@@ -40,7 +47,7 @@ const renderIcon = (hasIconOnly, isActive) => {
   )
 }
 
-const MarkAsRead = ({ id, toggleMarkAsRead, isActive, hasIconOnly }) => (
+const MarkAsRead = ({ id, toggleMarkAsRead, isActive, hasIconOnly }: Props) => (
   <TouchableOpacity
     onPress={() => {
       Toast.show(isActive ? 'Marqué comme non lu' : 'Marqué comme lu')
@@ -57,13 +64,6 @@ const MarkAsRead = ({ id, toggleMarkAsRead, isActive, hasIconOnly }) => (
     </View>
   </TouchableOpacity>
 )
-
-MarkAsRead.propTypes = {
-  id: PropTypes.string.isRequired,
-  toggleMarkAsRead: PropTypes.func.isRequired,
-  isActive: PropTypes.bool,
-  hasIconOnly: PropTypes.bool
-}
 
 export default compose(
   connect(
