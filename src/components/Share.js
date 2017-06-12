@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { pure } from 'recompose'
 import {
   View,
   Text,
@@ -49,4 +50,4 @@ Share.propTypes = {
 
 }
 
-export default Share
+export default pure(Share)

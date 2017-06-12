@@ -36,7 +36,6 @@ const getChildrenByQuestion = createSelector(
 export default class Question extends Component {
   static propTypes = {
     children: PropTypes.object,
-    fromStudy: PropTypes.bool,
     question: PropTypes.object.isRequired,
     topic: PropTypes.object.isRequired,
     markAsRead: PropTypes.func.isRequired,
@@ -50,7 +49,8 @@ export default class Question extends Component {
   }
 
   render() {
-    const { question, topic, markAsRead, children, fromStudy, navigation } = this.props
+    const { question, topic, markAsRead, children, navigation } = this.props
+    const { fromStudy } = navigation.state.params || {}
 
     if (children) {
       return (

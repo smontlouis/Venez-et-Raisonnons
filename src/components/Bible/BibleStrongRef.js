@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react'
-import {
-  Text,
-} from 'react-native'
+import { Text } from 'react-native'
+import { pure, compose } from 'recompose'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { withNavigation } from 'react-navigation'
 
@@ -38,4 +37,7 @@ BibleStrongRef.propTypes = {
   book: PropTypes.number.isRequired,
 }
 
-export default withNavigation(BibleStrongRef)
+export default compose(
+  withNavigation,
+  pure
+)(BibleStrongRef)

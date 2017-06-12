@@ -3,6 +3,7 @@ import { ScrollView, View } from 'react-native'
 import { Button } from 'react-native-elements'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { connect } from 'react-redux'
+import { pure } from 'recompose'
 import getDB from '@src/helpers/database'
 import { BibleVerse, BibleFooter, Loading } from '@src/components'
 import { loadBible } from '@src/helpers'
@@ -36,6 +37,7 @@ const styles = EStyleSheet.create({
   null,
   BibleActions
 )
+@pure
 export default class BibleViewer extends Component {
   static propTypes = {
     arrayVerses: PropTypes.object,

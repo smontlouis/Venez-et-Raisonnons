@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 import {
   ScrollableHeader,
-  // Share,
+  Contribute,
   LinkToStudy,
   MarkAsRead,
   AddToFavorites,
@@ -103,7 +103,6 @@ export default class QuestionSimple extends Component {
       markAsRead,
       fromStudy,
     } = this.props
-
     return (
       <View style={styles.container}>
         <ScrollableHeader
@@ -142,6 +141,7 @@ export default class QuestionSimple extends Component {
               <AddToFavorites id={question.get('id')} />
             </View>
             <LikeCount count={question.get('likeCount')} id={question.get('id')} />
+            <Contribute id={question.get('id')} title={question.get('title')} />
             {
               !!question.get('parent') &&
               <PrevNext

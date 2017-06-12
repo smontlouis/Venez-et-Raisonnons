@@ -1,15 +1,13 @@
 // @flow
 
 import React from 'react'
-import {
-  Platform,
-  View,
-  Text,
-} from 'react-native'
+import { Platform, View, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import bibleStrongText from '@src/markdown/bibleStrong'
 import { Link, Back } from '@src/components'
+import { pure } from 'recompose'
+
 
 const styles = EStyleSheet.create({
   container: {
@@ -42,7 +40,7 @@ type Props = {
   version: string,
 }
 
-export default ({ book, chapter, version, hasBack }: Props) =>
+const BibleHeader = ({ book, chapter, version, hasBack }: Props) =>
   <View style={styles.container}>
     {
       hasBack &&
@@ -81,3 +79,4 @@ export default ({ book, chapter, version, hasBack }: Props) =>
     }
   </View>
 
+export default pure(BibleHeader)

@@ -26,6 +26,7 @@ export PrevNext from './PrevNext'
 export PaginateList from './PaginateList'
 export PaginateSlider from './PaginateSlider'
 export LexiqueMot from './LexiqueMot'
+export Contribute from './Contribute'
 
 export BibleViewer from './Bible/BibleViewer'
 export BibleVerse from './Bible/BibleVerse'

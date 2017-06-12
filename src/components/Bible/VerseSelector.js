@@ -1,14 +1,11 @@
 import React, { PropTypes, Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import {
-  ScrollView,
-} from 'react-native'
+import { ScrollView } from 'react-native'
 import { connect } from 'react-redux'
+import { pure } from 'recompose'
 import getDB from '@src/helpers/database'
 import * as BibleActions from '@src/redux/modules/bible'
-import {
-  SelectorItem,
-} from '@src/components'
+import { SelectorItem } from '@src/components'
 
 
 const styles = EStyleSheet.create({
@@ -31,6 +28,7 @@ const styles = EStyleSheet.create({
   }),
   BibleActions,
 )
+@pure
 export default class VerseSelector extends Component {
   static propTypes = {
     screenProps: PropTypes.object.isRequired,

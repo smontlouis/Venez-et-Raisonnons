@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { fromJS } from 'immutable'
 import { connect } from 'react-redux'
+import { pure } from 'recompose'
 import * as BibleActions from '@src/redux/modules/bible'
 import books from '@src/helpers/livres'
 import { BookSelectorItem, List } from '@src/components'
@@ -21,6 +22,7 @@ const styles = EStyleSheet.create({
   }),
   BibleActions,
 )
+@pure
 export default class BookSelector extends Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired,

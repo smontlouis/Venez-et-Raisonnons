@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
-import {
-  View,
-} from 'react-native'
+import { View } from 'react-native'
+import { pure } from 'recompose'
 import { List } from '@src/components'
 
+@pure
 export default class PaginateList extends Component {
 
   static propTypes = {

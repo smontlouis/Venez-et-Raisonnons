@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
+import { pure } from 'recompose'
 
 const styles = EStyleSheet.create({
   item: {
@@ -46,4 +47,4 @@ SelectorItem.propTypes = {
   isSelected: PropTypes.bool,
 }
 
-export default SelectorItem
+export default pure(SelectorItem)

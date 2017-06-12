@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import {
-  View,
-  Text,
-} from 'react-native'
+import { pure, compose } from 'recompose'
+import { View, Text } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { Link } from '@src/components'
 
@@ -40,7 +38,7 @@ const LinkToStudy = ({ id, question }) => (
     <View style={styles.container}>
       <Icon
         name="description"
-        size={32}
+        size={24}
         style={styles.icon}
       />
       <Text style={styles.text}>{`Voir l'étude "${question.get('title')}"`}</Text>
@@ -59,8 +57,11 @@ LinkToStudy.propTypes = {
   question: PropTypes.object.isRequired,
 }
 
-export default connect(
-  (state, ownProps) => ({
-    question: state.getIn(['questions', 'questions', ownProps.id])
-  }),
+export default compose(
+  connect(
+    (state, ownProps) => ({
+      question: state.getIn(['questions', 'questions', ownProps.id])
+    }),
+  ),
+  pure
 )(LinkToStudy)

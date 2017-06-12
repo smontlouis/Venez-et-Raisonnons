@@ -1,12 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import Icon from 'react-native-vector-icons/Entypo'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import {
-  Animated,
-  Platform,
-  StatusBar,
-  View,
-} from 'react-native'
+import { pure } from 'recompose'
+import { Animated, Platform, StatusBar, View } from 'react-native'
 import { truncate } from '@src/helpers'
 import { Back } from '@src/components'
 
@@ -106,6 +102,7 @@ const getStyles = (h) => {
   }
 }
 
+@pure
 export default class ScrollableHeader extends Component {
 
   static propTypes = {

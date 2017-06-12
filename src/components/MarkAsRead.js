@@ -2,12 +2,8 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import Toast from 'react-native-simple-toast'
-
-import {
-  View,
-  Text,
-  TouchableOpacity,
-} from 'react-native'
+import { pure, compose } from 'recompose'
+import { View, Text, TouchableOpacity } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import * as AppActions from '@src/redux/modules/app'
 
@@ -69,9 +65,12 @@ MarkAsRead.propTypes = {
   hasIconOnly: PropTypes.bool,
 }
 
-export default connect(
-  (state, ownProps) => ({
-    isActive: !!state.getIn(['app', 'hasBeenRead', ownProps.id])
-  }),
-  AppActions,
+export default compose(
+  connect(
+    (state, ownProps) => ({
+      isActive: !!state.getIn(['app', 'hasBeenRead', ownProps.id])
+    }),
+    AppActions,
+  ),
+  pure
 )(MarkAsRead)

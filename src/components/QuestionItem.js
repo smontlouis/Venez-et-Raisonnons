@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import MIcon from 'react-native-vector-icons/MaterialIcons'
 import { Text, View, } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
+import { pure, compose } from 'recompose'
 
 import { Title } from '@src/styled'
 import { Link } from '@src/components'
@@ -97,9 +98,12 @@ QuestionItem.propTypes = {
   isNew: PropTypes.bool,
 }
 
-export default connect(
-  (state, ownProps) => ({
-    hasBeenRead: !!state.getIn(['app', 'hasBeenRead', ownProps.id]),
-    isNew: !!state.getIn(['questions', 'newQuestions', ownProps.id])
-  }),
+export default compose(
+  connect(
+    (state, ownProps) => ({
+      hasBeenRead: !!state.getIn(['app', 'hasBeenRead', ownProps.id]),
+      isNew: !!state.getIn(['questions', 'newQuestions', ownProps.id])
+    }),
+  ),
+  pure
 )(QuestionItem)

@@ -1,13 +1,10 @@
 import React, { PropTypes } from 'react'
 import Modal from 'react-native-modalbox'
-import {
-  Text,
-  View,
-} from 'react-native'
+import { Text, View } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import {
-  Loading,
-} from '@src/components'
+import { pure } from 'recompose'
+
+import { Loading } from '@src/components'
 
 const styles = EStyleSheet.create({
   container: {
@@ -85,4 +82,4 @@ VerseModal.propTypes = {
   refValue: PropTypes.func.isRequired,
 }
 
-export default VerseModal
+export default pure(VerseModal)

@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { pure } from 'recompose'
 import { Button } from 'react-native-elements'
-import {
-  View,
-  Text,
-} from 'react-native'
+import { View, Text } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
 const styles = EStyleSheet.create({
@@ -52,4 +50,4 @@ NoItems.propTypes = {
   text: PropTypes.string.isRequired,
 }
 
-export default NoItems
+export default pure(NoItems)

@@ -1,8 +1,6 @@
 import React from 'react'
-import {
-  Text,
-  TouchableOpacity,
-} from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
+import { pure } from 'recompose'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
 const styles = EStyleSheet.create({
@@ -41,4 +39,4 @@ const VersionSelectorItem = ({ version, isSelected, onChange }: Props) => (
 )
 
 
-export default VersionSelectorItem
+export default pure(VersionSelectorItem)

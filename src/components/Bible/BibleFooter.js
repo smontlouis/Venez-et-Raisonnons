@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react'
-import {
-  TouchableOpacity,
-  View,
-} from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import EStyleSheet from 'react-native-extended-stylesheet'
+import { pure } from 'recompose'
 
 const styles = EStyleSheet.create({
   container: {
@@ -75,4 +73,4 @@ BibleFooter.propTypes = {
   disabled: PropTypes.bool.isRequired,
 }
 
-export default BibleFooter
+export default pure(BibleFooter)

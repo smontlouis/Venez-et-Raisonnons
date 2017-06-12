@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import {
-  TouchableHighlight,
-} from 'react-native'
+import { pure, compose } from 'recompose'
+import { TouchableHighlight } from 'react-native'
 import { withNavigation, NavigationActions } from 'react-navigation'
 
 class Back extends Component {
@@ -29,7 +28,6 @@ class Back extends Component {
       ]
     })
     this.props.navigation.dispatch(resetAction)
-
   }
 
   render() {
@@ -43,4 +41,7 @@ class Back extends Component {
   }
 }
 
-export default withNavigation(Back)
+export default compose(
+  withNavigation,
+  pure
+)(Back)

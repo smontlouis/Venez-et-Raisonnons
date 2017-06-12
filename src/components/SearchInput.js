@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import { View, TextInput, Platform, TouchableOpacity } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { pure } from 'recompose'
 
 const styles = EStyleSheet.create({
   container: {
@@ -35,7 +36,7 @@ const styles = EStyleSheet.create({
   }
 })
 
-
+@pure
 class Search extends Component {
 
   constructor(props) {

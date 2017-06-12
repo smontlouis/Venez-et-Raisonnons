@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import { TouchableOpacity, Text, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import EStyleSheet from 'react-native-extended-stylesheet'
+import { pure } from 'recompose'
 import { verseToStrong, globalVariables } from '@src/helpers'
 import books from '@src/helpers/livres'
 
@@ -77,4 +78,4 @@ class VerseConcordance extends Component {
   }
 }
 
-export default VerseConcordance
+export default pure(VerseConcordance)

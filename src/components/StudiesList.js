@@ -1,11 +1,8 @@
 import React, { PropTypes } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
+import { pure } from 'recompose'
 
-import {
-  List,
-  StudyItem,
-  HeaderList,
-} from './index'
+import { List, StudyItem, HeaderList } from './index'
 
 const styles = EStyleSheet.create({
   container: {
@@ -40,4 +37,4 @@ StudiesList.propTypes = {
   style: PropTypes.number,
 }
 
-export default StudiesList
+export default pure(StudiesList)

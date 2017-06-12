@@ -1,10 +1,7 @@
 import React from 'react'
-import {
-  View,
-  Text,
-  ActivityIndicator,
-} from 'react-native'
+import { View, ActivityIndicator } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
+import { pure } from 'recompose'
 
 const styles = EStyleSheet.create({
   container: {
@@ -22,4 +19,4 @@ const Loading = () => (
 )
 
 
-export default Loading
+export default pure(Loading)

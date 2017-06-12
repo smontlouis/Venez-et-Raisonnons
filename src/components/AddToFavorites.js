@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { compose, pure } from 'recompose'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import Toast from 'react-native-simple-toast'
@@ -69,9 +70,12 @@ AddToFavorites.propTypes = {
   hasIconOnly: PropTypes.bool,
 }
 
-export default connect(
-  (state, ownProps) => ({
-    isActive: !!state.getIn(['app', 'favorites', ownProps.id])
-  }),
-  AppActions,
+export default compose(
+  connect(
+    (state, ownProps) => ({
+      isActive: !!state.getIn(['app', 'favorites', ownProps.id])
+    }),
+    AppActions,
+  ),
+  pure
 )(AddToFavorites)

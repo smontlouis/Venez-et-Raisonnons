@@ -1,14 +1,9 @@
 import React, { PropTypes } from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import {
-  View,
-  Platform,
-} from 'react-native'
+import { View, Platform } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import {
-  SearchInput,
-  Back,
-} from '@src/components'
+import { pure } from 'recompose'
+import { SearchInput, Back } from '@src/components'
 
 const styles = EStyleSheet.create({
   container: {
@@ -53,4 +48,4 @@ SearchHeader.propTypes = {
   placeholder: PropTypes.string.isRequired,
 }
 
-export default SearchHeader
+export default pure(SearchHeader)

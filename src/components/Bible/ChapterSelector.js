@@ -1,13 +1,10 @@
 import React, { PropTypes, Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import {
-  ScrollView,
-} from 'react-native'
+import { pure } from 'recompose'
+import { ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import * as BibleActions from '@src/redux/modules/bible'
-import {
-  SelectorItem,
-} from '@src/components'
+import { SelectorItem } from '@src/components'
 
 
 const styles = EStyleSheet.create({
@@ -29,6 +26,7 @@ const styles = EStyleSheet.create({
   }),
   BibleActions,
 )
+@pure
 export default class ChapterSelector extends Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired,

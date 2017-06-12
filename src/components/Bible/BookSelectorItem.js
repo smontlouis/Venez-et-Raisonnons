@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react'
-import {
-  Text,
-  TouchableOpacity,
-} from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
+import { pure } from 'recompose'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
 const styles = EStyleSheet.create({
@@ -33,4 +31,4 @@ BookSelectorItem.propTypes = {
   isSelected: PropTypes.bool,
 }
 
-export default BookSelectorItem
+export default pure(BookSelectorItem)

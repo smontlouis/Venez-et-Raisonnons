@@ -5,6 +5,7 @@ import { View, Text, ActivityIndicator } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { Back } from '@src/components'
 import { combineStyles } from '@src/helpers'
+import { pure, compose } from 'recompose'
 
 
 const styles = EStyleSheet.create({
@@ -109,8 +110,11 @@ Header.propTypes = {
   isLoading: PropTypes.bool.isRequired,
 }
 
-export default connect(
-  state => ({
-    isLoading: state.get('app').get('isLoading'),
-  })
+export default compose(
+  connect(
+    state => ({
+      isLoading: state.get('app').get('isLoading'),
+    })
+  ),
+  pure
 )(Header)

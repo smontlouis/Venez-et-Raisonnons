@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
+import { pure, compose } from 'recompose'
 import {
   View,
   Text,
@@ -45,7 +46,11 @@ SelectorButtons.propTypes = {
   validateSelected: PropTypes.func.isRequired,
 }
 
-export default connect(
-  null,
-  BibleActions,
-)(withNavigation(SelectorButtons))
+export default compose(
+  connect(
+    null,
+    BibleActions,
+  ),
+  withNavigation,
+  pure
+)(SelectorButtons)

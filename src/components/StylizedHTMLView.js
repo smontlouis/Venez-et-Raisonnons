@@ -1,6 +1,7 @@
 import React from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { HTMLView, globalVariables } from '@src/helpers'
+import { pure } from 'recompose'
 
 const styles = EStyleSheet.create({
   h1: {
@@ -67,4 +68,4 @@ const StylizedHTMLView = props => (
   />
 )
 
-export default StylizedHTMLView
+export default pure(StylizedHTMLView)

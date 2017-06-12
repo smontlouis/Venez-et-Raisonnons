@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { View } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-
+import { pure, compose } from 'recompose'
 import { Title, Text } from '@src/styled'
 
 
@@ -32,4 +32,4 @@ HeaderList.propTypes = {
   subtitle: PropTypes.string,
 }
 
-export default HeaderList
+export default pure(HeaderList)

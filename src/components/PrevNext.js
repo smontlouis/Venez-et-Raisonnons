@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react'
-import {
-  View,
-  Text,
-} from 'react-native'
+import { View, Text } from 'react-native'
+import { pure, compose } from 'recompose'
 import Icon from 'react-native-vector-icons/Ionicons'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { connect } from 'react-redux'
@@ -61,7 +59,7 @@ const PrevNext = ({ previous, next }) => (
       previous &&
       <Link
         route={'question'}
-        params={{ questionId: previous.get('id') }}
+        params={{ questionId: previous.get('id'), fromStudy: true }}
         style={[styles.prevNext, styles.prev]}
       >
         <Text style={styles.prevNextText}>
@@ -74,7 +72,7 @@ const PrevNext = ({ previous, next }) => (
       next &&
       <Link
         route={'question'}
-        params={{ questionId: next.get('id') }}
+        params={{ questionId: next.get('id'), fromStudy: true }}
         style={styles.prevNext}
       >
         <Text style={styles.prevNextText}>
@@ -92,9 +90,12 @@ PrevNext.propTypes = {
 }
 
 
-export default connect(
-  (state, ownProps) => ({
-    previous: getPrevNextQuestion(state, ownProps, false),
-    next: getPrevNextQuestion(state, ownProps, true)
-  })
+export default compose(
+  connect(
+    (state, ownProps) => ({
+      previous: getPrevNextQuestion(state, ownProps, false),
+      next: getPrevNextQuestion(state, ownProps, true)
+    })
+  ),
+  pure
 )(PrevNext)

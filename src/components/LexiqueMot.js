@@ -1,13 +1,14 @@
 import React from 'react'
 import { Text, Box } from '@src/styled'
 import { Link } from '@src/components'
+import { pure, compose } from 'recompose'
 
 type Props = {
   strong: Object,
-  book: string,
+  book: number,
 }
 
-export default ({ strong, book }:Props) => (
+const LexiqueMot = ({ strong, book }:Props) => (
   <Link
     route={'strongModal'}
     params={{ reference: strong.Code.toString(), book }}
@@ -17,3 +18,5 @@ export default ({ strong, book }:Props) => (
     </Box>
   </Link>
 )
+
+export default pure(LexiqueMot)

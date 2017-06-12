@@ -3,6 +3,7 @@ import { View, Platform } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { verseToStrong } from '@src/helpers'
 import { Text } from '@src/styled'
+import { pure } from 'recompose'
 
 const styles = EStyleSheet.create({
   container: {
@@ -16,6 +17,7 @@ const styles = EStyleSheet.create({
   }
 })
 
+@pure
 class BibleVerse extends Component {
 
   static propTypes = {

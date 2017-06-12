@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import R from 'ramda'
-import {
-  ListView,
-} from 'react-native'
+import { ListView } from 'react-native'
+import { pure } from 'recompose'
 
 
 class List extends Component {
@@ -48,4 +47,4 @@ class List extends Component {
   }
 }
 
-export default List
+export default pure(List)

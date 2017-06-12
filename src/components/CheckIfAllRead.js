@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { pure, compose } from 'recompose'
 
 import {
   View,
@@ -35,4 +36,6 @@ CheckIfAllRead.propTypes = {
   markedAsRead: PropTypes.bool.isRequired,
 }
 
-export default CheckIfAllRead
+export default compose(
+  pure
+)(CheckIfAllRead)

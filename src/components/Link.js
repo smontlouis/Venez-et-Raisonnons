@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import {
-  TouchableOpacity,
-} from 'react-native'
+import { pure, compose } from 'recompose'
+import { TouchableOpacity } from 'react-native'
 import { withNavigation } from 'react-navigation'
 
 class Link extends Component {
@@ -29,4 +28,7 @@ class Link extends Component {
   }
 }
 
-export default withNavigation(Link)
+export default compose(
+  withNavigation,
+  pure
+)(Link)

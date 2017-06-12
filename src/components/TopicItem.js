@@ -5,6 +5,7 @@ import { createSelector } from 'reselect'
 import { View, Image } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import RNFetchBlob from 'react-native-fetch-blob'
+import { pure } from 'recompose'
 
 import { Title, Text } from '@src/styled'
 import { Link } from '@src/components'
@@ -80,6 +81,7 @@ const getQuestionsNumberByTopic = createSelector(
     newQuestionCount: getNewQuestionsCountByTopic(state, ownProps)
   }),
 )
+@pure
 export default class TopicItem extends Component {
   static propTypes = {
     base64Img: PropTypes.string,

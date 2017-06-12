@@ -17,6 +17,7 @@ import {
   VerseModal,
   StylizedHTMLView
 } from '@src/components'
+import { range } from '@src/helpers'
 import * as AppActions from '@src/redux/modules/app'
 import { Title } from '@src/styled'
 import styles, { setDynamicFontSize } from './styles'

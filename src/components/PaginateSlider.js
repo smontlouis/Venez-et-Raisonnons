@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Slider from 'react-native-slider'
 import { View, Text, Platform } from 'react-native'
+import { pure } from 'recompose'
 
 const styles = EStyleSheet.create({
   container: {
@@ -52,6 +53,7 @@ const styles = EStyleSheet.create({
   }
 })
 
+@pure
 export default class PaginateSlider extends Component {
   static propTypes = {
     currentPage: PropTypes.number,
