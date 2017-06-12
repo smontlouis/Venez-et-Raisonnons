@@ -55,7 +55,7 @@ export default class Question extends Component {
     if (children) {
       return (
         <QuestionStudy
-          {...{ question, topic, children }}
+          {...{ question, topic, children, navigation }}
         />
       )
     }
