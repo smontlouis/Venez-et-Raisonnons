@@ -1,30 +1,28 @@
-import React, { PropTypes } from 'react'
+// @flow
+import React from 'react'
 import Modal from 'react-native-modalbox'
-import {
-  Text,
-  View,
-} from 'react-native'
+import { Text, View } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import {
-  Loading,
-} from '@src/components'
+import { pure } from 'recompose'
+
+import { Loading } from '@src/components'
 
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   title: {
     fontFamily: '$font.title',
-    fontSize: 20,
+    fontSize: 20
   },
   titleBorder: {
     marginTop: 20,
     marginBottom: 20,
     width: 35,
     height: 3,
-    backgroundColor: '$color.secondary',
+    backgroundColor: '$color.secondary'
   },
   text: {
     fontSize: 16,
@@ -32,7 +30,7 @@ const styles = EStyleSheet.create({
     color: '$color.tertiary'
   },
   strong: {
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
 
   // Modal
@@ -40,10 +38,17 @@ const styles = EStyleSheet.create({
     backgroundColor: '#EFF0F4',
     padding: 20,
     height: '80%'
-  },
+  }
 })
 
-const VerseModal = ({ isLoading, title, text, refValue }) => {
+type Props = {
+  isLoading: boolean,
+  title: string,
+  text: any,
+  refValue: Function
+}
+
+const VerseModal = ({ isLoading, title, text, refValue }: Props) => {
   let content
 
   // To be refactored
@@ -58,7 +63,7 @@ const VerseModal = ({ isLoading, title, text, refValue }) => {
     <Modal
       style={styles.modal}
       backButtonClose
-      position="bottom"
+      position='bottom'
       ref={refValue}
     >
       {
@@ -77,12 +82,4 @@ const VerseModal = ({ isLoading, title, text, refValue }) => {
   )
 }
 
-
-VerseModal.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
-  text: PropTypes.any.isRequired,
-  refValue: PropTypes.func.isRequired,
-}
-
-export default VerseModal
+export default pure(VerseModal)

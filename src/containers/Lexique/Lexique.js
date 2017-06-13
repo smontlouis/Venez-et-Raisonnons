@@ -7,11 +7,10 @@ import getDB from '@src/helpers/database'
 import { SearchInput, PaginateList, Loading, PaginateSlider, LexiqueMot, NoItems } from '@src/components'
 import { itemsPerPage } from '@src/helpers/globalVariables'
 
-
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   searchContainer: {
     backgroundColor: 'white',
@@ -21,11 +20,11 @@ const styles = EStyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: EStyleSheet.hairlineWidth,
     shadowOffset: {
-      height: EStyleSheet.hairlineWidth,
-    },
+      height: EStyleSheet.hairlineWidth
+    }
   },
   scrollView: {
-    padding: 20,
+    padding: 20
   },
   total: {
     fontSize: 22,
@@ -36,7 +35,7 @@ const styles = EStyleSheet.create({
   numPage: {
     fontFamily: '$font.heading',
     color: 'rgba(0,0,0,0.5)',
-    fontSize: 18,
+    fontSize: 18
   }
 })
 
@@ -45,8 +44,7 @@ type LexiqueProps = {
 }
 
 export default class Bible extends Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.getCurrentValue = ::this.getCurrentValue
@@ -59,17 +57,17 @@ export default class Bible extends Component {
     currentPage: 1,
     isLoading: true,
     strongCodes: [],
-    filter: '',
+    filter: ''
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.DB = getDB()
     this.loadLexique()
   }
 
   props: LexiqueProps
 
-  loadLexique() {
+  loadLexique () {
     const { type } = this.props
     const tmpStrongCodes = []
     this.setState({ isLoading: true })
@@ -85,28 +83,28 @@ export default class Bible extends Component {
       })
   }
 
-  filterResults(value) {
+  filterResults (value) {
     this.setState({ filter: value, currentPage: 1 })
   }
 
-  getCurrentValue(value) {
+  getCurrentValue (value) {
     this.setState({ currentPage: value })
     this.scrollView.scrollTo({ x: 0, y: 0, animated: false })
   }
 
-  prevPage() {
+  prevPage () {
     if (this.state.currentPage !== 1) {
       this.setState({ currentPage: this.state.currentPage - 1 })
     }
   }
 
-  nextPage(nbPages) {
+  nextPage (nbPages) {
     if (this.state.currentPage !== nbPages) {
       this.setState({ currentPage: this.state.currentPage + 1 })
     }
   }
 
-  render() {
+  render () {
     const { isLoading, strongCodes, filter } = this.state
     const { type } = this.props
 
@@ -124,10 +122,10 @@ export default class Bible extends Component {
     const pages = Math.ceil(filteredStrongCodes.length / itemsPerPage)
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle='light-content' />
         <View style={styles.searchContainer}>
           <SearchInput
-            placeholder="Code strong ou mot"
+            placeholder='Code strong ou mot'
             onChangeText={this.filterResults}
             isLight
           />
@@ -137,10 +135,10 @@ export default class Bible extends Component {
           <Loading />
         }
         {
-          !!!filteredStrongCodes.length &&
+          !filteredStrongCodes.length &&
           <NoItems
-            icon="sentiment-dissatisfied"
-            text="Aucun mot strong trouvé"
+            icon='sentiment-dissatisfied'
+            text='Aucun mot strong trouvé'
           />
         }
         {
@@ -154,8 +152,8 @@ export default class Bible extends Component {
             >
               <Text style={styles.total}>
                 {
-                  (filteredStrongCodes.length < 2) ?
-                    `${filteredStrongCodes.length} occurence`
+                  (filteredStrongCodes.length < 2)
+                    ? `${filteredStrongCodes.length} occurence`
                   : `${filteredStrongCodes.length} occurences`
                 }
                 <Text style={styles.numPage}> (Page {this.state.currentPage}) </Text>
@@ -182,4 +180,3 @@ export default class Bible extends Component {
     )
   }
 }
-

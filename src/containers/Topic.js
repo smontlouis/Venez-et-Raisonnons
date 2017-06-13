@@ -4,13 +4,12 @@ import { createSelector } from 'reselect'
 import R from 'ramda'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import {
-  View,
+  View
 } from 'react-native'
 import {
   QuestionsList,
-  ScrollableHeader,
+  ScrollableHeader
 } from '@src/components'
-
 
 const getCurrentTopic = (state, props) => state.get('topics').get('topics').get(props.navigation.state.params.topicId)
 const getBase64Img = (state, props) => state.get('topics').get('base64Images').get(props.navigation.state.params.topicId)
@@ -20,31 +19,31 @@ const getQuestionsByTopic = createSelector(
   [getCurrentTopic, getQuestions],
   (currentTopic, questions) => questions
     .filter(question => question.get('topic') === currentTopic.get('id'))
-    .filter(question => question.get('standalone')),
+    .filter(question => question.get('standalone'))
 )
 
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
-  },
+    backgroundColor: 'white'
+  }
 })
 
 @connect(
   (state, ownProps) => ({
     topic: getCurrentTopic(state, ownProps),
     base64Img: getBase64Img(state, ownProps),
-    questions: getQuestionsByTopic(state, ownProps),
+    questions: getQuestionsByTopic(state, ownProps)
   })
 )
 export default class Topic extends Component {
   static propTypes = {
     base64Img: PropTypes.string.isRequired,
     questions: PropTypes.object.isRequired,
-    topic: PropTypes.object.isRequired,
+    topic: PropTypes.object.isRequired
   }
 
-  render() {
+  render () {
     const { topic, questions, base64Img } = this.props
 
     return (

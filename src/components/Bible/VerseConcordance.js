@@ -1,70 +1,71 @@
-import React, { PropTypes, Component } from 'react'
+// @flow
+import React, { Component } from 'react'
 import { TouchableOpacity, Text, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import EStyleSheet from 'react-native-extended-stylesheet'
+import { pure } from 'recompose'
 import { verseToStrong, globalVariables } from '@src/helpers'
 import books from '@src/helpers/livres'
 
 const styles = EStyleSheet.create({
   container: {
-    marginBottom: Platform.OS === 'ios' ? 15 : 10,
+    marginBottom: Platform.OS === 'ios' ? 15 : 10
   },
   title: {
     fontSize: 14,
     color: '$color.primary',
     fontWeight: 'bold',
     marginTop: 10,
-    marginBottom: 3,
+    marginBottom: 3
   },
   text: {
     flex: 1,
     color: '$color.black',
-    ...globalVariables.textStyle,
+    ...globalVariables.textStyle
   },
   versetWrapper: {
     marginTop: 3,
     marginRight: 5,
-    marginLeft: 15,
+    marginLeft: 15
   }
 })
 
 @connect(
   (state, ownProps) => ({
-    book: books[ownProps.verse.Livre - 1],
+    book: books[ownProps.verse.Livre - 1]
   })
 )
 class VerseConcordance extends Component {
-
-  static propTypes = {
-    book: PropTypes.object.isRequired,
-    concordanceFor: PropTypes.string,
-    navigation: PropTypes.object.isRequired,
-    verse: PropTypes.object.isRequired,
+  props: {
+    book?: Object,
+    concordanceFor: string,
+    navigation: Object,
+    verse: Object
   }
 
   state = {
     element: null
   }
 
-  componentWillMount() {
+  componentWillMount () {
     const { verse, concordanceFor } = this.props
     this.formatVerse(verse, concordanceFor)
   }
 
-  componentDidUpdate(oldProps) {
+  componentDidUpdate (oldProps) {
     if ((this.props.verse.Verset !== oldProps.verse.Verset)) {
       const { verse, concordanceFor } = this.props
       this.formatVerse(verse, concordanceFor)
     }
   }
 
-  formatVerse(verse, concordanceFor) {
+  formatVerse (verse, concordanceFor) {
     verseToStrong(verse, 'STRONG', concordanceFor)
       .then(element => this.setState({ element }))
       .catch(err => console.log(err))
   }
 
-  render() {
+  render () {
     const { book, verse: { Chapitre, Verset }, navigation } = this.props
     return (
       <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('bible', { book, chapter: Chapitre, verse: Verset })}>
@@ -77,4 +78,4 @@ class VerseConcordance extends Component {
   }
 }
 
-export default VerseConcordance
+export default pure(VerseConcordance)

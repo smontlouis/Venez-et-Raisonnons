@@ -4,31 +4,30 @@ import { Button } from 'react-native-elements'
 import {
   Text,
   View,
-  Linking,
+  Linking
 } from 'react-native'
 import {
-  Header,
+  Header
 } from '@src/components'
-
 
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   centered: {
     padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
+    flex: 1
   },
   text: {
-    textAlign: 'center',
+    textAlign: 'center'
   },
   button: {
     marginTop: 30,
     backgroundColor: '$color.primary',
-    borderRadius: 5,
+    borderRadius: 5
   }
 })
 
@@ -39,7 +38,7 @@ const mailTo = () => {
 const Add = () =>
   <View style={styles.container}>
     <Header
-      title="Poser une question"
+      title='Poser une question'
     />
     <View style={styles.centered}>
       <Text style={styles.text}>
@@ -47,12 +46,11 @@ const Add = () =>
       </Text>
       <Button
         icon={{ name: 'email' }}
-        title="Envoyer un mail"
+        title='Envoyer un mail'
         buttonStyle={styles.button}
         onPress={mailTo}
       />
     </View>
   </View>
-
 
 export default Add

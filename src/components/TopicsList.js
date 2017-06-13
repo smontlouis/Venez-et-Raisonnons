@@ -1,20 +1,24 @@
-import React, { PropTypes } from 'react'
+// @flow
+import React from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
+import { pure } from 'recompose'
 
-import {
-  List,
-  TopicItem,
-  HeaderList,
-} from './index'
+import { List, TopicItem, HeaderList } from './index'
 
 const styles = EStyleSheet.create({
   container: {
     paddingTop: 0,
-    padding: 20,
-  },
+    padding: 20
+  }
 })
 
-const TopicsList = ({ headerTitle, topics, contentContainerStyle, ...props }) =>
+type Props = {
+  headerTitle?: string,
+  topics: Object,
+  contentContainerStyle?: number
+}
+
+const TopicsList = ({ headerTitle, topics, contentContainerStyle, ...props }: Props) =>
   <List
     listItems={topics}
     renderHeader={() => headerTitle && <HeaderList title={headerTitle} />}
@@ -33,11 +37,4 @@ const TopicsList = ({ headerTitle, topics, contentContainerStyle, ...props }) =>
     {...props}
   />
 
-
-TopicsList.propTypes = {
-  headerTitle: PropTypes.string,
-  topics: PropTypes.object.isRequired,
-  contentContainerStyle: PropTypes.number,
-}
-
-export default TopicsList
+export default pure(TopicsList)

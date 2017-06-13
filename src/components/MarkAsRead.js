@@ -1,13 +1,10 @@
-import React, { PropTypes } from 'react'
+// @flow
+import React from 'react'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import Toast from 'react-native-simple-toast'
-
-import {
-  View,
-  Text,
-  TouchableOpacity,
-} from 'react-native'
+import { pure, compose } from 'recompose'
+import { View, Text, TouchableOpacity } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import * as AppActions from '@src/redux/modules/app'
 
@@ -17,12 +14,19 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 10,
-    paddingRight: 10,
+    paddingRight: 10
   },
   text: {
-    marginLeft: 10,
+    marginLeft: 10
   }
 })
+
+type Props = {
+  id: string,
+  toggleMarkAsRead: Function,
+  isActive?: boolean,
+  hasIconOnly?: boolean
+}
 
 const renderIcon = (hasIconOnly, isActive) => {
   if (hasIconOnly) {
@@ -30,21 +34,21 @@ const renderIcon = (hasIconOnly, isActive) => {
       <Icon
         name={isActive ? 'bookmark' : 'bookmark-border'}
         size={24}
-        color="white"
+        color='white'
       />
     )
   }
 
   return (
     <Icon
-      name="check"
+      name='check'
       size={24}
       color={isActive ? '#2ecc71' : 'rgb(230,230,230)'}
     />
   )
 }
 
-const MarkAsRead = ({ id, toggleMarkAsRead, isActive, hasIconOnly }) => (
+const MarkAsRead = ({ id, toggleMarkAsRead, isActive, hasIconOnly }: Props) => (
   <TouchableOpacity
     onPress={() => {
       Toast.show(isActive ? 'Marqué comme non lu' : 'Marqué comme lu')
@@ -62,16 +66,12 @@ const MarkAsRead = ({ id, toggleMarkAsRead, isActive, hasIconOnly }) => (
   </TouchableOpacity>
 )
 
-MarkAsRead.propTypes = {
-  id: PropTypes.string.isRequired,
-  toggleMarkAsRead: PropTypes.func.isRequired,
-  isActive: PropTypes.bool,
-  hasIconOnly: PropTypes.bool,
-}
-
-export default connect(
-  (state, ownProps) => ({
-    isActive: !!state.getIn(['app', 'hasBeenRead', ownProps.id])
-  }),
-  AppActions,
+export default compose(
+  connect(
+    (state, ownProps) => ({
+      isActive: !!state.getIn(['app', 'hasBeenRead', ownProps.id])
+    }),
+    AppActions
+  ),
+  pure
 )(MarkAsRead)

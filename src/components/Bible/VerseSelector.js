@@ -1,15 +1,12 @@
-import React, { PropTypes, Component } from 'react'
+// @flow
+import React, { Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import {
-  ScrollView,
-} from 'react-native'
+import { ScrollView } from 'react-native'
 import { connect } from 'react-redux'
+import { pure } from 'recompose'
 import getDB from '@src/helpers/database'
 import * as BibleActions from '@src/redux/modules/bible'
-import {
-  SelectorItem,
-} from '@src/components'
-
+import { SelectorItem } from '@src/components'
 
 const styles = EStyleSheet.create({
   container: {
@@ -19,33 +16,34 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     padding: 20,
     paddingLeft: 10,
-    paddingRight: 10,
-  },
+    paddingRight: 10
+  }
 })
 
 @connect(
   state => ({
     selectedBook: state.getIn(['bible', 'temp', 'selectedBook']).toJS(),
     selectedChapter: state.getIn(['bible', 'temp', 'selectedChapter']),
-    selectedVerse: state.getIn(['bible', 'temp', 'selectedVerse']),
+    selectedVerse: state.getIn(['bible', 'temp', 'selectedVerse'])
   }),
-  BibleActions,
+  BibleActions
 )
+@pure
 export default class VerseSelector extends Component {
-  static propTypes = {
-    screenProps: PropTypes.object.isRequired,
-    setTempSelectedVerse: PropTypes.func.isRequired,
-    validateSelected: PropTypes.func.isRequired,
-    selectedBook: PropTypes.object.isRequired,
-    selectedChapter: PropTypes.number.isRequired,
-    selectedVerse: PropTypes.number.isRequired,
+  props: {
+    screenProps: Object,
+    setTempSelectedVerse?: Function,
+    validateSelected?: Function,
+    selectedBook?: Object,
+    selectedChapter?: number,
+    selectedVerse?: number
   }
 
   static navigationOptions = {
-    tabBarLabel: 'Verset',
+    tabBarLabel: 'Verset'
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.onValidate = ::this.onValidate
@@ -55,26 +53,26 @@ export default class VerseSelector extends Component {
     isLoaded: false
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.DB = getDB()
     this.loadVerses()
   }
 
-  componentDidUpdate(oldProps) {
+  componentDidUpdate (oldProps) {
     if (
-      (this.props.selectedChapter !== oldProps.selectedChapter)
-      || this.props.selectedBook.Numero !== oldProps.selectedBook.Numero) {
+      (this.props.selectedChapter !== oldProps.selectedChapter) ||
+      this.props.selectedBook.Numero !== oldProps.selectedBook.Numero) {
       this.loadVerses()
     }
   }
 
-  onValidate(verse) {
+  onValidate (verse) {
     this.props.setTempSelectedVerse(verse)
     this.props.validateSelected()
     setTimeout(() => this.props.screenProps.mainNavigation.goBack(), 0)
   }
 
-  loadVerses() {
+  loadVerses () {
     const { selectedBook, selectedChapter } = this.props
     const part = selectedBook.Numero > 39 ? 'LSGSNT2' : 'LSGSAT2'
     this.verses = []
@@ -87,12 +85,11 @@ export default class VerseSelector extends Component {
       })
   }
 
-  render() {
+  render () {
     const { isLoaded } = this.state
     const {
-      selectedVerse,
+      selectedVerse
     } = this.props
-
 
     if (!isLoaded) {
       return null

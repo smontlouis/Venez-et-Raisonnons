@@ -5,12 +5,11 @@ import { View, StatusBar } from 'react-native'
 import * as BibleActions from '@src/redux/modules/bible'
 import { BibleHeader, BibleViewer } from '@src/components'
 
-
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
-  },
+    backgroundColor: 'white'
+  }
 })
 
 type BibleProps = {
@@ -32,18 +31,17 @@ type BibleProps = {
       book: state.getIn(['bible', 'selectedBook']).toJS(),
       chapter: state.getIn(['bible', 'selectedChapter']),
       verse: state.getIn(['bible', 'selectedVerse']),
-      version: state.getIn(['bible', 'selectedVersion']),
-    },
+      version: state.getIn(['bible', 'selectedVersion'])
+    }
   }),
   BibleActions
 )
 export default class Bible extends Component {
-
   state = {
     isLoading: true
   }
 
-  componentDidMount() {
+  componentDidMount () {
     const { book, chapter, verse, version } = this.props.navigation.state.params || {}
     if (book || chapter || verse) {
       this.props.setAllAndValidateSelected({ book, chapter, verse, version })
@@ -55,13 +53,13 @@ export default class Bible extends Component {
 
   props: BibleProps
 
-  render() {
+  render () {
     const { isLoading } = this.state
     const { app, navigation, hasBack } = this.props
     const { arrayVerses } = this.props.navigation.state.params || {}
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle='light-content' />
         <BibleHeader
           hasBack={hasBack}
           book={app.book}
@@ -83,4 +81,3 @@ export default class Bible extends Component {
     )
   }
 }
-

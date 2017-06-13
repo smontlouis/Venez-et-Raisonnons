@@ -1,27 +1,30 @@
+// @flow
 import { Component, PropTypes } from 'react'
 import { withNavigation } from 'react-navigation'
 import qs from 'query-string'
 import Toast from 'react-native-simple-toast'
+import { pure } from 'recompose'
 
 import {
-  Linking,
+  Linking
 } from 'react-native'
 import { store } from '@src/App'
 import { Router } from '@src/routes'
 
 @withNavigation
+@pure
 export default class DeepLinking extends Component {
   static propTypes = {
-    navigation: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.handleOpenURL = ::this.handleOpenURL
   }
 
-  componentWillMount() {
+  componentWillMount () {
     Linking.getInitialURL().then((url) => {
       if (url) this.handleOpenURL({ url })
     }).catch(() => Toast.show('Lien invalide'))
@@ -29,11 +32,11 @@ export default class DeepLinking extends Component {
     Linking.addEventListener('url', this.handleOpenURL)
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     Linking.removeEventListener('url', this.handleOpenURL)
   }
 
-  handleOpenURL(e) {
+  handleOpenURL (e) {
     const { navigation } = this.props
     const url = e.url.replace('venezetraisonnons://', '').split('?')
     const [path, urlParams] = url
@@ -48,7 +51,7 @@ export default class DeepLinking extends Component {
     }
   }
 
-  render() {
+  render () {
     return null
   }
 }

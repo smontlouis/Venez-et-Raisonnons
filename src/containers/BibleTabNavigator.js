@@ -3,7 +3,7 @@ import { globalVariables as global } from '@src/helpers'
 import {
   BookSelector,
   ChapterSelector,
-  VerseSelector,
+  VerseSelector
 } from '@src/components'
 
 const RouteConfigs = {
@@ -22,13 +22,13 @@ const TabNavigatorConfig = {
     activeTintColor: global.color.primary,
     inactiveTintColor: global.color.darkGrey,
     labelStyle: {
-      fontSize: 12,
+      fontSize: 12
     },
     style: {
-      backgroundColor: 'white',
+      backgroundColor: 'white'
     },
     indicatorStyle: {
-      backgroundColor: global.color.primary,
+      backgroundColor: global.color.primary
     }
   }
 }

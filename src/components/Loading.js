@@ -1,17 +1,15 @@
+// @flow
 import React from 'react'
-import {
-  View,
-  Text,
-  ActivityIndicator,
-} from 'react-native'
+import { View, ActivityIndicator } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
+import { pure } from 'recompose'
 
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 })
 
 const Loading = () => (
@@ -21,5 +19,4 @@ const Loading = () => (
   </View>
 )
 
-
-export default Loading
+export default pure(Loading)

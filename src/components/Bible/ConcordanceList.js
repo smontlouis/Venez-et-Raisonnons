@@ -1,8 +1,8 @@
 // @flow
-
 import React from 'react'
-import { VerseConcordance, PaginateList } from '@src/components'
+import { pure } from 'recompose'
 import { fromJS } from 'immutable'
+import { VerseConcordance, PaginateList } from '@src/components'
 
 type Props = {
   currentPage?: number,
@@ -26,4 +26,4 @@ const ConcordanceList = ({ list, concordanceFor, navigation, itemsPerPage, curre
   />
 )
 
-export default ConcordanceList
+export default pure(ConcordanceList)

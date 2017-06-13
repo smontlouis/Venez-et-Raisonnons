@@ -4,19 +4,18 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import { View, Text, StatusBar } from 'react-native'
 import {
   TopicsList,
-  ScrollableHeader,
+  ScrollableHeader
 } from '@src/components'
-
 
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   badgeContainer: {
     height: 150,
     justifyContent: 'flex-end',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   badge: {
     paddingLeft: 15,
@@ -26,16 +25,15 @@ const styles = EStyleSheet.create({
     backgroundColor: '$color.primary',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 20,
+    borderRadius: 20
   },
   badgeText: {
     color: 'white',
     fontSize: 18,
     fontFamily: '$font.heading',
-    backgroundColor: 'transparent',
+    backgroundColor: 'transparent'
   }
 })
-
 
 @connect(
   state => ({
@@ -43,27 +41,27 @@ const styles = EStyleSheet.create({
     newQuestionsCount: state
       .getIn(['questions', 'newQuestions'])
       .filter(question => question.get('standalone'))
-      .count(),
-  }),
+      .count()
+  })
 )
 export default class Topics extends Component {
   static propTypes = {
     topics: PropTypes.object.isRequired,
-    newQuestionsCount: PropTypes.number.isRequired,
+    newQuestionsCount: PropTypes.number.isRequired
   }
 
-  render() {
+  render () {
     const { topics, newQuestionsCount } = this.props
     const renderBadgeText = newQuestionsCount > 1 ? 'nouvelles questions' : 'nouvelle question'
 
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle='light-content' />
         <ScrollableHeader
-          title="Venez Et Raisonnons"
+          title='Venez Et Raisonnons'
           header={(
-            !!newQuestionsCount ?
-              <View style={styles.badgeContainer}>
+            newQuestionsCount
+              ? <View style={styles.badgeContainer}>
                 <View style={styles.badge}>
                   <Text style={styles.badgeText}>{newQuestionsCount} {renderBadgeText}</Text>
                 </View>
@@ -74,7 +72,7 @@ export default class Topics extends Component {
           hasBackButton={false}
         >
           <TopicsList
-            headerTitle="Venez et Raisonnons"
+            headerTitle='Venez et Raisonnons'
             topics={topics}
           />
         </ScrollableHeader>

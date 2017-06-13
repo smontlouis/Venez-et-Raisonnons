@@ -1,22 +1,23 @@
-import React, { PropTypes, Component } from 'react'
+// @flow
+import React, { Component } from 'react'
 import { ScrollView, View } from 'react-native'
 import { Button } from 'react-native-elements'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { connect } from 'react-redux'
+import { pure } from 'recompose'
 import getDB from '@src/helpers/database'
 import { BibleVerse, BibleFooter, Loading } from '@src/components'
 import { loadBible } from '@src/helpers'
 import * as BibleActions from '@src/redux/modules/bible'
 
-
 const styles = EStyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   scrollView: {
     padding: 20,
     paddingLeft: 0,
-    paddingBottom: 40,
+    paddingBottom: 40
   },
   button: {
     marginTop: 10,
@@ -25,10 +26,10 @@ const styles = EStyleSheet.create({
     backgroundColor: 'white',
     borderColor: '$color.primary',
     borderRadius: 5,
-    borderWidth: 2,
+    borderWidth: 2
   },
   buttonText: {
-    color: '$color.primary',
+    color: '$color.primary'
   }
 })
 
@@ -36,19 +37,20 @@ const styles = EStyleSheet.create({
   null,
   BibleActions
 )
+@pure
 export default class BibleViewer extends Component {
-  static propTypes = {
-    arrayVerses: PropTypes.object,
-    book: PropTypes.object.isRequired,
-    chapter: PropTypes.number.isRequired,
-    goToPrevChapter: PropTypes.func.isRequired,
-    goToNextChapter: PropTypes.func.isRequired,
-    navigation: PropTypes.object.isRequired,
-    verse: PropTypes.number.isRequired,
-    version: PropTypes.string.isRequired,
+  props: {
+    arrayVerses?: Object,
+    book: Object,
+    chapter: number,
+    goToPrevChapter?: Function,
+    goToNextChapter?: Function,
+    navigation: Object,
+    verse: number,
+    version: string
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.getPosition = ::this.getPosition
@@ -58,35 +60,34 @@ export default class BibleViewer extends Component {
 
   state = {
     isLoading: true,
-    verses: [],
+    verses: []
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.DB = getDB()
     setTimeout(() => this.loadVerses(), 500)
   }
 
-  componentWillReceiveProps(oldProps) {
+  componentWillReceiveProps (oldProps) {
     if (
-      (this.props.chapter !== oldProps.chapter)
-      || (this.props.book.Numero !== oldProps.book.Numero)
-      || (this.props.version !== oldProps.version)
+      (this.props.chapter !== oldProps.chapter) ||
+      (this.props.book.Numero !== oldProps.book.Numero) ||
+      (this.props.version !== oldProps.version)
     ) {
       setTimeout(() => this.loadVerses(), 0)
     }
 
     // Scroll ONLY when verse change ALONE
     if (
-      (this.props.verse !== oldProps.verse)
-      && (this.props.chapter === oldProps.chapter)
-      && (this.props.book.Numero === oldProps.book.Numero)
+      (this.props.verse !== oldProps.verse) &&
+      (this.props.chapter === oldProps.chapter) &&
+      (this.props.book.Numero === oldProps.book.Numero)
     ) {
       setTimeout(() => this.scrollToVerse(), 0)
     }
   }
 
-
-  getPosition(numVerset, measures) {
+  getPosition (numVerset, measures) {
     this.versesMeasure[`verse${numVerset}`] = measures
     // We need to wait 'til every Bible verse component get calculated
     if (Object.keys(this.versesMeasure).length === this.state.verses.length) {
@@ -94,7 +95,7 @@ export default class BibleViewer extends Component {
     }
   }
 
-  scrollToVerse() {
+  scrollToVerse () {
     const { verse } = this.props
     if (this.versesMeasure[`verse${verse}`] && this.scrollView) {
       const scrollHeight = (this.contentHeight - this.scrollViewHeight) + 20
@@ -108,7 +109,7 @@ export default class BibleViewer extends Component {
     }
   }
 
-  loadVerses() {
+  loadVerses () {
     const { book, chapter, version } = this.props
     let tempVerses
     this.versesMeasure = {}
@@ -136,7 +137,7 @@ export default class BibleViewer extends Component {
     }
   }
 
-  renderVerses() {
+  renderVerses () {
     const { version, arrayVerses, book, chapter } = this.props
     let array = this.state.verses
 
@@ -154,7 +155,7 @@ export default class BibleViewer extends Component {
     )
   }
 
-  render() {
+  render () {
     const { isLoading } = this.state
     const { book, chapter, arrayVerses, navigation, goToPrevChapter, goToNextChapter } = this.props
 
@@ -177,7 +178,7 @@ export default class BibleViewer extends Component {
           {
             !!arrayVerses &&
             <Button
-              title="Lire le chapitre entier"
+              title='Lire le chapitre entier'
               buttonStyle={styles.button}
               textStyle={styles.buttonText}
               onPress={() => navigation.navigate('bible', { hasBack: true, verse: arrayVerses.verses[0] })}

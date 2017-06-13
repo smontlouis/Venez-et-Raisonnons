@@ -7,14 +7,14 @@ import {
 } from 'react-native'
 import {
   ScrollableHeader,
-  // Share,
+  Contribute,
   LinkToStudy,
   MarkAsRead,
   AddToFavorites,
   LikeCount,
   VerseModal,
   StylizedHTMLView,
-  PrevNext,
+  PrevNext
 } from '@src/components'
 import { range } from '@src/helpers'
 import { Title } from '@src/styled'
@@ -29,10 +29,10 @@ export default class QuestionSimple extends Component {
     question: PropTypes.object.isRequired,
     topic: PropTypes.object.isRequired,
     markAsRead: PropTypes.func.isRequired,
-    navigation: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.onLinkPress = ::this.onLinkPress
   }
@@ -41,24 +41,24 @@ export default class QuestionSimple extends Component {
     verseIsLoading: false,
     verse: {
       title: '',
-      text: '',
+      text: ''
     }
   }
 
-  onLinkPress(url) {
+  onLinkPress (url) {
     const { navigation } = this.props
     const { book, chapter, verses } = this.parseUrl(url)
     const bookIndex = Object.keys(Books).find(key => (
-      Books[key][0] === book
-      || Books[key][1] === book
-      || Books[key][2] === book
+      Books[key][0] === book ||
+      Books[key][1] === book ||
+      Books[key][2] === book
     ))
 
     const bookObject = Livres[bookIndex - 1]
 
     const params = {
       book: bookObject,
-      chapter: Number(chapter),
+      chapter: Number(chapter)
     }
 
     if (verses) {
@@ -75,7 +75,7 @@ export default class QuestionSimple extends Component {
   /*
   * @example - genese.1.4 - genese.1.4-8 - genese.1.4,8
    */
-  parseUrl(url) {
+  parseUrl (url) {
     const [book, chapter, verses] = url.split('.')
     let versesArray
 
@@ -96,14 +96,13 @@ export default class QuestionSimple extends Component {
     }
   }
 
-  render() {
+  render () {
     const {
       question,
       topic,
       markAsRead,
-      fromStudy,
+      fromStudy
     } = this.props
-
     return (
       <View style={styles.container}>
         <ScrollableHeader
@@ -142,6 +141,7 @@ export default class QuestionSimple extends Component {
               <AddToFavorites id={question.get('id')} />
             </View>
             <LikeCount count={question.get('likeCount')} id={question.get('id')} />
+            <Contribute id={question.get('id')} title={question.get('title')} />
             {
               !!question.get('parent') &&
               <PrevNext

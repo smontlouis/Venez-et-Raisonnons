@@ -1,34 +1,33 @@
+// @flow
 import React from 'react'
-import {
-  Text,
-  TouchableOpacity,
-} from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
+import { pure } from 'recompose'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
 const styles = EStyleSheet.create({
   container: {
     padding: 15,
     paddingTop: 10,
-    paddingBottom: 10,
+    paddingBottom: 10
   },
   text: {
     color: 'black',
-    fontSize: 16,
+    fontSize: 16
   },
   name: {
     color: '$color.tertiary',
-    fontSize: 12,
+    fontSize: 12
   },
   selected: {
     color: '$color.primary',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   }
 })
 
 type Props = {
-  version: object,
-  onChange: func,
-  isSelected?: bool,
+  version: Object,
+  onChange: Function,
+  isSelected?: boolean,
 }
 
 const VersionSelectorItem = ({ version, isSelected, onChange }: Props) => (
@@ -40,5 +39,4 @@ const VersionSelectorItem = ({ version, isSelected, onChange }: Props) => (
   </TouchableOpacity>
 )
 
-
-export default VersionSelectorItem
+export default pure(VersionSelectorItem)

@@ -4,36 +4,35 @@ import { firebaseDb } from '@src/services/firebase'
 import {
   LOAD_DATA_SUCCESS,
   ADD_LIKE,
-  REMOVE_LIKE,
+  REMOVE_LIKE
 } from './app'
 
 const NOTIF_NEW_QUESTIONS = 'questions/NOTIF_NEW_QUESTIONS'
 const SET_NOT_NEW_QUESTION = 'questions/SET_NOT_NEW_QUESTION'
 const AppData = firebaseDb.ref('/')
 
-
 const initialState = Map({
   questions: Map(),
-  newQuestions: Map(),
+  newQuestions: Map()
 })
 
-export function notifNewQuestions(result) {
+export function notifNewQuestions (result) {
   return (dispatch) => {
     dispatch({
       type: NOTIF_NEW_QUESTIONS,
-      result,
+      result
     })
   }
 }
 
-export function setNotNewQuestion(id) {
+export function setNotNewQuestion (id) {
   return {
     type: SET_NOT_NEW_QUESTION,
     id
   }
 }
 
-export default function QuestionsReducer(state = initialState, action = {}) {
+export default function QuestionsReducer (state = initialState, action = {}) {
   switch (action.type) {
     case LOAD_DATA_SUCCESS: {
       return state

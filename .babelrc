@@ -1,12 +1,8 @@
 {
-<<<<<<< ours
   "presets": [
     "react-native-stage-0/decorator-support", 
     "flow"
   ],
-  "plugins": ["flow-react-proptypes"],
+  "plugins": [["flow-react-proptypes", {"ignoreNodeModules": true}]],
   "sourceMaps": true
-=======
-  "presets": ["react-native"]
->>>>>>> theirs
 }

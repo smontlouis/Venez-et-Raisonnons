@@ -1,10 +1,12 @@
-import React, { PropTypes } from 'react'
+// @flow
+import React from 'react'
 import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
+import { pure, compose } from 'recompose'
 import {
   View,
   Text,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import * as BibleActions from '@src/redux/modules/bible'
@@ -16,19 +18,24 @@ const styles = EStyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'stretch',
     borderTopWidth: 1,
-    borderTopColor: '$color.grey',
+    borderTopColor: '$color.grey'
   },
   button: {
     paddingLeft: 15,
     paddingRight: 15,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   text: {
     color: '$color.primary'
   }
 })
 
-const SelectorButtons = ({ navigation, validateSelected }) => (
+type Props = {
+  navigation: Object,
+  validateSelected: Function
+}
+
+const SelectorButtons = ({ navigation, validateSelected }: Props) => (
   <View style={styles.container}>
     <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
       <Text>ANNULER</Text>
@@ -39,13 +46,11 @@ const SelectorButtons = ({ navigation, validateSelected }) => (
   </View>
 )
 
-
-SelectorButtons.propTypes = {
-  navigation: PropTypes.object.isRequired,
-  validateSelected: PropTypes.func.isRequired,
-}
-
-export default connect(
-  null,
-  BibleActions,
-)(withNavigation(SelectorButtons))
+export default compose(
+  connect(
+    null,
+    BibleActions
+  ),
+  withNavigation,
+  pure
+)(SelectorButtons)

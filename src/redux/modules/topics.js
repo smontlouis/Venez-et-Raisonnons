@@ -6,17 +6,17 @@ const SAVE_BASE_64_IMAGES = 'topics/SAVE_BASE_64_IMAGES'
 
 const initialState = Map({
   topics: Map(),
-  base64Images: Map(),
+  base64Images: Map()
 })
 
-export function saveBase64Image(id, base64Img) {
+export function saveBase64Image (id, base64Img) {
   return {
     type: SAVE_BASE_64_IMAGES,
-    result: { id, base64Img },
+    result: { id, base64Img }
   }
 }
 
-export default function TopicsReducer(state = initialState, action = {}) {
+export default function TopicsReducer (state = initialState, action = {}) {
   switch (action.type) {
     case LOAD_DATA_SUCCESS: {
       const { topics: response } = action.result

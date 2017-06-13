@@ -15,7 +15,6 @@ import {
 } from 'react-native'
 import { easeOut } from './utils/easing'
 
-
 type PressRippleProps = {
   color: string,
   x: number,
@@ -35,7 +34,6 @@ const defaultProps = {
 }
 
 export default class PressRipple extends Component {
-
   static defaultProps: typeof defaultProps
   props: PressRippleProps
   state: PressRippleState
@@ -44,7 +42,7 @@ export default class PressRipple extends Component {
 
   static defaultProps = defaultProps
 
-  constructor(props: PressRippleProps) {
+  constructor (props: PressRippleProps) {
     super(props)
 
     this.maxRippleOpacity = 0.12
@@ -57,7 +55,7 @@ export default class PressRipple extends Component {
     }
   }
 
-  render() {
+  render () {
     const { color, x, y } = this.props
     const { scale, opacity, animating } = this.state
     const { size } = this
@@ -69,11 +67,11 @@ export default class PressRipple extends Component {
         style={{
           backgroundColor: this.props.color,
           position: 'absolute',
-          top: this.props.y - (size/2),
-          left: this.props.x - (size/2),
+          top: this.props.y - (size / 2),
+          left: this.props.x - (size / 2),
           width: size,
           height: size,
-          borderRadius: size/2,
+          borderRadius: size / 2,
           opacity,
           transform: [{ scale }]
         }}

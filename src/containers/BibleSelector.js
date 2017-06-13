@@ -5,46 +5,44 @@ import { View } from 'react-native'
 import * as BibleActions from '@src/redux/modules/bible'
 import {
   Header,
-  SelectorButtons,
+  SelectorButtons
 } from '@src/components'
 import BibleTabNavigator from './BibleTabNavigator'
-
 
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   tabLabel: {
     margin: 8,
-    fontSize: 13,
+    fontSize: 13
   },
   tabIndicator: {
-    backgroundColor: '$color.primary',
-  },
+    backgroundColor: '$color.primary'
+  }
 })
 
 @connect(
   null,
-  BibleActions,
+  BibleActions
 )
 export default class BibleSelector extends Component {
-
   static propTypes = {
     navigation: PropTypes.object.isRequired,
-    resetTempSelected: PropTypes.func.isRequired,
+    resetTempSelected: PropTypes.func.isRequired
   }
 
-  componentDidMount() {
+  componentDidMount () {
     const { resetTempSelected } = this.props
     resetTempSelected()
   }
 
-  render() {
+  render () {
     const { navigation } = this.props
     return (
       <View style={styles.container}>
-        <Header title="Livres" />
+        <Header title='Livres' />
         <BibleTabNavigator screenProps={{ mainNavigation: navigation }} />
         <SelectorButtons />
       </View>

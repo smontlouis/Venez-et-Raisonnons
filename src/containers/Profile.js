@@ -7,14 +7,13 @@ import {
 } from 'react-native'
 // import * as FavoritesActions from '@src/redux/modules/favorites'
 
-
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
+    backgroundColor: '#F5FCFF'
+  }
 })
 
 const Profile = () =>
@@ -24,10 +23,9 @@ const Profile = () =>
     </Text>
   </View>
 
-
 export default connect(
   state => ({
 
-  }),
+  })
   // FavoritesActions,
 )(Profile)

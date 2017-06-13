@@ -1,10 +1,9 @@
+// @flow
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import {
-  View,
-  Text,
-} from 'react-native'
+import { pure, compose } from 'recompose'
+import { View, Text } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { Link } from '@src/components'
 
@@ -19,16 +18,16 @@ const styles = EStyleSheet.create({
     backgroundColor: 'rgba(26, 128, 111, 0.1)',
     marginLeft: 20,
     marginRight: 20,
-    borderRadius: 3,
+    borderRadius: 3
   },
   icon: {
-    color: '$color.quart',
+    color: '$color.quart'
   },
   text: {
     color: '$color.quart',
     flex: 1,
     paddingLeft: 10,
-    paddingRight: 10,
+    paddingRight: 10
   }
 })
 
@@ -39,13 +38,13 @@ const LinkToStudy = ({ id, question }) => (
   >
     <View style={styles.container}>
       <Icon
-        name="description"
-        size={32}
+        name='description'
+        size={24}
         style={styles.icon}
       />
       <Text style={styles.text}>{`Voir l'étude "${question.get('title')}"`}</Text>
       <Icon
-        name="chevron-right"
+        name='chevron-right'
         size={24}
         style={styles.icon}
       />
@@ -53,14 +52,16 @@ const LinkToStudy = ({ id, question }) => (
   </Link>
 )
 
-
 LinkToStudy.propTypes = {
   id: PropTypes.string.isRequired,
-  question: PropTypes.object.isRequired,
+  question: PropTypes.object.isRequired
 }
 
-export default connect(
-  (state, ownProps) => ({
-    question: state.getIn(['questions', 'questions', ownProps.id])
-  }),
+export default compose(
+  connect(
+    (state, ownProps) => ({
+      question: state.getIn(['questions', 'questions', ownProps.id])
+    })
+  ),
+  pure
 )(LinkToStudy)

@@ -1,14 +1,11 @@
-import React, { PropTypes, Component } from 'react'
+// @flow
+import React, { Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import {
-  ScrollView,
-} from 'react-native'
+import { pure } from 'recompose'
+import { ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import * as BibleActions from '@src/redux/modules/bible'
-import {
-  SelectorItem,
-} from '@src/components'
-
+import { SelectorItem } from '@src/components'
 
 const styles = EStyleSheet.create({
   container: {
@@ -18,44 +15,45 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     padding: 20,
     paddingLeft: 10,
-    paddingRight: 10,
-  },
+    paddingRight: 10
+  }
 })
 
 @connect(
   state => ({
     selectedBook: state.getIn(['bible', 'temp', 'selectedBook']).toJS(),
-    selectedChapter: state.getIn(['bible', 'temp', 'selectedChapter']),
+    selectedChapter: state.getIn(['bible', 'temp', 'selectedChapter'])
   }),
-  BibleActions,
+  BibleActions
 )
+@pure
 export default class ChapterSelector extends Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired,
-    setTempSelectedChapter: PropTypes.func.isRequired,
-    selectedBook: PropTypes.object.isRequired,
-    selectedChapter: PropTypes.number.isRequired,
+  props: {
+    navigation: Object,
+    setTempSelectedChapter?: Function,
+    selectedBook?: Object,
+    selectedChapter?: number
   }
 
   static navigationOptions = {
-    tabBarLabel: 'Chapitre',
+    tabBarLabel: 'Chapitre'
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.onChapterChange = ::this.onChapterChange
   }
 
-  onChapterChange(chapter) {
+  onChapterChange (chapter) {
     this.props.navigation.navigate('verset')
     this.props.setTempSelectedChapter(chapter)
   }
 
-  render() {
+  render () {
     const {
       selectedBook,
-      selectedChapter,
+      selectedChapter
     } = this.props
 
     const array = Array(...Array(selectedBook.Chapitres)).map((_, i) => i)

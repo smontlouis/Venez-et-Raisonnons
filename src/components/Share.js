@@ -1,10 +1,12 @@
-import React, { PropTypes } from 'react'
+// @flow
+import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { pure } from 'recompose'
 import {
   View,
   Text,
   TouchableOpacity,
-  Share as NativeShare,
+  Share as NativeShare
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
@@ -14,10 +16,10 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 10,
-    paddingRight: 10,
+    paddingRight: 10
   },
   text: {
-    marginLeft: 10,
+    marginLeft: 10
   }
 })
 
@@ -35,18 +37,17 @@ const Share = () => (
   <TouchableOpacity onPress={shareQuestion} >
     <View style={styles.container}>
       <Icon
-        name="share"
+        name='share'
         size={24}
-        color="#000"
+        color='#000'
       />
       <Text style={styles.text}>Partager</Text>
     </View>
   </TouchableOpacity>
 )
 
-
 Share.propTypes = {
 
 }
 
-export default Share
+export default pure(Share)

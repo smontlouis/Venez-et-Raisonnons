@@ -1,32 +1,35 @@
-import React, { Component, PropTypes } from 'react'
-import {
-  TouchableOpacity,
-} from 'react-native'
+// @flow
+import React, { Component } from 'react'
+import { pure, compose } from 'recompose'
+import { TouchableOpacity } from 'react-native'
 import { withNavigation } from 'react-navigation'
 
 class Link extends Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired,
-    params: PropTypes.object,
-    route: PropTypes.string.isRequired,
+  props: {
+    navigation: Object,
+    params?: Object,
+    route: string
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.handlePress = ::this.handlePress
   }
 
-  handlePress() {
+  handlePress () {
     const { navigation, route, params } = this.props
     navigation.navigate(route, params)
   }
 
-  render() {
+  render () {
     return (
       <TouchableOpacity {...this.props} onPress={this.handlePress} />
     )
   }
 }
 
-export default withNavigation(Link)
+export default compose(
+  withNavigation,
+  pure
+)(Link)

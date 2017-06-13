@@ -1,6 +1,8 @@
+// @flow
 import React from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { HTMLView, globalVariables } from '@src/helpers'
+import { pure } from 'recompose'
 
 const styles = EStyleSheet.create({
   h1: {
@@ -8,30 +10,30 @@ const styles = EStyleSheet.create({
     fontWeight: 'bold',
     fontSize: 24,
     lineHeight: 25,
-    color: '$color.black',
+    color: '$color.black'
   },
   h2: {
     fontFamily: '$font.heading',
     fontWeight: 'bold',
     fontSize: 24,
     lineHeight: 25,
-    color: '$color.black',
+    color: '$color.black'
   },
   h3: {
     fontFamily: '$font.heading',
     fontWeight: 'bold',
     fontSize: 24,
     lineHeight: 25,
-    color: '$color.black',
+    color: '$color.black'
   },
   p: {
     color: '$color.black',
-    ...globalVariables.textStyle,
+    ...globalVariables.textStyle
   },
   em: {
     // fontStyle: 'italic',
     color: '$color.primaryLighten',
-    ...globalVariables.textStyle,
+    ...globalVariables.textStyle
   },
   a: {
     // fontWeight: 'bold',
@@ -42,21 +44,21 @@ const styles = EStyleSheet.create({
     textDecorationLine: 'underline',
     textDecorationStyle: 'solid',
     textDecorationColor: '$color.primary',
-    ...globalVariables.textStyle,
+    ...globalVariables.textStyle
   },
   strong: {
     fontWeight: 'bold',
     color: '$color.black',
-    ...globalVariables.textStyle,
+    ...globalVariables.textStyle
   },
   li: {
-    lineHeight: 18,
+    lineHeight: 18
   },
   ol: {
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   ul: {
-    flexDirection: 'row',
+    flexDirection: 'row'
   }
 })
 
@@ -67,4 +69,4 @@ const StylizedHTMLView = props => (
   />
 )
 
-export default StylizedHTMLView
+export default pure(StylizedHTMLView)

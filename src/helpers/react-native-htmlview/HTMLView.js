@@ -4,9 +4,8 @@ var htmlToElement = require('./htmlToElement')
 var {
   Linking,
   StyleSheet,
-  Text,
+  Text
 } = ReactNative
-
 
 var HTMLView = React.createClass({
   propTypes: {
@@ -14,44 +13,44 @@ var HTMLView = React.createClass({
     stylesheet: React.PropTypes.object,
     onLinkPress: React.PropTypes.func,
     onError: React.PropTypes.func,
-    renderNode: React.PropTypes.func,
+    renderNode: React.PropTypes.func
   },
 
-  getDefaultProps() {
+  getDefaultProps () {
     return {
       onLinkPress: Linking.openURL,
-      onError: console.error.bind(console),
+      onError: console.error.bind(console)
     }
   },
 
-  getInitialState() {
+  getInitialState () {
     return {
-      element: null,
+      element: null
     }
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (this.props.value !== nextProps.value) {
       this.startHtmlRender(nextProps.value)
     }
   },
 
-  componentDidMount() {
+  componentDidMount () {
     this.mounted = true
     this.startHtmlRender(this.props.value)
   },
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.mounted = false
   },
 
-  startHtmlRender(value) {
+  startHtmlRender (value) {
     if (!value) return this.setState({element: null})
 
     var opts = {
       linkHandler: this.props.onLinkPress,
       styles: Object.assign({}, baseStyles, this.props.stylesheet),
-      customRenderer: this.props.renderNode,
+      customRenderer: this.props.renderNode
     }
 
     htmlToElement(value, opts, (err, element) => {
@@ -61,12 +60,12 @@ var HTMLView = React.createClass({
     })
   },
 
-  render() {
+  render () {
     if (this.state.element) {
       return <Text children={this.state.element} />
     }
     return <Text />
-  },
+  }
 })
 
 var boldStyle = {fontWeight: '500'}
@@ -82,8 +81,8 @@ var baseStyles = StyleSheet.create({
   code: codeStyle,
   a: {
     fontWeight: '500',
-    color: '#007AFF',
-  },
+    color: '#007AFF'
+  }
 })
 
 module.exports = HTMLView

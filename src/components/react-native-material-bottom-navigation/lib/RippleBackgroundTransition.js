@@ -25,13 +25,12 @@ type RBTState = {
 }
 
 export default class RippleBackgroundTransition extends Component {
-
   props: RBTProps
   state: RBTState
   layout: { x: number, y: number, width: number, height: number }
   scaleInit: number
 
-  constructor(props: RBTProps) {
+  constructor (props: RBTProps) {
     super(props)
 
     this.scaleInit = Platform.OS === 'android' ? 0.01 : 0
@@ -47,7 +46,7 @@ export default class RippleBackgroundTransition extends Component {
     }
   }
 
-  render() {
+  render () {
     return (
       <View
         onLayout={this._handleOnLayout}
@@ -104,7 +103,7 @@ export default class RippleBackgroundTransition extends Component {
 
       // Pythagoras: a^2 + b^2 = c^2
       // Note: d is now a squared value
-      const d = dX*dX + dY*dY
+      const d = dX * dX + dY * dY
 
       if (d > biggestDistance) biggestDistance = d
     })

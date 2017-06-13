@@ -1,13 +1,12 @@
-import React, { PropTypes } from 'react'
-import {
-  View,
-  Text,
-} from 'react-native'
+// @flow
+import React from 'react'
+import { View, Text } from 'react-native'
+import { pure, compose } from 'recompose'
 import Icon from 'react-native-vector-icons/Ionicons'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { connect } from 'react-redux'
 import {
-  Link,
+  Link
 } from '@src/components'
 import { truncate } from '@src/helpers'
 
@@ -17,7 +16,7 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: '$color.grey',
+    borderColor: '$color.grey'
   },
   centered: {
     flex: 1,
@@ -26,7 +25,7 @@ const styles = EStyleSheet.create({
   prev: {
     borderRightWidth: 1,
     borderRightColor: '$color.grey',
-    alignItems: 'flex-start',
+    alignItems: 'flex-start'
   },
   prevNext: {
     flex: 1,
@@ -40,9 +39,14 @@ const styles = EStyleSheet.create({
     fontSize: 16,
     color: '$color.primary',
     fontWeight: 'bold',
-    paddingBottom: 15,
+    paddingBottom: 15
   }
 })
+
+type Props = {
+  previous?: Object,
+  next?: Object
+}
 
 const getParentQuestion = (state, props) => state.get('questions').get('questions').get(props.parentId)
 const getPrevNextQuestion = (state, props, isNext) => {
@@ -55,46 +59,43 @@ const getPrevNextQuestion = (state, props, isNext) => {
   return state.get('questions').get('questions').get(prevNextQuestionIndex)
 }
 
-const PrevNext = ({ previous, next }) => (
+const PrevNext = ({ previous, next }: Props) => (
   <View style={styles.container}>
     {
       previous &&
       <Link
         route={'question'}
-        params={{ questionId: previous.get('id') }}
+        params={{ questionId: previous.get('id'), fromStudy: true }}
         style={[styles.prevNext, styles.prev]}
       >
         <Text style={styles.prevNextText}>
           {truncate(previous.get('title'), 50)}
         </Text>
-        <Icon name="md-arrow-round-back" size={22} color="#C22839" />
+        <Icon name='md-arrow-round-back' size={22} color='#C22839' />
       </Link>
     }
     {
       next &&
       <Link
         route={'question'}
-        params={{ questionId: next.get('id') }}
+        params={{ questionId: next.get('id'), fromStudy: true }}
         style={styles.prevNext}
       >
         <Text style={styles.prevNextText}>
           {truncate(next.get('title'), 50)}
         </Text>
-        <Icon name="md-arrow-round-forward" size={22} color="#C22839" />
+        <Icon name='md-arrow-round-forward' size={22} color='#C22839' />
       </Link>
     }
   </View>
 )
 
-PrevNext.propTypes = {
-  previous: PropTypes.object,
-  next: PropTypes.object,
-}
-
-
-export default connect(
-  (state, ownProps) => ({
-    previous: getPrevNextQuestion(state, ownProps, false),
-    next: getPrevNextQuestion(state, ownProps, true)
-  })
+export default compose(
+  connect(
+    (state, ownProps) => ({
+      previous: getPrevNextQuestion(state, ownProps, false),
+      next: getPrevNextQuestion(state, ownProps, true)
+    })
+  ),
+  pure
 )(PrevNext)

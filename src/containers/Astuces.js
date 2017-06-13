@@ -4,7 +4,7 @@ import ShowDown from 'showdown'
 
 import {
   View,
-  ScrollView,
+  ScrollView
 } from 'react-native'
 import {
   Header,
@@ -23,21 +23,20 @@ const markdownToHtml = converter.makeHtml(
 → Les questions en *vert* sont des études, elles sont séparées en plusieurs sous-questions
 `)
 
-
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   content: {
-    padding: 25,
+    padding: 25
   }
 })
 
 const Astuces = () =>
   <View style={styles.container}>
     <Header
-      title="Astuces"
+      title='Astuces'
     />
     <ScrollView contentContainerStyle={styles.content}>
       <StylizedHTMLView
@@ -46,6 +45,5 @@ const Astuces = () =>
     </ScrollView>
 
   </View>
-
 
 export default Astuces

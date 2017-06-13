@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react'
+// @flow
+import React from 'react'
 import { View } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-
+import { pure } from 'recompose'
 import { Title, Text } from '@src/styled'
-
 
 const styles = EStyleSheet.create({
   titleBorder: {
@@ -11,11 +11,16 @@ const styles = EStyleSheet.create({
     marginBottom: 30,
     width: 35,
     height: 3,
-    backgroundColor: '$color.primary',
+    backgroundColor: '$color.primary'
   }
 })
 
-const HeaderList = ({ title, subtitle }) => (
+type Props = {
+  title: string,
+  subtitle?: string
+}
+
+const HeaderList = ({ title, subtitle }: Props) => (
   <View>
     <Title marginTop={20}>{title}</Title>
     {
@@ -26,10 +31,4 @@ const HeaderList = ({ title, subtitle }) => (
   </View>
 )
 
-
-HeaderList.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
-}
-
-export default HeaderList
+export default pure(HeaderList)

@@ -2,12 +2,11 @@
 
 import React from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { NavigationStyles } from '@expo/ex-navigation'
 import ShowDown from 'showdown'
 import {
   View,
   ScrollView,
-  StatusBar,
+  StatusBar
 } from 'react-native'
 import {
   Header,
@@ -17,10 +16,10 @@ import {
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   content: {
-    padding: 25,
+    padding: 25
   }
 })
 
@@ -34,7 +33,7 @@ const Modal = ({ navigation: { state: { params: { title, text } } } }: ModalProp
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle='dark-content' />
       <Header
         title={title}
         isLight
@@ -47,13 +46,6 @@ const Modal = ({ navigation: { state: { params: { title, text } } } }: ModalProp
 
     </View>
   )
-}
-
-Modal.route = {
-  styles: {
-    ...NavigationStyles.FloatVertical,
-    gestures: null,
-  }
 }
 
 export default Modal

@@ -1,27 +1,27 @@
-import React, { Component, PropTypes } from 'react'
-import {
-  TouchableHighlight,
-} from 'react-native'
+// @flow
+import React, { Component } from 'react'
+import { pure, compose } from 'recompose'
+import { TouchableHighlight } from 'react-native'
 import { withNavigation, NavigationActions } from 'react-navigation'
 
 class Back extends Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired,
+  props: {
+    navigation: Object
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.handlePress = ::this.handlePress
     this.handleLongPress = ::this.handleLongPress
   }
 
-  handlePress() {
+  handlePress () {
     const { navigation } = this.props
     navigation.goBack()
   }
 
-  handleLongPress() {
+  handleLongPress () {
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
@@ -29,10 +29,9 @@ class Back extends Component {
       ]
     })
     this.props.navigation.dispatch(resetAction)
-
   }
 
-  render() {
+  render () {
     return (
       <TouchableHighlight
         {...this.props}
@@ -43,4 +42,7 @@ class Back extends Component {
   }
 }
 
-export default withNavigation(Back)
+export default compose(
+  withNavigation,
+  pure
+)(Back)

@@ -47,5 +47,4 @@ const verseToStrong = ({ Texte, Livre }, version, concordanceFor) => new Promise
   return resolve(splittedTexte)
 })
 
-
 export default verseToStrong

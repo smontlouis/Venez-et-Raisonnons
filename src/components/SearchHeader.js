@@ -1,21 +1,17 @@
+// @flow
 import React, { PropTypes } from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import {
-  View,
-  Platform,
-} from 'react-native'
+import { View, Platform } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import {
-  SearchInput,
-  Back,
-} from '@src/components'
+import { pure } from 'recompose'
+import { SearchInput, Back } from '@src/components'
 
 const styles = EStyleSheet.create({
   container: {
     backgroundColor: '$color.primaryDarken',
     height: '$header.height',
     paddingTop: (Platform.OS === 'ios') ? 18 : 23,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   back: {
     height: 32,
@@ -23,11 +19,17 @@ const styles = EStyleSheet.create({
     marginLeft: 10,
     paddingTop: (Platform.OS === 'ios') ? 18 : 23,
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 })
 
-const SearchHeader = ({ onChangeText, placeholder, hasBackButton }) => (
+type Props = {
+  onChangeText?: Function,
+  placeholder: string,
+  hasBackButton?: boolean
+}
+
+const SearchHeader = ({ onChangeText, placeholder, hasBackButton }: Props) => (
   <View
     style={styles.container}
   >
@@ -35,9 +37,9 @@ const SearchHeader = ({ onChangeText, placeholder, hasBackButton }) => (
       hasBackButton &&
       <Back
         style={styles.back}
-        underlayColor="transparent"
+        underlayColor='transparent'
       >
-        <Icon name="chevron-left" size={28} color="white" />
+        <Icon name='chevron-left' size={28} color='white' />
       </Back>
     }
     <SearchInput
@@ -50,7 +52,7 @@ const SearchHeader = ({ onChangeText, placeholder, hasBackButton }) => (
 SearchHeader.propTypes = {
   hasBackButton: PropTypes.bool,
   onChangeText: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired
 }
 
-export default SearchHeader
+export default pure(SearchHeader)

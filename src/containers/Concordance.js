@@ -6,35 +6,33 @@ import getDB from '@src/helpers/database'
 import { itemsPerPage } from '@src/helpers/globalVariables'
 import { Header, Loading, ConcordanceList, PaginateSlider } from '@src/components'
 
-
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   content: {
-    padding: 20,
+    padding: 20
   },
   total: {
     fontSize: 22,
     fontFamily: '$font.title',
-    marginBottom: 15,
+    marginBottom: 15
   },
   numPage: {
     fontFamily: '$font.heading',
     color: 'rgba(0,0,0,0.5)',
-    fontSize: 18,
+    fontSize: 18
   }
 })
 
 @withNavigation
 export default class Concordance extends Component {
-
   static propTypes = {
-    navigation: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.getCurrentValue = ::this.getCurrentValue
@@ -44,20 +42,20 @@ export default class Concordance extends Component {
 
   state = {
     isConcordanceLoading: true,
-    currentPage: 1,
+    currentPage: 1
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.DB = getDB()
     this.loadConcordance()
   }
 
-  getCurrentValue(value) {
+  getCurrentValue (value) {
     this.setState({ currentPage: value })
     this.scrollView.scrollTo({ x: 0, y: 0, animated: false })
   }
 
-  loadConcordance() {
+  loadConcordance () {
     const { state: { params: { reference, book } } } = this.props.navigation
     this.concordancesTexts = []
     this.setState({ isConcordanceLoading: true })
@@ -83,29 +81,29 @@ export default class Concordance extends Component {
       })
   }
 
-  prevPage() {
+  prevPage () {
     if (this.state.currentPage !== 1) {
       this.setState({ currentPage: this.state.currentPage - 1 })
     }
   }
 
-  nextPage(nbPages) {
+  nextPage (nbPages) {
     if (this.state.currentPage !== nbPages) {
       this.setState({ currentPage: this.state.currentPage + 1 })
     }
   }
 
-  render() {
+  render () {
     const {
       navigation: { state: { params: { reference } } },
-      navigation,
+      navigation
     } = this.props
     const { isConcordanceLoading } = this.state
 
     const pages = Math.ceil(this.concordancesTexts.length / itemsPerPage)
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle='light-content' />
         <Header
           title={`Concordance ${reference}`}
         />

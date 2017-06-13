@@ -1,12 +1,11 @@
-import React, { Component, PropTypes } from 'react'
+// @flow
+/* global React$Element */
+
+import React, { Component } from 'react'
 import Icon from 'react-native-vector-icons/Entypo'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import {
-  Animated,
-  Platform,
-  StatusBar,
-  View,
-} from 'react-native'
+import { pure } from 'recompose'
+import { Animated, Platform, StatusBar, View } from 'react-native'
 import { truncate } from '@src/helpers'
 import { Back } from '@src/components'
 
@@ -18,10 +17,10 @@ const getStyles = (h) => {
 
   const styles = EStyleSheet.create({
     fill: {
-      flex: 1,
+      flex: 1
     },
     content: {
-      flex: 1,
+      flex: 1
     },
     header: {
       position: 'absolute',
@@ -29,7 +28,7 @@ const getStyles = (h) => {
       left: 0,
       right: 0,
       backgroundColor: '$color.primary',
-      overflow: 'hidden',
+      overflow: 'hidden'
     },
     headerContainer: {
       position: 'absolute',
@@ -37,7 +36,7 @@ const getStyles = (h) => {
       left: 0,
       right: 0,
       width: null,
-      height: HEADER_MAX_HEIGHT,
+      height: HEADER_MAX_HEIGHT
     },
     backgroundImage: {
       position: 'absolute',
@@ -47,7 +46,7 @@ const getStyles = (h) => {
       right: 0,
       width: '100%',
       height: HEADER_MAX_HEIGHT,
-      resizeMode: 'cover',
+      resizeMode: 'cover'
     },
     stickyContent: {
       position: 'absolute',
@@ -55,13 +54,13 @@ const getStyles = (h) => {
       // bottom: 0,
       // height: HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT,
       left: 0,
-      right: 0,
+      right: 0
     },
     bar: {
       marginTop: 20,
       flex: 1,
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'center'
     },
     back: {
       position: 'absolute',
@@ -70,30 +69,30 @@ const getStyles = (h) => {
       top: 0,
       width: 42,
       paddingLeft: 10,
-      justifyContent: 'center',
+      justifyContent: 'center'
     },
     rightComponent: {
       position: 'absolute',
       width: 42,
       // height: 44,
       right: 0,
-      top: (Platform.OS === 'ios') ? 10 : 15,
+      top: (Platform.OS === 'ios') ? 10 : 15
     },
     title: {
       color: 'white',
       fontFamily: '$font.heading',
       fontSize: 20,
-      backgroundColor: 'transparent',
+      backgroundColor: 'transparent'
     },
     scrollViewContent: {
-      paddingTop: HEADER_MAX_HEIGHT,
+      paddingTop: HEADER_MAX_HEIGHT
     },
     row: {
       height: 40,
       margin: 16,
       backgroundColor: '#D3D3D3',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'center'
     }
   })
 
@@ -102,31 +101,31 @@ const getStyles = (h) => {
     NEGATIVE_DISTANCE,
     HEADER_SCROLL_DISTANCE,
     HEADER_MAX_HEIGHT,
-    HEADER_MIN_HEIGHT,
+    HEADER_MIN_HEIGHT
   }
 }
 
+@pure
 export default class ScrollableHeader extends Component {
-
-  static propTypes = {
-    headerStyle: PropTypes.object,
-    hasBackButton: PropTypes.bool,
-    title: PropTypes.string,
-    children: PropTypes.element.isRequired,
-    header: PropTypes.element,
-    image: PropTypes.string,
-    rightComponent: PropTypes.element,
-    onScrollViewEnd: PropTypes.func,
-    isHome: PropTypes.bool,
-    isStudies: PropTypes.bool,
+  props: {
+    headerStyle?: Object,
+    hasBackButton?: boolean,
+    title: string,
+    children: React$Element,
+    header?: React$Element,
+    image?: string,
+    rightComponent?: React$Element,
+    onScrollViewEnd?: Function,
+    isHome?: boolean,
+    isStudies?: boolean
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
       scrollY: new Animated.Value(0),
-      headerMaxHeight: 150,
+      headerMaxHeight: 150
     }
 
     this.getHeaderSize = ::this.getHeaderSize
@@ -135,11 +134,11 @@ export default class ScrollableHeader extends Component {
 
   state = { hasReachedEnd: false }
 
-  getHeaderSize(event) {
+  getHeaderSize (event) {
     this.setState({ headerMaxHeight: event.nativeEvent.layout.height })
   }
 
-  detectScrollViewEnd({ nativeEvent: { layoutMeasurement, contentOffset, contentSize } }) {
+  detectScrollViewEnd ({ nativeEvent: { layoutMeasurement, contentOffset, contentSize } }) {
     const paddingToBottom = 120
     const hasReachedEnd = layoutMeasurement.height + contentOffset.y >=
                             contentSize.height - paddingToBottom
@@ -150,7 +149,7 @@ export default class ScrollableHeader extends Component {
     }
   }
 
-  render() {
+  render () {
     const {
       headerStyle,
       children,
@@ -160,7 +159,7 @@ export default class ScrollableHeader extends Component {
       rightComponent,
       hasBackButton = true,
       isHome,
-      isStudies,
+      isStudies
     } = this.props
     const {
       styles,
@@ -173,37 +172,37 @@ export default class ScrollableHeader extends Component {
     const headerHeight = this.state.scrollY.interpolate({
       inputRange: [NEGATIVE_DISTANCE, 0, HEADER_SCROLL_DISTANCE],
       outputRange: [HEADER_MAX_HEIGHT - NEGATIVE_DISTANCE, HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
-      extrapolate: 'clamp',
+      extrapolate: 'clamp'
     })
 
     const imageOpacity = this.state.scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
       outputRange: [1, 1, 0],
-      extrapolate: 'clamp',
+      extrapolate: 'clamp'
     })
 
     const imageTranslate = this.state.scrollY.interpolate({
       inputRange: [NEGATIVE_DISTANCE, 0, HEADER_SCROLL_DISTANCE],
       outputRange: [107, 0, -50],
-      extrapolate: 'clamp',
+      extrapolate: 'clamp'
     })
 
     const imageScale = this.state.scrollY.interpolate({
       inputRange: [NEGATIVE_DISTANCE, 0],
       outputRange: [2, 1],
-      extrapolate: 'clamp',
+      extrapolate: 'clamp'
     })
 
     const titleScale = this.state.scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
       outputRange: [1.2, 1.2, 1],
-      extrapolate: 'clamp',
+      extrapolate: 'clamp'
     })
 
     const titleOpacity = this.state.scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
       outputRange: [0, 0, 1],
-      extrapolate: 'clamp',
+      extrapolate: 'clamp'
     })
 
     const getImage = () => {
@@ -220,8 +219,8 @@ export default class ScrollableHeader extends Component {
       <View style={styles.fill}>
         <StatusBar
           translucent
-          barStyle="light-content"
-          backgroundColor="rgba(0, 0, 0, 0.251)"
+          barStyle='light-content'
+          backgroundColor='rgba(0, 0, 0, 0.251)'
         />
         { React.cloneElement(children, {
           contentContainerStyle: styles.scrollViewContent,
@@ -229,13 +228,13 @@ export default class ScrollableHeader extends Component {
           onScroll: Animated.event(
             [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
             { listener: this.detectScrollViewEnd }
-          ),
+          )
         }) }
         <Animated.View style={[styles.header, { height: headerHeight }, headerStyle]}>
           <Animated.View
             style={[
               styles.headerContainer,
-              { opacity: imageOpacity, transform: [{ translateY: imageTranslate }] },
+              { opacity: imageOpacity, transform: [{ translateY: imageTranslate }] }
             ]}
           >
             {
@@ -265,9 +264,9 @@ export default class ScrollableHeader extends Component {
               hasBackButton &&
               <Back
                 style={styles.back}
-                underlayColor="transparent"
+                underlayColor='transparent'
               >
-                <Icon name="chevron-left" size={24} color="white" />
+                <Icon name='chevron-left' size={24} color='white' />
               </Back>
             }
             <Animated.Text
@@ -275,9 +274,9 @@ export default class ScrollableHeader extends Component {
                 styles.title,
                 {
                   transform: [
-                    { scale: titleScale },
+                    { scale: titleScale }
                   ],
-                  opacity: titleOpacity,
+                  opacity: titleOpacity
                 }
               ]}
             >

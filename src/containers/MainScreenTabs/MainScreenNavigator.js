@@ -16,7 +16,7 @@ const MainScreenNavigator = TabNavigator({
   bible: { screen: Bible },
   lexique: { screen: LexiqueNavigator },
   favorites: { screen: Favorites },
-  more: { screen: More },
+  more: { screen: More }
 }, {
   tabBarComponent: NavigationComponent,
   tabBarPosition: 'bottom',
@@ -32,29 +32,29 @@ const MainScreenNavigator = TabNavigator({
       tabs: {
         topics: {
           label: 'Accueil',
-          icon: (<Icon size={24} color={global.color.tertiaryLighten} name="home" />),
-          activeIcon: (<Icon size={24} color={global.color.secondary} name="home" />)
+          icon: (<Icon size={24} color={global.color.tertiaryLighten} name='home' />),
+          activeIcon: (<Icon size={24} color={global.color.secondary} name='home' />)
         },
         bible: {
           label: 'Bible',
-          icon: (<Icon size={24} color={global.color.tertiaryLighten} name="book-open-page-variant" />),
-          activeIcon: (<Icon size={24} color={global.color.secondary} name="book-open-page-variant" />)
+          icon: (<Icon size={24} color={global.color.tertiaryLighten} name='book-open-page-variant' />),
+          activeIcon: (<Icon size={24} color={global.color.secondary} name='book-open-page-variant' />)
         },
         lexique: {
           label: 'Lexique',
-          icon: (<Icon size={24} color={global.color.tertiaryLighten} name="omega" />),
-          activeIcon: (<Icon size={24} color={global.color.secondary} name="omega" />)
+          icon: (<Icon size={24} color={global.color.tertiaryLighten} name='omega' />),
+          activeIcon: (<Icon size={24} color={global.color.secondary} name='omega' />)
         },
         favorites: {
           label: 'Favoris',
-          icon: (<Icon size={24} color={global.color.tertiaryLighten} name="bookmark" />),
-          activeIcon: (<Icon size={24} color={global.color.secondary} name="bookmark" />)
+          icon: (<Icon size={24} color={global.color.tertiaryLighten} name='bookmark' />),
+          activeIcon: (<Icon size={24} color={global.color.secondary} name='bookmark' />)
         },
         more: {
           label: 'Plus',
-          icon: (<Icon size={24} color={global.color.tertiaryLighten} name="menu" />),
-          activeIcon: (<Icon size={24} color={global.color.secondary} name="menu" />)
-        },
+          icon: (<Icon size={24} color={global.color.tertiaryLighten} name='menu' />),
+          activeIcon: (<Icon size={24} color={global.color.secondary} name='menu' />)
+        }
       }
     }
   }

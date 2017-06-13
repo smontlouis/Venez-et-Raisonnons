@@ -2,7 +2,7 @@ import React from 'react'
 import Lexique from './Lexique'
 
 const LexiqueGrec = () => (
-  <Lexique type="grec" />
+  <Lexique type='grec' />
 )
 
 LexiqueGrec.navigationOptions = {

@@ -1,8 +1,8 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 import Icon from 'react-native-vector-icons/Entypo'
 import {
   Text,
-  View,
+  View
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { Link } from '@src/components'
@@ -17,32 +17,31 @@ const styles = EStyleSheet.create({
     paddingRight: 20,
     borderBottomWidth: 1,
     borderStyle: 'solid',
-    borderBottomColor: '$color.grey',
+    borderBottomColor: '$color.grey'
   },
   image: {
     width: 72,
     height: 53,
-    marginRight: 20,
+    marginRight: 20
   },
   content: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   title: {
     fontFamily: '$font.heading',
     lineHeight: 25,
-    fontSize: 25,
-  },
+    fontSize: 25
+  }
 })
 
-
 export default class StudyItem extends Component {
-  static propTypes = {
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
+  props: {
+    id: string,
+    title: string
   }
 
-  render() {
+  render () {
     const { id, title } = this.props
     return (
       <Link
@@ -54,7 +53,7 @@ export default class StudyItem extends Component {
             <Text style={styles.title}>{title}</Text>
           </View>
           <View>
-            <Icon name="chevron-thin-right" size={24} color={styles._container.borderBottomColor} />
+            <Icon name='chevron-thin-right' size={24} color={styles._container.borderBottomColor} />
           </View>
         </View>
       </Link>

@@ -1,31 +1,30 @@
-import React, { Component, PropTypes } from 'react'
+// @flow
+import React, { Component } from 'react'
 import R from 'ramda'
-import {
-  ListView,
-} from 'react-native'
-
+import { ListView } from 'react-native'
+import { pure } from 'recompose'
 
 class List extends Component {
-  static propTypes = {
-    listItems: PropTypes.object.isRequired,
-    contentContainerStyle: PropTypes.any,
+  props: {
+    listItems: Object,
+    contentContainerStyle?: any
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     const dataSource = new ListView.DataSource({
-      rowHasChanged: (oldRow, newRow) => oldRow !== newRow,
+      rowHasChanged: (oldRow, newRow) => oldRow !== newRow
     })
 
     const data = props.listItems
 
     this.state = {
-      dataSource: dataSource.cloneWithRows(R.values(data.toJS())),
+      dataSource: dataSource.cloneWithRows(R.values(data.toJS()))
     }
   }
 
-  componentWillReceiveProps({ listItems: nextListItems }) {
+  componentWillReceiveProps ({ listItems: nextListItems }) {
     const { listItems } = this.props
     const { dataSource } = this.state
 
@@ -36,7 +35,7 @@ class List extends Component {
     }
   }
 
-  render() {
+  render () {
     const { contentContainerStyle, ...props } = this.props
     return (
       <ListView
@@ -48,4 +47,4 @@ class List extends Component {
   }
 }
 
-export default List
+export default pure(List)

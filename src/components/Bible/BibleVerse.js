@@ -1,30 +1,32 @@
-import React, { PropTypes, Component } from 'react'
+// @flow
+import React, { Component } from 'react'
 import { View, Platform } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { verseToStrong } from '@src/helpers'
 import { Text } from '@src/styled'
+import { pure } from 'recompose'
 
 const styles = EStyleSheet.create({
   container: {
     marginBottom: Platform.OS === 'ios' ? 15 : 10,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   versetWrapper: {
     marginTop: 3,
     marginRight: 5,
-    marginLeft: 15,
+    marginLeft: 15
   }
 })
 
+@pure
 class BibleVerse extends Component {
-
-  static propTypes = {
-    verse: PropTypes.object.isRequired,
-    version: PropTypes.string.isRequired,
-    getPosition: PropTypes.func,
+  props: {
+    verse: Object,
+    version: string,
+    getPosition: Function
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.getVerseMeasure = ::this.getVerseMeasure
@@ -34,14 +36,14 @@ class BibleVerse extends Component {
     element: null
   }
 
-  componentWillMount() {
+  componentWillMount () {
     const { verse, getPosition, version } = this.props
 
     this.formatVerse(verse, version)
     if (getPosition) setTimeout(this.getVerseMeasure)
   }
 
-  getVerseMeasure() {
+  getVerseMeasure () {
     const { verse, getPosition } = this.props
     if (this.bibleVerse) {
       this.bibleVerse.measure((x, y, width, height, px, py) => {
@@ -50,7 +52,7 @@ class BibleVerse extends Component {
     }
   }
 
-  formatVerse(verse, version) {
+  formatVerse (verse, version) {
     if (version === 'LSG' || version === 'STRONG') {
       verseToStrong(verse, version)
         .then(element => this.setState({ element }))
@@ -60,7 +62,7 @@ class BibleVerse extends Component {
     }
   }
 
-  render() {
+  render () {
     const { verse: { Verset } } = this.props
     return (
       <View style={styles.container}>
