@@ -51,7 +51,7 @@ const Contribute = ({ id, title }: Props) => (
         size={24}
         style={styles.icon}
       />
-      <Text style={styles.text}>Une faute d'orthgraphe ? Un verset manquant ? N'hésitez pas à contribuer !</Text>
+      <Text style={styles.text}>Une faute d'orthographe ? Un verset manquant ? N'hésitez pas à contribuer !</Text>
       <Icon
         name='chevron-right'
         size={24}
