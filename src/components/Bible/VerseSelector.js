@@ -31,11 +31,11 @@ const styles = EStyleSheet.create({
 export default class VerseSelector extends Component {
   props: {
     screenProps: Object,
-    setTempSelectedVerse: Function,
-    validateSelected: Function,
-    selectedBook: Object,
-    selectedChapter: number,
-    selectedVerse: number
+    setTempSelectedVerse?: Function,
+    validateSelected?: Function,
+    selectedBook?: Object,
+    selectedChapter?: number,
+    selectedVerse?: number
   }
 
   static navigationOptions = {

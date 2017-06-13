@@ -25,8 +25,8 @@ const styles = EStyleSheet.create({
 export default class BookSelector extends Component {
   props: {
     navigation: Object,
-    setTempSelectedBook: Function,
-    selectedBook: Object
+    setTempSelectedBook?: Function,
+    selectedBook?: Object
   }
 
   static navigationOptions = {
