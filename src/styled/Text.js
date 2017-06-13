@@ -28,6 +28,7 @@ const Text = styled.Text`
   font-family: ${s.fontFamily};
   line-height: ${s.lineHeight};
   background-color: transparent;
+  ${ifProp({flex: true}, 'flex: 1')}
 `
 
 Text.defaultProps = {

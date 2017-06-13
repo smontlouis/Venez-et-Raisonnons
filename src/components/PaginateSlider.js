@@ -59,7 +59,7 @@ export default class PaginateSlider extends Component {
   props: {
     currentPage: number,
     onSlidingComplete: Function,
-    pages: Number
+    pages: number
   }
 
   constructor (props) {

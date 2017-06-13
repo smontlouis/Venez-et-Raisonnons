@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import { ScrollView, View } from 'react-native'
+import { ScrollView, View, FlatList } from 'react-native'
 import { Button } from 'react-native-elements'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { connect } from 'react-redux'
@@ -53,8 +53,8 @@ export default class BibleViewer extends Component {
   constructor (props) {
     super(props)
 
-    this.getPosition = ::this.getPosition
     this.scrollToVerse = ::this.scrollToVerse
+    this.onBibleVerseRenderEnd = ::this.onBibleVerseRenderEnd
     this.renderVerses = ::this.renderVerses
   }
 
@@ -65,10 +65,10 @@ export default class BibleViewer extends Component {
 
   componentWillMount () {
     this.DB = getDB()
-    setTimeout(() => this.loadVerses(), 500)
+    setTimeout(() => this.loadVerses(), 0)
   }
 
-  componentWillReceiveProps (oldProps) {
+  componentDidUpdate (oldProps, oldState) {
     if (
       (this.props.chapter !== oldProps.chapter) ||
       (this.props.book.Numero !== oldProps.book.Numero) ||
@@ -87,25 +87,24 @@ export default class BibleViewer extends Component {
     }
   }
 
-  getPosition (numVerset, measures) {
-    this.versesMeasure[`verse${numVerset}`] = measures
-    // We need to wait 'til every Bible verse component get calculated
-    if (Object.keys(this.versesMeasure).length === this.state.verses.length) {
-      setTimeout(() => this.scrollToVerse(), 0)
+  scrollToVerse () {
+    const { verse } = this.props
+    if (this.scrollView) {
+      try {
+        this.scrollView.scrollToIndex({
+          index: verse - 1,
+          animated: false
+        })
+      } catch (e) {
+        console.log(e)
+        this.scrollView.scrollToEnd()
+      }
     }
   }
 
-  scrollToVerse () {
-    const { verse } = this.props
-    if (this.versesMeasure[`verse${verse}`] && this.scrollView) {
-      const scrollHeight = (this.contentHeight - this.scrollViewHeight) + 20
-      const y = (verse === 1) ? 0 : this.versesMeasure[`verse${verse}`].py - 75
-
-      this.scrollView.scrollTo({
-        x: 0,
-        y: (y >= scrollHeight) ? scrollHeight : y,
-        animated: false
-      })
+  onBibleVerseRenderEnd (verse) {
+    if (verse.Verset == this.filteredArray.length) {
+      setTimeout(() => this.scrollToVerse(), 500)
     }
   }
 
@@ -138,19 +137,25 @@ export default class BibleViewer extends Component {
   }
 
   renderVerses () {
-    const { version, arrayVerses, book, chapter } = this.props
-    let array = this.state.verses
+    const { version, arrayVerses, book, chapter/*, verse */ } = this.props
+    this.filteredArray = this.state.verses
 
     if (arrayVerses && book.Numero === arrayVerses.book.Numero && chapter === arrayVerses.chapter) {
-      array = array.filter(v => arrayVerses.verses.find(aV => aV === Number(v.Verset)))
+      this.filteredArray = this.filteredArray.filter(v => arrayVerses.verses.find(aV => aV === Number(v.Verset)))
     }
 
-    return array.map(verse =>
-      <BibleVerse
-        version={version}
-        verse={verse}
-        key={`${verse.Verset}${verse.Livre}${verse.Chapitre}`}
-        getPosition={this.getPosition}
+    return (
+      <FlatList
+        data={this.filteredArray}
+        ref={(r) => { this.scrollView = r }}
+        keyExtractor={(item) => `${item.Verset}${item.Livre}${item.Chapitre}`}
+        renderItem={({item}) => (
+          <BibleVerse
+            onRenderEnd={this.onBibleVerseRenderEnd}
+            version={version}
+            verse={item}
+          />
+        )}
       />
     )
   }
@@ -168,10 +173,6 @@ export default class BibleViewer extends Component {
         style={styles.container}
       >
         <ScrollView
-          ref={(r) => { this.scrollView = r }}
-          onContentSizeChange={(w, h) => { this.contentHeight = h }}
-          onLayout={(ev) => { this.scrollViewHeight = ev.nativeEvent.layout.height }}
-          scrollEventThrottle={16}
           contentContainerStyle={styles.scrollView}
         >
           {this.renderVerses()}

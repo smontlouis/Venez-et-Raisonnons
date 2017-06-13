@@ -137,7 +137,7 @@ class App extends Component {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <Master>
-            <Routes />
+            <Routes onNavigationStateChange={null} />
           </Master>
         </ThemeProvider>
       </Provider>

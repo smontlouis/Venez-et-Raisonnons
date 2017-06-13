@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react'
 import R from 'ramda'
 import { ListView } from 'react-native'

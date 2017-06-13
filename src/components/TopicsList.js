@@ -1,9 +1,10 @@
 // @flow
 import React from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
+import { FlatList } from 'react-native'
 import { pure } from 'recompose'
 
-import { List, TopicItem, HeaderList } from './index'
+import { TopicItem, HeaderList } from './index'
 
 const styles = EStyleSheet.create({
   container: {
@@ -19,20 +20,17 @@ type Props = {
 }
 
 const TopicsList = ({ headerTitle, topics, contentContainerStyle, ...props }: Props) =>
-  <List
-    listItems={topics}
-    renderHeader={() => headerTitle && <HeaderList title={headerTitle} />}
-    renderRow={
-      function ({ id, title, image_url: imageUrl }) {
-        return (
-          <TopicItem
-            id={id}
-            title={title}
-            imageUrl={imageUrl}
-          />
-        )
-      }
-    }
+  <FlatList
+    data={Object.values(topics.toJS())}
+    ListHeaderComponent={() => headerTitle && <HeaderList title={headerTitle} />}
+    keyExtractor={(item, index) => item.id}
+    renderItem={({ item }) => (
+      <TopicItem
+        id={item.id}
+        title={item.title}
+        imageUrl={item.image_url}
+      />
+    )}
     contentContainerStyle={[styles.container, contentContainerStyle]}
     {...props}
   />
