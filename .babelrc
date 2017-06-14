@@ -3,6 +3,11 @@
     "react-native-stage-0/decorator-support", 
     "flow"
   ],
+  "env": {
+    "production": {
+      "plugins": ["transform-remove-console"]
+    }
+  },
   "plugins": ["flow-react-proptypes"],
   "sourceMaps": true
 }
