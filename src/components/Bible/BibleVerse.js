@@ -23,18 +23,33 @@ class BibleVerse extends Component {
   props: {
     verse: Object,
     version: string,
-    onRenderEnd: Function
+    getPosition: Function
+  }
+
+  constructor (props) {
+    super(props)
+
+    this.getVerseMeasure = ::this.getVerseMeasure
   }
 
   state = {
     element: null
   }
 
-  componentDidMount () {
-    const { verse, onRenderEnd, version } = this.props
+  componentWillMount () {
+    const { verse, getPosition, version } = this.props
 
     this.formatVerse(verse, version)
-    if (onRenderEnd) setTimeout(() => onRenderEnd(verse), 0)
+    if (getPosition) setTimeout(this.getVerseMeasure)
+  }
+
+  getVerseMeasure () {
+    const { verse, getPosition } = this.props
+    if (this.bibleVerse) {
+      this.bibleVerse.measure((x, y, width, height, px, py) => {
+        getPosition(verse.Verset, { x, y, width, height, px, py })
+      })
+    }
   }
 
   formatVerse (verse, version) {
