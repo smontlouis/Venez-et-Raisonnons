@@ -23,6 +23,8 @@
 .*/node_modules/fbemitter/lib/EventSubscription.js
 .*/node_modules/fbemitter/lib/EventSubscriptionVendor.js
 
+.*/node_modules/react-navigation/.*/__tests__/.*
+
 [include]
 
 [libs]
