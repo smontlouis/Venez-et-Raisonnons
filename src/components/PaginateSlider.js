@@ -54,36 +54,41 @@ const styles = EStyleSheet.create({
   }
 })
 
+type Props = {
+  currentPage: number,
+  onSlidingComplete: Function,
+  pages: number
+}
+
+type State = {
+  value: number,
+  slidingStart: boolean
+}
+
 @pure
 export default class PaginateSlider extends Component {
-  props: {
-    currentPage: number,
-    onSlidingComplete: Function,
-    pages: number
-  }
+  props: Props
+  state: State
 
-  constructor (props) {
+  constructor (props: Props) {
     super(props)
     this.state = {
       value: 1,
       slidingStart: false
     }
-
-    this.onSlidingStart = ::this.onSlidingStart
-    this.onSlidingComplete = ::this.onSlidingComplete
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps (nextProps: Props) {
     if (this.props.currentPage !== nextProps.currentPage) {
       this.setState({ value: nextProps.currentPage })
     }
   }
 
-  onSlidingStart () {
+  onSlidingStart = () => {
     this.setState({ slidingStart: true })
   }
 
-  onSlidingComplete (value) {
+  onSlidingComplete = (value: number) => {
     const { onSlidingComplete } = this.props
     this.setState({ slidingStart: false })
     onSlidingComplete(value)

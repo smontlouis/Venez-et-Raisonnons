@@ -24,7 +24,7 @@ const TopicsList = ({ headerTitle, topics, contentContainerStyle, ...props }: Pr
     data={Object.values(topics.toJS())}
     ListHeaderComponent={() => headerTitle && <HeaderList title={headerTitle} />}
     keyExtractor={(item, index) => item.id}
-    renderItem={({ item }) => (
+    renderItem={({ item }: any) => (
       <TopicItem
         id={item.id}
         title={item.title}

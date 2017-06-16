@@ -105,40 +105,41 @@ const getStyles = (h) => {
   }
 }
 
+type Props = {
+  headerStyle?: Object,
+  hasBackButton?: boolean,
+  title: string,
+  children: React$Element<*>,
+  header?: React$Element<*>,
+  image?: string,
+  rightComponent?: React$Element<*>,
+  onScrollViewEnd?: Function,
+  isHome?: boolean,
+  isStudies?: boolean
+}
+
+type State = {
+  scrollY: Object,
+  headerMaxHeight: number,
+  hasReachedEnd: boolean
+}
+
 @pure
 export default class ScrollableHeader extends Component {
-  props: {
-    headerStyle?: Object,
-    hasBackButton?: boolean,
-    title: string,
-    children: React$Element,
-    header?: React$Element,
-    image?: string,
-    rightComponent?: React$Element,
-    onScrollViewEnd?: Function,
-    isHome?: boolean,
-    isStudies?: boolean
+  props: Props
+  state: State
+
+  state = {
+    hasReachedEnd: false,
+    scrollY: new Animated.Value(0),
+    headerMaxHeight: 150
   }
 
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      scrollY: new Animated.Value(0),
-      headerMaxHeight: 150
-    }
-
-    this.getHeaderSize = ::this.getHeaderSize
-    this.detectScrollViewEnd = ::this.detectScrollViewEnd
-  }
-
-  state = { hasReachedEnd: false }
-
-  getHeaderSize (event) {
+  getHeaderSize = (event: Object) => {
     this.setState({ headerMaxHeight: event.nativeEvent.layout.height })
   }
 
-  detectScrollViewEnd ({ nativeEvent: { layoutMeasurement, contentOffset, contentSize } }) {
+  detectScrollViewEnd = ({ nativeEvent: { layoutMeasurement, contentOffset, contentSize } }: Object) => {
     const paddingToBottom = 120
     const hasReachedEnd = layoutMeasurement.height + contentOffset.y >=
                             contentSize.height - paddingToBottom

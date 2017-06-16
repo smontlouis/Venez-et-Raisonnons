@@ -62,10 +62,10 @@ const styles = EStyleSheet.create({
 
 type Props = {
   title: string,
-  hasBackButto?: bool,
-  isTransparen?: bool,
-  isLigh?: bool,
-  isModa?: bool,
+  hasBackButton?: bool,
+  isTransparent?: bool,
+  isLight?: bool,
+  isModal?: bool,
   isLoading: bool
 }
 

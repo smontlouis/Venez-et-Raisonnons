@@ -7,6 +7,8 @@ import { connect } from 'react-redux'
 import * as BibleActions from '@src/redux/modules/bible'
 import { SelectorItem } from '@src/components'
 
+import { type Book } from '../../types'
+
 const styles = EStyleSheet.create({
   container: {
     flexWrap: 'wrap',
@@ -30,8 +32,8 @@ const styles = EStyleSheet.create({
 export default class ChapterSelector extends Component {
   props: {
     navigation: Object,
-    setTempSelectedChapter?: Function,
-    selectedBook?: Object,
+    setTempSelectedChapter: Function,
+    selectedBook: Book,
     selectedChapter?: number
   }
 
@@ -39,13 +41,7 @@ export default class ChapterSelector extends Component {
     tabBarLabel: 'Chapitre'
   }
 
-  constructor (props) {
-    super(props)
-
-    this.onChapterChange = ::this.onChapterChange
-  }
-
-  onChapterChange (chapter) {
+  onChapterChange = (chapter: number) => {
     this.props.navigation.navigate('verset')
     this.props.setTempSelectedChapter(chapter)
   }

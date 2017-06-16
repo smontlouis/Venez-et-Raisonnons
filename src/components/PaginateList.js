@@ -4,19 +4,30 @@ import { View } from 'react-native'
 import { pure } from 'recompose'
 import { List } from '@src/components'
 
+type Props = {
+  currentPage: number,
+  list: Object,
+  itemsPerPage: number
+}
+
 @pure
 export default class PaginateList extends Component {
-  props: {
-    currentPage?: number,
-    list: Object,
-    itemsPerPage: number
+  props: Props
+
+  defaultProps: {
+    currentPage: number
   }
+
+  itemsPerPage: number
+  list: Object
+  itemsPerPage: number
+  numberOfPages: number
 
   static defaultProps = {
     currentPage: 1
   }
 
-  constructor (props) {
+  constructor (props: Props) {
     super(props)
 
     const { list, itemsPerPage } = this.props
@@ -26,7 +37,7 @@ export default class PaginateList extends Component {
     this.numberOfPages = Math.ceil(this.list.count() / this.itemsPerPage)
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps (nextProps: Props) {
     if (this.props.list !== nextProps.list) {
       this.list = nextProps.list
       this.numberOfPages = Math.ceil(this.list.count() / this.itemsPerPage)

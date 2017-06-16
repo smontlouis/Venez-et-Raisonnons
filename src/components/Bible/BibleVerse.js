@@ -2,9 +2,11 @@
 import React, { Component } from 'react'
 import { View, Platform } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { verseToStrong } from '@src/helpers'
+import verseToStrong from '@src/helpers/verseToStrong'
 import { Text } from '@src/styled'
 import { pure } from 'recompose'
+
+import { type Verse } from '../../types'
 
 const styles = EStyleSheet.create({
   container: {
@@ -21,20 +23,16 @@ const styles = EStyleSheet.create({
 @pure
 class BibleVerse extends Component {
   props: {
-    verse: Object,
+    verse: Verse,
     version: string,
     getPosition: Function
   }
 
-  constructor (props) {
-    super(props)
-
-    this.getVerseMeasure = ::this.getVerseMeasure
-  }
-
   state = {
-    element: null
+    element: ''
   }
+
+  bibleVerse: Object
 
   componentWillMount () {
     const { verse, getPosition, version } = this.props
@@ -43,7 +41,7 @@ class BibleVerse extends Component {
     if (getPosition) setTimeout(this.getVerseMeasure)
   }
 
-  getVerseMeasure () {
+  getVerseMeasure = () => {
     const { verse, getPosition } = this.props
     if (this.bibleVerse) {
       this.bibleVerse.measure((x, y, width, height, px, py) => {
@@ -52,7 +50,7 @@ class BibleVerse extends Component {
     }
   }
 
-  formatVerse (verse, version) {
+  formatVerse (verse: Verse, version: string) {
     if (version === 'LSG' || version === 'STRONG') {
       verseToStrong(verse, version)
         .then(element => this.setState({ element }))

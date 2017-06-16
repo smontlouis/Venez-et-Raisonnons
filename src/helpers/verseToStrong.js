@@ -1,15 +1,22 @@
+// @flow
+
 import React from 'react'
 import { BibleStrongRef } from '@src/components'
 
-const verseToStrong = ({ Texte, Livre }, version, concordanceFor) => new Promise((resolve) => {
-  let splittedTexte
+import { type Verse } from '@src/types'
+
+type VerseToStrong = (verse: Verse, version: string, concordanceFor?: number) => Object
+
+const verseToStrong: VerseToStrong = ({ Texte, Livre }, version, concordanceFor) => new Promise((resolve) => {
+  let splittedTexte: string
 
   // Hide codes when concordance
   if (concordanceFor) {
+    const concordanceForToString = concordanceFor.toString()
     splittedTexte = Texte
       .split(/ (\(?\d+[^{.|\s}]?\d+(?!\.?\d)\)?)/g)
       .map((item, i) => {
-        if (item.match(/\d+/) && (item.match(/\d+/)[0] === concordanceFor || item.match(/\d+/)[0] === `0${concordanceFor}`)) {
+        if (item.match(/\d+/) && (item.match(/\d+/)[0] === concordanceFor || item.match(/\d+/)[0] === `0${concordanceForToString}`)) {
           return (
             <BibleStrongRef
               isFromConcordance

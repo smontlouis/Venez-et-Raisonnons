@@ -85,8 +85,8 @@ const getQuestionsNumberByTopic = createSelector(
 @pure
 export default class TopicItem extends Component {
   props: {
-    base64Img?: string,
-    dispatch?: Function,
+    base64Img: string,
+    dispatch: Function,
     id: string,
     imageUrl: string,
     prevImgUrl?: string,

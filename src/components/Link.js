@@ -11,13 +11,7 @@ class Link extends Component {
     route: string
   }
 
-  constructor (props) {
-    super(props)
-
-    this.handlePress = ::this.handlePress
-  }
-
-  handlePress () {
+  handlePress = () => {
     const { navigation, route, params } = this.props
     navigation.navigate(route, params)
   }

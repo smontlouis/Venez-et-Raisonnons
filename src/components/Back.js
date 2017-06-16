@@ -9,19 +9,12 @@ class Back extends Component {
     navigation: Object
   }
 
-  constructor (props) {
-    super(props)
-
-    this.handlePress = ::this.handlePress
-    this.handleLongPress = ::this.handleLongPress
-  }
-
-  handlePress () {
+  handlePress = () => {
     const { navigation } = this.props
     navigation.goBack()
   }
 
-  handleLongPress () {
+  handleLongPress = () => {
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [

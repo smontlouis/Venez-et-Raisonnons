@@ -14,7 +14,7 @@ const styles = EStyleSheet.create({
 
 type Props = {
   questions: Object,
-  questionsCount?: number,
+  questionsCount: number,
   headerTitle?: string,
   contentContainerStyle?: number,
   withCounting?: bool

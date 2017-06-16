@@ -10,6 +10,8 @@ import { BibleVerse, BibleFooter, Loading } from '@src/components'
 import { loadBible } from '@src/helpers'
 import * as BibleActions from '@src/redux/modules/bible'
 
+import { type Verse, type Book } from '@src/types'
+
 const styles = EStyleSheet.create({
   container: {
     flex: 1
@@ -33,42 +35,52 @@ const styles = EStyleSheet.create({
   }
 })
 
+type Props = {
+  arrayVerses?: {
+    book: Book,
+    chapter: number,
+    verses: Array<Verse>
+  },
+  book: Book,
+  chapter: number,
+  goToPrevChapter?: Function,
+  goToNextChapter?: Function,
+  navigation: Object,
+  verse: number,
+  version: string
+}
+
+type State = {
+  isLoading: boolean,
+  verses: Array<Verse>
+}
+
 @connect(
   null,
   BibleActions
 )
 @pure
 export default class BibleViewer extends Component {
-  props: {
-    arrayVerses?: Object,
-    book: Object,
-    chapter: number,
-    goToPrevChapter?: Function,
-    goToNextChapter?: Function,
-    navigation: Object,
-    verse: number,
-    version: string
-  }
-
-  constructor (props) {
-    super(props)
-
-    this.getPosition = ::this.getPosition
-    this.scrollToVerse = ::this.scrollToVerse
-    this.renderVerses = ::this.renderVerses
-  }
+  props: Props
+  state: State
 
   state = {
     isLoading: true,
     verses: []
   }
 
+  DB: Object
+  versesMeasure: Object
+  scrollView: Object
+  contentHeight: number
+  scrollViewHeight: number
+
   componentWillMount () {
     this.DB = getDB()
     setTimeout(() => this.loadVerses(), 500)
   }
 
-  componentWillReceiveProps (oldProps) {
+  componentWillReceiveProps (oldProps: Props) {
     if (
       (this.props.chapter !== oldProps.chapter) ||
       (this.props.book.Numero !== oldProps.book.Numero) ||
@@ -87,7 +99,7 @@ export default class BibleViewer extends Component {
     }
   }
 
-  getPosition (numVerset, measures) {
+  getPosition = (numVerset: number, measures: Object) => {
     this.versesMeasure[`verse${numVerset}`] = measures
     // We need to wait 'til every Bible verse component get calculated
     if (Object.keys(this.versesMeasure).length === this.state.verses.length) {
@@ -95,7 +107,7 @@ export default class BibleViewer extends Component {
     }
   }
 
-  scrollToVerse () {
+  scrollToVerse = () => {
     const { verse } = this.props
     if (this.versesMeasure[`verse${verse}`] && this.scrollView) {
       const scrollHeight = (this.contentHeight - this.scrollViewHeight) + 20
@@ -111,7 +123,7 @@ export default class BibleViewer extends Component {
 
   loadVerses () {
     const { book, chapter, version } = this.props
-    let tempVerses
+    let tempVerses: Array<Verse>
     this.versesMeasure = {}
 
     if (version === 'STRONG') {
@@ -137,7 +149,7 @@ export default class BibleViewer extends Component {
     }
   }
 
-  renderVerses () {
+  renderVerses = () => {
     const { version, arrayVerses, book, chapter } = this.props
     let array = this.state.verses
 

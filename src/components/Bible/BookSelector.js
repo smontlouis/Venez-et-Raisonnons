@@ -8,6 +8,8 @@ import * as BibleActions from '@src/redux/modules/bible'
 import books from '@src/helpers/livres'
 import { BookSelectorItem, List } from '@src/components'
 
+import { type Book } from '../../types'
+
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
@@ -26,21 +28,15 @@ const styles = EStyleSheet.create({
 export default class BookSelector extends Component {
   props: {
     navigation: Object,
-    setTempSelectedBook?: Function,
-    selectedBook?: Object
+    setTempSelectedBook: Function,
+    selectedBook: Book
   }
 
   static navigationOptions = {
     tabBarLabel: 'Livres'
   }
 
-  constructor (props) {
-    super(props)
-
-    this.onBookChange = ::this.onBookChange
-  }
-
-  onBookChange (book) {
+  onBookChange = (book: Book) => {
     this.props.navigation.navigate('chapitre')
     this.props.setTempSelectedBook(book)
   }

@@ -37,7 +37,7 @@ const styles = EStyleSheet.create({
 )
 class VerseConcordance extends Component {
   props: {
-    book?: Object,
+    book: Object,
     concordanceFor: string,
     navigation: Object,
     verse: Object

@@ -8,6 +8,8 @@ import getDB from '@src/helpers/database'
 import * as BibleActions from '@src/redux/modules/bible'
 import { SelectorItem } from '@src/components'
 
+import { type Book } from '../../types'
+
 const styles = EStyleSheet.create({
   container: {
     flexWrap: 'wrap',
@@ -20,6 +22,15 @@ const styles = EStyleSheet.create({
   }
 })
 
+type Props = {
+  screenProps: Object,
+  setTempSelectedVerse: Function,
+  validateSelected: Function,
+  selectedBook: Book,
+  selectedChapter: number,
+  selectedVerse: number
+}
+
 @connect(
   state => ({
     selectedBook: state.getIn(['bible', 'temp', 'selectedBook']).toJS(),
@@ -30,23 +41,12 @@ const styles = EStyleSheet.create({
 )
 @pure
 export default class VerseSelector extends Component {
-  props: {
-    screenProps: Object,
-    setTempSelectedVerse?: Function,
-    validateSelected?: Function,
-    selectedBook?: Object,
-    selectedChapter?: number,
-    selectedVerse?: number
-  }
+  props: Props
+  verses: Array<{ count: number }>
+  DB: Object
 
   static navigationOptions = {
     tabBarLabel: 'Verset'
-  }
-
-  constructor (props) {
-    super(props)
-
-    this.onValidate = ::this.onValidate
   }
 
   state = {
@@ -58,7 +58,7 @@ export default class VerseSelector extends Component {
     this.loadVerses()
   }
 
-  componentDidUpdate (oldProps) {
+  componentDidUpdate (oldProps: Props) {
     if (
       (this.props.selectedChapter !== oldProps.selectedChapter) ||
       this.props.selectedBook.Numero !== oldProps.selectedBook.Numero) {
@@ -66,7 +66,7 @@ export default class VerseSelector extends Component {
     }
   }
 
-  onValidate (verse) {
+  onValidate = (verse: number) => {
     this.props.setTempSelectedVerse(verse)
     this.props.validateSelected()
     setTimeout(() => this.props.screenProps.mainNavigation.goBack(), 0)

@@ -1,5 +1,5 @@
 // @flow
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 import { View, TextInput, Platform, TouchableOpacity } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -37,27 +37,41 @@ const styles = EStyleSheet.create({
   }
 })
 
+type Props = {
+  icon: Object,
+  isLight?: boolean,
+  noIcon?: boolean,
+  containerStyle?: Array<*> | Object,
+  inputStyle?: Array<*> | Object,
+  onChangeText: Function,
+  round: boolean,
+  textInputRef: string,
+  containerRef: string
+}
+
 @pure
 class Search extends Component {
-  constructor (props) {
-    super(props)
+  input: Object
+  props: Props
 
-    this.onChangeText = ::this.onChangeText
-    this.onClear = ::this.onClear
+  static defaultProps = {
+    noIcon: false,
+    round: false,
+    icon: {}
   }
 
   state = {
     hasText: false
   }
 
-  onChangeText (value) {
+  onChangeText = (value: string) => {
     if (value) this.setState({ hasText: true })
     else this.setState({ hasText: false })
 
     this.props.onChangeText(value)
   }
 
-  onClear () {
+  onClear = () => {
     this.props.onChangeText('')
     this.setState({ hasText: false })
     this.input.clear()
@@ -82,7 +96,7 @@ class Search extends Component {
       >
         <TextInput
           {...props}
-          ref={c => this.input = c}
+          ref={c => { this.input = c }}
           autoCapitalize='none'
           autoCorrect={false}
           onChangeText={this.onChangeText}
@@ -126,24 +140,6 @@ class Search extends Component {
       </View>
     )
   }
-}
-
-Search.propTypes = {
-  icon: PropTypes.object,
-  isLight: PropTypes.bool,
-  noIcon: PropTypes.bool,
-  containerStyle: PropTypes.any,
-  inputStyle: PropTypes.any,
-  onChangeText: PropTypes.func.isRequired,
-  round: PropTypes.bool,
-  textInputRef: PropTypes.string,
-  containerRef: PropTypes.string
-}
-
-Search.defaultProps = {
-  noIcon: false,
-  round: false,
-  icon: {}
 }
 
 export default Search
