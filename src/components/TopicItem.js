@@ -6,7 +6,7 @@ import { createSelector } from 'reselect'
 import { View, Image } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import RNFetchBlob from 'react-native-fetch-blob'
-import { pure } from 'recompose'
+import { pure, compose } from 'recompose'
 
 import { Title, Text } from '@src/styled'
 import { Link } from '@src/components'
@@ -74,16 +74,7 @@ const getQuestionsNumberByTopic = createSelector(
     .count()
 )
 
-@connect(
-  (state, ownProps) => ({
-    base64Img: getBase64Img(state, ownProps),
-    prevImgUrl: getPrevImgUrl(state, ownProps),
-    questionsCount: getQuestionsNumberByTopic(state, ownProps),
-    newQuestionCount: getNewQuestionsCountByTopic(state, ownProps)
-  })
-)
-@pure
-export default class TopicItem extends Component {
+class TopicItem extends Component {
   props: {
     base64Img: string,
     dispatch: Function,
@@ -140,3 +131,15 @@ export default class TopicItem extends Component {
     )
   }
 }
+
+export default compose(
+  connect(
+    (state, ownProps) => ({
+      base64Img: getBase64Img(state, ownProps),
+      prevImgUrl: getPrevImgUrl(state, ownProps),
+      questionsCount: getQuestionsNumberByTopic(state, ownProps),
+      newQuestionCount: getNewQuestionsCountByTopic(state, ownProps)
+    })
+  ),
+  pure
+)(TopicItem)

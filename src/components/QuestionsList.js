@@ -14,7 +14,7 @@ const styles = EStyleSheet.create({
 
 type Props = {
   questions: Object,
-  questionsCount: number,
+  questionsCount?: number,
   headerTitle?: string,
   contentContainerStyle?: number,
   withCounting?: bool
@@ -26,7 +26,7 @@ const QuestionsList = ({
 }: Props) =>
   <List
     listItems={questions}
-    renderHeader={() => headerTitle && <HeaderList title={headerTitle} subtitle={`${questionsCount} questions`} />}
+    renderHeader={() => (headerTitle && questionsCount) && <HeaderList title={headerTitle} subtitle={`${questionsCount} questions`} />}
     renderRow={
       function ({ id, title, children }, sId, rowID) {
         const number = (Number(rowID) + 1)

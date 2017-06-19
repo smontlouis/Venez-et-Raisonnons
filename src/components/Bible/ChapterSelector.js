@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { pure } from 'recompose'
+import { pure, compose } from 'recompose'
 import { ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import * as BibleActions from '@src/redux/modules/bible'
@@ -21,15 +21,7 @@ const styles = EStyleSheet.create({
   }
 })
 
-@connect(
-  state => ({
-    selectedBook: state.getIn(['bible', 'temp', 'selectedBook']).toJS(),
-    selectedChapter: state.getIn(['bible', 'temp', 'selectedChapter'])
-  }),
-  BibleActions
-)
-@pure
-export default class ChapterSelector extends Component {
+class ChapterSelector extends Component {
   props: {
     navigation: Object,
     setTempSelectedChapter: Function,
@@ -68,3 +60,14 @@ export default class ChapterSelector extends Component {
     )
   }
 }
+
+export default compose(
+  connect(
+    state => ({
+      selectedBook: state.getIn(['bible', 'temp', 'selectedBook']).toJS(),
+      selectedChapter: state.getIn(['bible', 'temp', 'selectedChapter'])
+    }),
+    BibleActions
+  ),
+  pure
+)(ChapterSelector)

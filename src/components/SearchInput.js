@@ -44,13 +44,11 @@ type Props = {
   containerStyle?: Array<*> | Object,
   inputStyle?: Array<*> | Object,
   onChangeText: Function,
-  round: boolean,
-  textInputRef: string,
-  containerRef: string
+  round?: boolean
 }
 
 @pure
-class Search extends Component {
+class SearchInput extends Component {
   input: Object
   props: Props
 
@@ -142,4 +140,4 @@ class Search extends Component {
   }
 }
 
-export default Search
+export default SearchInput

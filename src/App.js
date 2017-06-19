@@ -16,7 +16,9 @@ import { Loading } from './components'
 import { initDB } from './helpers/database'
 
 export const store = configureStore()
-export let persistedStore = null // eslint-disable-line import/no-mutable-exports
+export let persistedStore = null
+
+console.disableYellowBox = true
 
 EStyleSheet.build(globalVariables)
 

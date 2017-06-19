@@ -6,7 +6,7 @@ import verseToStrong from '@src/helpers/verseToStrong'
 import { Text } from '@src/styled'
 import { pure } from 'recompose'
 
-import { type Verse } from '../../types'
+import { type Verse } from '@src/types'
 
 const styles = EStyleSheet.create({
   container: {

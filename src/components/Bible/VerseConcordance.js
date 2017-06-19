@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { TouchableOpacity, Text, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { pure } from 'recompose'
+import { pure, compose } from 'recompose'
 import { verseToStrong, globalVariables } from '@src/helpers'
 import books from '@src/helpers/livres'
 
@@ -30,11 +30,6 @@ const styles = EStyleSheet.create({
   }
 })
 
-@connect(
-  (state, ownProps) => ({
-    book: books[ownProps.verse.Livre - 1]
-  })
-)
 class VerseConcordance extends Component {
   props: {
     book: Object,
@@ -78,4 +73,11 @@ class VerseConcordance extends Component {
   }
 }
 
-export default pure(VerseConcordance)
+export default compose(
+  connect(
+    (state, ownProps) => ({
+      book: books[ownProps.verse.Livre - 1]
+    })
+  ),
+  pure
+)(VerseConcordance)

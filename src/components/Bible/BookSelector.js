@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { fromJS } from 'immutable'
 import { connect } from 'react-redux'
-import { pure } from 'recompose'
-import * as BibleActions from '@src/redux/modules/bible'
-import books from '@src/helpers/livres'
-import { BookSelectorItem, List } from '@src/components'
+import { pure, compose } from 'recompose'
+import * as BibleActions from '../../redux/modules/bible'
+import books from '../../helpers/livres'
+import { BookSelectorItem, List } from '../../components'
 
 import { type Book } from '../../types'
 
@@ -18,14 +18,7 @@ const styles = EStyleSheet.create({
   }
 })
 
-@connect(
-  state => ({
-    selectedBook: state.getIn(['bible', 'temp', 'selectedBook']).toJS()
-  }),
-  BibleActions
-)
-@pure
-export default class BookSelector extends Component {
+class BookSelector extends Component {
   props: {
     navigation: Object,
     setTempSelectedBook: Function,
@@ -49,7 +42,7 @@ export default class BookSelector extends Component {
     return (
       <List
         listItems={fromJS(books)}
-        renderRow={book =>
+        renderRow={(book: Book) =>
           <BookSelectorItem
             onChange={this.onBookChange}
             book={book}
@@ -61,3 +54,13 @@ export default class BookSelector extends Component {
     )
   }
 }
+
+export default compose(
+  connect(
+    state => ({
+      selectedBook: state.getIn(['bible', 'temp', 'selectedBook']).toJS()
+    }),
+    BibleActions
+  ),
+ pure
+)(BookSelector)

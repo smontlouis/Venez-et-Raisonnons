@@ -3,14 +3,14 @@ import React, { Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { ScrollView } from 'react-native'
 import { connect } from 'react-redux'
-import { pure } from 'recompose'
-import getDB from '@src/helpers/database'
-import * as BibleActions from '@src/redux/modules/bible'
-import { SelectorItem } from '@src/components'
+import { pure, compose } from 'recompose'
+import getDB from '../../helpers/database'
+import * as BibleActions from '../../redux/modules/bible'
+import { SelectorItem } from '../../components'
 
 import { type Book } from '../../types'
 
-const styles = EStyleSheet.create({
+const styles: Object = EStyleSheet.create({
   container: {
     flexWrap: 'wrap',
     flexDirection: 'row',
@@ -31,16 +31,7 @@ type Props = {
   selectedVerse: number
 }
 
-@connect(
-  state => ({
-    selectedBook: state.getIn(['bible', 'temp', 'selectedBook']).toJS(),
-    selectedChapter: state.getIn(['bible', 'temp', 'selectedChapter']),
-    selectedVerse: state.getIn(['bible', 'temp', 'selectedVerse'])
-  }),
-  BibleActions
-)
-@pure
-export default class VerseSelector extends Component {
+class VerseSelector extends Component {
   props: Props
   verses: Array<{ count: number }>
   DB: Object
@@ -111,3 +102,15 @@ export default class VerseSelector extends Component {
     )
   }
 }
+
+export default compose(
+  connect(
+    state => ({
+      selectedBook: state.getIn(['bible', 'temp', 'selectedBook']).toJS(),
+      selectedChapter: state.getIn(['bible', 'temp', 'selectedChapter']),
+      selectedVerse: state.getIn(['bible', 'temp', 'selectedVerse'])
+    }),
+    BibleActions
+  ),
+  pure
+)(VerseSelector)
