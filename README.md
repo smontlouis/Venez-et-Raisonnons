@@ -10,17 +10,21 @@ Ceci est le code source de l'application Venez et Raisonnons, disponible sur [Go
 - redux-persist
 - immutable
 - firebase
-- ex-navigation
 - react-native-vector-icons
 - react-native-extended-stylesheet
 - code-push
 - reselect
+- styled-components
+- recompose
+- react-navigation
+- flow
+- jest
 
-### Améliorations
-- Styled Components
-- Recompose
-- Redux observable
-- React navigation
-- Flow
-- Jest
-- Prettier
+### TO-DO
+
+- [ ] Log-In Facebook / Google
+- [ ] API Bible
+- [ ] Offlines pictures
+- [ ] FlatList everywhere
+- [ ] Audit performance boot
+- [ ] New navigation (Glo Bible like)
