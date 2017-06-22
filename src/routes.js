@@ -1,8 +1,6 @@
 import { StackNavigator } from 'react-navigation'
 
-import Studies from '@src/containers/Studies'
 import Topic from '@src/containers/Topic'
-import Study from '@src/containers/Study'
 import Profile from '@src/containers/Profile'
 import Question from '@src/containers/Question/Question'
 import Add from '@src/containers/Add'
@@ -26,13 +24,11 @@ const routesConfigs = {
 
   modal: { screen: Modal },
   topics: { screen: Topics },
-  studies: { screen: Studies },
   favorites: { screen: Favorites },
   search: { screen: Search },
   profile: { screen: Profile },
   more: { screen: More },
   topic: { screen: Topic },
-  study: { screen: Study },
   add: { screen: Add },
   question: { screen: Question },
   about: { screen: About },

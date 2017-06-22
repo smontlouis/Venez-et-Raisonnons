@@ -90,7 +90,7 @@ export function loadData () {
   return (dispatch, getState) => {
     const getLastUpdate = Promise.race([
       new Promise(resolve => firebaseDb.ref('/app/last_update').once('value', snapshot => resolve(snapshot.val()))),
-      new Promise((r, reject) => setTimeout(() => reject(), 10000))
+      new Promise((resolve, reject) => setTimeout(() => reject(new Error('Fail to connect to dabatase')), 10000))
     ])
 
     getLastUpdate
@@ -102,7 +102,7 @@ export function loadData () {
           dispatch({ type: LOAD_DATA })
           const racePromise = Promise.race([
             new Promise(resolve => AppData.once('value', snapshot => resolve(snapshot.val()))),
-            new Promise((r, reject) => setTimeout(() => reject(), 10000))
+            new Promise((resolve, reject) => setTimeout(() => reject(new Error('Fail to connect to dabatase')), 10000))
           ])
 
           racePromise

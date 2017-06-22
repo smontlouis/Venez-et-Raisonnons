@@ -28,3 +28,5 @@ Ceci est le code source de l'application Venez et Raisonnons, disponible sur [Go
 - [ ] FlatList everywhere
 - [ ] Audit performance boot
 - [ ] New navigation (Glo Bible like)
+- [ ] Refacto Styled-Components
+- [ ] Highlight / Copy / Share verses
