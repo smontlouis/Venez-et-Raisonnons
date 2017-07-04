@@ -162,11 +162,13 @@ export default class Bible extends Component {
                 currentPage={this.state.currentPage}
                 list={fromJS(filteredStrongCodes)}
                 itemsPerPage={itemsPerPage}
-                renderRow={item =>
+                keyExtractor={(item, index) => item.Code}
+                renderItem={({ item }: any) => (
                   <LexiqueMot
                     strong={item}
                     book={type === 'grec' ? 40 : 1} // If grec, book for LSGSNT2, else LSGSAT2
-                  />}
+                  />
+                )}
               />
             </ScrollView>
             <PaginateSlider

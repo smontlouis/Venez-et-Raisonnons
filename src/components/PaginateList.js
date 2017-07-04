@@ -1,8 +1,7 @@
 // @flow
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, FlatList } from 'react-native'
 import { pure } from 'recompose'
-import { List } from '@src/components'
 
 type Props = {
   currentPage: number,
@@ -50,8 +49,8 @@ export default class PaginateList extends Component {
 
     return (
       <View>
-        <List
-          listItems={this.list.slice(startAt, endAt)}
+        <FlatList
+          data={Object.values(this.list.slice(startAt, endAt).toJS())}
           contentContainerStyle={(this.numberOfPages > 1) && { paddingBottom: 30 }}
           {...this.props}
         />

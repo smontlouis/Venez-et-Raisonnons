@@ -20,13 +20,15 @@ Ceci est le code source de l'application Venez et Raisonnons, disponible sur [Go
 - flow
 - jest
 
-### TO-DO
+### TO-DO FOR RELEASE 3.0
 
 - [ ] Log-In Facebook / Google
 - [ ] API Bible
 - [ ] Offlines pictures
-- [ ] FlatList everywhere
+- [x] FlatList everywhere
 - [ ] Audit performance boot
 - [ ] New navigation (Glo Bible like)
 - [ ] Refacto Styled-Components
 - [ ] Highlight / Copy / Share verses
+- [ ] Ask questions via form
+- [ ] Contribute to questions via form

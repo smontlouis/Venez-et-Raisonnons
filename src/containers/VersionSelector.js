@@ -4,11 +4,9 @@ import { connect } from 'react-redux'
 import { fromJS } from 'immutable'
 import * as BibleActions from '@src/redux/modules/bible'
 
-import {
-  View
-} from 'react-native'
+import { View, FlatList } from 'react-native'
 
-import { Header, VersionSelectorItem, List } from '@src/components'
+import { Header, VersionSelectorItem } from '@src/components'
 
 const styles = EStyleSheet.create({
   container: {
@@ -23,8 +21,8 @@ const styles = EStyleSheet.create({
 })
 
 type Props = {
-  navigation: object,
-  setVersion: func,
+  navigation: Object,
+  setVersion: Function,
 }
 
 const versions = fromJS({
@@ -54,15 +52,16 @@ const setAndClose = (setVersion, navigation, vers) => {
 const VersionSelector = ({ setVersion, navigation }: Props) => (
   <View style={styles.container}>
     <Header title='Versions' />
-    <List
-      listItems={versions}
-      renderRow={v =>
+    <FlatList
+      data={Object.values(versions.toJS())}
+      keyExtractor={(item, index) => item.id}
+      renderItem={({ item }: any) => (
         <VersionSelectorItem
           onChange={vers => setAndClose(setVersion, navigation, vers)}
-          version={v}
-          isSelected={v.id === navigation.state.params.version}
+          version={item}
+          isSelected={item.id === navigation.state.params.version}
         />
-      }
+      )}
       style={styles.list}
     />
   </View>

@@ -1,12 +1,12 @@
 // @flow
 import React, { Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { fromJS } from 'immutable'
+import { FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import { pure, compose } from 'recompose'
 import * as BibleActions from '../../redux/modules/bible'
 import books from '../../helpers/livres'
-import { BookSelectorItem, List } from '../../components'
+import { BookSelectorItem } from '../../components'
 
 import { type Book } from '../../types'
 
@@ -40,15 +40,16 @@ class BookSelector extends Component {
     } = this.props
 
     return (
-      <List
-        listItems={fromJS(books)}
-        renderRow={(book: Book) =>
+      <FlatList
+        data={Object.values(books)}
+        keyExtractor={(item, index) => index}
+        renderItem={({ item: book }: any) => (
           <BookSelectorItem
             onChange={this.onBookChange}
             book={book}
             isSelected={book.Numero === selectedBook.Numero}
           />
-        }
+        )}
         style={styles.container}
       />
     )

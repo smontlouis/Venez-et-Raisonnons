@@ -17,12 +17,14 @@ const ConcordanceList = ({ list, concordanceFor, navigation, itemsPerPage, curre
     currentPage={currentPage}
     list={fromJS(list)}
     itemsPerPage={itemsPerPage}
-    renderRow={item =>
+    keyExtractor={(item, index) => item.id}
+    renderItem={({ item }: any) => (
       <VerseConcordance
         concordanceFor={concordanceFor}
         navigation={navigation}
         verse={item}
-      />}
+      />
+    )}
   />
 )
 
