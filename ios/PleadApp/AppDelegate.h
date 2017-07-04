@@ -8,6 +8,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <Google/SignIn.h>
 
 @import UserNotifications;
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UNUserNotificationCenterDelegate>

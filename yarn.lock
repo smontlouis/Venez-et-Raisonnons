@@ -3379,6 +3379,10 @@ react-native-fetch-blob@0.10.3-beta.1:
     base-64 "0.1.0"
     glob "^7.0.6"
 
+react-native-google-sign-in@^0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/react-native-google-sign-in/-/react-native-google-sign-in-0.0.14.tgz#1d8100553832bd30aa02bfa1aaf259429be13169"
+
 react-native-htmlview@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/react-native-htmlview/-/react-native-htmlview-0.5.0.tgz#1f5fa3396259c1ae031804bf2589f6311e54c0a7"

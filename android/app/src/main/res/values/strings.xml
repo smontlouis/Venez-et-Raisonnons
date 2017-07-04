@@ -3,4 +3,7 @@
 
 
     <string name="app_name">Venez et Raisonnons</string>
+    <string name="facebook_app_id">1909099509358485</string>
+    <string name="fb_app_id">1909099509358485</string>
+    <string name="fb_login_protocol_scheme">fb1909099509358485</string>
 </resources>
