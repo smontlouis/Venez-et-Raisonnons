@@ -12,6 +12,7 @@ import StrongModal from '@src/containers/StrongModal'
 import Modal from '@src/containers/Modal'
 import Concordance from '@src/containers/Concordance'
 import Search from '@src/containers/Search'
+import Login from '@src/containers/Login'
 
 import More from '@src/containers/MainScreenTabs/More'
 import Favorites from '@src/containers/MainScreenTabs/Favorites'
@@ -33,6 +34,7 @@ const routesConfigs = {
   question: { screen: Question },
   about: { screen: About },
   astuces: { screen: Astuces },
+  login: { screen: Login },
 
   bible: { screen: Bible },
   bibleSelector: { screen: BibleSelector },

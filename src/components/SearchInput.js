@@ -38,7 +38,7 @@ const styles = EStyleSheet.create({
 })
 
 type Props = {
-  icon: Object,
+  icon?: Object,
   isLight?: boolean,
   noIcon?: boolean,
   containerStyle?: Array<*> | Object,

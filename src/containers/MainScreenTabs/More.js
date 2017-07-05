@@ -35,6 +35,13 @@ const primaryList = [
 
 const secondaryList = [
   {
+    title: 'Se connecter',
+    icon: 'account-circle',
+    onPress (navigation) {
+      navigation.navigate('login')
+    }
+  },
+  {
     title: 'À propos',
     icon: 'info-outline',
     onPress (navigation) {

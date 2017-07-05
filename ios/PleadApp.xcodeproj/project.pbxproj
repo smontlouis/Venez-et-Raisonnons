@@ -57,13 +57,16 @@
 		F41274D61DAB860A001C83BE /* metaserif_light.otf in Resources */ = {isa = PBXBuildFile; fileRef = F41274D21DAB860A001C83BE /* metaserif_light.otf */; };
 		F41274D71DAB860A001C83BE /* metaserif.otf in Resources */ = {isa = PBXBuildFile; fileRef = F41274D31DAB860A001C83BE /* metaserif.otf */; };
 		F41274D91DAB933B001C83BE /* alternategothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F41274D81DAB933B001C83BE /* alternategothic.otf */; };
+		F47E9B561F0C40D7008D25FD /* RNGoogleSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47E9B521F0C40D7008D25FD /* RNGoogleSignIn.swift */; };
+		F47E9B571F0C40D7008D25FD /* RNGoogleSignInBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = F47E9B531F0C40D7008D25FD /* RNGoogleSignInBridge.m */; };
+		F47E9B581F0C40D7008D25FD /* RNGoogleSignInEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47E9B541F0C40D7008D25FD /* RNGoogleSignInEvents.swift */; };
+		F47E9B591F0C40D7008D25FD /* RNGoogleSignInEventsBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = F47E9B551F0C40D7008D25FD /* RNGoogleSignInEventsBridge.m */; };
 		F48C429F1EA4CDED008AAA89 /* GoogleService in Resources */ = {isa = PBXBuildFile; fileRef = F48C429E1EA4CDED008AAA89 /* GoogleService */; };
 		F4A8C2E91F0C14FC00EA8A28 /* libRCTFBLogin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A8C2CC1F0C14D700EA8A28 /* libRCTFBLogin.a */; };
 		F4A8C2EB1F0C160500EA8A28 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A8C2EA1F0C160500EA8A28 /* Bolts.framework */; };
-		F4A8C2ED1F0C161D00EA8A28 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A8C2EC1F0C161D00EA8A28 /* FBSDKCoreKit.framework */; };
-		F4A8C2EF1F0C162A00EA8A28 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A8C2EE1F0C162A00EA8A28 /* FBSDKLoginKit.framework */; };
-		F4A8C2F11F0C163200EA8A28 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A8C2F01F0C163200EA8A28 /* FBSDKShareKit.framework */; };
-		F4A9962F1F0C074800101315 /* RNGoogleSignIn in Resources */ = {isa = PBXBuildFile; fileRef = F4A9962E1F0C074800101315 /* RNGoogleSignIn */; };
+		F4A8C2F51F0C1DA400EA8A28 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A8C2F21F0C1DA400EA8A28 /* FBSDKCoreKit.framework */; };
+		F4A8C2F61F0C1DA400EA8A28 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A8C2F31F0C1DA400EA8A28 /* FBSDKLoginKit.framework */; };
+		F4A8C2F71F0C1DA400EA8A28 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A8C2F41F0C1DA400EA8A28 /* FBSDKShareKit.framework */; };
 		F4EE13AD1E65CBE600CA75F6 /* www in Resources */ = {isa = PBXBuildFile; fileRef = F4EE13AC1E65CBE600CA75F6 /* www */; };
 		FAFE5E443E2CC0CD95BB1E61 /* libPods-PleadApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE33BAB04D6F2120224852F7 /* libPods-PleadApp.a */; };
 		FF4877ECFE324CF39F072DF4 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAD2988DF70E42ED98E11B5F /* Entypo.ttf */; };
@@ -379,16 +382,20 @@
 		F41274D31DAB860A001C83BE /* metaserif.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = metaserif.otf; sourceTree = "<group>"; };
 		F41274D81DAB933B001C83BE /* alternategothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alternategothic.otf; sourceTree = "<group>"; };
 		F432C0191E96ABE700B7DECA /* PleadApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = PleadApp.entitlements; path = PleadApp/PleadApp.entitlements; sourceTree = "<group>"; };
+		F462A2901F0C34C200F27BB9 /* PleadApp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PleadApp-Bridging-Header.h"; path = "PleadApp/PleadApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		F473BA801E795EF600F24DC8 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../../../Library/Developer/Xcode/DerivedData/PleadApp-agaugqsmfwbqlraxpqfcuqrmlgag/Build/Products/Release-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
+		F47E9B511F0C40D7008D25FD /* RNGoogleSignIn-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNGoogleSignIn-Bridging-Header.h"; sourceTree = "<group>"; };
+		F47E9B521F0C40D7008D25FD /* RNGoogleSignIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNGoogleSignIn.swift; sourceTree = "<group>"; };
+		F47E9B531F0C40D7008D25FD /* RNGoogleSignInBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSignInBridge.m; sourceTree = "<group>"; };
+		F47E9B541F0C40D7008D25FD /* RNGoogleSignInEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNGoogleSignInEvents.swift; sourceTree = "<group>"; };
+		F47E9B551F0C40D7008D25FD /* RNGoogleSignInEventsBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSignInEventsBridge.m; sourceTree = "<group>"; };
 		F48BB7C41E01EDBE007D4996 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		F48C429E1EA4CDED008AAA89 /* GoogleService */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GoogleService; path = PleadApp/GoogleService; sourceTree = "<group>"; };
 		F4A8C2C21F0C14D700EA8A28 /* RCTFBLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTFBLogin.xcodeproj; path = "../node_modules/react-native-facebook-login/RCTFBLogin.xcodeproj"; sourceTree = "<group>"; };
 		F4A8C2EA1F0C160500EA8A28 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		F4A8C2EC1F0C161D00EA8A28 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		F4A8C2EE1F0C162A00EA8A28 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		F4A8C2F01F0C163200EA8A28 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
-		F4A995D41F0C03EB00101315 /* PleadApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PleadApp-Bridging-Header.h"; sourceTree = "<group>"; };
-		F4A9962E1F0C074800101315 /* RNGoogleSignIn */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RNGoogleSignIn; path = "../node_modules/react-native-google-sign-in/ios/RNGoogleSignIn"; sourceTree = "<group>"; };
+		F4A8C2F21F0C1DA400EA8A28 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../node_modules/react-native-facebook-login/FacebookSDK/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		F4A8C2F31F0C1DA400EA8A28 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../node_modules/react-native-facebook-login/FacebookSDK/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		F4A8C2F41F0C1DA400EA8A28 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../node_modules/react-native-facebook-login/FacebookSDK/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		F4E9700AAC37420DB4636BE3 /* CodePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		F4EE13AC1E65CBE600CA75F6 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = PleadApp/www; sourceTree = "<group>"; };
 		F6C81A8CA1DB4E388FF626A2 /* libSQLite.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libSQLite.a; sourceTree = "<group>"; };
@@ -419,18 +426,18 @@
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
+				F4A8C2F61F0C1DA400EA8A28 /* FBSDKLoginKit.framework in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				F4A8C2F11F0C163200EA8A28 /* FBSDKShareKit.framework in Frameworks */,
 				DB2852E502BF448A976AF44F /* libRNVectorIcons.a in Frameworks */,
 				BFBEA07BAD2B4DED833256DE /* libRNFetchBlob.a in Frameworks */,
-				F4A8C2EF1F0C162A00EA8A28 /* FBSDKLoginKit.framework in Frameworks */,
 				904F6342614C40729DF1FD3B /* libLRDRCTSimpleToast.a in Frameworks */,
 				7A9402FD78634B7D97484476 /* libCodePush.a in Frameworks */,
 				DE55E94976D04B208C5BE2A5 /* libz.tbd in Frameworks */,
 				2B7AF90F5DAD479DB290E67A /* libSQLite.a in Frameworks */,
 				4B1806F7321E427A9B8679A2 /* libsqlite3.0.tbd in Frameworks */,
+				F4A8C2F51F0C1DA400EA8A28 /* FBSDKCoreKit.framework in Frameworks */,
 				F4A8C2EB1F0C160500EA8A28 /* Bolts.framework in Frameworks */,
-				F4A8C2ED1F0C161D00EA8A28 /* FBSDKCoreKit.framework in Frameworks */,
+				F4A8C2F71F0C1DA400EA8A28 /* FBSDKShareKit.framework in Frameworks */,
 				4D68B9D260A340E58832C0D2 /* libRNFIRMessaging.a in Frameworks */,
 				FAFE5E443E2CC0CD95BB1E61 /* libPods-PleadApp.a in Frameworks */,
 			);
@@ -551,6 +558,7 @@
 		13B07FAE1A68108700A75B9A /* PleadApp */ = {
 			isa = PBXGroup;
 			children = (
+				F462A2901F0C34C200F27BB9 /* PleadApp-Bridging-Header.h */,
 				F48C429E1EA4CDED008AAA89 /* GoogleService */,
 				F432C0191E96ABE700B7DECA /* PleadApp.entitlements */,
 				F4EE13AC1E65CBE600CA75F6 /* www */,
@@ -649,8 +657,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				F4A9962E1F0C074800101315 /* RNGoogleSignIn */,
-				F4A995D41F0C03EB00101315 /* PleadApp-Bridging-Header.h */,
+				F47E9B501F0C40D7008D25FD /* RNGoogleSignIn */,
 				13B07FAE1A68108700A75B9A /* PleadApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* PleadAppTests */,
@@ -677,9 +684,9 @@
 		F2E6E59AD3B9F272ED38EBC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F4A8C2F01F0C163200EA8A28 /* FBSDKShareKit.framework */,
-				F4A8C2EE1F0C162A00EA8A28 /* FBSDKLoginKit.framework */,
-				F4A8C2EC1F0C161D00EA8A28 /* FBSDKCoreKit.framework */,
+				F4A8C2F21F0C1DA400EA8A28 /* FBSDKCoreKit.framework */,
+				F4A8C2F31F0C1DA400EA8A28 /* FBSDKLoginKit.framework */,
+				F4A8C2F41F0C1DA400EA8A28 /* FBSDKShareKit.framework */,
 				F4A8C2EA1F0C160500EA8A28 /* Bolts.framework */,
 				F473BA801E795EF600F24DC8 /* libAFNetworking.a */,
 				EFC1E47900734BD09022EA55 /* libz.tbd */,
@@ -712,6 +719,19 @@
 				F432BFE61E96961300B7DECA /* libRNFIRMessaging.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F47E9B501F0C40D7008D25FD /* RNGoogleSignIn */ = {
+			isa = PBXGroup;
+			children = (
+				F47E9B511F0C40D7008D25FD /* RNGoogleSignIn-Bridging-Header.h */,
+				F47E9B521F0C40D7008D25FD /* RNGoogleSignIn.swift */,
+				F47E9B531F0C40D7008D25FD /* RNGoogleSignInBridge.m */,
+				F47E9B541F0C40D7008D25FD /* RNGoogleSignInEvents.swift */,
+				F47E9B551F0C40D7008D25FD /* RNGoogleSignInEventsBridge.m */,
+			);
+			name = RNGoogleSignIn;
+			path = "../node_modules/react-native-google-sign-in/ios/RNGoogleSignIn";
 			sourceTree = "<group>";
 		};
 		F48BB7C51E01EDBE007D4996 /* Products */ = {
@@ -850,6 +870,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 7PZMKGJ67J;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1246,7 +1267,6 @@
 				F41274D61DAB860A001C83BE /* metaserif_light.otf in Resources */,
 				42C06A63E4414610B6D4CDD4 /* MaterialCommunityIcons.ttf in Resources */,
 				DBAC7C06F61A4DF28009960F /* SimpleLineIcons.ttf in Resources */,
-				F4A9962F1F0C074800101315 /* RNGoogleSignIn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1369,8 +1389,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F47E9B561F0C40D7008D25FD /* RNGoogleSignIn.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				F47E9B591F0C40D7008D25FD /* RNGoogleSignInEventsBridge.m in Sources */,
+				F47E9B581F0C40D7008D25FD /* RNGoogleSignInEvents.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				F47E9B571F0C40D7008D25FD /* RNGoogleSignInBridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1410,6 +1434,7 @@
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 7PZMKGJ67J;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1439,6 +1464,7 @@
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 7PZMKGJ67J;
@@ -1477,6 +1503,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(SRCROOT)/../node_modules/react-native-facebook-login/FacebookSDK",
 				);
 				GOOGLE_URL_SCHEME = "com.googleusercontent.apps.237308931723-uo7ots2gjilnj4jebl620v7o2sqe2fuc";
 				HEADER_SEARCH_PATHS = (
@@ -1489,6 +1516,7 @@
 					"$(SRCROOT)/../node_modules/react-native-sqlite-storage/src/ios",
 					"$(SRCROOT)/../node_modules/react-native/Libraries",
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
+					"$(SRCROOT)/../node_modules/react-native-google-sign-in/ios/RNGoogleSignIn",
 				);
 				INFOPLIST_FILE = PleadApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -1502,6 +1530,8 @@
 				PRODUCT_NAME = PleadApp;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "PleadApp/PleadApp-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1520,6 +1550,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(SRCROOT)/../node_modules/react-native-facebook-login/FacebookSDK",
 				);
 				GOOGLE_URL_SCHEME = "com.googleusercontent.apps.237308931723-ne5fqbjnffj7jp6e29l3oeqp3p6pmtd5";
 				HEADER_SEARCH_PATHS = (
@@ -1532,6 +1563,7 @@
 					"$(SRCROOT)/../node_modules/react-native-sqlite-storage/src/ios",
 					"$(SRCROOT)/../node_modules/react-native/Libraries",
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
+					"$(SRCROOT)/../node_modules/react-native-google-sign-in/ios/RNGoogleSignIn",
 				);
 				INFOPLIST_FILE = PleadApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -1545,6 +1577,8 @@
 				PRODUCT_NAME = PleadApp;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "PleadApp/PleadApp-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1804,6 +1838,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(SRCROOT)/../node_modules/react-native-facebook-login/FacebookSDK",
 				);
 				GOOGLE_URL_SCHEME = "com.googleusercontent.apps.237308931723-41sior9316llbehnss6go00ah5qmi2lb";
 				HEADER_SEARCH_PATHS = (
@@ -1816,6 +1851,7 @@
 					"$(SRCROOT)/../node_modules/react-native-sqlite-storage/src/ios",
 					"$(SRCROOT)/../node_modules/react-native/Libraries",
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
+					"$(SRCROOT)/../node_modules/react-native-google-sign-in/ios/RNGoogleSignIn",
 				);
 				INFOPLIST_FILE = PleadApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -1830,6 +1866,8 @@
 				PRODUCT_NAME = PleadApp;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "PleadApp/PleadApp-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Staging;
@@ -1837,6 +1875,7 @@
 		F473BA591E7950E000F24DC8 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 7PZMKGJ67J;

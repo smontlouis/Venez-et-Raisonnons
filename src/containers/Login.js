@@ -1,60 +1,39 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import {
-  Text,
-  View
-} from 'react-native'
+import { Text, View, TouchableHighlight } from 'react-native'
+import { Header } from '@src/components'
 
-// import * as TopicsActions from '@src/redux/modules/topics'
-
-import * as auth0 from '@src/services/auth0'
+import FireAuth from '@src/helpers/fireAuth'
 
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
-  },
-  centered: {
-    flex: 1,
-    alignSelf: 'center'
+    backgroundColor: 'white'
   }
 })
 
-@connect(
-  ({ auth }) => ({
-    isLoggedIn: auth.get('isLoggedIn')
-  }),
-  null
-)
 export default class Login extends Component {
-  static propTypes = {
-    isLoggedIn: PropTypes.bool.isRequired
-  }
-
-  componentDidMount () {
-    const { isLoggedIn } = this.props
-    if (!isLoggedIn) {
-      auth0.showLogin()
-    }
-  }
-
-  componentWillReceiveProps ({ isLoggedIn, router }) {
-    if (isLoggedIn) {
-      router.push('/')
-    } else {
-      auth0.showLogin()
-    }
-  }
-
   render () {
     return (
       <View style={styles.container}>
-        <Text>
-        LOGIN
-        </Text>
+        <Header
+          title='Connexion'
+        />
+        <TouchableHighlight onPress={() => FireAuth.googleLogin()}>
+          <Text>
+            Google Sign-In
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={() => FireAuth.facebookLogin()}>
+          <Text>
+            Facebook Sign-In
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={() => FireAuth.logout()}>
+          <Text>
+            Logout
+          </Text>
+        </TouchableHighlight>
       </View>
     )
   }
