@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "237308931723-m2bp57j0jvirjg17dait5nte1j7udt9c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pleadapp",
+            "certificate_hash": "aa0bf0058f26b3d1c115879726f4024285ef6564"
+          }
+        },
+        {
+          "client_id": "237308931723-079ndqko3fh27e8qss1i0gqvtsat3voc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pleadapp",
+            "certificate_hash": "306c17d06a5cb526d13f82a3ecf0cfb796ce8c16"
+          }
+        },
+        {
           "client_id": "237308931723-n4lg2d9ghuveqgf3ub5bjtapfehnpn38.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +45,20 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "237308931723-41sior9316llbehnss6go00ah5qmi2lb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "fr.smontlouiscalixte.pleadapp.stagingthis"
+              }
+            },
+            {
+              "client_id": "237308931723-n4lg2d9ghuveqgf3ub5bjtapfehnpn38.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
