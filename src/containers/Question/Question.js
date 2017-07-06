@@ -5,7 +5,7 @@ import {
   QuestionSimple,
   QuestionStudy
 } from '@src/containers'
-import * as AppActions from '@src/redux/modules/app'
+import * as UserActions from '@src/redux/modules/user'
 import * as QuestionActions from '@src/redux/modules/questions'
 
 const getCurrentQuestion = (state, props) => state.get('questions').get('questions').get(props.navigation.state.params.questionId)
@@ -30,7 +30,7 @@ const getChildrenByQuestion = createSelector(
     topic: getCurrentTopic(state, ownProps),
     children: getChildrenByQuestion(state, ownProps)
   }),
-  { ...AppActions, ...QuestionActions }
+  { ...UserActions, ...QuestionActions }
 )
 export default class Question extends Component {
   static propTypes = {

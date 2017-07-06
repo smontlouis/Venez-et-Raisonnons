@@ -18,7 +18,7 @@ import {
   StylizedHTMLView
 } from '@src/components'
 import { range } from '@src/helpers'
-import * as AppActions from '@src/redux/modules/app'
+import * as UserActions from '@src/redux/modules/user'
 import { Title } from '@src/styled'
 import styles, { setDynamicFontSize } from './styles'
 import Livres from '../../helpers/livres'
@@ -26,7 +26,7 @@ import Livres from '../../helpers/livres'
 const Books = require('../../helpers/books.json')
 
 const getCurrentChildrenIds = (state, props) => props.question.get('children')
-const getMarkedAsReadQuestionsIds = state => state.get('app').get('hasBeenRead')
+const getMarkedAsReadQuestionsIds = state => state.get('user').get('hasBeenRead')
 
 const checkIfAllMarkedQuestions = createSelector(
   [getCurrentChildrenIds, getMarkedAsReadQuestionsIds],
@@ -36,9 +36,9 @@ const checkIfAllMarkedQuestions = createSelector(
 @connect(
   (state, ownProps) => ({
     checkIfAllRead: checkIfAllMarkedQuestions(state, ownProps),
-    markedAsRead: !!state.getIn(['app', 'hasBeenRead', ownProps.question.get('id')])
+    markedAsRead: !!state.getIn(['user', 'hasBeenRead', ownProps.question.get('id')])
   }),
-  AppActions
+  UserActions
 )
 export default class QuestionStudy extends Component {
   static propTypes = {

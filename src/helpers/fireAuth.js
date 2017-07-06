@@ -31,12 +31,13 @@ const FireAuth = class {
         var emailVerified = !user.providerData || !user.providerData.length || user.providerData[0].providerId != 'password' || user.emailVerified
 
         const profile = {
-          emailVerified: emailVerified,
+          uid: user.uid,
           email: user.email,
           displayName: user.displayName,
           photoURL: user.photoURL,
           provider: user.providerData[0].providerId,
-          lastSeen: Date.now()
+          lastSeen: Date.now(),
+          emailVerified: emailVerified
         }
 
         // Upsert profile information

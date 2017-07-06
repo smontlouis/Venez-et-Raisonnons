@@ -6,7 +6,7 @@ import Toast from 'react-native-simple-toast'
 import { pure, compose } from 'recompose'
 import { View, Text, TouchableOpacity } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import * as AppActions from '@src/redux/modules/app'
+import * as UserActions from '@src/redux/modules/user'
 
 const styles = EStyleSheet.create({
   container: {
@@ -69,9 +69,9 @@ const MarkAsRead = ({ id, toggleMarkAsRead, isActive, hasIconOnly }: Props) => (
 export default compose(
   connect(
     (state, ownProps) => ({
-      isActive: !!state.getIn(['app', 'hasBeenRead', ownProps.id])
+      isActive: !!state.getIn(['user', 'hasBeenRead', ownProps.id])
     }),
-    AppActions
+    UserActions
   ),
   pure
 )(MarkAsRead)

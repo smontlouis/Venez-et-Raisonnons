@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import { pure, compose } from 'recompose'
 import { View, Text, TouchableOpacity } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import * as AppActions from '@src/redux/modules/app'
+import * as UserActions from '@src/redux/modules/user'
 
 const styles = EStyleSheet.create({
   container: {
@@ -47,9 +47,9 @@ const LikeCount = ({ id, toggleLike, isActive, count }: Props) => (
 export default compose(
   connect(
     (state, ownProps) => ({
-      isActive: !!state.getIn(['app', 'likes', ownProps.id])
+      isActive: !!state.getIn(['user', 'likes', ownProps.id])
     }),
-    AppActions
+    UserActions
   ),
   pure
 )(LikeCount)
