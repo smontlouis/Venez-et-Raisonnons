@@ -1,15 +1,16 @@
 import { Map, fromJS } from 'immutable'
-import { firebaseDb } from '@src/services/firebase'
 
 import {
-  LOAD_DATA_SUCCESS,
+  LOAD_DATA_SUCCESS
+} from './app'
+
+import {
   ADD_LIKE,
   REMOVE_LIKE
-} from './app'
+} from './user'
 
 const NOTIF_NEW_QUESTIONS = 'questions/NOTIF_NEW_QUESTIONS'
 const SET_NOT_NEW_QUESTION = 'questions/SET_NOT_NEW_QUESTION'
-const AppData = firebaseDb.ref('/')
 
 const initialState = Map({
   questions: Map(),
@@ -40,13 +41,11 @@ export default function QuestionsReducer (state = initialState, action = {}) {
     }
     case ADD_LIKE: {
       const count = state.getIn(['questions', action.id, 'likeCount'])
-      AppData.update({ [`/questions/${action.id}/likeCount`]: count + 1 })
       return state
               .setIn(['questions', action.id, 'likeCount'], count + 1)
     }
     case REMOVE_LIKE: {
       const count = state.getIn(['questions', action.id, 'likeCount'])
-      AppData.update({ [`/questions/${action.id}/likeCount`]: count - 1 < 0 ? 0 : count - 1 })
       return state
               .setIn(['questions', action.id, 'likeCount'], count - 1 < 0 ? 0 : count - 1)
     }

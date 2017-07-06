@@ -16,3 +16,4 @@ end
 
 pod 'Firebase/Core'
 pod 'Firebase/Messaging'
+pod 'Google/SignIn'

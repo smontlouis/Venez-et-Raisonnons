@@ -22,12 +22,14 @@ Ceci est le code source de l'application Venez et Raisonnons, disponible sur [Go
 
 ### TO-DO FOR RELEASE 3.0
 
-- [ ] Log-In Facebook / Google
+- [x] Log-In Facebook / Google
+- [x] Persist data on Cloud
 - [ ] API Bible
 - [ ] Offlines pictures
 - [x] FlatList everywhere
 - [ ] Audit performance boot
-- [ ] New navigation (Glo Bible like)
+- [ ] New design navigation (Glo Bible like)
+- [ ] New logo
 - [ ] Refacto Styled-Components
 - [ ] Highlight / Copy / Share verses
 - [ ] Ask questions via form

@@ -1,4 +1,3 @@
-/* global fetch */
 import React, { PropTypes, Component } from 'react'
 import {
   View,

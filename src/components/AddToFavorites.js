@@ -11,7 +11,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import * as AppActions from '@src/redux/modules/app'
+import * as UserActions from '@src/redux/modules/user'
 
 const styles = EStyleSheet.create({
   container: {
@@ -74,9 +74,9 @@ const AddToFavorites = ({ id, toggleFavorite, isActive, hasIconOnly }: Props) =>
 export default compose(
   connect(
     (state, ownProps) => ({
-      isActive: !!state.getIn(['app', 'favorites', ownProps.id])
+      isActive: !!state.getIn(['user', 'favorites', ownProps.id])
     }),
-    AppActions
+    UserActions
   ),
   pure
 )(AddToFavorites)

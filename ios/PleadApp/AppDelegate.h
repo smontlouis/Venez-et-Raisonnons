@@ -8,9 +8,10 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <Google/SignIn.h>
 
 @import UserNotifications;
-@interface AppDelegate : UIResponder <UIApplicationDelegate,UNUserNotificationCenterDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,UNUserNotificationCenterDelegate,GIDSignInDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
 

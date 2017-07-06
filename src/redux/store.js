@@ -3,6 +3,7 @@ import thunk from 'redux-thunk'
 import { autoRehydrate } from 'redux-persist-immutable'
 import { Map } from 'immutable'
 import questionsNotifier from './questionsNotifier'
+import firebaseMiddleware from './firebaseMiddleware'
 import reducer from './modules/reducer'
 
 export default function configureStore () {
@@ -12,7 +13,7 @@ export default function configureStore () {
   if (__DEV__) {
     store = compose(
       autoRehydrate(),
-      applyMiddleware(thunk, questionsNotifier),
+      applyMiddleware(thunk, questionsNotifier, firebaseMiddleware),
       global.reduxNativeDevTools ? global.reduxNativeDevTools() : noop => noop
     )(createStore)(reducer)
 
@@ -30,7 +31,7 @@ export default function configureStore () {
   } else {
     store = compose(
       autoRehydrate(),
-      applyMiddleware(thunk, questionsNotifier)
+      applyMiddleware(thunk, questionsNotifier, firebaseMiddleware)
     )(createStore)(reducer, initialState)
   }
 

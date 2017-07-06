@@ -102,7 +102,7 @@ const QuestionItem = ({ number, id, title, hasBeenRead, containerStyle, isStudy,
 export default compose(
   connect(
     (state, ownProps) => ({
-      hasBeenRead: !!state.getIn(['app', 'hasBeenRead', ownProps.id]),
+      hasBeenRead: !!state.getIn(['user', 'hasBeenRead', ownProps.id]),
       isNew: !!state.getIn(['questions', 'newQuestions', ownProps.id])
     })
   ),

@@ -9,7 +9,7 @@ import {
   NoItems
 } from '@src/components'
 
-const getFavoritesIds = state => state.get('app').get('favorites')
+const getFavoritesIds = state => state.get('user').get('favorites')
 const getQuestions = state => state.get('questions').get('questions')
 
 const filterQuestionsByFavorites = createSelector(
