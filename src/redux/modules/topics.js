@@ -2,17 +2,17 @@ import R from 'ramda'
 import { Map, fromJS } from 'immutable'
 import { LOAD_DATA_SUCCESS } from './app'
 
-const SAVE_BASE_64_IMAGES = 'topics/SAVE_BASE_64_IMAGES'
+const SAVE_LOCAL_IMAGES = 'topics/SAVE_LOCAL_IMAGES'
 
 const initialState = Map({
   topics: Map(),
-  base64Images: Map()
+  localImages: Map()
 })
 
-export function saveBase64Image (id, base64Img) {
+export function saveLocalImage (id, localImage) {
   return {
-    type: SAVE_BASE_64_IMAGES,
-    result: { id, base64Img }
+    type: SAVE_LOCAL_IMAGES,
+    result: { id, localImage }
   }
 }
 
@@ -25,10 +25,10 @@ export default function TopicsReducer (state = initialState, action = {}) {
       return state
               .update('topics', t => t.merge(fromJS(topics)))
     }
-    case SAVE_BASE_64_IMAGES: {
-      const { id, base64Img } = action.result
+    case SAVE_LOCAL_IMAGES: {
+      const { id, localImage } = action.result
       return state
-              .update('base64Images', b => b.merge({ [id]: base64Img }))
+              .update('localImages', b => b.merge({ [id]: localImage }))
     }
     default:
       return state

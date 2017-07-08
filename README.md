@@ -24,11 +24,11 @@ Ceci est le code source de l'application Venez et Raisonnons, disponible sur [Go
 
 - [x] Log-In Facebook / Google
 - [x] Persist data on Cloud
-- [ ] API Bible
-- [ ] Offlines pictures
 - [x] FlatList everywhere
-- [ ] Audit performance boot
+- [x] Offlines pictures
 - [ ] New design navigation (Glo Bible like)
+- [ ] API Bible
+- [ ] Audit performance boot
 - [ ] New logo
 - [ ] Refacto Styled-Components
 - [ ] Highlight / Copy / Share verses

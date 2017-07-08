@@ -3,14 +3,14 @@ import React, { Component } from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
-import { View, Image } from 'react-native'
+import { View, Image, Platform } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import RNFetchBlob from 'react-native-fetch-blob'
 import { pure, compose } from 'recompose'
 
 import { Title, Text } from '@src/styled'
 import { Link } from '@src/components'
-import { saveBase64Image } from '@src/redux/modules/topics'
+import { saveLocalImage } from '@src/redux/modules/topics'
 
 const styles = EStyleSheet.create({
   container: {
@@ -52,7 +52,7 @@ const styles = EStyleSheet.create({
   }
 })
 
-const getBase64Img = (state, props) => state.get('topics').get('base64Images').get(props.id)
+const getLocalImagePath = (state, props) => state.get('topics').get('localImages').get(props.id)
 const getCurrentTopic = (state, props) => state.getIn(['topics', 'topics']).get(props.id)
 const getPrevImgUrl = (state, props) => getCurrentTopic(state, props).get('image_url')
 const getQuestions = state => state.getIn(['questions', 'questions'])
@@ -76,9 +76,9 @@ const getQuestionsNumberByTopic = createSelector(
 
 class TopicItem extends Component {
   props: {
-    base64Img: string,
     dispatch: Function,
     id: string,
+    localImage: string,
     imageUrl: string,
     prevImgUrl?: string,
     title: string,
@@ -87,19 +87,22 @@ class TopicItem extends Component {
   }
 
   componentWillMount () {
-    const { imageUrl, id, dispatch, prevImgUrl, base64Img } = this.props
+    const { imageUrl, id, dispatch, prevImgUrl, localImage } = this.props
 
-    if ((imageUrl !== prevImgUrl) || !base64Img) {
-      RNFetchBlob.fetch('GET', imageUrl)
+    if ((imageUrl !== prevImgUrl) || !localImage) {
+      RNFetchBlob.config({ fileCache: true, appendExt: 'png' }).fetch('GET', imageUrl)
       .then((res) => {
-        dispatch(saveBase64Image(id, res.base64()))
+        dispatch(saveLocalImage(id, res.path()))
       })
       .catch(err => console.log(err))
     }
   }
 
   render () {
-    const { id, title, questionsCount, base64Img, newQuestionCount } = this.props
+    const { id, title, questionsCount, localImage, imageUrl, newQuestionCount } = this.props
+    const img = localImage
+    ? Platform.OS === 'android' ? `file://${localImage}` : localImage
+    : imageUrl
 
     if (!questionsCount) return null
 
@@ -111,7 +114,7 @@ class TopicItem extends Component {
         <View style={styles.container}>
           <Image
             style={styles.image}
-            source={{ uri: `data:image/gif;base64,${base64Img}` }}
+            source={{ uri: img }}
           />
           <View style={styles.content}>
             <Title secondaryFont>{title}</Title>
@@ -135,7 +138,7 @@ class TopicItem extends Component {
 export default compose(
   connect(
     (state, ownProps) => ({
-      base64Img: getBase64Img(state, ownProps),
+      localImage: getLocalImagePath(state, ownProps),
       prevImgUrl: getPrevImgUrl(state, ownProps),
       questionsCount: getQuestionsNumberByTopic(state, ownProps),
       newQuestionCount: getNewQuestionsCountByTopic(state, ownProps)
