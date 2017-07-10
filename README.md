@@ -22,15 +22,26 @@ Ceci est le code source de l'application Venez et Raisonnons, disponible sur [Go
 
 ### TO-DO FOR RELEASE 3.0
 
+#### MUST
 - [x] Log-In Facebook / Google
 - [x] Persist data on Cloud
 - [x] FlatList everywhere
 - [x] Offlines pictures
 - [ ] New design navigation (Glo Bible like)
+- [ ] Refacto Glamour-Native
+- [ ] Highlight / Copy / Share verses
+- [ ] New logo
+
+#### SHOULD
+- [ ] React-Native app intro
 - [ ] API Bible
 - [ ] Audit performance boot
-- [ ] New logo
-- [ ] Refacto Styled-Components
-- [ ] Highlight / Copy / Share verses
+
+#### COULD 
+- [ ] Activity
 - [ ] Ask questions via form
 - [ ] Contribute to questions via form
+
+### EPICS
+- [ ] Landing page
+- [ ] Web app

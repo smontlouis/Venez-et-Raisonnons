@@ -130,6 +130,7 @@ const tertiaryList = [
             text: 'Effacer',
             onPress: () => {
               persistedStore.purge()
+              // @TODO - Unlink everyfile too
               Toast.show('Toutes les données ont été effacées.')
             }
           }

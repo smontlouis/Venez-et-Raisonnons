@@ -89,6 +89,7 @@ class TopicItem extends Component {
   componentWillMount () {
     const { imageUrl, id, dispatch, prevImgUrl, localImage } = this.props
 
+    // @TODO - Create folder instead, Implements exists method, etc
     if ((imageUrl !== prevImgUrl) || !localImage) {
       RNFetchBlob.config({ fileCache: true, appendExt: 'png' }).fetch('GET', imageUrl)
       .then((res) => {
