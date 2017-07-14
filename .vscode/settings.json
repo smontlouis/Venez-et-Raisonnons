@@ -1,4 +1,9 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-    "javascript.validate.enable": false
+    "javascript.validate.enable": false,
+    "react-native": {
+        "packager": {
+            "port": 8081
+        }
+    }
 }

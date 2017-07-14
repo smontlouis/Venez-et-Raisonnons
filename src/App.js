@@ -4,7 +4,7 @@ import { persistStore } from 'redux-persist-immutable'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import codePush from 'react-native-code-push'
 import { AsyncStorage } from 'react-native'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'glamorous-native'
 
 import Master from './containers/Master'
 import Routes from './routes'

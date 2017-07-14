@@ -11,5 +11,12 @@ export default {
     secondary: '#FFBC00',
     tertiary: 'rgb(98,113,122)',
     quart: '#1A806F'
+  },
+  fonts: {
+    primaryFont: globals.font.title,
+    secondaryFont: globals.font.heading,
+    tertiaryFont: globals.font.title_italic,
+    text: globals.font.text
   }
+
 }

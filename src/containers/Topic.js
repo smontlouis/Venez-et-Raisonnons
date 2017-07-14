@@ -1,18 +1,15 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
-import R from 'ramda'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import {
-  View
-} from 'react-native'
+import { View, Platform } from 'react-native'
 import {
   QuestionsList,
   ScrollableHeader
 } from '@src/components'
 
 const getCurrentTopic = (state, props) => state.get('topics').get('topics').get(props.navigation.state.params.topicId)
-const getBase64Img = (state, props) => state.get('topics').get('base64Images').get(props.navigation.state.params.topicId)
+const getLocalImagePath = (state, props) => state.get('topics').get('localImages').get(props.navigation.state.params.topicId)
 const getQuestions = state => state.get('questions').get('questions')
 
 const getQuestionsByTopic = createSelector(
@@ -32,25 +29,26 @@ const styles = EStyleSheet.create({
 @connect(
   (state, ownProps) => ({
     topic: getCurrentTopic(state, ownProps),
-    base64Img: getBase64Img(state, ownProps),
+    localImage: getLocalImagePath(state, ownProps),
     questions: getQuestionsByTopic(state, ownProps)
   })
 )
 export default class Topic extends Component {
   static propTypes = {
-    base64Img: PropTypes.string.isRequired,
+    localImage: PropTypes.string.isRequired,
     questions: PropTypes.object.isRequired,
     topic: PropTypes.object.isRequired
   }
 
   render () {
-    const { topic, questions, base64Img } = this.props
+    const { topic, questions, localImage } = this.props
+    const img = Platform.OS === 'android' ? `file://${localImage}` : localImage
 
     return (
       <View style={styles.container}>
         <ScrollableHeader
           title={topic.get('title')}
-          image={`data:image/gif;base64,${base64Img}`}
+          image={img}
         >
           <QuestionsList
             questions={questions}

@@ -1,9 +1,7 @@
-import { styled, ifProp, prop } from '@styled-components'
+import glamorous, { Text } from 'glamorous-native'
 
-const Box = styled.View`
-  flex-direction: ${ifProp({ row: true }, 'row')};
-  margin-top: ${prop('marginTop')};
-  margin-bottom: ${prop('marginBottom')}
-`
+const Box = glamorous(Text)(
+  ({ row }) => row ? { flexDirection: 'row' } : {}
+)
 
 export default Box
