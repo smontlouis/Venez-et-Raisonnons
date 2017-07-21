@@ -74,7 +74,7 @@ const AddToFavorites = ({ id, toggleFavorite, isActive, hasIconOnly }: Props) =>
 export default compose(
   connect(
     (state, ownProps) => ({
-      isActive: !!state.getIn(['user', 'favorites', ownProps.id])
+      isActive: !!state.getIn(['user', 'questions', 'favorites', ownProps.id])
     }),
     UserActions
   ),

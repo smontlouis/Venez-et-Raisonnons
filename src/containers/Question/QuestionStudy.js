@@ -26,7 +26,7 @@ import Livres from '../../helpers/livres'
 const Books = require('../../helpers/books.json')
 
 const getCurrentChildrenIds = (state, props) => props.question.get('children')
-const getMarkedAsReadQuestionsIds = state => state.get('user').get('hasBeenRead')
+const getMarkedAsReadQuestionsIds = state => state.getIn(['user', 'questions', 'hasBeenRead'])
 
 const checkIfAllMarkedQuestions = createSelector(
   [getCurrentChildrenIds, getMarkedAsReadQuestionsIds],
@@ -36,7 +36,7 @@ const checkIfAllMarkedQuestions = createSelector(
 @connect(
   (state, ownProps) => ({
     checkIfAllRead: checkIfAllMarkedQuestions(state, ownProps),
-    markedAsRead: !!state.getIn(['user', 'hasBeenRead', ownProps.question.get('id')])
+    markedAsRead: !!state.getIn(['user', 'questions', 'hasBeenRead', ownProps.question.get('id')])
   }),
   UserActions
 )
@@ -183,12 +183,6 @@ export default class QuestionStudy extends Component {
             <LikeCount count={question.get('likeCount')} id={question.get('id')} />
           </ScrollView>
         </ScrollableHeader>
-        <VerseModal
-          refValue={(c) => { this.modal = c }}
-          isLoading={this.state.verseIsLoading}
-          title={this.state.verse.title}
-          text={this.state.verse.text}
-        />
       </View>
     )
   }

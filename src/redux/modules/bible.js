@@ -9,6 +9,9 @@ const VALIDATE_SELECTED = 'bible/VALIDATE_SELECTED'
 const SET_ALL_AND_VALIDATE_SELECTED = 'bible/SET_ALL_AND_VALIDATE_SELECTED'
 const RESET_TEMP_SELECTED = 'bible/RESET_TEMP_SELECTED'
 const SET_VERSION = 'bible/SET_VERSION'
+const ADD_SELECTED_VERSE = 'ADD_SELECTED_VERSE'
+const REMOVE_SELECTED_VERSE = 'REMOVE_SELECTED_VERSE'
+const CLEAR_SELECTED_VERSES = 'CLEAR_SELECTED_VERSES'
 
 const initialState = Map({
   selectedVersion: 'STRONG',
@@ -19,7 +22,8 @@ const initialState = Map({
     selectedBook: Map({ Numero: 1, Nom: 'Genèse', Chapitres: 50 }),
     selectedChapter: 1,
     selectedVerse: 1
-  })
+  }),
+  selectedVerses: Map() // highlighted verses
 })
 
 export function setTempSelectedBook (book) {
@@ -109,6 +113,26 @@ export function goToNextChapter () {
   }
 }
 
+export function addSelectedVerse (id) {
+  return {
+    type: ADD_SELECTED_VERSE,
+    id
+  }
+}
+
+export function removeSelectedVerse (id) {
+  return {
+    type: REMOVE_SELECTED_VERSE,
+    id
+  }
+}
+
+export function clearSelectedVerses () {
+  return {
+    type: CLEAR_SELECTED_VERSES
+  }
+}
+
 export default function BibleReducer (state = initialState, action = {}) {
   switch (action.type) {
     case SET_TEMP_SELECTED_BOOK: {
@@ -160,6 +184,15 @@ export default function BibleReducer (state = initialState, action = {}) {
     }
     case SET_VERSION: {
       return state.set('selectedVersion', action.version)
+    }
+    case ADD_SELECTED_VERSE: {
+      return state.update('selectedVerses', f => f.merge({ [action.id]: true }))
+    }
+    case REMOVE_SELECTED_VERSE: {
+      return state.update('selectedVerses', f => f.delete(action.id))
+    }
+    case CLEAR_SELECTED_VERSES: {
+      return state.set('selectedVerses', Map())
     }
     default:
       return state

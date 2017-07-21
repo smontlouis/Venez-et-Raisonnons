@@ -4,9 +4,9 @@ import { ScrollView, View } from 'react-native'
 import { Button } from 'react-native-elements'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { connect } from 'react-redux'
-import { pure } from 'recompose'
+import { pure, compose } from 'recompose'
 import getDB from '@src/helpers/database'
-import { BibleVerse, BibleFooter, Loading } from '@src/components'
+import { BibleVerse, BibleFooter, Loading, SelectedVersesModal } from '@src/components'
 import { loadBible } from '@src/helpers'
 import * as BibleActions from '@src/redux/modules/bible'
 
@@ -43,6 +43,7 @@ type Props = {
   },
   book: Book,
   chapter: number,
+  clearSelectedVerses: Function,
   goToPrevChapter?: Function,
   goToNextChapter?: Function,
   navigation: Object,
@@ -55,12 +56,7 @@ type State = {
   verses: Array<Verse>
 }
 
-@connect(
-  null,
-  BibleActions
-)
-@pure
-export default class BibleViewer extends Component {
+class BibleViewer extends Component {
   props: Props
   state: State
 
@@ -78,6 +74,7 @@ export default class BibleViewer extends Component {
   componentWillMount () {
     this.DB = getDB()
     setTimeout(() => this.loadVerses(), 500)
+    this.props.clearSelectedVerses()
   }
 
   componentWillReceiveProps (oldProps: Props) {
@@ -87,6 +84,7 @@ export default class BibleViewer extends Component {
       (this.props.version !== oldProps.version)
     ) {
       setTimeout(() => this.loadVerses(), 0)
+      this.props.clearSelectedVerses()
     }
 
     // Scroll ONLY when verse change ALONE
@@ -143,7 +141,7 @@ export default class BibleViewer extends Component {
         const versesByChapter = res[book.Numero][chapter]
         tempVerses = []
         tempVerses = Object.keys(versesByChapter)
-          .map(v => ({ Verset: v, Texte: versesByChapter[v] }))
+          .map(v => ({ Verset: v, Texte: versesByChapter[v], Livre: book.Numero, Chapitre: chapter }))
         this.setState({ isLoading: false, verses: tempVerses })
       })
     }
@@ -207,7 +205,16 @@ export default class BibleViewer extends Component {
             goToNextChapter={goToNextChapter}
           />
         }
+        <SelectedVersesModal />
       </View>
     )
   }
 }
+
+export default compose(
+  connect(
+    null,
+    BibleActions
+  ),
+  pure
+)(BibleViewer)

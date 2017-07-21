@@ -1,5 +1,5 @@
 import glamorous from 'glamorous-native'
-import { bindStyles } from '@src/helpers'
+import { bindStyles } from 'glam-props'
 
 const stylesToBind = {
   fontSize: {

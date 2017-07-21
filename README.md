@@ -14,7 +14,7 @@ Ceci est le code source de l'application Venez et Raisonnons, disponible sur [Go
 - react-native-extended-stylesheet
 - code-push
 - reselect
-- styled-components
+- glamorous-native
 - recompose
 - react-navigation
 - flow
@@ -27,13 +27,17 @@ Ceci est le code source de l'application Venez et Raisonnons, disponible sur [Go
 - [x] Persist data on Cloud
 - [x] FlatList everywhere
 - [x] Offlines pictures
-- [ ] New design navigation (Glo Bible like)
-- [ ] Refacto Glamour-Native
 - [ ] Highlight / Copy / Share verses
+- [ ] New design navigation (Glo Bible like)
 - [ ] New logo
 
 #### SHOULD
-- [ ] React-Native app intro
+- [ ] Share code strong
+- [ ] Share questions
+- [ ] Remerciements page à Propos
+- [ ] Refacto Glamour-Native
+- [ ] [React-Native onboarding](https://codecanyon.net/item/beonboard-complete-onboarding-template-for-react-native-app/19746395)
+- [ ] Android Splash Screen
 - [ ] API Bible
 - [ ] Audit performance boot
 

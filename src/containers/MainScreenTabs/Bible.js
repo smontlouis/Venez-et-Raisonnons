@@ -1,16 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import EStyleSheet from 'react-native-extended-stylesheet'
-import { View, StatusBar } from 'react-native'
+import { StatusBar } from 'react-native'
 import * as BibleActions from '@src/redux/modules/bible'
 import { BibleHeader, BibleViewer } from '@src/components'
-
-const styles = EStyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white'
-  }
-})
+import { Container } from '@src/styled'
 
 type BibleProps = {
   navigation: Object,
@@ -58,7 +51,7 @@ export default class Bible extends Component {
     const { app, navigation, hasBack } = this.props
     const { arrayVerses } = this.props.navigation.state.params || {}
     return (
-      <View style={styles.container}>
+      <Container>
         <StatusBar barStyle='light-content' />
         <BibleHeader
           hasBack={hasBack}
@@ -77,7 +70,7 @@ export default class Bible extends Component {
             navigation={navigation}
           />
         }
-      </View>
+      </Container>
     )
   }
 }

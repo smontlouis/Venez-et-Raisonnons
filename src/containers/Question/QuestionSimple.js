@@ -11,7 +11,6 @@ import {
   MarkAsRead,
   AddToFavorites,
   LikeCount,
-  VerseModal,
   StylizedHTMLView,
   PrevNext
 } from '@src/components'
@@ -150,12 +149,6 @@ export default class QuestionSimple extends Component {
             }
           </ScrollView>
         </ScrollableHeader>
-        <VerseModal
-          refValue={(c) => { this.modal = c }}
-          isLoading={this.state.verseIsLoading}
-          title={this.state.verse.title}
-          text={this.state.verse.text}
-        />
       </View>
     )
   }

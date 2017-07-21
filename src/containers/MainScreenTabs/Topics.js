@@ -2,16 +2,10 @@ import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { View, Text, StatusBar } from 'react-native'
-import {
-  TopicsList,
-  ScrollableHeader
-} from '@src/components'
+import { TopicsList, ScrollableHeader } from '@src/components'
+import { Container } from '@src/styled'
 
 const styles = EStyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white'
-  },
   badgeContainer: {
     height: 150,
     justifyContent: 'flex-end',
@@ -55,7 +49,7 @@ export default class Topics extends Component {
     const renderBadgeText = newQuestionsCount > 1 ? 'nouvelles questions' : 'nouvelle question'
 
     return (
-      <View style={styles.container}>
+      <Container>
         <StatusBar barStyle='light-content' />
         <ScrollableHeader
           title='Venez Et Raisonnons'
@@ -76,7 +70,7 @@ export default class Topics extends Component {
             topics={topics}
           />
         </ScrollableHeader>
-      </View>
+      </Container>
     )
   }
 }

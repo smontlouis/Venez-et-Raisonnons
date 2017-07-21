@@ -4,14 +4,11 @@ import { View, StatusBar, Text, ScrollView } from 'react-native'
 import { fromJS } from 'immutable'
 import debounce from 'debounce'
 import getDB from '@src/helpers/database'
+import { Container } from '@src/styled'
 import { SearchInput, PaginateList, Loading, PaginateSlider, LexiqueMot, NoItems } from '@src/components'
 import { itemsPerPage } from '@src/helpers/globalVariables'
 
 const styles = EStyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white'
-  },
   searchContainer: {
     backgroundColor: 'white',
     height: 50,
@@ -121,7 +118,7 @@ export default class Bible extends Component {
 
     const pages = Math.ceil(filteredStrongCodes.length / itemsPerPage)
     return (
-      <View style={styles.container}>
+      <Container>
         <StatusBar barStyle='light-content' />
         <View style={styles.searchContainer}>
           <SearchInput
@@ -178,7 +175,7 @@ export default class Bible extends Component {
             />
           </View>
         }
-      </View>
+      </Container>
     )
   }
 }

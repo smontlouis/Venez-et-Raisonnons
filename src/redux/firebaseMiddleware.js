@@ -16,28 +16,28 @@ export default store => next => action => {
   const isLogged = !!state.getIn(['user', 'email'])
   const user = state.get('user')
   const questionRef = firebaseDb.ref(`/questions/${action.id}`)
-  const profileRef = firebaseDb.ref(`profiles/${user.get('uid')}`)
+  const profileRef = firebaseDb.ref(`/profiles/${user.get('uid')}`)
 
   switch (action.type) {
     case ADD_FAVORITE:
     case REMOVE_FAVORITE: {
-      const favorites = user.get('favorites').toJS()
-      isLogged && profileRef.update({ favorites })
+      const favorites = user.getIn(['questions', 'favorites']).toJS()
+      isLogged && profileRef.update({ '/questions/favorites': favorites })
       break
     }
     case ADD_LIKE:
     case REMOVE_LIKE: {
       const likeCount = state.getIn(['questions', 'questions', action.id, 'likeCount'])
-      const likes = user.get('likes').toJS()
+      const likes = user.getIn(['questions', 'likes']).toJS()
 
-      isLogged && profileRef.update({ likes })
+      isLogged && profileRef.update({ '/questions/likes': likes })
       questionRef.update({ likeCount })
       break
     }
     case MARK_AS_READ:
     case REMOVE_AS_READ: {
-      const hasBeenRead = user.get('hasBeenRead').toJS()
-      isLogged && profileRef.update({ hasBeenRead })
+      const hasBeenRead = user.getIn(['questions', 'hasBeenRead']).toJS()
+      isLogged && profileRef.update({ '/questions/hasBeenRead': hasBeenRead })
       break
     }
     case USER_LOGIN_SUCCESS: {

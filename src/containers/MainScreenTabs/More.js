@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react'
-import EStyleSheet from 'react-native-extended-stylesheet'
 import Toast from 'react-native-simple-toast'
 import { List, ListItem } from 'react-native-elements'
 import { withNavigation } from 'react-navigation'
 import {
-  View,
   ScrollView,
   Alert,
   Linking,
@@ -12,9 +10,8 @@ import {
   Share
 } from 'react-native'
 import { persistedStore } from '@src/App'
-import {
-  Header
-} from '@src/components'
+import { Container } from '@src/styled'
+import { Header } from '@src/components'
 
 const primaryList = [
   {
@@ -139,15 +136,9 @@ const tertiaryList = [
     }
   }
 ]
-const styles = EStyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#EFF0F4'
-  }
-})
 
 const More = ({ navigation }) =>
-  <View style={styles.container}>
+  <Container>
     <Header
       title='Plus'
       hasBackButton={false}
@@ -190,7 +181,7 @@ const More = ({ navigation }) =>
         }
       </List>
     </ScrollView>
-  </View>
+  </Container>
 
 More.propTypes = {
   navigation: PropTypes.object.isRequired

@@ -1,15 +1,9 @@
 import React from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import ShowDown from 'showdown'
-
-import {
-  View,
-  ScrollView
-} from 'react-native'
-import {
-  Header,
-  StylizedHTMLView
-} from '@src/components'
+import { View, ScrollView } from 'react-native'
+import { Container } from '@src/styled'
+import { Header, StylizedHTMLView } from '@src/components'
 
 const converter = new ShowDown.Converter()
 
@@ -47,17 +41,13 @@ v2.0.0
 `)
 
 const styles = EStyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white'
-  },
   content: {
     padding: 25
   }
 })
 
 const About = () =>
-  <View style={styles.container}>
+  <Container>
     <Header
       title='À propos'
     />
@@ -67,6 +57,6 @@ const About = () =>
       />
     </ScrollView>
 
-  </View>
+  </Container>
 
 export default About
