@@ -1,5 +1,8 @@
 import { Map } from 'immutable'
 import { clearSelectedVerses } from './bible'
+import books from '@src/helpers/livres'
+import { Share } from 'react-native'
+
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
 export const USER_LOGOUT = 'USER_LOGOUT'
 export const MARK_AS_READ = 'user/MARK_AS_READ'
@@ -10,6 +13,8 @@ export const ADD_LIKE = 'user/ADD_LIKE'
 export const REMOVE_LIKE = 'user/REMOVE_LIKE'
 export const ADD_HIGHLIGHT = 'user/ADD_HIGHLIGHT'
 export const REMOVE_HIGHLIGHT = 'user/REMOVE_HIGHLIGHT'
+export const ADD_VERSE_FAVORITE = 'user/ADD_VERSE_FAVORITE'
+export const REMOVE_VERSE_FAVORITE = 'user/REMOVE_VERSE_FAVORITE'
 
 const initialState = Map({
   email: '',
@@ -61,7 +66,13 @@ export default function UserReducer (state = initialState, action = {}) {
       return state.updateIn(['bible', 'highlights'], f => f.merge(action.selectedVerses))
     }
     case REMOVE_HIGHLIGHT: {
-      return state.updateIn('bible', 'highlights', f => f.deleteAll(Object.keys(action.selectedVerses)))
+      return Object.keys(action.selectedVerses.toJS()).reduce((map, key) => map.deleteIn(['bible', 'highlights', key]), state)
+    }
+    case ADD_VERSE_FAVORITE: {
+      return state.updateIn(['bible', 'favorites'], f => f.merge(action.selectedVerses))
+    }
+    case REMOVE_VERSE_FAVORITE: {
+      return Object.keys(action.selectedVerses.toJS()).reduce((map, key) => map.deleteIn(['bible', 'favorites', key]), state)
     }
     default:
       return state
@@ -132,5 +143,51 @@ export function toggleHighlight (hasHighlighted) {
       dispatch({ type: ADD_HIGHLIGHT, selectedVerses })
     }
     dispatch(clearSelectedVerses())
+  }
+}
+
+export function toggleVerseFavorite (hasFavorited) {
+  return (dispatch, getState) => {
+    const selectedVerses = getState().getIn(['bible', 'selectedVerses'])
+
+    if (hasFavorited) {
+      dispatch({ type: REMOVE_VERSE_FAVORITE, selectedVerses })
+    } else {
+      dispatch({ type: ADD_VERSE_FAVORITE, selectedVerses })
+    }
+    dispatch(clearSelectedVerses())
+  }
+}
+
+export function shareVerses (verses) {
+  return (dispatch, getState) => {
+    const selectedVerses = getState().getIn(['bible', 'selectedVerses'])
+    const filteredVerses = verses
+      .filter(v => !!selectedVerses.get(`${v.Livre}-${v.Chapitre}-${v.Verset}`))
+
+    const selectedVersesContent = filteredVerses
+      .map(v => `(${v.Verset}) ${v.Texte}`)
+      .join(' ')
+
+    const titleContent = filteredVerses
+      .map(v => Number(v.Verset))
+      .reduce((acc, v, i, array) => {
+        if (v === array[i - 1] + 1 && v === array[i + 1] - 1) { // if suite > 2
+          return acc
+        } else if (v === array[i - 1] + 1 && v !== array[i + 1] - 1) { // if endSuite
+          return acc + `-${v}`
+        } else if (array[i - 1] && (v - 1 !== array[i - 1])) { // if not preceded by - 1
+          return acc + `,${v}`
+        } else {
+          return acc + v
+        }
+      }, `${books[verses[0].Livre - 1].Nom} ${verses[0].Chapitre}:`)
+    Share.share({
+      message: `${titleContent} \n\n ${selectedVersesContent}`
+    })
+      .then(result => {
+        dispatch(clearSelectedVerses())
+      })
+      .catch(err => console.log(err))
   }
 }

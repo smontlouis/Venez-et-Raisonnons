@@ -205,7 +205,7 @@ class BibleViewer extends Component {
             goToNextChapter={goToNextChapter}
           />
         }
-        <SelectedVersesModal />
+        <SelectedVersesModal verses={this.state.verses} />
       </View>
     )
   }

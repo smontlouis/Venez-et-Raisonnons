@@ -8,10 +8,16 @@ import { Icon } from 'react-native-elements'
 import { createSelector } from 'reselect'
 import * as UserActions from '@src/redux/modules/user'
 
+import { type Verse } from '@src/types'
+
 type Props = {
+  verses: Array<Verse>,
   isOpen: boolean,
   isSelectedVerseHighlighted: boolean,
+  isSelectedVerseFavorited: boolean,
   toggleHighlight: Function,
+  toggleVerseFavorite: Function,
+  shareVerses: Function
 }
 
 const ModalBox = glam(Modal, { forwardProps: ['position', 'isOpen'] })({
@@ -45,7 +51,15 @@ const RoundedIcon = glam(Icon)({
   borderColor: 'rgba(0,0,0,0.3)'
 })
 
-const SelectedVersesModal = ({ isOpen, isSelectedVerseHighlighted, toggleHighlight }: Props) => (
+const SelectedVersesModal = ({
+  verses,
+  isOpen,
+  isSelectedVerseHighlighted,
+  isSelectedVerseFavorited,
+  toggleHighlight,
+  toggleVerseFavorite,
+  shareVerses
+}: Props) => (
   <ModalBox
     isOpen={isOpen}
     animationDuration={200}
@@ -55,9 +69,10 @@ const SelectedVersesModal = ({ isOpen, isSelectedVerseHighlighted, toggleHighlig
   >
     <IconContainer>
       <RoundedIcon
-        name='bookmark-border'
-        size={15}
+        name={isSelectedVerseFavorited ? 'close' : 'bookmark'}
+        size={isSelectedVerseHighlighted ? 20 : 17}
         color='rgba(0,0,0,0.7)'
+        onPress={() => toggleVerseFavorite(isSelectedVerseFavorited)}
       />
       <IconText>Favori</IconText>
     </IconContainer>
@@ -71,8 +86,8 @@ const SelectedVersesModal = ({ isOpen, isSelectedVerseHighlighted, toggleHighlig
     </IconContainer>
     <IconContainer>
       <RoundedIcon
-        name={isSelectedVerseHighlighted ? 'share' : 'border-color'}
-        size={15}
+        name={isSelectedVerseHighlighted ? 'close' : 'border-color'}
+        size={isSelectedVerseHighlighted ? 20 : 15}
         color='rgba(0,0,0,0.7)'
         onPress={() => toggleHighlight(isSelectedVerseHighlighted)}
       />
@@ -83,6 +98,7 @@ const SelectedVersesModal = ({ isOpen, isSelectedVerseHighlighted, toggleHighlig
         name='share'
         size={15}
         color='rgba(0,0,0,0.7)'
+        onPress={() => shareVerses(verses)}
       />
       <IconText>Partager</IconText>
     </IconContainer>
@@ -91,16 +107,23 @@ const SelectedVersesModal = ({ isOpen, isSelectedVerseHighlighted, toggleHighlig
 
 const getSelectedVerses = state => state.getIn(['bible', 'selectedVerses'])
 const getHighlightedVerses = state => state.getIn(['user', 'bible', 'highlights'])
+const getFavoritedVerses = state => state.getIn(['user', 'bible', 'favorites'])
 
 const getHighlightInSelected = createSelector(
   [getSelectedVerses, getHighlightedVerses],
   (selected, highlighted) => Object.keys(selected.toJS()).find(s => highlighted.get(s))
 )
 
+const getFavoriteInSelected = createSelector(
+  [getSelectedVerses, getFavoritedVerses],
+  (selected, favorited) => Object.keys(selected.toJS()).find(s => favorited.get(s))
+)
+
 export default compose(
   connect(state => ({
     isOpen: !state.getIn(['bible', 'selectedVerses']).isEmpty(),
-    isSelectedVerseHighlighted: getHighlightInSelected(state)
+    isSelectedVerseHighlighted: !!getHighlightInSelected(state),
+    isSelectedVerseFavorited: !!getFavoriteInSelected(state)
   }), UserActions),
   pure
 )(SelectedVersesModal)

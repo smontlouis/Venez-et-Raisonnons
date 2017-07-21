@@ -4,6 +4,7 @@ import { Platform } from 'react-native'
 import glam from 'glamorous-native'
 import { pure, compose } from 'recompose'
 import { connect } from 'react-redux'
+import { Icon } from 'react-native-elements'
 import * as BibleActions from '@src/redux/modules/bible'
 import verseToStrong from '@src/helpers/verseToStrong'
 import { Text } from '@src/styled'
@@ -17,12 +18,11 @@ const Container = glam.touchableOpacity({
 
 const VersetWrapper = glam.view(
   {
-    marginTop: 3,
+    width: 30,
     marginRight: 5,
-    marginLeft: 15,
-    paddingRight: 3,
     borderRightWidth: 3,
-    borderRightColor: 'transparent'
+    borderRightColor: 'transparent',
+    alignItems: 'flex-end'
   },
   ({ isHighlight }, theme) => isHighlight ? {
     borderRightColor: theme.colors.secondary
@@ -32,15 +32,14 @@ const VersetWrapper = glam.view(
   } : {}
 )
 
-// const NumberText = glam(Text)(
-//   ({ isSelected }, theme) => isSelected ? {
-//     color: theme.colors.reverse,
-//     backgroundColor: theme.colors.tertiary,
-//     borderRadius: 5
-//   } : {}
-// )
+const NumberText = glam(Text)(
+  {
+    marginTop: 3,
+    paddingRight: 5
+  }
+)
 
-// NumberText.defaultProps = Text.defaultProps
+NumberText.defaultProps = Text.defaultProps
 
 const VerseText = glam(Text)(
   ({ isSelected }, theme) => isSelected ? {
@@ -48,17 +47,20 @@ const VerseText = glam(Text)(
     textDecorationColor: theme.colors.tertiary,
     textDecorationStyle: 'dotted'
   } : {}
-  // ({ isHighlight }, theme) => isHighlight ? {
-  //   backgroundColor: theme.colors.secondary
-  // } : {}
 )
 
 VerseText.defaultProps = Text.defaultProps
+
+const BookMarkIcon = glam(Icon)({
+  marginTop: 5,
+  marginRight: 2
+})
 
 class BibleVerse extends Component {
   props: {
     isSelected: boolean,
     isHighlighted: boolean,
+    isFavorited: boolean,
     verse: Verse,
     version: string,
     getPosition: Function,
@@ -109,7 +111,7 @@ class BibleVerse extends Component {
   }
 
   render () {
-    const { verse: { Verset }, isSelected, isHighlighted } = this.props
+    const { verse: { Verset }, isSelected, isHighlighted, isFavorited } = this.props
     return (
       <Container onPress={this.onVersePress} activeOpacity={0.8}>
         {
@@ -121,12 +123,20 @@ class BibleVerse extends Component {
             isHighlight={isHighlighted}
             isSelected={isSelected}
           >
-            <Text
+            <NumberText
               small
               tertiary
             >
               {Verset}
-            </Text>
+            </NumberText>
+            {
+              isFavorited &&
+              <BookMarkIcon
+                name={'bookmark'}
+                size={15}
+                color='rgba(0,0,0,0.4)'
+              />
+            }
           </VersetWrapper>
         }
         <VerseText
@@ -145,7 +155,8 @@ export default compose(
   connect(
     (state, { verse: { Livre, Chapitre, Verset } }) => ({
       isSelected: !!state.getIn(['bible', 'selectedVerses', `${Livre}-${Chapitre}-${Verset}`]),
-      isHighlighted: !!state.getIn(['user', 'bible', 'highlights', `${Livre}-${Chapitre}-${Verset}`])
+      isHighlighted: !!state.getIn(['user', 'bible', 'highlights', `${Livre}-${Chapitre}-${Verset}`]),
+      isFavorited: !!state.getIn(['user', 'bible', 'favorites', `${Livre}-${Chapitre}-${Verset}`])
     }),
     BibleActions
   ),
