@@ -6,7 +6,11 @@ import {
   REMOVE_FAVORITE,
   ADD_LIKE,
   REMOVE_LIKE,
-  USER_LOGIN_SUCCESS
+  USER_LOGIN_SUCCESS,
+  ADD_HIGHLIGHT,
+  REMOVE_HIGHLIGHT,
+  ADD_VERSE_FAVORITE,
+  REMOVE_VERSE_FAVORITE
 } from './modules/user'
 
 export default store => next => action => {
@@ -27,8 +31,8 @@ export default store => next => action => {
     }
     case ADD_LIKE:
     case REMOVE_LIKE: {
-      const likeCount = state.getIn(['questions', 'questions', action.id, 'likeCount'])
       const likes = user.getIn(['questions', 'likes']).toJS()
+      const likeCount = state.getIn(['questions', 'questions', action.id, 'likeCount'])
 
       isLogged && profileRef.update({ '/questions/likes': likes })
       questionRef.update({ likeCount })
@@ -38,6 +42,18 @@ export default store => next => action => {
     case REMOVE_AS_READ: {
       const hasBeenRead = user.getIn(['questions', 'hasBeenRead']).toJS()
       isLogged && profileRef.update({ '/questions/hasBeenRead': hasBeenRead })
+      break
+    }
+    case ADD_HIGHLIGHT:
+    case REMOVE_HIGHLIGHT: {
+      const highlights = user.getIn(['bible', 'highlights']).toJS()
+      isLogged && profileRef.update({ '/bible/highlights': highlights })
+      break
+    }
+    case ADD_VERSE_FAVORITE:
+    case REMOVE_VERSE_FAVORITE: {
+      const favorites = user.getIn(['bible', 'favorites']).toJS()
+      isLogged && profileRef.update({ '/bible/favorites': favorites })
       break
     }
     case USER_LOGIN_SUCCESS: {

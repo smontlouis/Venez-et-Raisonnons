@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import glam from 'glamorous-native'
 import { Icon } from 'react-native-elements'
 import { createSelector } from 'reselect'
+import Toast from 'react-native-simple-toast'
 import * as UserActions from '@src/redux/modules/user'
 
 import { type Verse } from '@src/types'
@@ -81,6 +82,7 @@ const SelectedVersesModal = ({
         name='content-paste'
         size={15}
         color='rgba(0,0,0,0.7)'
+        onPress={() => Toast.show('Bientôt disponible')}
       />
       <IconText>Note</IconText>
     </IconContainer>

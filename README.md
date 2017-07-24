@@ -27,7 +27,7 @@ Ceci est le code source de l'application Venez et Raisonnons, disponible sur [Go
 - [x] Persist data on Cloud
 - [x] FlatList everywhere
 - [x] Offlines pictures
-- [ ] Highlight / Copy / Share verses
+- [x] Highlight / Copy / Share verses
 - [ ] New design navigation (Glo Bible like)
 - [ ] New logo
 
@@ -42,6 +42,7 @@ Ceci est le code source de l'application Venez et Raisonnons, disponible sur [Go
 - [ ] Audit performance boot
 
 #### COULD 
+- [ ] Background tasks
 - [ ] Activity
 - [ ] Ask questions via form
 - [ ] Contribute to questions via form
