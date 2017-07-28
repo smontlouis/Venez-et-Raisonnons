@@ -1,11 +1,13 @@
 import Topics from './MainScreenTabs/Topics'
-import Favorites from './MainScreenTabs/Favorites'
 import More from './MainScreenTabs/More'
 import Bible from './MainScreenTabs/Bible'
+import Profile from './MainScreenTabs/Profile'
 
+import Favorites from './Favorites'
+import Liked from './Liked'
+import Read from './Read'
 import Search from './Search'
 import Topic from './Topic'
-import Profile from './Profile'
 import Question from './Question/Question'
 import QuestionSimple from './Question/QuestionSimple'
 import QuestionStudy from './Question/QuestionStudy'
@@ -23,6 +25,8 @@ import LexiqueGrec from './Lexique/LexiqueGrec'
 export {
   Topics,
   Favorites,
+  Liked,
+  Read,
   More,
   Bible,
   Search,

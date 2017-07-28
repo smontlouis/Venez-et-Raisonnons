@@ -13,10 +13,10 @@ const stylesToBind = {
     medium: 27
   },
   fontFamily: theme => ({
-    primaryFont: theme.fonts.text,
+    serif: theme.fonts.text,
+    sansSerif: 'arial',
     secondaryFont: theme.fonts.secondaryFont,
-    tertiaryFont: theme.fonts.tertiaryFont,
-    sansSerif: 'arial'
+    tertiaryFont: theme.fonts.tertiaryFont
   }),
   color: theme => ({
     default: theme.colors.default,
@@ -50,7 +50,7 @@ Text.defaultProps = {
   color: 'default',
   fontSize: 'medium',
   lineHeight: 'medium',
-  fontFamily: 'primaryFont'
+  fontFamily: 'serif'
 }
 
 export default Text

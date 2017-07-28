@@ -1,16 +1,25 @@
+// @flow
+
 import React from 'react'
-import { compose, renderComponent, branch } from 'recompose'
+import { compose, renderComponent, branch, pure } from 'recompose'
 import { StatusBar, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import { Header, Link, ScrollableHeader } from '@components'
-import { Section, ProfileImage, ProfileItem } from '@components/Profile'
+import { Section, ProfileImage, ProfileItem, SendEmail } from '@components/Profile'
 import { Container, Box, Text, Title, Spacer } from '@ui'
 import { FireAuth, withLogin } from '@helpers'
+
+import type {
+  NavigationAction,
+  NavigationState,
+  NavigationScreenProp
+} from 'react-navigation/src/TypeDefinition'
 
 const UnloggedProfile = () => (
   <Container>
     <Header
       title='Profile'
+      hasBackButton={false}
     />
     <Box>
       <Text>
@@ -26,49 +35,54 @@ const UnloggedProfile = () => (
 )
 
 type Props = {
-  isLogged: bool,
   name?: string,
   picture?: string,
   email: string,
-  emailVerified: boolean
+  emailVerified: boolean,
+  navigation: NavigationScreenProp<NavigationState, NavigationAction>,
 }
 
-const Profile = ({ isLogged, name = 'Profile', picture, email, emailVerified }: Props) => (
+const Profile = ({
+  name = 'Profile',
+  picture,
+  email,
+  emailVerified,
+  navigation
+}: Props) => (
   <Container>
     <StatusBar barStyle='light-content' />
     <ScrollableHeader
       title={name}
+      hasBackButton={false}
       header={(
         <Box center>
-          <ProfileImage source={picture ? { uri: picture } : require('../../static/images/bible.png')} />
+          <ProfileImage source={picture ? { uri: picture } : require('../../../static/images/bible.png')} />
           <Title secondaryFont reverse style={{ marginTop: 10 }}>{name}</Title>
           <Text sansSerif style={{ marginBottom: 30, color: 'rgba(255,255,255, 0.5)' }}>{email}</Text>
-          {
-            !emailVerified &&
-            <Text>
-              Vous n'avez pas encore vérifié votre compte !
-            </Text>
-          }
         </Box>
       )}
     >
       <ScrollView>
+        {
+          !emailVerified &&
+          <SendEmail />
+        }
         <Section title='Questions' />
         <Box row>
           <ProfileItem
             icon='bookmark'
             name='Favoris'
-            onPress={() => console.log('coucou')}
+            onPress={() => navigation.navigate('favorites')}
           />
           <ProfileItem
             icon='playlist-add-check'
             name='Lues'
-            onPress={() => console.log('coucou')}
+            onPress={() => navigation.navigate('read')}
           />
           <ProfileItem
             icon='favorite'
             name='Aimées'
-            onPress={() => console.log('coucou')}
+            onPress={() => navigation.navigate('liked')}
           />
         </Box>
         <Section title='Bible' />
@@ -116,12 +130,7 @@ const Profile = ({ isLogged, name = 'Profile', picture, email, emailVerified }: 
   </Container>
 )
 
-export default compose(
-  withLogin,
-  branch(
-    ({ isLogged }) => !isLogged,
-    renderComponent(UnloggedProfile)
-  ),
+const enhance = compose(
   connect(
     (state) => ({
       name: state.getIn(['user', 'displayName']),
@@ -129,5 +138,13 @@ export default compose(
       picture: state.getIn(['user', 'photoURL']),
       emailVerified: state.getIn(['user', 'emailVerified'])
     })
+  ),
+  withLogin,
+  pure,
+  branch(
+    ({ isLogged }) => !isLogged,
+    renderComponent(UnloggedProfile)
   )
-)(Profile)
+)
+
+export default enhance(Profile)

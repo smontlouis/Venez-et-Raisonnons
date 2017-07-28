@@ -42,6 +42,8 @@ import BibleFooter from './Bible/BibleFooter'
 import ConcordanceList from './Bible/ConcordanceList'
 import SelectedVersesModal from './Bible/SelectedVersesModal'
 
+import NavigationComponent from './TabBar/NavigationComponent'
+
 export {
   List,
   QuestionsList,
@@ -70,6 +72,7 @@ export {
   PaginateSlider,
   LexiqueMot,
   Contribute,
+  NavigationComponent,
 
   BibleViewer,
   BibleVerse,

@@ -32,20 +32,6 @@ const primaryList = [
 
 const secondaryList = [
   {
-    title: 'Profil',
-    icon: 'account-circle',
-    onPress (navigation) {
-      navigation.navigate('profile')
-    }
-  },
-  {
-    title: 'À propos',
-    icon: 'info-outline',
-    onPress (navigation) {
-      navigation.navigate('about')
-    }
-  },
-  {
     title: 'Astuces',
     icon: 'help-outline',
     onPress (navigation) {

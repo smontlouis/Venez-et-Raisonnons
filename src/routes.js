@@ -1,7 +1,6 @@
 import { StackNavigator } from 'react-navigation'
 
 import Topic from '@src/containers/Topic'
-import Profile from '@src/containers/Profile'
 import Question from '@src/containers/Question/Question'
 import Add from '@src/containers/Add'
 import About from '@src/containers/About'
@@ -14,9 +13,12 @@ import Concordance from '@src/containers/Concordance'
 import Search from '@src/containers/Search'
 import Login from '@src/containers/Login'
 import Register from '@src/containers/Register'
+import Favorites from '@src/containers/Favorites'
+import Liked from '@src/containers/Liked'
+import Read from '@src/containers/Read'
 
+import Profile from '@src/containers/MainScreenTabs/Profile'
 import More from '@src/containers/MainScreenTabs/More'
-import Favorites from '@src/containers/MainScreenTabs/Favorites'
 import Bible from '@src/containers/MainScreenTabs/Bible'
 import Topics from '@src/containers/MainScreenTabs/Topics'
 import MainScreen from '@src/containers/MainScreenTabs/MainScreenNavigator'
@@ -27,6 +29,8 @@ const routesConfigs = {
   modal: { screen: Modal },
   topics: { screen: Topics },
   favorites: { screen: Favorites },
+  liked: { screen: Liked },
+  read: { screen: Read },
   search: { screen: Search },
   profile: { screen: Profile },
   more: { screen: More },
