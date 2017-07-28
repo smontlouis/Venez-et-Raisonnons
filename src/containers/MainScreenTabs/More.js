@@ -32,10 +32,10 @@ const primaryList = [
 
 const secondaryList = [
   {
-    title: 'Se connecter',
+    title: 'Profil',
     icon: 'account-circle',
     onPress (navigation) {
-      navigation.navigate('login')
+      navigation.navigate('profile')
     }
   },
   {

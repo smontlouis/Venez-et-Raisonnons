@@ -28,6 +28,8 @@ Ceci est le code source de l'application Venez et Raisonnons, disponible sur [Go
 - [x] FlatList everywhere
 - [x] Offlines pictures
 - [x] Highlight / Copy / Share verses
+- [ ] Register user / Login
+- [ ] ?Force users to be logged to perform actions
 - [ ] New design navigation (Glo Bible like)
 - [ ] New logo
 

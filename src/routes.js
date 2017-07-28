@@ -13,6 +13,7 @@ import Modal from '@src/containers/Modal'
 import Concordance from '@src/containers/Concordance'
 import Search from '@src/containers/Search'
 import Login from '@src/containers/Login'
+import Register from '@src/containers/Register'
 
 import More from '@src/containers/MainScreenTabs/More'
 import Favorites from '@src/containers/MainScreenTabs/Favorites'
@@ -35,6 +36,7 @@ const routesConfigs = {
   about: { screen: About },
   astuces: { screen: Astuces },
   login: { screen: Login },
+  register: { screen: Register },
 
   bible: { screen: Bible },
   bibleSelector: { screen: BibleSelector },

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import withFCM from '@src/helpers/FCMInit'
+import withFCM from '@src/helpers/withFCM'
 import withFireAuth from '@src/helpers/withFireAuth'
 import {
   NoItems,

@@ -1,7 +1,18 @@
-import glamorous, { Text } from 'glamorous-native'
+import glamorous, { View } from 'glamorous-native'
 
-const Box = glamorous(Text)(
-  ({ row }) => row ? { flexDirection: 'row' } : {}
+const Box = glamorous(View)(
+  ({ row, flex, center, padding }) => ({
+    flex: flex && 1,
+    flexDirection: row && 'row',
+    ...center ? {
+      justifyContent: 'center',
+      alignItems: 'center'
+    } : {},
+    ...padding ? {
+      paddingTop: 20,
+      paddingBottom: 20
+    } : {}
+  })
 )
 
 export default Box

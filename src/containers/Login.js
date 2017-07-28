@@ -1,56 +1,91 @@
 import React from 'react'
-import { compose } from 'recompose'
-import { connect } from 'react-redux'
-import EStyleSheet from 'react-native-extended-stylesheet'
-import { Button, SocialIcon } from 'react-native-elements'
-import { View } from 'react-native'
-import { Header } from '@src/components'
+import { compose, withStateHandlers, lifecycle, pure } from 'recompose'
+import { withNavigation } from 'react-navigation'
+import { Button, FormLabel, FormInput } from 'react-native-elements'
+import { Header, Link } from '@components'
+import { Spacer, Container, Box, Text } from '@ui'
+import { FireAuth, withLogin } from '@helpers'
 
-import FireAuth from '@src/helpers/fireAuth'
-
-const styles = EStyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white'
-  }
-})
-
-const Login = ({ isLogged }) => (
-  <View style={styles.container}>
+const Login = ({ email, password, changeEmail, changePassword }) => (
+  <Container>
     <Header
       title='Connexion'
     />
-    {
-      !isLogged &&
-      <View>
-        <SocialIcon
-          onPress={() => FireAuth.googleLogin()}
-          title='Se connecter avec Google'
-          button
-          type='google-plus-official'
+    <Box>
+      <Box padding>
+        <FormLabel>Email</FormLabel>
+        <FormInput
+          autoCapitalize='none'
+          autoCorrect={false}
+          onChangeText={changeEmail}
         />
-        <SocialIcon
-          onPress={() => FireAuth.facebookLogin()}
-          title='Se connecter avec Facebook'
-          button
-          type='facebook'
+        <FormLabel>Password</FormLabel>
+        <FormInput
+          secureTextEntry
+          autoCapitalize='none'
+          autoCorrect={false}
+          onChangeText={changePassword}
         />
-      </View>
-    }
-    {
-      isLogged &&
-      <Button
-        onPress={() => FireAuth.logout()}
-        title='Se déconnecter'
-      />
-    }
-  </View>
+        <Spacer size={20} />
+        <Button
+          title='Se connecter'
+          onPress={() => FireAuth.login(email, password)}
+          buttonStyle={{ backgroundColor: '#C22839', borderRadius: 5 }}
+        />
+      </Box>
+      <Box center>
+        <Text tertiaryFont>
+          - ou -
+        </Text>
+      </Box>
+      <Box row padding>
+        <Box flex>
+          <Button
+            onPress={() => FireAuth.googleLogin()}
+            icon={{name: 'google-plus', type: 'font-awesome'}}
+            title='Google'
+            buttonStyle={{ backgroundColor: '#dd4b39', borderRadius: 5 }}
+          />
+        </Box>
+        <Box flex>
+          <Button
+            onPress={() => FireAuth.facebookLogin()}
+            icon={{name: 'facebook', type: 'font-awesome'}}
+            title='Facebook'
+            buttonStyle={{ backgroundColor: '#3b5998', borderRadius: 5 }}
+          />
+        </Box>
+      </Box>
+      <Box padding center>
+        <Link route={'register'}>
+          <Text sansSerif underline>
+            Pas de compte ? Inscrivez-vous.
+          </Text>
+        </Link>
+      </Box>
+    </Box>
+  </Container>
 )
 
 export default compose(
-  connect(
-    (state) => ({
-      isLogged: !!state.getIn(['user', 'email'])
-    })
-  )
+  withLogin,
+  withNavigation,
+  lifecycle({
+    componentWillReceiveProps (nextProps) {
+      if (this.props.isLogged !== nextProps.isLogged && nextProps.isLogged) {
+        this.props.navigation.goBack()
+      }
+    }
+  }),
+  withStateHandlers(
+    {
+      email: '',
+      password: ''
+    },
+    {
+      changeEmail: ({ email }) => (value) => ({ email: value }),
+      changePassword: ({ password }) => (value) => ({ password: value })
+    }
+  ),
+  pure
 )(Login)

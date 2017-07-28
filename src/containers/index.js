@@ -1,21 +1,44 @@
-export Topics from './MainScreenTabs/Topics'
-export Favorites from './MainScreenTabs/Favorites'
-export More from './MainScreenTabs/More'
-export Bible from './MainScreenTabs/Bible'
+import Topics from './MainScreenTabs/Topics'
+import Favorites from './MainScreenTabs/Favorites'
+import More from './MainScreenTabs/More'
+import Bible from './MainScreenTabs/Bible'
 
-export Search from './Search'
-export Topic from './Topic'
-export Profile from './Profile'
-export Question from './Question/Question'
-export QuestionSimple from './Question/QuestionSimple'
-export QuestionStudy from './Question/QuestionStudy'
-export Add from './Add'
-export Master from './Master'
-export About from './About'
-export BibleSelector from './BibleSelector'
-export VersionSelector from './VersionSelector'
-export StrongModal from './StrongModal'
-export Modal from './Modal'
-export Concordance from './Concordance'
-export LexiqueHebreu from './Lexique/LexiqueHebreu'
-export LexiqueGrec from './Lexique/LexiqueGrec'
+import Search from './Search'
+import Topic from './Topic'
+import Profile from './Profile'
+import Question from './Question/Question'
+import QuestionSimple from './Question/QuestionSimple'
+import QuestionStudy from './Question/QuestionStudy'
+import Add from './Add'
+import Master from './Master'
+import About from './About'
+import BibleSelector from './BibleSelector'
+import VersionSelector from './VersionSelector'
+import StrongModal from './StrongModal'
+import Modal from './Modal'
+import Concordance from './Concordance'
+import LexiqueHebreu from './Lexique/LexiqueHebreu'
+import LexiqueGrec from './Lexique/LexiqueGrec'
+
+export {
+  Topics,
+  Favorites,
+  More,
+  Bible,
+  Search,
+  Topic,
+  Profile,
+  Question,
+  QuestionSimple,
+  QuestionStudy,
+  Add,
+  Master,
+  About,
+  BibleSelector,
+  VersionSelector,
+  StrongModal,
+  Modal,
+  Concordance,
+  LexiqueHebreu,
+  LexiqueGrec
+}

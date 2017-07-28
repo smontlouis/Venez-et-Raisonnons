@@ -29,11 +29,11 @@ const FireAuth = class {
       if (user) {
         // Determine if user needs to verify email
         var emailVerified = !user.providerData || !user.providerData.length || user.providerData[0].providerId != 'password' || user.emailVerified
-
+        console.log(user)
         const profile = {
           uid: user.uid,
           email: user.email,
-          displayName: user.displayName,
+          ...(user.displayName ? { displayName: user.displayName } : {}),
           photoURL: user.photoURL,
           provider: user.providerData[0].providerId,
           lastSeen: Date.now(),
@@ -76,10 +76,11 @@ const FireAuth = class {
     }
   }
 
-  register = (username, password) => {
+  register = (username, email, password) => {
     try {
-      firebase.auth().createUserWithEmailAndPassword(username, password)
+      firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((user) => {
+          firebase.database().ref(`profiles/${user.uid}`).update({displayName: username})
           user.sendEmailVerification()
         })
         .catch((err) => this.onError && this.onError(err))

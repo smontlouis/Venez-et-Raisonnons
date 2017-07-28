@@ -1,6 +1,8 @@
 import glamorous from 'glamorous-native'
 import { bindStyles } from 'glam-props'
 
+const { Text: T } = glamorous
+
 const stylesToBind = {
   fontSize: {
     small: 12,
@@ -13,7 +15,8 @@ const stylesToBind = {
   fontFamily: theme => ({
     primaryFont: theme.fonts.text,
     secondaryFont: theme.fonts.secondaryFont,
-    tertiaryFont: theme.fonts.tertiaryFont
+    tertiaryFont: theme.fonts.tertiaryFont,
+    sansSerif: 'arial'
   }),
   color: theme => ({
     default: theme.colors.default,
@@ -23,7 +26,7 @@ const stylesToBind = {
   })
 }
 
-const Text = glamorous.text(
+const Text = glamorous(T)(
   {
     backgroundColor: 'transparent'
   },
@@ -33,7 +36,14 @@ const Text = glamorous.text(
     fontFamily: s.fontFamily,
     color: s.color
   })),
-  ({ flex }) => flex ? { flex: 1 } : {}
+  ({ flex, underline }) => ({
+    ...flex ? { flex: 1 } : {},
+    ...underline ? {
+      textDecorationLine: 'underline',
+      textDecorationStyle: 'solid',
+      textDecorationColor: 'black'
+    } : {}
+  })
 )
 
 Text.defaultProps = {

@@ -4,6 +4,7 @@ export default {
   colors: {
     default: globals.color.black,
     reverse: globals.color.white,
+    grey: '#4E4F4F',
     darkGrey: 'rgba(0,0,0,0.5)',
     primary: '#C22839',
     primaryLighten: 'rgba(194, 40, 57, 0.7)',
