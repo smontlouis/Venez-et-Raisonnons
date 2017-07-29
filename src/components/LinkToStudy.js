@@ -58,10 +58,10 @@ LinkToStudy.propTypes = {
 }
 
 export default compose(
+  pure,
   connect(
     (state, ownProps) => ({
       question: state.getIn(['questions', 'questions', ownProps.id])
     })
-  ),
-  pure
+  )
 )(LinkToStudy)

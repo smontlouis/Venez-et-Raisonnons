@@ -74,10 +74,10 @@ class VerseConcordance extends Component {
 }
 
 export default compose(
+  pure,
   connect(
     (state, ownProps) => ({
       book: books[ownProps.verse.Livre - 1]
     })
-  ),
-  pure
+  )
 )(VerseConcordance)

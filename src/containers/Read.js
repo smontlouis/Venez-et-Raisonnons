@@ -47,10 +47,10 @@ const Read = ({ questions }: Props) => (
 )
 
 export default compose(
+  pure,
   connect(
     state => ({
       questions: filterQuestionsByHasBeenRead(state)
     })
-  ),
-  pure
+  )
 )(Read)

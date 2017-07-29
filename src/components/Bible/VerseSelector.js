@@ -104,13 +104,13 @@ class VerseSelector extends Component {
 }
 
 export default compose(
+  pure,
   connect(
     state => ({
       selectedBook: state.getIn(['bible', 'temp', 'selectedBook']).toJS(),
       selectedChapter: state.getIn(['bible', 'temp', 'selectedChapter']),
       selectedVerse: state.getIn(['bible', 'temp', 'selectedVerse'])
     }),
-    BibleActions
-  ),
-  pure
+    { ...BibleActions }
+  )
 )(VerseSelector)

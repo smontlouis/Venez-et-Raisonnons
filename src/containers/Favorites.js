@@ -36,7 +36,7 @@ const Questions = compose(
   />
 )
 
-const Likes = ({ questions }: Props) => (
+const Favorites = ({ questions }: Props) => (
   <Container>
     <StatusBar barStyle='light-content' />
     <Header
@@ -47,10 +47,10 @@ const Likes = ({ questions }: Props) => (
 )
 
 export default compose(
+  pure,
   connect(
     state => ({
       questions: filterQuestionsByFavorites(state)
     })
-  ),
-  pure
-)(Likes)
+  )
+)(Favorites)

@@ -10,7 +10,7 @@ import { BibleVerse, BibleFooter, Loading, SelectedVersesModal } from '@src/comp
 import { loadBible } from '@src/helpers'
 import * as BibleActions from '@src/redux/modules/bible'
 
-import { type Verse, type Book } from '@src/types'
+import type { Verse, Book } from '../../types'
 
 const styles = EStyleSheet.create({
   container: {
@@ -212,9 +212,9 @@ class BibleViewer extends Component {
 }
 
 export default compose(
+  pure,
   connect(
     null,
-    BibleActions
-  ),
-  pure
+    { ...BibleActions }
+  )
 )(BibleViewer)

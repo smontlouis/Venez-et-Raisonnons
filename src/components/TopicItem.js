@@ -137,6 +137,7 @@ class TopicItem extends Component {
 }
 
 export default compose(
+  pure,
   connect(
     (state, ownProps) => ({
       localImage: getLocalImagePath(state, ownProps),
@@ -144,6 +145,5 @@ export default compose(
       questionsCount: getQuestionsNumberByTopic(state, ownProps),
       newQuestionCount: getNewQuestionsCountByTopic(state, ownProps)
     })
-  ),
-  pure
+  )
 )(TopicItem)

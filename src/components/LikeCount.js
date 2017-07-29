@@ -45,11 +45,11 @@ const LikeCount = ({ id, toggleLike, isActive, count }: Props) => (
 )
 
 export default compose(
+  pure,
   connect(
     (state, ownProps) => ({
       isActive: !!state.getIn(['user', 'questions', 'likes', ownProps.id])
     }),
-    UserActions
-  ),
-  pure
+    {...UserActions}
+  )
 )(LikeCount)

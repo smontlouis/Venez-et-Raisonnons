@@ -91,11 +91,11 @@ const PrevNext = ({ previous, next }: Props) => (
 )
 
 export default compose(
+  pure,
   connect(
     (state, ownProps) => ({
       previous: getPrevNextQuestion(state, ownProps, false),
       next: getPrevNextQuestion(state, ownProps, true)
     })
-  ),
-  pure
+  )
 )(PrevNext)

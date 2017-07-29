@@ -7,8 +7,6 @@ import verseToStrong from './verseToStrong'
 import capitalize from './capitalize'
 import loadBible from './loadBible'
 import range from './range'
-import bindStyles from './bindStyles'
-import useGlamProps from './useGlamProps'
 import FireAuth from './fireAuth'
 import withFireAuth from './withFireAuth'
 import withLogin from './withLogin'
@@ -24,8 +22,6 @@ export {
   capitalize,
   loadBible,
   range,
-  bindStyles,
-  useGlamProps,
   FireAuth,
   withFireAuth,
   withLogin,

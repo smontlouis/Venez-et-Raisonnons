@@ -111,10 +111,10 @@ const Header = ({ title, hasBackButton = true, isTransparent, isLight, isLoading
 }
 
 export default compose(
+  pure,
   connect(
     state => ({
       isLoading: state.get('app').get('isLoading')
     })
-  ),
-  pure
+  )
 )(Header)

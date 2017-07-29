@@ -62,12 +62,12 @@ class ChapterSelector extends Component {
 }
 
 export default compose(
+  pure,
   connect(
     state => ({
       selectedBook: state.getIn(['bible', 'temp', 'selectedBook']).toJS(),
       selectedChapter: state.getIn(['bible', 'temp', 'selectedChapter'])
     }),
-    BibleActions
-  ),
-  pure
+    { ...BibleActions }
+  )
 )(ChapterSelector)

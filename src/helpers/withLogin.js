@@ -1,10 +1,12 @@
+// @flow
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-const withLogin = (WrappedComponent) => (
-  @connect((state) => ({
-    isLogged: !!state.getIn(['user', 'email'])
-  }))
+// type FunctionComponent<P> = (props: P) => ?React$Element<any>
+type ClassComponent<P> = Class<React$Component<void, P, void>>
+
+const withLogin = <P: Object>(WrappedComponent: ClassComponent<P>): ClassComponent<P> => {
   class LoginComponent extends Component {
     render () {
       return (
@@ -12,6 +14,10 @@ const withLogin = (WrappedComponent) => (
       )
     }
   }
-)
+
+  return connect((state: Object) => ({
+    isLogged: !!state.getIn(['user', 'email'])
+  }))(LoginComponent)
+}
 
 export default withLogin

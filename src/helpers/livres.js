@@ -1,4 +1,8 @@
-export default [
+// @flow
+
+import { type Book } from '@src/types'
+
+const livres: Array<Book> = [
   {
     Numero: 1,
     Nom: 'Genèse',
@@ -330,3 +334,5 @@ export default [
     Chapitres: 22
   }
 ]
+
+export default livres

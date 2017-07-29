@@ -122,10 +122,10 @@ const getFavoriteInSelected = createSelector(
 )
 
 export default compose(
+  pure,
   connect(state => ({
     isOpen: !state.getIn(['bible', 'selectedVerses']).isEmpty(),
     isSelectedVerseHighlighted: !!getHighlightInSelected(state),
     isSelectedVerseFavorited: !!getFavoriteInSelected(state)
-  }), UserActions),
-  pure
+  }), { ...UserActions })
 )(SelectedVersesModal)

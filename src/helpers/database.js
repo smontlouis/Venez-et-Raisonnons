@@ -1,19 +1,29 @@
+// @flow
+
 import SQLite from 'react-native-sqlite-storage'
 
 if (__DEV__) SQLite.DEBUG(true)
 SQLite.enablePromise(true)
 
 const okCallback = () => {}
-const errorCallback = err => console.log('error', err)
+const errorCallback = (err: string) => console.log('error', err)
 
-let DB
+type Results = {
+  rows: {
+    length: number,
+    item: (i: number) => Object
+  }
+}
+let DB: {
+  executeSql: (req: string) => Promise<Array<Results>>
+}
 
-export const initDB = SQLite.openDatabase({
+export const initDB: typeof DB = SQLite.openDatabase({
   name: 'venez-et-raisonnons-db.db',
   readOnly: true,
   createFromLocation: '~www/venez-et-raisonnons-db.db'
 }, okCallback, errorCallback)
-  .then((db) => {
+  .then((db: typeof DB) => {
     DB = db
     return DB
   })

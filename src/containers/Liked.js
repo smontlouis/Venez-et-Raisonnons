@@ -47,10 +47,10 @@ const Likes = ({ questions }: Props) => (
 )
 
 export default compose(
+  pure,
   connect(
     state => ({
       questions: filterQuestionsByLikes(state)
     })
-  ),
-  pure
+  )
 )(Likes)

@@ -67,11 +67,11 @@ const MarkAsRead = ({ id, toggleMarkAsRead, isActive, hasIconOnly }: Props) => (
 )
 
 export default compose(
+  pure,
   connect(
     (state, ownProps) => ({
       isActive: !!state.getIn(['user', 'questions', 'hasBeenRead', ownProps.id])
     }),
-    UserActions
-  ),
-  pure
+    {...UserActions}
+  )
 )(MarkAsRead)

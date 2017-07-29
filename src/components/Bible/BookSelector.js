@@ -8,7 +8,12 @@ import * as BibleActions from '../../redux/modules/bible'
 import books from '../../helpers/livres'
 import { BookSelectorItem } from '../../components'
 
-import { type Book } from '../../types'
+import type { Book } from '../../types'
+import type {
+  NavigationAction,
+  NavigationState,
+  NavigationScreenProp
+} from 'react-navigation/src/TypeDefinition'
 
 const styles = EStyleSheet.create({
   container: {
@@ -18,10 +23,14 @@ const styles = EStyleSheet.create({
   }
 })
 
+type RenderedItem = {
+  item: Book
+}
+
 class BookSelector extends Component {
   props: {
-    navigation: Object,
-    setTempSelectedBook: Function,
+    navigation: NavigationScreenProp<NavigationState, NavigationAction>,
+    setTempSelectedBook: (book: Book) => void,
     selectedBook: Book
   }
 
@@ -42,8 +51,8 @@ class BookSelector extends Component {
     return (
       <FlatList
         data={Object.values(books)}
-        keyExtractor={(item, index) => index}
-        renderItem={({ item: book }: any) => (
+        keyExtractor={(item: Book, index: number) => `${index}`}
+        renderItem={({ item: book }: RenderedItem) => (
           <BookSelectorItem
             onChange={this.onBookChange}
             book={book}
@@ -57,11 +66,11 @@ class BookSelector extends Component {
 }
 
 export default compose(
+  pure,
   connect(
     state => ({
       selectedBook: state.getIn(['bible', 'temp', 'selectedBook']).toJS()
     }),
-    BibleActions
-  ),
- pure
+    { ...BibleActions }
+  )
 )(BookSelector)

@@ -152,13 +152,13 @@ class BibleVerse extends Component {
 }
 
 export default compose(
+  pure,
   connect(
     (state, { verse: { Livre, Chapitre, Verset } }) => ({
       isSelected: !!state.getIn(['bible', 'selectedVerses', `${Livre}-${Chapitre}-${Verset}`]),
       isHighlighted: !!state.getIn(['user', 'bible', 'highlights', `${Livre}-${Chapitre}-${Verset}`]),
       isFavorited: !!state.getIn(['user', 'bible', 'favorites', `${Livre}-${Chapitre}-${Verset}`])
     }),
-    BibleActions
-  ),
-  pure
+    { ...BibleActions }
+  )
 )(BibleVerse)
