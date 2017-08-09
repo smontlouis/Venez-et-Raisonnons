@@ -25,6 +25,7 @@ import PaginateList from './PaginateList'
 import PaginateSlider from './PaginateSlider'
 import LexiqueMot from './LexiqueMot'
 import Contribute from './Contribute'
+// import LoginModal from './LoginModal'
 
 import BibleViewer from './Bible/BibleViewer'
 import BibleVerse from './Bible/BibleVerse'
@@ -75,6 +76,7 @@ export {
   LexiqueMot,
   Contribute,
   NavigationComponent,
+  // LoginModal,
 
   BibleViewer,
   BibleVerse,

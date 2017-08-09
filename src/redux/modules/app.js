@@ -5,6 +5,8 @@ const LOAD_DATA = 'app/LOAD_DATA'
 export const LOAD_DATA_SUCCESS = 'app/LOAD_DATA_SUCCESS'
 const LOAD_DATA_FAIL = 'app/LOAD_DATA_FAIL'
 export const SET_LAST_UPDATE = 'app/SET_LAST_UPDATE'
+export const SHOW_LOGIN_MODAL = 'app/SHOW_LOGIN_MODAL'
+export const HIDE_LOGIN_MODAL = 'app/HIDE_LOGIN_MODAL'
 
 const AppData = firebaseDb.ref('/')
 
@@ -19,7 +21,8 @@ const AppData = firebaseDb.ref('/')
 
 const initialState = Map({
   lastUpdate: 0,
-  isLoading: false
+  isLoading: false,
+  isLoginModalOpened: false
 })
 
 export function loadDataSuccess (result) {
@@ -70,6 +73,18 @@ export function loadData () {
   }
 }
 
+export function showLoginModal () {
+  return {
+    type: SHOW_LOGIN_MODAL
+  }
+}
+
+export function hideLoginModal () {
+  return {
+    type: HIDE_LOGIN_MODAL
+  }
+}
+
 export default function AppReducer (state = initialState, action = {}) {
   switch (action.type) {
     case LOAD_DATA: {
@@ -83,6 +98,12 @@ export default function AppReducer (state = initialState, action = {}) {
     }
     case SET_LAST_UPDATE: {
       return state.set('lastUpdate', action.val)
+    }
+    case SHOW_LOGIN_MODAL: {
+      return state.set('isLoginModalOpened', true)
+    }
+    case HIDE_LOGIN_MODAL: {
+      return state.set('isLoginModalOpened', false)
     }
     default:
       return state

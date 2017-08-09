@@ -1,12 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import withFCM from '@src/helpers/withFCM'
-import withFireAuth from '@src/helpers/withFireAuth'
-import {
-  NoItems,
-  Loading
-} from '@src/components'
+import { withFCM, withFireAuth } from '@helpers'
+import { NoItems, Loading, LoginModal } from '@components'
 import { loadData } from '@src/redux/modules/app'
+import { Container } from '@ui'
 
 @connect(
   state => ({
@@ -48,7 +45,12 @@ class Master extends Component {
       )
     }
 
-    return children
+    return (
+      <Container>
+        {children}
+        {/* <LoginModal /> */}
+      </Container>
+    )
   }
 }
 

@@ -1,5 +1,6 @@
 import { Map, fromJS } from 'immutable'
 import { clearSelectedVerses } from './bible'
+import { showLoginModal } from './app'
 import books from '@src/helpers/livres'
 import { Share } from 'react-native'
 
@@ -91,12 +92,18 @@ export default function UserReducer (state = initialState, action = {}) {
   }
 }
 
+const isLogged = (state) => !!state.getIn(['user', 'email'])
+
 export function toggleFavorite (id) {
   return (dispatch, getState) => {
-    if (getState().getIn(['user', 'questions', 'favorites', id])) {
-      return dispatch({ type: REMOVE_FAVORITE, id })
+    if (isLogged(getState())) {
+      if (getState().getIn(['user', 'questions', 'favorites', id])) {
+        return dispatch({ type: REMOVE_FAVORITE, id })
+      }
+      return dispatch({ type: ADD_FAVORITE, id })
+    } else {
+      return dispatch(showLoginModal())
     }
-    return dispatch({ type: ADD_FAVORITE, id })
   }
 }
 
@@ -116,19 +123,61 @@ export function removeAsRead (id) {
 
 export function toggleMarkAsRead (id) {
   return (dispatch, getState) => {
-    if (getState().getIn(['user', 'questions', 'hasBeenRead', id])) {
-      return dispatch({ type: REMOVE_AS_READ, id })
+    if (isLogged(getState())) {
+      if (getState().getIn(['user', 'questions', 'hasBeenRead', id])) {
+        return dispatch({ type: REMOVE_AS_READ, id })
+      }
+      return dispatch({ type: MARK_AS_READ, id })
+    } else {
+      return dispatch(showLoginModal())
     }
-    return dispatch({ type: MARK_AS_READ, id })
   }
 }
 
 export function toggleLike (id) {
   return (dispatch, getState) => {
-    if (getState().getIn(['user', 'questions', 'likes', id])) {
-      return dispatch({ type: REMOVE_LIKE, id })
+    if (isLogged(getState())) {
+      if (getState().getIn(['user', 'questions', 'likes', id])) {
+        return dispatch({ type: REMOVE_LIKE, id })
+      }
+      return dispatch({ type: ADD_LIKE, id })
+    } else {
+      return dispatch(showLoginModal())
     }
-    return dispatch({ type: ADD_LIKE, id })
+  }
+}
+
+export function toggleHighlight (hasHighlighted) {
+  return (dispatch, getState) => {
+    if (isLogged(getState())) {
+      const selectedVerses = getState().getIn(['bible', 'selectedVerses'])
+
+      if (hasHighlighted) {
+        dispatch({ type: REMOVE_HIGHLIGHT, selectedVerses })
+      } else {
+        dispatch({ type: ADD_HIGHLIGHT, selectedVerses })
+      }
+      dispatch(clearSelectedVerses())
+    } else {
+      return dispatch(showLoginModal())
+    }
+  }
+}
+
+export function toggleVerseFavorite (hasFavorited) {
+  return (dispatch, getState) => {
+    if (isLogged(getState())) {
+      const selectedVerses = getState().getIn(['bible', 'selectedVerses'])
+
+      if (hasFavorited) {
+        dispatch({ type: REMOVE_VERSE_FAVORITE, selectedVerses })
+      } else {
+        dispatch({ type: ADD_VERSE_FAVORITE, selectedVerses })
+      }
+      dispatch(clearSelectedVerses())
+    } else {
+      return dispatch(showLoginModal())
+    }
   }
 }
 
@@ -149,32 +198,6 @@ export function onUserUpdateProfile (profile) {
   return {
     type: USER_UPDATE_PROFILE,
     payload: profile
-  }
-}
-
-export function toggleHighlight (hasHighlighted) {
-  return (dispatch, getState) => {
-    const selectedVerses = getState().getIn(['bible', 'selectedVerses'])
-
-    if (hasHighlighted) {
-      dispatch({ type: REMOVE_HIGHLIGHT, selectedVerses })
-    } else {
-      dispatch({ type: ADD_HIGHLIGHT, selectedVerses })
-    }
-    dispatch(clearSelectedVerses())
-  }
-}
-
-export function toggleVerseFavorite (hasFavorited) {
-  return (dispatch, getState) => {
-    const selectedVerses = getState().getIn(['bible', 'selectedVerses'])
-
-    if (hasFavorited) {
-      dispatch({ type: REMOVE_VERSE_FAVORITE, selectedVerses })
-    } else {
-      dispatch({ type: ADD_VERSE_FAVORITE, selectedVerses })
-    }
-    dispatch(clearSelectedVerses())
   }
 }
 
