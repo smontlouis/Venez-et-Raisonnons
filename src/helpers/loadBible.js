@@ -1,8 +1,10 @@
-const DarbyBible = require('./bible-darby.json')
-const OSTBible = require('./bible-ostervald.json')
-const LSGBible = require('./bible-lsg-1910.json')
+// @flow
 
-export default function loadBible (bible) {
+const DarbyBible: Object = require('./bible-darby.json')
+const OSTBible: Object = require('./bible-ostervald.json')
+const LSGBible: Object = require('./bible-lsg-1910.json')
+
+export default function loadBible (bible: string): Promise<any> {
   return new Promise((resolve, reject) => {
     try {
       switch (bible) {
@@ -23,7 +25,7 @@ export default function loadBible (bible) {
         }
       }
     } catch (e) {
-      reject('Erreur', e)
+      reject(new Error('Erreur', e))
     }
   })
 }

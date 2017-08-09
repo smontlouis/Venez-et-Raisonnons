@@ -16,15 +16,15 @@ const Verses = compose(
     ({ verseIds }: Props) => verseIds.isEmpty(),
     renderComponent(() =>
       <NoItems
-        icon='bookmark-border'
-        text='Aucun favori'
+        icon='border-color'
+        text='Aucune surbrillance'
       />
     )
   )
 )(({ verseIds }: Props) =>
   <VersesList
     verseIds={verseIds.toJS()}
-    isFavorite
+    isHighlight
   />
 )
 
@@ -32,13 +32,13 @@ const FavoriteVerses = ({ verseIds }: Props) => (
   <Container>
     <StatusBar barStyle='light-content' />
     <Header
-      title='Favoris'
+      title='Surbrillances'
     />
-    <Verses verseIds={verseIds} isFavorite />
+    <Verses verseIds={verseIds} />
   </Container>
 )
 
 export default compose(
   pure,
-  connect((state) => ({ verseIds: state.getIn(['user', 'bible', 'favorites']) }))
+  connect((state) => ({ verseIds: state.getIn(['user', 'bible', 'highlights']) }))
 )(FavoriteVerses)

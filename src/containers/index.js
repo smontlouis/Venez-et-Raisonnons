@@ -6,6 +6,9 @@ import Profile from './MainScreenTabs/Profile'
 import Favorites from './Favorites'
 import Liked from './Liked'
 import Read from './Read'
+import FavoriteVerses from './FavoriteVerses'
+import HighlightVerses from './HighlightVerses'
+
 import Search from './Search'
 import Topic from './Topic'
 import Question from './Question/Question'
@@ -21,12 +24,15 @@ import Modal from './Modal'
 import Concordance from './Concordance'
 import LexiqueHebreu from './Lexique/LexiqueHebreu'
 import LexiqueGrec from './Lexique/LexiqueGrec'
+import Login from './Login'
 
 export {
   Topics,
   Favorites,
   Liked,
   Read,
+  FavoriteVerses,
+  HighlightVerses,
   More,
   Bible,
   Search,
@@ -44,5 +50,6 @@ export {
   Modal,
   Concordance,
   LexiqueHebreu,
-  LexiqueGrec
+  LexiqueGrec,
+  Login
 }

@@ -2,9 +2,9 @@
 
 export type Verse = {
   Texte: string,
-  Verset: string,
-  Livre: string,
-  Chapitre: string
+  Verset: number,
+  Livre: number,
+  Chapitre: number
 }
 
 export type Book = {
@@ -12,3 +12,5 @@ export type Book = {
   Nom: string,
   Chapitres: number
 }
+
+export type VerseId = { livre: string, chapitre: string, verset: string }

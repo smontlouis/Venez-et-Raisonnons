@@ -1,10 +1,11 @@
 // @flow
 
 import React from 'react'
-import { compose, renderComponent, branch, pure } from 'recompose'
+import { compose, branch, pure } from 'recompose'
 import { StatusBar, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
-import { Header, Link, ScrollableHeader } from '@components'
+import { Login } from '@src/containers'
+import { ScrollableHeader } from '@components'
 import { Section, ProfileImage, ProfileItem, SendEmail } from '@components/Profile'
 import { Container, Box, Text, Title, Spacer } from '@ui'
 import { FireAuth, withLogin } from '@helpers'
@@ -14,25 +15,6 @@ import type {
   NavigationState,
   NavigationScreenProp
 } from 'react-navigation/src/TypeDefinition'
-
-const UnloggedProfile = () => (
-  <Container>
-    <Header
-      title='Profile'
-      hasBackButton={false}
-    />
-    <Box>
-      <Text>
-        Profile pas connecté
-      </Text>
-      <Link route={'login'}>
-        <Text sansSerif underline>
-          Se connecter
-        </Text>
-      </Link>
-    </Box>
-  </Container>
-)
 
 type Props = {
   name?: string,
@@ -56,7 +38,7 @@ const Profile = ({
       hasBackButton={false}
       header={(
         <Box center>
-          <ProfileImage source={picture ? { uri: picture } : require('../../../static/images/bible.png')} />
+          <ProfileImage source={picture ? { uri: picture } : require('../../../static/images/anonymous-user.jpg')} />
           <Title secondaryFont reverse style={{ marginTop: 10 }}>{name}</Title>
           <Text sansSerif style={{ marginBottom: 30, color: 'rgba(255,255,255, 0.5)' }}>{email}</Text>
         </Box>
@@ -91,7 +73,7 @@ const Profile = ({
             icon='ios-bookmarks'
             type='ionicon'
             name='Favoris'
-            onPress={() => console.log('coucou')}
+            onPress={() => navigation.navigate('favoriteVerses')}
           />
           <ProfileItem
             icon='event-note'
@@ -101,7 +83,7 @@ const Profile = ({
           <ProfileItem
             icon='border-color'
             name='Surbrillances'
-            onPress={() => console.log('coucou')}
+            onPress={() => navigation.navigate('highlightVerses')}
           />
         </Box>
         <Section title='Paramètres' />
@@ -110,12 +92,12 @@ const Profile = ({
             <ProfileItem
               icon='info'
               name='À propos'
-              onPress={() => console.log('coucou')}
+              onPress={() => navigation.navigate('about')}
             />
             <ProfileItem
               icon='edit'
               name='Modifier'
-              onPress={() => console.log('coucou')}
+              onPress={() => navigation.navigate('editProfile')}
             />
             <ProfileItem
               icon='power-settings-new'
@@ -143,7 +125,7 @@ const enhance = compose(
   pure,
   branch(
     ({ isLogged }) => !isLogged,
-    renderComponent(UnloggedProfile)
+  () => Login
   )
 )
 

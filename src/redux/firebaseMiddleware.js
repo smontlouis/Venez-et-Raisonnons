@@ -7,6 +7,7 @@ import {
   ADD_LIKE,
   REMOVE_LIKE,
   USER_LOGIN_SUCCESS,
+  USER_UPDATE_PROFILE,
   ADD_HIGHLIGHT,
   REMOVE_HIGHLIGHT,
   ADD_VERSE_FAVORITE,
@@ -56,6 +57,7 @@ export default store => next => action => {
       isLogged && profileRef.update({ '/bible/favorites': favorites })
       break
     }
+    case USER_UPDATE_PROFILE:
     case USER_LOGIN_SUCCESS: {
       isLogged && profileRef.update({ ...user.toJS() })
       break

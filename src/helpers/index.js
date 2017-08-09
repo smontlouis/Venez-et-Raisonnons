@@ -11,6 +11,10 @@ import FireAuth from './fireAuth'
 import withFireAuth from './withFireAuth'
 import withLogin from './withLogin'
 import withFCM from './withFCM'
+import withSQLRequest from './withSQLRequest'
+import withBibleVerses from './withBibleVerses'
+import withLoading from './withLoading'
+import formatVerseContent from './formatVerseContent'
 
 export {
   globalVariables,
@@ -25,5 +29,9 @@ export {
   FireAuth,
   withFireAuth,
   withLogin,
-  withFCM
+  withFCM,
+  withSQLRequest,
+  withBibleVerses,
+  withLoading,
+  formatVerseContent
 }

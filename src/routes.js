@@ -13,9 +13,12 @@ import Concordance from '@src/containers/Concordance'
 import Search from '@src/containers/Search'
 import Login from '@src/containers/Login'
 import Register from '@src/containers/Register'
+import EditProfile from '@src/containers/EditProfile'
 import Favorites from '@src/containers/Favorites'
 import Liked from '@src/containers/Liked'
 import Read from '@src/containers/Read'
+import FavoriteVerses from '@src/containers/FavoriteVerses'
+import HighlightVerses from '@src/containers/HighlightVerses'
 
 import Profile from '@src/containers/MainScreenTabs/Profile'
 import More from '@src/containers/MainScreenTabs/More'
@@ -28,9 +31,13 @@ const routesConfigs = {
 
   modal: { screen: Modal },
   topics: { screen: Topics },
+
   favorites: { screen: Favorites },
   liked: { screen: Liked },
   read: { screen: Read },
+  favoriteVerses: { screen: FavoriteVerses },
+  highlightVerses: { screen: HighlightVerses },
+
   search: { screen: Search },
   profile: { screen: Profile },
   more: { screen: More },
@@ -41,6 +48,7 @@ const routesConfigs = {
   astuces: { screen: Astuces },
   login: { screen: Login },
   register: { screen: Register },
+  editProfile: { screen: EditProfile },
 
   bible: { screen: Bible },
   bibleSelector: { screen: BibleSelector },

@@ -6,11 +6,13 @@ const { Text: T } = glamorous
 const stylesToBind = {
   fontSize: {
     small: 12,
-    medium: 18
+    medium: 14,
+    default: 18
   },
   lineHeight: {
     small: 16,
-    medium: 27
+    medium: 20,
+    default: 27
   },
   fontFamily: theme => ({
     serif: theme.fonts.text,
@@ -48,8 +50,8 @@ const Text = glamorous(T)(
 
 Text.defaultProps = {
   color: 'default',
-  fontSize: 'medium',
-  lineHeight: 'medium',
+  fontSize: 'default',
+  lineHeight: 'default',
   fontFamily: 'serif'
 }
 

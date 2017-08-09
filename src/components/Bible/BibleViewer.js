@@ -39,7 +39,7 @@ type Props = {
   arrayVerses?: {
     book: Book,
     chapter: number,
-    verses: Array<Verse>
+    verses: Array<number>
   },
   book: Book,
   chapter: number,

@@ -1,9 +1,9 @@
 import React from 'react'
-import { compose, withStateHandlers } from 'recompose'
+import { compose, withStateHandlers, lifecycle } from 'recompose'
 import { Button, FormLabel, FormInput } from 'react-native-elements'
 import { Header } from '@src/components'
 import { Spacer, Container, Box } from '@ui'
-import FireAuth from '@src/helpers/fireAuth'
+import { withLogin, FireAuth } from '@helpers'
 
 const Login = ({ isLogged, user, email, password, changeEmail, changePassword, changeUser }) => (
   <Container>
@@ -42,6 +42,14 @@ const Login = ({ isLogged, user, email, password, changeEmail, changePassword, c
 )
 
 export default compose(
+  withLogin,
+  lifecycle({
+    componentWillReceiveProps (nextProps) {
+      if (this.props.isLogged !== nextProps.isLogged && nextProps.isLogged) {
+        this.props.navigation.goBack()
+      }
+    }
+  }),
   withStateHandlers(
     {
       email: '',

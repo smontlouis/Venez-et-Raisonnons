@@ -16,10 +16,10 @@ const SendEmail = () => (
     alignItems='center'
   >
     <Text sansSerif small>
-      Vous n'avez pas encore vérifié votre compte !
+      Un lien vous a été envoyé, merci de vérifier votre compte.
     </Text>
     <TouchableOpacity onPress={sendEmailNotification}>
-      <Text sansSerif small>
+      <Text sansSerif small underline>
         Renvoyer le lien
       </Text>
     </TouchableOpacity>

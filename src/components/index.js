@@ -42,6 +42,8 @@ import BibleFooter from './Bible/BibleFooter'
 import ConcordanceList from './Bible/ConcordanceList'
 import SelectedVersesModal from './Bible/SelectedVersesModal'
 
+import VersesList from './Profile/VersesList'
+
 import NavigationComponent from './TabBar/NavigationComponent'
 
 export {
@@ -88,5 +90,7 @@ export {
   SelectorButtons,
   BibleFooter,
   ConcordanceList,
-  SelectedVersesModal
+  SelectedVersesModal,
+
+  VersesList
 }

@@ -1,9 +1,10 @@
-import { Map } from 'immutable'
+import { Map, fromJS } from 'immutable'
 import { clearSelectedVerses } from './bible'
 import books from '@src/helpers/livres'
 import { Share } from 'react-native'
 
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
+export const USER_UPDATE_PROFILE = 'USER_UPDATE_PROFILE'
 export const USER_LOGOUT = 'USER_LOGOUT'
 export const MARK_AS_READ = 'user/MARK_AS_READ'
 export const REMOVE_AS_READ = 'user/REMOVE_AS_READ'
@@ -35,8 +36,19 @@ const initialState = Map({
   })
 })
 
+const addDateToVerses = (verses) => {
+  const now = Date.now()
+  const formattedObj = Object.keys(verses.toJS()).reduce((obj, verse) => ({
+    ...obj,
+    [verse]: now
+  }), {})
+
+  return fromJS(formattedObj)
+}
+
 export default function UserReducer (state = initialState, action = {}) {
   switch (action.type) {
+    case USER_UPDATE_PROFILE:
     case USER_LOGIN_SUCCESS: {
       return state
         .mergeDeep(action.payload)
@@ -45,31 +57,31 @@ export default function UserReducer (state = initialState, action = {}) {
       return initialState
     }
     case ADD_FAVORITE: {
-      return state.updateIn(['questions', 'favorites'], f => f.merge({ [action.id]: true }))
+      return state.updateIn(['questions', 'favorites'], f => f.merge({ [action.id]: Date.now() }))
     }
     case REMOVE_FAVORITE: {
       return state.updateIn(['questions', 'favorites'], f => f.delete(action.id))
     }
     case ADD_LIKE: {
-      return state.updateIn(['questions', 'likes'], f => f.merge({ [action.id]: true }))
+      return state.updateIn(['questions', 'likes'], f => f.merge({ [action.id]: Date.now() }))
     }
     case REMOVE_LIKE: {
       return state.updateIn(['questions', 'likes'], f => f.delete(action.id))
     }
     case MARK_AS_READ: {
-      return state.updateIn(['questions', 'hasBeenRead'], f => f.merge({ [action.id]: true }))
+      return state.updateIn(['questions', 'hasBeenRead'], f => f.merge({ [action.id]: Date.now() }))
     }
     case REMOVE_AS_READ: {
       return state.updateIn('questions', 'hasBeenRead', f => f.delete(action.id))
     }
     case ADD_HIGHLIGHT: {
-      return state.updateIn(['bible', 'highlights'], f => f.merge(action.selectedVerses))
+      return state.updateIn(['bible', 'highlights'], f => f.merge(addDateToVerses(action.selectedVerses)))
     }
     case REMOVE_HIGHLIGHT: {
       return Object.keys(action.selectedVerses.toJS()).reduce((map, key) => map.deleteIn(['bible', 'highlights', key]), state)
     }
     case ADD_VERSE_FAVORITE: {
-      return state.updateIn(['bible', 'favorites'], f => f.merge(action.selectedVerses))
+      return state.updateIn(['bible', 'favorites'], f => f.merge(addDateToVerses(action.selectedVerses)))
     }
     case REMOVE_VERSE_FAVORITE: {
       return Object.keys(action.selectedVerses.toJS()).reduce((map, key) => map.deleteIn(['bible', 'favorites', key]), state)
@@ -130,6 +142,13 @@ export function onUserLoginSuccess (profile) {
 export function onUserLogout () {
   return {
     type: USER_LOGOUT
+  }
+}
+
+export function onUserUpdateProfile (profile) {
+  return {
+    type: USER_UPDATE_PROFILE,
+    payload: profile
   }
 }
 

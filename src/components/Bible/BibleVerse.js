@@ -134,7 +134,7 @@ class BibleVerse extends Component {
               <BookMarkIcon
                 name={'bookmark'}
                 size={15}
-                color='rgba(0,0,0,0.4)'
+                color='#C22839'
               />
             }
           </VersetWrapper>
