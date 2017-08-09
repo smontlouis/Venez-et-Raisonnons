@@ -29,7 +29,7 @@ Ceci est le code source de l'application Venez et Raisonnons, disponible sur [Go
 - [x] Offlines pictures
 - [x] Highlight / Copy / Share verses
 - [x] Register user / Login
-- [ ] ?Force users to be logged to perform actions
+- [X] Force users to be logged to perform actions
 - [x] New design navigation (Glo Bible like)
 - [ ] New logo
 

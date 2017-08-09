@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { withFCM, withFireAuth } from '@helpers'
-import { NoItems, Loading, LoginModal } from '@components'
+import withFCM from '@src/helpers/withFCM'
+import withFireAuth from '@src/helpers/withFireAuth'
+import { NoItems, Loading, LoginModal } from '@src/components'
 import { loadData } from '@src/redux/modules/app'
 import { Container } from '@ui'
 
@@ -48,7 +49,7 @@ class Master extends Component {
     return (
       <Container>
         {children}
-        {/* <LoginModal /> */}
+        <LoginModal />
       </Container>
     )
   }

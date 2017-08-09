@@ -94,16 +94,21 @@ export default function UserReducer (state = initialState, action = {}) {
 
 const isLogged = (state) => !!state.getIn(['user', 'email'])
 
+const modalIfNotLoggedFn = (state, dispatch) => actionToDispath => {
+  if (isLogged(state)) {
+    return Promise.resolve(dispatch(actionToDispath))
+  } else {
+    return Promise.reject(dispatch(showLoginModal()))
+  }
+}
+
 export function toggleFavorite (id) {
   return (dispatch, getState) => {
-    if (isLogged(getState())) {
-      if (getState().getIn(['user', 'questions', 'favorites', id])) {
-        return dispatch({ type: REMOVE_FAVORITE, id })
-      }
-      return dispatch({ type: ADD_FAVORITE, id })
-    } else {
-      return dispatch(showLoginModal())
+    const modalIfNotLogged = modalIfNotLoggedFn(getState(), dispatch)
+    if (getState().getIn(['user', 'questions', 'favorites', id])) {
+      return modalIfNotLogged({ type: REMOVE_FAVORITE, id })
     }
+    return modalIfNotLogged({ type: ADD_FAVORITE, id })
   }
 }
 
@@ -123,60 +128,50 @@ export function removeAsRead (id) {
 
 export function toggleMarkAsRead (id) {
   return (dispatch, getState) => {
-    if (isLogged(getState())) {
-      if (getState().getIn(['user', 'questions', 'hasBeenRead', id])) {
-        return dispatch({ type: REMOVE_AS_READ, id })
-      }
-      return dispatch({ type: MARK_AS_READ, id })
-    } else {
-      return dispatch(showLoginModal())
+    const modalIfNotLogged = modalIfNotLoggedFn(getState(), dispatch)
+    if (getState().getIn(['user', 'questions', 'hasBeenRead', id])) {
+      return modalIfNotLogged({ type: REMOVE_AS_READ, id })
     }
+    return modalIfNotLogged({ type: MARK_AS_READ, id })
   }
 }
 
 export function toggleLike (id) {
   return (dispatch, getState) => {
-    if (isLogged(getState())) {
-      if (getState().getIn(['user', 'questions', 'likes', id])) {
-        return dispatch({ type: REMOVE_LIKE, id })
-      }
-      return dispatch({ type: ADD_LIKE, id })
-    } else {
-      return dispatch(showLoginModal())
+    const modalIfNotLogged = modalIfNotLoggedFn(getState(), dispatch)
+    if (getState().getIn(['user', 'questions', 'likes', id])) {
+      return modalIfNotLogged({ type: REMOVE_LIKE, id })
     }
+    return modalIfNotLogged({ type: ADD_LIKE, id })
   }
 }
 
 export function toggleHighlight (hasHighlighted) {
   return (dispatch, getState) => {
-    if (isLogged(getState())) {
-      const selectedVerses = getState().getIn(['bible', 'selectedVerses'])
+    const selectedVerses = getState().getIn(['bible', 'selectedVerses'])
+    const modalIfNotLogged = modalIfNotLoggedFn(getState(), dispatch)
 
-      if (hasHighlighted) {
-        dispatch({ type: REMOVE_HIGHLIGHT, selectedVerses })
-      } else {
-        dispatch({ type: ADD_HIGHLIGHT, selectedVerses })
-      }
-      dispatch(clearSelectedVerses())
+    dispatch(clearSelectedVerses())
+
+    if (hasHighlighted) {
+      return modalIfNotLogged({ type: REMOVE_HIGHLIGHT, selectedVerses })
     } else {
-      return dispatch(showLoginModal())
+      return modalIfNotLogged({ type: ADD_HIGHLIGHT, selectedVerses })
     }
   }
 }
 
 export function toggleVerseFavorite (hasFavorited) {
   return (dispatch, getState) => {
-    if (isLogged(getState())) {
-      const selectedVerses = getState().getIn(['bible', 'selectedVerses'])
+    const selectedVerses = getState().getIn(['bible', 'selectedVerses'])
+    const modalIfNotLogged = modalIfNotLoggedFn(getState(), dispatch)
 
-      if (hasFavorited) {
-        dispatch({ type: REMOVE_VERSE_FAVORITE, selectedVerses })
-      } else {
-        dispatch({ type: ADD_VERSE_FAVORITE, selectedVerses })
-      }
-      dispatch(clearSelectedVerses())
+    dispatch(clearSelectedVerses())
+
+    if (hasFavorited) {
+      return modalIfNotLogged({ type: REMOVE_VERSE_FAVORITE, selectedVerses })
     } else {
-      return dispatch(showLoginModal())
+      return modalIfNotLogged({ type: ADD_VERSE_FAVORITE, selectedVerses })
     }
   }
 }

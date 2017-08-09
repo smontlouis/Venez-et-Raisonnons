@@ -32,7 +32,9 @@ type Props = {
 }
 
 const LikeCount = ({ id, toggleLike, isActive, count }: Props) => (
-  <TouchableOpacity onPress={() => toggleLike(id)}>
+  <TouchableOpacity onPress={() => {
+    toggleLike(id)
+  }}>
     <View style={styles.container}>
       <Icon
         name='favorite'

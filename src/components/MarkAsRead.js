@@ -51,8 +51,9 @@ const renderIcon = (hasIconOnly, isActive) => {
 const MarkAsRead = ({ id, toggleMarkAsRead, isActive, hasIconOnly }: Props) => (
   <TouchableOpacity
     onPress={() => {
-      Toast.show(isActive ? 'Marqué comme non lu' : 'Marqué comme lu')
       toggleMarkAsRead(id)
+        .then(() => Toast.show(isActive ? 'Marqué comme non lu' : 'Marqué comme lu'))
+        .catch(() => console.log('Not connected'))
     }}
     activeOpacity={0.7}
   >

@@ -56,8 +56,9 @@ const renderIcon = (hasIconOnly, isActive) => {
 const AddToFavorites = ({ id, toggleFavorite, isActive, hasIconOnly }: Props) => (
   <TouchableOpacity
     onPress={() => {
-      Toast.show(isActive ? 'Supprimé des favoris' : 'Ajouté aux favoris')
       toggleFavorite(id)
+        .then(() => Toast.show(isActive ? 'Supprimé des favoris' : 'Ajouté aux favoris'))
+        .catch(() => console.log('Not connected'))
     }}
     activeOpacity={0.7}
   >

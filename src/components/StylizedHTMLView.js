@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { HTMLView, globalVariables } from '@helpers'
+import { HTMLView, globalVariables } from '@src/helpers'
 import { pure } from 'recompose'
 
 const styles = EStyleSheet.create({
