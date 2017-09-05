@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { StatusBar } from 'react-native'
 import * as BibleActions from '@src/redux/modules/bible'
-import { BibleHeader, BibleViewer } from '@src/components'
-import { Container } from '@src/styled'
+import { BibleHeader, BibleViewer, LoginModal } from '@components'
+import { Container } from '@ui'
 
 type BibleProps = {
   navigation: Object,
@@ -70,6 +70,7 @@ export default class Bible extends Component {
             navigation={navigation}
           />
         }
+        <LoginModal />
       </Container>
     )
   }

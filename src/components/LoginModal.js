@@ -42,7 +42,7 @@ const LoginModal = ({ isOpen, hideLoginModal }) => (
           Connectez-vous pour profiter de toutes les fonctionnalités !
         </Text>
       </Box>
-      <LoginContainer />
+      <LoginContainer isModal />
     </Container>
   </ModalBox>
 )

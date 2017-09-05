@@ -46,12 +46,7 @@ class Master extends Component {
       )
     }
 
-    return (
-      <Container>
-        {children}
-        <LoginModal />
-      </Container>
-    )
+    return children
   }
 }
 

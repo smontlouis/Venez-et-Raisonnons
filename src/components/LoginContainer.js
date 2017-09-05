@@ -1,7 +1,9 @@
 import React from 'react'
 import { compose, withStateHandlers, lifecycle, pure } from 'recompose'
 import { withNavigation } from 'react-navigation'
+import { connect } from 'react-redux'
 import { Button, FormLabel, FormInput } from 'react-native-elements'
+import * as AppActions from '@src/redux/modules/app'
 import { Link } from '@components'
 import { Spacer, Box, Text } from '@ui'
 import { FireAuth, withLogin } from '@helpers'
@@ -65,10 +67,15 @@ const Login = ({ email, password, changeEmail, changePassword }) => (
 export default compose(
   withLogin,
   withNavigation,
+  connect(null, { ...AppActions }),
   lifecycle({
     componentWillReceiveProps (nextProps) {
       if (this.props.isLogged !== nextProps.isLogged && nextProps.isLogged) {
-        this.props.navigation.goBack()
+        if (!this.props.isModal) {
+          this.props.navigation.goBack()
+        } else {
+          this.props.hideLoginModal()
+        }
       }
     }
   }),

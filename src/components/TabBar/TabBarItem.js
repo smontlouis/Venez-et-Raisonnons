@@ -3,7 +3,9 @@
 import React from 'react'
 import { compose, pure, branch, renderComponent } from 'recompose'
 import { Icon } from 'react-native-elements'
-import glam, { View, TouchableWithoutFeedback, Text, withTheme } from 'glamorous-native'
+import glam, { View, TouchableOpacity, Text, withTheme } from 'glamorous-native'
+import { withLogin } from '@helpers'
+import { ProfileImage } from '@components/Profile'
 
 import type { NavigationRoute } from 'react-navigation/src/TypeDefinition'
 
@@ -14,10 +16,12 @@ type Props = {
   index: number,
   jumpTo: Function,
   active: boolean,
-  theme: Object
+  theme: Object,
+  isLogged: boolean,
+  user: Object
 }
 
-const ProfileImage = glam.image({
+const CircleImage = glam.image({
   position: 'absolute',
   top: 0,
   left: 0,
@@ -25,36 +29,53 @@ const ProfileImage = glam.image({
   height: 75
 })
 
-const ProfileComponent = ({route, icon, label, index, jumpTo, active, theme}: Props) => (
-  <TouchableWithoutFeedback onPress={jumpTo}>
-    <View
-      backgroundColor='transparent'
+const ProfileComponent = ({route, icon, label, index, jumpTo, active, theme, isLogged, user}: Props) => (
+  <View
+    backgroundColor='transparent'
+    alignItems='center'
+    justifyContent='center'
+    width={75}
+    height={70}
+  >
+    <CircleImage source={require('../../../static/images/circle.png')} />
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={jumpTo}
       alignItems='center'
       justifyContent='center'
-      width={75}
-      height={70}
     >
-      <ProfileImage source={require('../../../static/images/circle.png')} />
-      <Icon
-        type='simple-line-icon'
-        name='user'
-        size={25}
-        style={{marginTop: 3}}
-        color={active ? theme.colors.secondary : theme.colors.tertiaryLighten}
-      />
-      <Text
-        marginTop={5}
-        fontSize={14}
-        color={active ? theme.colors.secondary : theme.colors.tertiaryLighten}
-      >
-        {label}
-      </Text>
-    </View>
-  </TouchableWithoutFeedback>
+      {
+        !isLogged &&
+        <View alignItems='center' justifyContent='center'>
+          <Icon
+            type='simple-line-icon'
+            name='user'
+            size={25}
+            style={{marginTop: 3}}
+            color={active ? theme.colors.secondary : theme.colors.tertiaryLighten}
+          />
+          <Text
+            marginTop={5}
+            fontSize={14}
+            color={active ? theme.colors.secondary : theme.colors.tertiaryLighten}
+          >
+            {label}
+          </Text>
+        </View>
+      }
+      {
+        isLogged &&
+        <ProfileImage
+          source={user.get('photoURL') ? { uri: user.get('photoURL') } : require('../../../static/images/anonymous-user.jpg')}
+          style={{ width: 60, height: 60, borderRadius: 30, borderWidth: 2 }}
+        />
+      }
+    </TouchableOpacity>
+  </View>
 )
 
 const TabBarItem = ({route, icon, label, index, jumpTo, active, theme}: Props) => (
-  <TouchableWithoutFeedback onPress={jumpTo}>
+  <TouchableOpacity activeOpacity={0.7} onPress={jumpTo} flex={1}>
     <View
       flex={1}
       height={55}
@@ -75,11 +96,12 @@ const TabBarItem = ({route, icon, label, index, jumpTo, active, theme}: Props) =
         {label}
       </Text>
     </View>
-  </TouchableWithoutFeedback>
+  </TouchableOpacity>
 )
 
 const enhance = compose(
   withTheme,
+  withLogin,
   pure,
   branch(
     ({ index }) => index === 2,

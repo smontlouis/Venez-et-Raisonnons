@@ -3,7 +3,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-// type FunctionComponent<P> = (props: P) => ?React$Element<any>
 type ClassComponent<P> = Class<React$Component<void, P, void>>
 
 const withLogin = <P: Object>(WrappedComponent: ClassComponent<P>): ClassComponent<P> => {
@@ -16,7 +15,8 @@ const withLogin = <P: Object>(WrappedComponent: ClassComponent<P>): ClassCompone
   }
 
   return connect((state: Object) => ({
-    isLogged: !!state.getIn(['user', 'email'])
+    isLogged: !!state.getIn(['user', 'email']),
+    user: state.get('user')
   }))(LoginComponent)
 }
 

@@ -8,7 +8,6 @@ import Astuces from '@src/containers/Astuces'
 import BibleSelector from '@src/containers/BibleSelector'
 import VersionSelector from '@src/containers/VersionSelector'
 import StrongModal from '@src/containers/StrongModal'
-import Modal from '@src/containers/Modal'
 import Concordance from '@src/containers/Concordance'
 import Search from '@src/containers/Search'
 import Login from '@src/containers/Login'
@@ -20,17 +19,11 @@ import Read from '@src/containers/Read'
 import FavoriteVerses from '@src/containers/FavoriteVerses'
 import HighlightVerses from '@src/containers/HighlightVerses'
 
-import Profile from '@src/containers/MainScreenTabs/Profile'
-import More from '@src/containers/MainScreenTabs/More'
 import Bible from '@src/containers/MainScreenTabs/Bible'
-import Topics from '@src/containers/MainScreenTabs/Topics'
 import MainScreen from '@src/containers/MainScreenTabs/MainScreenNavigator'
 
 const routesConfigs = {
   home: { screen: MainScreen },
-
-  modal: { screen: Modal },
-  topics: { screen: Topics },
 
   favorites: { screen: Favorites },
   liked: { screen: Liked },
@@ -39,17 +32,14 @@ const routesConfigs = {
   highlightVerses: { screen: HighlightVerses },
 
   search: { screen: Search },
-  profile: { screen: Profile },
-  more: { screen: More },
-  topic: { screen: Topic },
   add: { screen: Add },
+  topic: { screen: Topic },
   question: { screen: Question },
   about: { screen: About },
   astuces: { screen: Astuces },
   login: { screen: Login },
   register: { screen: Register },
-  editProfile: { screen: EditProfile },
-
+  editProfile: { screen: EditProfile },
   bible: { screen: Bible },
   bibleSelector: { screen: BibleSelector },
   versionSelector: { screen: VersionSelector },

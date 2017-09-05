@@ -1,6 +1,8 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
+import { Container } from '@ui'
+import { LoginModal } from '@components'
 import {
   QuestionSimple,
   QuestionStudy
@@ -53,16 +55,22 @@ export default class Question extends Component {
 
     if (children) {
       return (
-        <QuestionStudy
-          {...{ question, topic, children, navigation }}
-        />
+        <Container>
+          <QuestionStudy
+            {...{ question, topic, children, navigation }}
+          />
+          <LoginModal />
+        </Container>
       )
     }
 
     return (
-      <QuestionSimple
-        {...{ question, topic, markAsRead, fromStudy, navigation }}
-      />
+      <Container>
+        <QuestionSimple
+          {...{ question, topic, markAsRead, fromStudy, navigation }}
+        />
+        <LoginModal />
+      </Container>
     )
   }
 }

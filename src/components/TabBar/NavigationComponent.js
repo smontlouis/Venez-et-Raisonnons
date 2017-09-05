@@ -3,12 +3,7 @@
 import React from 'react'
 import { View } from 'glamorous-native'
 
-import type {
-  NavigationAction,
-  NavigationState,
-  NavigationScreenProp,
-  NavigationRoute
-} from 'react-navigation/src/TypeDefinition'
+import type { NavigationAction, NavigationState, NavigationScreenProp, NavigationRoute } from 'react-navigation/src/TypeDefinition'
 
 import TabBarItem from './TabBarItem'
 
