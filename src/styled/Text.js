@@ -1,41 +1,58 @@
-import { styled, bind, prop, ifProp, globals } from '@styled-components'
+import glamorous from 'glamorous-native'
+import { bindStyles } from 'glam-props'
 
-const s = bind({
-  size: {
+const { Text: T } = glamorous
+
+const stylesToBind = {
+  fontSize: {
     small: 12,
-    medium: 18
+    medium: 14,
+    default: 18
   },
   lineHeight: {
     small: 16,
-    medium: 27
+    medium: 20,
+    default: 27
   },
-  fontFamily: {
-    primaryFont: globals.font.text,
-    secondaryFont: globals.font.heading,
-    tertiaryFont: globals.font.title_italic
-  },
-  color: {
-    default: prop('theme.colors.default'),
-    secondary: prop('theme.colors.secondary'),
-    reverse: prop('theme.colors.reverse'),
-    tertiary: prop('theme.colors.tertiary')
-  }
-})
+  fontFamily: theme => ({
+    serif: theme.fonts.text,
+    sansSerif: 'arial',
+    secondaryFont: theme.fonts.secondaryFont,
+    tertiaryFont: theme.fonts.tertiaryFont
+  }),
+  color: theme => ({
+    default: theme.colors.default,
+    secondary: theme.colors.secondary,
+    reverse: theme.colors.reverse,
+    tertiary: theme.colors.tertiary
+  })
+}
 
-const Text = styled.Text`
-  color: ${s.color};
-  font-size: ${s.size};
-  font-family: ${s.fontFamily};
-  line-height: ${s.lineHeight};
-  flex: ${ifProp({ flex: true }, 1)};
-  background-color: transparent;
-`
+const Text = glamorous(T)(
+  {
+    backgroundColor: 'transparent'
+  },
+  bindStyles(stylesToBind)(s => ({
+    fontSize: s.fontSize,
+    lineHeight: s.lineHeight,
+    fontFamily: s.fontFamily,
+    color: s.color
+  })),
+  ({ flex, underline }) => ({
+    ...flex ? { flex: 1 } : {},
+    ...underline ? {
+      textDecorationLine: 'underline',
+      textDecorationStyle: 'solid',
+      textDecorationColor: 'black'
+    } : {}
+  })
+)
 
 Text.defaultProps = {
   color: 'default',
-  size: 'medium',
-  lineHeight: 'medium',
-  fontFamily: 'primaryFont'
+  fontSize: 'default',
+  lineHeight: 'default',
+  fontFamily: 'serif'
 }
 
 export default Text

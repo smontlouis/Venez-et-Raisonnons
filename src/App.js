@@ -5,7 +5,7 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import codePush from 'react-native-code-push'
 import { AsyncStorage, Platform } from 'react-native'
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'glamorous-native'
 
 import Master from './containers/Master'
 import Routes from './routes'

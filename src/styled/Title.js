@@ -1,37 +1,40 @@
-import { styled, bind, prop, globals } from '@styled-components'
+import glamorous, { Text } from 'glamorous-native'
+import { bindStyles } from 'glam-props'
 
-const s = bind({
-  size: {
-    big: 30,
-    medium: 21
+const stylesToBind = {
+  fontSize: {
+    medium: 21,
+    default: 30
   },
   lineHeight: {
-    big: 30,
-    medium: 24
+    medium: 24,
+    default: 30
   },
-  fontFamily: {
-    primaryFont: globals.font.title,
-    secondaryFont: globals.font.heading
-  },
-  color: {
-    default: prop('theme.colors.default'),
-    reverse: prop('theme.colors.reverse')
-  }
-})
+  fontFamily: theme => ({
+    secondaryFont: theme.fonts.secondaryFont,
+    default: theme.fonts.primaryFont
+  }),
+  color: theme => ({
+    reverse: theme.colors.reverse,
+    default: theme.colors.default
+  })
+}
 
-const Title = styled.Text`
-  color: ${s.color};
-  font-size: ${s.size};
-  font-family: ${s.fontFamily};
-  line-height: ${s.lineHeight};
-  margin-top: ${prop('marginTop', 0)};
-`
+const Title = glamorous(Text)(
+  bindStyles(stylesToBind)(s => ({
+    fontSize: s.fontSize,
+    lineHeight: s.lineHeight,
+    fontFamily: s.fontFamily,
+    color: s.color
+  })),
+  ({ marginTop }) => marginTop ? { marginTop } : {}
+)
 
 Title.defaultProps = {
   color: 'default',
-  size: 'big',
-  lineHeight: 'big',
-  fontFamily: 'primaryFont'
+  fontSize: 'default',
+  lineHeight: 'default',
+  fontFamily: 'default'
 }
 
 export default Title

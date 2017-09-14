@@ -2,15 +2,17 @@ import { Map } from 'immutable'
 import { firebaseDb } from '@src/services/firebase'
 
 const LOAD_DATA = 'app/LOAD_DATA'
-const MARK_AS_READ = 'app/MARK_AS_READ'
-const REMOVE_AS_READ = 'app/REMOVE_AS_READ'
-export const LOAD_DATA_SUCCESS = 'app/LOAD_DATA_SUCCESS'
 const LOAD_DATA_FAIL = 'app/LOAD_DATA_FAIL'
-const ADD_FAVORITE = 'app/ADD_FAVORITE'
-const REMOVE_FAVORITE = 'app/REMOVE_FAVORITE'
+export const MARK_AS_READ = 'app/MARK_AS_READ'
+export const REMOVE_AS_READ = 'app/REMOVE_AS_READ'
+export const LOAD_DATA_SUCCESS = 'app/LOAD_DATA_SUCCESS'
+export const ADD_FAVORITE = 'app/ADD_FAVORITE'
+export const REMOVE_FAVORITE = 'app/REMOVE_FAVORITE'
 export const ADD_LIKE = 'app/ADD_LIKE'
 export const REMOVE_LIKE = 'app/REMOVE_LIKE'
 export const SET_LAST_UPDATE = 'app/SET_LAST_UPDATE'
+export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
+export const USER_LOGOUT = 'USER_LOGOUT'
 
 const AppData = firebaseDb.ref('/')
 
@@ -24,6 +26,12 @@ const AppData = firebaseDb.ref('/')
 // })
 
 const initialState = Map({
+  email: '',
+  displayName: '',
+  photoURL: '',
+  provider: '',
+  lastSeen: 0,
+  emailVerified: false,
   lastUpdate: 0,
   isLoading: false,
   favorites: Map(),
@@ -120,8 +128,35 @@ export function loadData () {
   }
 }
 
+export function onUserLoginSuccess (profile) {
+  return {
+    type: USER_LOGIN_SUCCESS,
+    payload: profile
+  }
+}
+
+export function onUserLogout () {
+  return {
+    type: USER_LOGOUT
+  }
+}
+
 export default function AppReducer (state = initialState, action = {}) {
   switch (action.type) {
+    case USER_LOGIN_SUCCESS: {
+      if (action.payload.questions) {
+        return state
+          .merge(action.payload)
+          .update('favorites', f => f.merge(action.payload.questions.favorites))
+          .update('hasBeenRead', f => f.merge(action.payload.questions.hasBeenRead))
+          .update('likes', f => f.merge(action.payload.questions.likes))
+      }
+      return state
+        .merge(action.payload)
+    }
+    case USER_LOGOUT: {
+      return initialState
+    }
     case LOAD_DATA: {
       return state.set('isLoading', true)
     }

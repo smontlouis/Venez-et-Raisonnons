@@ -8,7 +8,7 @@
  */
 
 #import "AppDelegate.h"
-#import "CodePush.h"
+#import <CodePush/CodePush.h>
 #import "RNFIRMessaging.h"
 
 #import <React/RCTBundleURLProvider.h>

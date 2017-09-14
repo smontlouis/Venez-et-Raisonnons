@@ -35,6 +35,13 @@ const primaryList = [
 
 const secondaryList = [
   {
+    title: 'Connexion',
+    icon: 'info-outline',
+    onPress (navigation) {
+      navigation.navigate('connexion')
+    }
+  },
+  {
     title: 'À propos',
     icon: 'info-outline',
     onPress (navigation) {
