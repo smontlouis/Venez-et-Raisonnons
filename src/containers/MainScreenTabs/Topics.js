@@ -2,6 +2,8 @@ import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { View, Text, StatusBar } from 'react-native'
+import SnackBar from 'react-native-snackbar-dialog'
+import { withLogin } from '@helpers'
 import {
   TopicsList,
   ScrollableHeader
@@ -44,10 +46,26 @@ const styles = EStyleSheet.create({
       .count()
   })
 )
+@withLogin
 export default class Topics extends Component {
   static propTypes = {
     topics: PropTypes.object.isRequired,
     newQuestionsCount: PropTypes.number.isRequired
+  }
+
+  componentDidMount () {
+    if (!this.props.isLogged) {
+      SnackBar.show('Ne perdez pas vos données !', {
+        buttonColor: '#FFBC00',
+        position: 'top',
+        tapToClose: true,
+        confirmText: 'Voir',
+        onConfirm: () => {
+          this.props.navigation.navigate('update')
+          SnackBar.dismiss()
+        }
+      })
+    }
   }
 
   render () {

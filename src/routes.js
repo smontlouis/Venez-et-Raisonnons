@@ -6,6 +6,7 @@ import Study from '@src/containers/Study'
 import Question from '@src/containers/Question/Question'
 import Add from '@src/containers/Add'
 import About from '@src/containers/About'
+import Update from '@src/containers/Update'
 import Astuces from '@src/containers/Astuces'
 import Connexion from '@src/containers/Connexion'
 import Register from '@src/containers/Register'
@@ -36,6 +37,7 @@ const routesConfigs = {
   add: { screen: Add },
   question: { screen: Question },
   about: { screen: About },
+  update: { screen: Update },
   astuces: { screen: Astuces },
   connexion: { screen: Connexion },
   register: { screen: Register },

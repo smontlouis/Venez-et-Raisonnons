@@ -36,7 +36,7 @@ const primaryList = [
 const secondaryList = [
   {
     title: 'Connexion',
-    icon: 'info-outline',
+    icon: 'person',
     onPress (navigation) {
       navigation.navigate('connexion')
     }

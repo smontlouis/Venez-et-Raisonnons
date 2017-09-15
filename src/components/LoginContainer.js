@@ -21,6 +21,11 @@ const Logout = () => (
 const Login = ({ email, password, changeEmail, changePassword }) => (
   <Box>
     <Box padding>
+      <Text sansSerif>
+        Ne perdez pas vos données ! Connectez-vous dès maintenant.
+      </Text>
+    </Box>
+    <Box padding>
       <FormLabel>Email</FormLabel>
       <FormInput
         autoCapitalize='none'
