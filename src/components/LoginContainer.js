@@ -20,12 +20,12 @@ const Logout = () => (
 
 const Login = ({ email, password, changeEmail, changePassword }) => (
   <Box>
-    <Box padding>
+    <Box hasPadding>
       <Text sansSerif>
         Ne perdez pas vos données ! Connectez-vous dès maintenant.
       </Text>
     </Box>
-    <Box padding>
+    <Box hasPadding>
       <FormLabel>Email</FormLabel>
       <FormInput
         autoCapitalize='none'
@@ -46,7 +46,7 @@ const Login = ({ email, password, changeEmail, changePassword }) => (
         buttonStyle={{ backgroundColor: '#C22839', borderRadius: 5 }}
       />
     </Box>
-    <Box padding center>
+    <Box hasPadding center>
       <Link route={'register'}>
         <Text sansSerif underline medium>
           Pas de compte ? Inscrivez-vous.
