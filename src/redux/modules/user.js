@@ -17,6 +17,7 @@ export const ADD_HIGHLIGHT = 'user/ADD_HIGHLIGHT'
 export const REMOVE_HIGHLIGHT = 'user/REMOVE_HIGHLIGHT'
 export const ADD_VERSE_FAVORITE = 'user/ADD_VERSE_FAVORITE'
 export const REMOVE_VERSE_FAVORITE = 'user/REMOVE_VERSE_FAVORITE'
+export const SAVE_NOTE = 'user/SAVE_NOTE'
 
 const initialState = Map({
   email: '',
@@ -37,8 +38,7 @@ const initialState = Map({
   })
 })
 
-const addDateToVerses = (verses) => {
-  const now = Date.now()
+const addDateToVerses = (verses, now = Date.now()) => {
   const formattedObj = Object.keys(verses.toJS()).reduce((obj, verse) => ({
     ...obj,
     [verse]: now
@@ -86,6 +86,9 @@ export default function UserReducer (state = initialState, action = {}) {
     }
     case REMOVE_VERSE_FAVORITE: {
       return Object.keys(action.selectedVerses.toJS()).reduce((map, key) => map.deleteIn(['bible', 'favorites', key]), state)
+    }
+    case SAVE_NOTE: {
+      return state.updateIn(['bible', 'notes'], f => f.merge(addDateToVerses(action.selectedIds)))
     }
     default:
       return state
@@ -226,5 +229,13 @@ export function shareVerses (verses) {
         dispatch(clearSelectedVerses())
       })
       .catch(err => console.log(err))
+  }
+}
+
+export function saveNote (note, selectedIds) {
+  return {
+    type: SAVE_NOTE,
+    note,
+    selectedIds
   }
 }

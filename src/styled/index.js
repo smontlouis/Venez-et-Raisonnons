@@ -4,5 +4,6 @@ import Box from './Box'
 import Container from './Container'
 import Spacer from './Spacer'
 import Button from './Button'
+import FixedContainer from './FixedContainer'
 
-export { Text, Title, Box, Container, Spacer, Button }
+export { Text, Title, Box, Container, Spacer, Button, FixedContainer }

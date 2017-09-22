@@ -38,7 +38,7 @@ Ceci est le code source de l'application Venez et Raisonnons, disponible sur [Go
 - [ ] Share code strong
 - [ ] [React-Native onboarding](https://codecanyon.net/item/beonboard-complete-onboarding-template-for-react-native-app/19746395)
 - [ ] Remerciements page à Propos
-- [ ] Refacto Glamour-Native
+- [ ] Refacto Glamourous-Native
 - [ ] API Bible
 - [ ] Audit performance boot
 

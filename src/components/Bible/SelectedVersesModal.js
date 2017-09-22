@@ -6,10 +6,11 @@ import { connect } from 'react-redux'
 import glam from 'glamorous-native'
 import { Icon } from 'react-native-elements'
 import { createSelector } from 'reselect'
-import Toast from 'react-native-simple-toast'
 import * as UserActions from '@src/redux/modules/user'
+import { withNavigation } from 'react-navigation'
 
 import { type Verse } from '@src/types'
+import type { NavigationAction, NavigationState, NavigationScreenProp } from 'react-navigation/src/TypeDefinition'
 
 type Props = {
   verses: Array<Verse>,
@@ -18,7 +19,8 @@ type Props = {
   isSelectedVerseFavorited: boolean,
   toggleHighlight: Function,
   toggleVerseFavorite: Function,
-  shareVerses: Function
+  shareVerses: Function,
+  navigation: NavigationScreenProp<NavigationState, NavigationAction>,
 }
 
 const ModalBox = glam(Modal, { forwardProps: ['position', 'isOpen'] })({
@@ -59,7 +61,8 @@ const SelectedVersesModal = ({
   isSelectedVerseFavorited,
   toggleHighlight,
   toggleVerseFavorite,
-  shareVerses
+  shareVerses,
+  navigation
 }: Props) => (
   <ModalBox
     isOpen={isOpen}
@@ -82,7 +85,7 @@ const SelectedVersesModal = ({
         name='content-paste'
         size={15}
         color='rgba(0,0,0,0.7)'
-        onPress={() => Toast.show('Bientôt disponible')}
+        onPress={() => navigation.navigate('newNote')}
       />
       <IconText>Note</IconText>
     </IconContainer>
@@ -127,5 +130,6 @@ export default compose(
     isOpen: !state.getIn(['bible', 'selectedVerses']).isEmpty(),
     isSelectedVerseHighlighted: !!getHighlightInSelected(state),
     isSelectedVerseFavorited: !!getFavoriteInSelected(state)
-  }), { ...UserActions })
+  }), { ...UserActions }),
+  withNavigation
 )(SelectedVersesModal)

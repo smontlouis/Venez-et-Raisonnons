@@ -6,6 +6,7 @@ export default {
   colors: {
     default: 'black',
     reverse: 'white',
+    border: 'rgb(230,230,230)',
     grey: '#4E4F4F',
     darkGrey: 'rgba(0,0,0,0.5)',
     primary: '#C22839',
