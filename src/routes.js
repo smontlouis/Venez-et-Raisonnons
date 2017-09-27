@@ -18,7 +18,10 @@ import Liked from '@src/containers/Liked'
 import Read from '@src/containers/Read'
 import FavoriteVerses from '@src/containers/FavoriteVerses'
 import HighlightVerses from '@src/containers/HighlightVerses'
+import Notes from '@src/containers/Notes'
 import NewNote from '@src/containers/NewNote'
+import EditNote from '@src/containers/EditNote'
+import Note from '@src/containers/Note'
 
 import Bible from '@src/containers/MainScreenTabs/Bible'
 import MainScreen from '@src/containers/MainScreenTabs/MainScreenNavigator'
@@ -31,6 +34,7 @@ const routesConfigs = {
   read: { screen: Read },
   favoriteVerses: { screen: FavoriteVerses },
   highlightVerses: { screen: HighlightVerses },
+  notes: { screen: Notes },
 
   search: { screen: Search },
   add: { screen: Add },
@@ -46,7 +50,9 @@ const routesConfigs = {
   versionSelector: { screen: VersionSelector },
   strongModal: { screen: StrongModal },
   concordance: { screen: Concordance },
-  newNote: { screen: NewNote }
+  newNote: { screen: NewNote },
+  editNote: { screen: EditNote },
+  note: { screen: Note }
 }
 
 const stackNavigatorConfig = {

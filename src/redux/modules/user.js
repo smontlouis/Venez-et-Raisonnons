@@ -18,6 +18,8 @@ export const REMOVE_HIGHLIGHT = 'user/REMOVE_HIGHLIGHT'
 export const ADD_VERSE_FAVORITE = 'user/ADD_VERSE_FAVORITE'
 export const REMOVE_VERSE_FAVORITE = 'user/REMOVE_VERSE_FAVORITE'
 export const SAVE_NOTE = 'user/SAVE_NOTE'
+export const EDIT_NOTE = 'user/EDIT_NOTE'
+export const REMOVE_NOTE = 'user/REMOVE_NOTE'
 
 const initialState = Map({
   email: '',
@@ -73,7 +75,7 @@ export default function UserReducer (state = initialState, action = {}) {
       return state.updateIn(['questions', 'hasBeenRead'], f => f.merge({ [action.id]: Date.now() }))
     }
     case REMOVE_AS_READ: {
-      return state.updateIn('questions', 'hasBeenRead', f => f.delete(action.id))
+      return state.updateIn(['questions', 'hasBeenRead'], f => f.delete(action.id))
     }
     case ADD_HIGHLIGHT: {
       return state.updateIn(['bible', 'highlights'], f => f.merge(addDateToVerses(action.selectedVerses)))
@@ -88,7 +90,19 @@ export default function UserReducer (state = initialState, action = {}) {
       return Object.keys(action.selectedVerses.toJS()).reduce((map, key) => map.deleteIn(['bible', 'favorites', key]), state)
     }
     case SAVE_NOTE: {
-      return state.updateIn(['bible', 'notes'], f => f.merge(addDateToVerses(action.selectedIds)))
+      return state.updateIn(['bible', 'notes'], f => f.merge({
+        [Date.now()]: {
+          date: Date.now(),
+          verseIds: action.selectedIds,
+          text: action.note
+        }
+      }))
+    }
+    case EDIT_NOTE: {
+      return state.updateIn(['bible', 'notes', action.id], f => f.merge({ text: action.text }))
+    }
+    case REMOVE_NOTE: {
+      return state.deleteIn(['bible', 'notes', action.id])
     }
     default:
       return state
@@ -233,9 +247,27 @@ export function shareVerses (verses) {
 }
 
 export function saveNote (note, selectedIds) {
+  return (dispatch, getState) => {
+    dispatch({
+      type: SAVE_NOTE,
+      note,
+      selectedIds
+    })
+    dispatch(clearSelectedVerses())
+  }
+}
+
+export function editNote (id, text) {
   return {
-    type: SAVE_NOTE,
-    note,
-    selectedIds
+    type: EDIT_NOTE,
+    id,
+    text
+  }
+}
+
+export function removeNote (id) {
+  return {
+    type: REMOVE_NOTE,
+    id
   }
 }

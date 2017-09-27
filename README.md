@@ -30,17 +30,17 @@ Ceci est le code source de l'application Venez et Raisonnons, disponible sur [Go
 - [x] Highlight / Copy / Share verses
 - [x] Register user / Login
 - [X] Force users to be logged to perform actions
-- [x] New design navigation (Glo Bible like)
-- [ ] Notes
-- [ ] New logo
+- [x] New design navigation
+- [x] Notes
 
 #### SHOULD
-- [ ] Share code strong
+- [x] Share code strong
 - [ ] [React-Native onboarding](https://codecanyon.net/item/beonboard-complete-onboarding-template-for-react-native-app/19746395)
 - [ ] Remerciements page à Propos
 - [ ] Refacto Glamourous-Native
 - [ ] API Bible
 - [ ] Audit performance boot
+- [ ] New logo
 
 #### COULD 
 - [ ] Background tasks

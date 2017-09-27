@@ -11,7 +11,10 @@ import {
   ADD_HIGHLIGHT,
   REMOVE_HIGHLIGHT,
   ADD_VERSE_FAVORITE,
-  REMOVE_VERSE_FAVORITE
+  REMOVE_VERSE_FAVORITE,
+  SAVE_NOTE,
+  EDIT_NOTE,
+  REMOVE_NOTE
 } from './modules/user'
 
 export default store => next => action => {
@@ -55,6 +58,13 @@ export default store => next => action => {
     case REMOVE_VERSE_FAVORITE: {
       const favorites = user.getIn(['bible', 'favorites']).toJS()
       isLogged && profileRef.update({ '/bible/favorites': favorites })
+      break
+    }
+    case REMOVE_NOTE:
+    case EDIT_NOTE:
+    case SAVE_NOTE: {
+      const notes = user.getIn(['bible', 'notes']).toJS()
+      isLogged && profileRef.update({ '/bible/notes': notes })
       break
     }
     case USER_UPDATE_PROFILE:

@@ -3,7 +3,7 @@ import React from 'react'
 import { compose, pure } from 'recompose'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import Toast from 'react-native-simple-toast'
+import { SnackBar } from '@components'
 
 import {
   View,
@@ -57,7 +57,7 @@ const AddToFavorites = ({ id, toggleFavorite, isActive, hasIconOnly }: Props) =>
   <TouchableOpacity
     onPress={() => {
       toggleFavorite(id)
-        .then(() => Toast.show(isActive ? 'Supprimé des favoris' : 'Ajouté aux favoris'))
+        .then(() => SnackBar.show(isActive ? 'Supprimé des favoris' : 'Ajouté aux favoris'))
         .catch(() => console.log('Not connected'))
     }}
     activeOpacity={0.7}

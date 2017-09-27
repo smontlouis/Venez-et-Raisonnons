@@ -56,7 +56,7 @@ const VerseComponent = ({date, verses, navigation, isFavorite, isHighlight}: Pro
   }
   return (
     <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.navigate('bible', params)}>
-      <Card>
+      <Card title={false}>
         <Box row style={{ marginBottom: 10 }}>
           <Box flex row>
             { isHighlight && <Circle /> }

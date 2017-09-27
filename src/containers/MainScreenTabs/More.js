@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import Toast from 'react-native-simple-toast'
+import { SnackBar } from '@components'
 import { List, ListItem } from 'react-native-elements'
 import { withNavigation } from 'react-navigation'
 import {
@@ -13,22 +13,22 @@ import { persistedStore } from '@src/App'
 import { Container } from '@src/styled'
 import { Header } from '@src/components'
 
-const primaryList = [
-  {
-    title: 'Poser une question',
-    icon: 'add-circle',
-    onPress (navigation) {
-      navigation.navigate('add')
-    }
-  },
-  {
-    title: 'Chercher une question',
-    icon: 'search',
-    onPress (navigator) {
-      navigator.navigate('search')
-    }
-  }
-]
+// const primaryList = [
+//   {
+//     title: 'Poser une question',
+//     icon: 'add-circle',
+//     onPress (navigation) {
+//       navigation.navigate('add')
+//     }
+//   },
+//   {
+//     title: 'Chercher une question',
+//     icon: 'search',
+//     onPress (navigator) {
+//       navigator.navigate('search')
+//     }
+//   }
+// ]
 
 const secondaryList = [
   {
@@ -114,8 +114,9 @@ const tertiaryList = [
             onPress: () => {
               persistedStore.purge()
               // @TODO - Unlink everyfile too
-              Toast.show('Toutes les données ont été effacées.')
-            }
+              SnackBar.show('Toutes les données ont été effacées.')
+            },
+            style: 'destructive'
           }
         ]
       )
@@ -124,13 +125,13 @@ const tertiaryList = [
 ]
 
 const More = ({ navigation }) =>
-  <Container>
+  <Container grey>
     <Header
       title='Plus'
       hasBackButton={false}
     />
     <ScrollView>
-      <List>
+      {/* <List>
         {
           primaryList.map((item, i) => (
             <ListItem
@@ -141,7 +142,7 @@ const More = ({ navigation }) =>
             />
           ))
         }
-      </List>
+      </List> */}
       <List>
         {
           secondaryList.map((item, i) => (

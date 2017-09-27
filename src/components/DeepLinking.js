@@ -2,7 +2,7 @@
 // import { Component, PropTypes } from 'react'
 // import { withNavigation } from 'react-navigation'
 // import qs from 'query-string'
-// import Toast from 'react-native-simple-toast'
+// import { SnackBar } from '@components'
 // import { pure } from 'recompose'
 
 // import {
@@ -21,7 +21,7 @@
 //   componentWillMount () {
 //     Linking.getInitialURL().then((url) => {
 //       if (url) this.handleOpenURL({ url })
-//     }).catch(() => Toast.show('Lien invalide'))
+//     }).catch(() => SnackBar.show('Lien invalide'))
 
 //     Linking.addEventListener('url', this.handleOpenURL)
 //   }
@@ -41,7 +41,7 @@
 //     if (isQuestion && hasQuestion) {
 //       navigation.navigate(Router.getRoute(path, params))
 //     } else {
-//       Toast.show('Lien invalide')
+//       SnackBar.show('Lien invalide')
 //     }
 //   }
 

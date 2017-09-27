@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import Toast from 'react-native-simple-toast'
+import { SnackBar } from '@components'
 import { pure, compose } from 'recompose'
 import { View, Text, TouchableOpacity } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
@@ -52,7 +52,7 @@ const MarkAsRead = ({ id, toggleMarkAsRead, isActive, hasIconOnly }: Props) => (
   <TouchableOpacity
     onPress={() => {
       toggleMarkAsRead(id)
-        .then(() => Toast.show(isActive ? 'Marqué comme non lu' : 'Marqué comme lu'))
+        .then(() => SnackBar.show(isActive ? 'Marqué comme non lu' : 'Marqué comme lu'))
         .catch(() => console.log('Not connected'))
     }}
     activeOpacity={0.7}

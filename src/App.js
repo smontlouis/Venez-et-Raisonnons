@@ -11,7 +11,7 @@ import Routes from './routes'
 import configureStore from './redux/store'
 import theme from './themes/default'
 import { globalVariables } from './helpers'
-import { Loading } from './components'
+// import { Loading } from './components'
 import { initDB } from './helpers/database'
 
 export const store = configureStore()
@@ -35,11 +35,11 @@ class App extends Component {
   }
 
   render () {
-    if (!this.state.rehydrated) {
-      return (
-        <Loading />
-      )
-    }
+    // if (!this.state.rehydrated) {
+    //   return (
+    //     <Loading />
+    //   )
+    // }
     return (
       <Provider store={store}>
         <ThemeProvider theme={theme}>

@@ -1,12 +1,12 @@
 import React from 'react'
 import { View, TouchableOpacity } from 'glamorous-native'
-import Toast from 'react-native-simple-toast'
+import { SnackBar } from '@components'
 import { FireAuth } from '@helpers'
 import { Text } from '@ui'
 
 const sendEmailNotification = () => {
   FireAuth.resendVerification()
-  Toast.show('Email envoyé. Vérifiez votre boite.')
+  SnackBar.show('Email envoyé. Vérifiez votre boite.')
 }
 
 const SendEmail = () => (

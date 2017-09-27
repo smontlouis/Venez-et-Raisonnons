@@ -28,7 +28,7 @@ const VersetWrapper = glam.view(
     borderRightColor: theme.colors.secondary
   } : {},
   ({ isSelected }, theme) => isSelected ? {
-    borderRightColor: theme.colors.tertiary
+    // borderRightColor: theme.colors.tertiary
   } : {}
 )
 

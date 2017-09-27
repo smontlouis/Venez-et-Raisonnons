@@ -29,22 +29,22 @@ class Master extends Component {
   render () {
     const { topics, isLoading, dispatch, children } = this.props
 
-    if (topics.isEmpty() && !isLoading) {
-      return (
-        <NoItems
-          icon='sentiment-dissatisfied'
-          text='Pas de connexion'
-          buttonTitle='Réessayer'
-          buttonAction={() => dispatch(loadData())}
-        />
-      )
-    }
+    // if (topics.isEmpty() && !isLoading) {
+    //   return (
+    //     <NoItems
+    //       icon='sentiment-dissatisfied'
+    //       text='Pas de connexion'
+    //       buttonTitle='Réessayer'
+    //       buttonAction={() => dispatch(loadData())}
+    //     />
+    //   )
+    // }
 
-    if (topics.isEmpty()) {
-      return (
-        <Loading />
-      )
-    }
+    // if (topics.isEmpty()) {
+    //   return (
+    //     <Loading />
+    //   )
+    // }
 
     return children
   }

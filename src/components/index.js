@@ -45,8 +45,11 @@ import ConcordanceList from './Bible/ConcordanceList'
 import SelectedVersesModal from './Bible/SelectedVersesModal'
 
 import VersesList from './Profile/VersesList'
+import NotesList from './Profile/NotesList'
 
 import NavigationComponent from './TabBar/NavigationComponent'
+
+import SnackBar from './SnackBar'
 
 export {
   List,
@@ -96,5 +99,8 @@ export {
   ConcordanceList,
   SelectedVersesModal,
 
-  VersesList
+  VersesList,
+  NotesList,
+
+  SnackBar
 }

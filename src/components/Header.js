@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { View, Text, ActivityIndicator } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { Back } from '@src/components'
 import { combineStyles } from '@src/helpers'
@@ -66,10 +66,12 @@ type Props = {
   isTransparent?: bool,
   isLight?: bool,
   isModal?: bool,
-  isLoading: bool
+  isLoading: bool,
+  onRightIconPress?: Function,
+  rightIconName?: string,
 }
 
-const Header = ({ title, hasBackButton = true, isTransparent, isLight, isLoading, isModal }: Props) => {
+const Header = ({ title, hasBackButton = true, isTransparent, isLight, isLoading, isModal, onRightIconPress, rightIconName }: Props) => {
   const ContainerStyles = combineStyles({
     container: true,
     containerTransparent: isTransparent,
@@ -101,10 +103,10 @@ const Header = ({ title, hasBackButton = true, isTransparent, isLight, isLoading
         </Back>
       }
       {
-        isLoading &&
-        <View style={styles.indicator}>
-          <ActivityIndicator color='white' />
-        </View>
+        rightIconName &&
+        <TouchableOpacity style={styles.indicator} onPress={onRightIconPress}>
+          <Icon name={rightIconName} size={24} color={isLight ? 'black' : 'white'} />
+        </TouchableOpacity>
       }
     </View>
   )

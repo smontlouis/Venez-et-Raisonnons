@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { withNavigation } from 'react-navigation'
 import { Button } from 'react-native-elements'
-import { View, Text, StatusBar, ScrollView } from 'react-native'
+import { View, Text, StatusBar, ScrollView, Share } from 'react-native'
 import getDB from '@src/helpers/database'
 import { capitalize, globalVariables } from '@src/helpers'
 import { itemsPerPage } from '@src/helpers/globalVariables'
@@ -166,6 +166,28 @@ export default class StrongModal extends Component {
         <Header
           isLight
           title={`Strong ${reference}`}
+          rightIconName='share-variant'
+          onRightIconPress={() => {
+            const textToShare = `
+${capitalize(Mot)} ${Phonetique} - Strong ${reference}
+${Type}
+-----
+${Hebreu ? `Mot Hébreu: ${Hebreu}` : `Mot Grec: ${Grec}`}
+
+Définition:
+${Definition.replace(/<(?:.|\n)*?>/gm, '')}
+
+Généralement traduit par:
+${LSG}
+
+Origine du mot:
+${Origine.replace(/<(?:.|\n)*?>/gm, '')}
+`
+            Share.share({
+              message: textToShare
+            })
+          }
+          }
         />
         <ScrollView contentContainerStyle={styles.content}>
           <Text style={styles.mot}>
@@ -184,7 +206,7 @@ export default class StrongModal extends Component {
             !!Hebreu &&
             <View>
               <Text style={styles.line}>
-                Hébreu:&nbsp;
+                Mot Hébreu:&nbsp;
                 <Text style={styles.word}>{Hebreu}</Text>
               </Text>
             </View>
@@ -193,7 +215,7 @@ export default class StrongModal extends Component {
             !!Grec &&
             <View>
               <Text style={styles.line}>
-                Grec:
+                Mot Grec:&nbsp;
                 <Text style={styles.word}>{Grec}</Text>
               </Text>
             </View>

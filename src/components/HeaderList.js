@@ -2,8 +2,10 @@
 import React from 'react'
 import { View } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { pure } from 'recompose'
-import { Title, Text } from '@src/styled'
+import { pure, compose } from 'recompose'
+import { connect } from 'react-redux'
+import * as Animatable from 'react-native-animatable'
+import { Title, Text } from '@ui'
 
 const styles = EStyleSheet.create({
   titleBorder: {
@@ -15,20 +17,43 @@ const styles = EStyleSheet.create({
   }
 })
 
+Animatable.initializeRegistryWithDefinitions({
+  stretch: {
+    from: {
+      width: 35
+    },
+    to: {
+      width: 50
+    }
+  }
+})
+
 type Props = {
   title: string,
   subtitle?: string
 }
 
-const HeaderList = ({ title, subtitle }: Props) => (
+const HeaderList = ({ title, subtitle, isLoading }: Props) => (
   <View>
     <Title marginTop={20}>{title}</Title>
     {
       subtitle &&
       <Text tertiaryFont small tertiary>{subtitle}</Text>
     }
-    <View style={styles.titleBorder} />
+    <Animatable.View
+      animation={isLoading ? 'stretch' : null}
+      easing='ease-out'
+      iterationCount='infinite'
+      direction='alternate'
+      duration={500}
+      style={styles.titleBorder}
+    />
   </View>
 )
 
-export default pure(HeaderList)
+export default compose(
+  connect(state => ({
+    isLoading: state.getIn(['app', 'isLoading'])
+  })),
+  pure
+)(HeaderList)

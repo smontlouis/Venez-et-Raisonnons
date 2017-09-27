@@ -22,6 +22,7 @@ const stylesToBind = {
   }),
   color: theme => ({
     default: theme.colors.default,
+    primary: theme.colors.primary,
     secondary: theme.colors.secondary,
     reverse: theme.colors.reverse,
     tertiary: theme.colors.tertiary
@@ -38,13 +39,14 @@ const Text = glamorous(T)(
     fontFamily: s.fontFamily,
     color: s.color
   })),
-  ({ flex, underline }) => ({
+  ({ flex, underline, disabled }) => ({
     ...flex ? { flex: 1 } : {},
     ...underline ? {
       textDecorationLine: 'underline',
       textDecorationStyle: 'solid',
       textDecorationColor: 'black'
-    } : {}
+    } : {},
+    ...disabled ? { opacity: 0.7 } : {}
   })
 )
 

@@ -5,9 +5,12 @@ import { pure, compose } from 'recompose'
 import { connect } from 'react-redux'
 import glam from 'glamorous-native'
 import { Icon } from 'react-native-elements'
-import { createSelector } from 'reselect'
-import * as UserActions from '@src/redux/modules/user'
 import { withNavigation } from 'react-navigation'
+import { createSelector } from 'reselect'
+import { SnackBar } from '@components'
+import { withLogin } from '@helpers'
+import * as UserActions from '@src/redux/modules/user'
+import * as AppActions from '@src/redux/modules/app'
 
 import { type Verse } from '@src/types'
 import type { NavigationAction, NavigationState, NavigationScreenProp } from 'react-navigation/src/TypeDefinition'
@@ -21,6 +24,8 @@ type Props = {
   toggleVerseFavorite: Function,
   shareVerses: Function,
   navigation: NavigationScreenProp<NavigationState, NavigationAction>,
+  isLogged: bool,
+  showLoginModal: Function
 }
 
 const ModalBox = glam(Modal, { forwardProps: ['position', 'isOpen'] })({
@@ -62,7 +67,9 @@ const SelectedVersesModal = ({
   toggleHighlight,
   toggleVerseFavorite,
   shareVerses,
-  navigation
+  navigation,
+  isLogged,
+  showLoginModal
 }: Props) => (
   <ModalBox
     isOpen={isOpen}
@@ -76,7 +83,11 @@ const SelectedVersesModal = ({
         name={isSelectedVerseFavorited ? 'close' : 'bookmark'}
         size={isSelectedVerseHighlighted ? 20 : 17}
         color='rgba(0,0,0,0.7)'
-        onPress={() => toggleVerseFavorite(isSelectedVerseFavorited)}
+        onPress={
+          () => toggleVerseFavorite(isSelectedVerseFavorited)
+                  .then(() => SnackBar.show(!isSelectedVerseFavorited ? 'Marqué comme favori' : 'Supprimé des favoris'))
+                  .catch((e) => console.log(e, 'Not connected'))
+        }
       />
       <IconText>Favori</IconText>
     </IconContainer>
@@ -85,7 +96,13 @@ const SelectedVersesModal = ({
         name='content-paste'
         size={15}
         color='rgba(0,0,0,0.7)'
-        onPress={() => navigation.navigate('newNote')}
+        onPress={() => {
+          if (isLogged) {
+            navigation.navigate('newNote')
+          } else {
+            showLoginModal()
+          }
+        }}
       />
       <IconText>Note</IconText>
     </IconContainer>
@@ -94,7 +111,11 @@ const SelectedVersesModal = ({
         name={isSelectedVerseHighlighted ? 'close' : 'border-color'}
         size={isSelectedVerseHighlighted ? 20 : 15}
         color='rgba(0,0,0,0.7)'
-        onPress={() => toggleHighlight(isSelectedVerseHighlighted)}
+        onPress={
+          () => toggleHighlight(isSelectedVerseHighlighted)
+                  .then(() => SnackBar.show(!isSelectedVerseHighlighted ? 'Verset(s) surligné(s)' : 'Surlignage supprimé'))
+                  .catch((e) => console.log(e, 'Not connected'))
+        }
       />
       <IconText>Surligner</IconText>
     </IconContainer>
@@ -126,10 +147,11 @@ const getFavoriteInSelected = createSelector(
 
 export default compose(
   pure,
+  withLogin,
   connect(state => ({
     isOpen: !state.getIn(['bible', 'selectedVerses']).isEmpty(),
     isSelectedVerseHighlighted: !!getHighlightInSelected(state),
     isSelectedVerseFavorited: !!getFavoriteInSelected(state)
-  }), { ...UserActions }),
+  }), { ...UserActions, ...AppActions }),
   withNavigation
 )(SelectedVersesModal)

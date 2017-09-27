@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import { View, Image, Platform } from 'react-native'
+import * as Animatable from 'react-native-animatable'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import RNFetchBlob from 'react-native-fetch-blob'
 import { pure, compose } from 'recompose'
@@ -100,7 +101,7 @@ class TopicItem extends Component {
   }
 
   render () {
-    const { id, title, questionsCount, localImage, imageUrl, newQuestionCount } = this.props
+    const { id, title, questionsCount, localImage, imageUrl, newQuestionCount, index } = this.props
     const img = localImage
     ? Platform.OS === 'android' ? `file://${localImage}` : localImage
     : imageUrl
@@ -112,7 +113,7 @@ class TopicItem extends Component {
         route={'topic'}
         params={{ topicId: id }}
       >
-        <View style={styles.container}>
+        <Animatable.View animation='fadeIn' style={styles.container} delay={200 * index}>
           <Image
             style={styles.image}
             source={{ uri: img }}
@@ -130,7 +131,7 @@ class TopicItem extends Component {
           <View>
             <Icon name='chevron-right' size={26} color='rgba(0,0,0,0.5)' />
           </View>
-        </View>
+        </Animatable.View>
       </Link>
     )
   }

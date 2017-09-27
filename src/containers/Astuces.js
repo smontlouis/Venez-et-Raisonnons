@@ -16,8 +16,6 @@ const converter = new ShowDown.Converter()
 const markdownToHtml = converter.makeHtml(
 `→ L'application peut faire preuve parfois de quelques ralentissements, la Bible Strong étant très lourde à gérer selon les mobiles
 
-→ Vous pouvez swiper entre les différents chapitres et les mots strong afin de changer de page
-
 → Il est possible de retourner à l'accueil en appuyant longuement sur le bouton retour
 
 → Les questions en *vert* sont des études, elles sont séparées en plusieurs sous-questions

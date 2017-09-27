@@ -104,7 +104,7 @@ class SearchInput extends Component {
             styles.input,
             noIcon && { paddingLeft: 9 },
             round && { borderRadius: 15 },
-            isLight && { backgroundColor: 'white', color: 'black' },
+            isLight && { backgroundColor: 'rgba(0,0,0,0.05)', color: 'black' },
             inputStyle && inputStyle
           ]}
         />

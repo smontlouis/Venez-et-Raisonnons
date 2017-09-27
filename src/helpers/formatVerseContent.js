@@ -4,6 +4,10 @@ import books from '@src/helpers/livres'
 import { type Verse } from '@src/types'
 
 export default (verses: Array<Verse>) => {
+  if (!verses.length) {
+    return { title: '', content: '' }
+  }
+
   const content: string = verses
       .map(v => `(${v.Verset}) ${v.Texte}`)
       .join(' ')

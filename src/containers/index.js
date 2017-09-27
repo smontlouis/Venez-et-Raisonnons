@@ -26,6 +26,7 @@ import LexiqueHebreu from './Lexique/LexiqueHebreu'
 import LexiqueGrec from './Lexique/LexiqueGrec'
 import Login from './Login'
 import NewNote from './NewNote'
+import Note from './Note'
 
 export {
   Topics,
@@ -53,5 +54,6 @@ export {
   LexiqueHebreu,
   LexiqueGrec,
   Login,
-  NewNote
+  NewNote,
+  Note
 }

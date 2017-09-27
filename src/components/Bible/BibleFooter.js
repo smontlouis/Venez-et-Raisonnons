@@ -46,7 +46,7 @@ const BibleFooter = ({ book, chapter, goToNextChapter, goToPrevChapter, disabled
     { !(book.Numero === 1 && chapter === 1) &&
       <TouchableOpacity
         disabled={disabled}
-        activeOpacity={0.8}
+        activeOpacity={0.5}
         style={styles.button}
         onPress={goToPrevChapter}
       >
@@ -60,7 +60,7 @@ const BibleFooter = ({ book, chapter, goToNextChapter, goToPrevChapter, disabled
     { !(book.Numero === 66 && chapter === 22) &&
       <TouchableOpacity
         disabled={disabled}
-        activeOpacity={0.8}
+        activeOpacity={0.5}
         style={styles.button}
         onPress={goToNextChapter}
       >

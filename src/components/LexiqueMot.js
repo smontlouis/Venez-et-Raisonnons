@@ -1,7 +1,9 @@
 // @flow
 import React from 'react'
-import { Text, Box } from '@src/styled'
-import { Link } from '@src/components'
+import { Divider } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { Text, Box } from '@ui'
+import { Link } from '@components'
 import { pure } from 'recompose'
 
 type Props = {
@@ -14,9 +16,13 @@ const LexiqueMot = ({ strong, book }:Props) => (
     route={'strongModal'}
     params={{ reference: strong.Code.toString(), book }}
   >
-    <Box row marginTop={10} marginBottom={10}>
-      <Text secondaryFont secondary>{strong.Code}</Text>
-      <Text flex> - {strong.Mot}</Text>
+    <Box marginTop={10}>
+      <Box row marginBottom={10}>
+        <Text secondaryFont secondary>{strong.Code}</Text>
+        <Text flex> - {strong.Mot}</Text>
+        <Icon name='chevron-right' size={26} color='rgba(0,0,0,0.5)' />
+      </Box>
+      <Divider />
     </Box>
   </Link>
 )

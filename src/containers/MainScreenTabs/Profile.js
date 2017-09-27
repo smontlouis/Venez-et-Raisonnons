@@ -1,11 +1,11 @@
 // @flow
 
 import React from 'react'
-import { compose, branch, pure } from 'recompose'
+import { compose, branch, pure, lifecycle } from 'recompose'
 import { StatusBar, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import { Login } from '@src/containers'
-import { ScrollableHeader } from '@components'
+import { ScrollableHeader, SnackBar } from '@components'
 import { Section, ProfileImage, ProfileItem, SendEmail } from '@components/Profile'
 import { Container, Box, Text, Title, Spacer } from '@ui'
 import { FireAuth, withLogin } from '@helpers'
@@ -78,7 +78,7 @@ const Profile = ({
           <ProfileItem
             icon='event-note'
             name='Notes'
-            onPress={() => console.log('coucou')}
+            onPress={() => navigation.navigate('notes')}
           />
           <ProfileItem
             icon='border-color'
@@ -113,6 +113,7 @@ const Profile = ({
 )
 
 const enhance = compose(
+  withLogin,
   connect(
     (state) => ({
       name: state.getIn(['user', 'displayName']),
@@ -121,7 +122,13 @@ const enhance = compose(
       emailVerified: state.getIn(['user', 'emailVerified'])
     })
   ),
-  withLogin,
+  lifecycle({
+    componentDidUpdate (prevProps) {
+      if (this.props.isLogged !== prevProps.isLogged && this.props.isLogged) {
+        SnackBar.show(`Bienvenue ${this.props.name} !`)
+      }
+    }
+  }),
   pure,
   branch(
     ({ isLogged }) => !isLogged,
