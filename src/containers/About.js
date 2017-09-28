@@ -1,7 +1,7 @@
 import React from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import ShowDown from 'showdown'
-import { View, ScrollView } from 'react-native'
+import { Linking, ScrollView } from 'react-native'
 import { Container } from '@src/styled'
 import { Header, StylizedHTMLView } from '@src/components'
 
@@ -37,7 +37,11 @@ Ainsi que d'autres supports et outils d'études à venir par la suite.
 
 Nous sommes persuadés que tout cela sera d’une grande aide pour le monde francophone chrétien mais pour mener à terme un tel projet nous avons aussi besoin de votre aide. C’est la raison pour laquelle nous vous demandons de prendre part vous aussi à cette initiative en nous soutenant pour vos dons.
 
-v2.0.0
+## Remerciements
+
+Merci à Thomas Mathey de [levangile.com](http://levangile.com) de nous avoir fourni la Bible Strong.
+
+v3.0.0
 `)
 
 const styles = EStyleSheet.create({
@@ -54,6 +58,7 @@ const About = () =>
     <ScrollView contentContainerStyle={styles.content}>
       <StylizedHTMLView
         value={markdownToHtml}
+        onLinkPress={(url) => Linking.openURL(url)}
       />
     </ScrollView>
 

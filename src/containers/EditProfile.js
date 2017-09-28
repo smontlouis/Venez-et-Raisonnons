@@ -23,9 +23,10 @@ const EditProfile = ({ name, changeName, navigation, onUserUpdateProfile }: Prop
     <Header
       title='Modifier mon profil'
     />
-    <Box padding>
+    <Box vPadding>
       <FormLabel>Nom</FormLabel>
       <FormInput
+        underlineColorAndroid='#bdc6cf'
         autoCapitalize='none'
         autoCorrect={false}
         onChangeText={changeName}

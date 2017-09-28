@@ -53,12 +53,6 @@ const styles = EStyleSheet.create({
   },
   li: {
     lineHeight: 18
-  },
-  ol: {
-    flexDirection: 'row'
-  },
-  ul: {
-    flexDirection: 'row'
   }
 })
 

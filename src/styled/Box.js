@@ -1,14 +1,14 @@
 import glamorous, { View } from 'glamorous-native'
 
 const Box = glamorous(View)(
-  ({ row, flex, center, padding, paddingAll, grey }) => ({
+  ({ row, flex, center, vPadding, paddingAll, grey }) => ({
     flex: flex && 1,
     flexDirection: row && 'row',
     ...center ? {
       justifyContent: 'center',
       alignItems: 'center'
     } : {},
-    ...padding ? {
+    ...vPadding ? {
       paddingTop: 20,
       paddingBottom: 20
     } : {},

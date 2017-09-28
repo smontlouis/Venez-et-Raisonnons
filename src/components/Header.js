@@ -39,12 +39,13 @@ const styles = EStyleSheet.create({
     justifyContent: 'center'
   },
   indicator: {
-    marginRight: 10,
     position: 'absolute',
-    bottom: 0,
-    right: 0,
+    bottom: '$header.icon',
+    right: 10,
     height: 32,
-    width: 32
+    width: 32,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   titleContainer: {
     flex: 1,

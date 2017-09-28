@@ -6,6 +6,8 @@ import { StatusBar, ScrollView } from 'react-native'
 import { compose, pure, withStateHandlers } from 'recompose'
 import { FormLabel, FormInput } from 'react-native-elements'
 import { withNavigation } from 'react-navigation'
+import KeyboardSpacer from 'react-native-keyboard-spacer';
+
 import { Container, Box, FixedContainer, FixedButton, Spacer } from '@ui'
 import { Header, SnackBar } from '@components'
 import { formatVerseContent } from '@helpers'
@@ -35,6 +37,7 @@ const NewNote = ({ title, navigation, selectedIds, note, changeNote, saveNote }:
         <Spacer />
         <FormInput
           onChangeText={changeNote}
+          underlineColorAndroid='#bdc6cf'
           inputStyle={{ width: '100%', color: 'black' }}
           multiline
         />
@@ -52,6 +55,7 @@ const NewNote = ({ title, navigation, selectedIds, note, changeNote, saveNote }:
         SAUVEGARDER
       </FixedButton>
     </FixedContainer>
+    <KeyboardSpacer />
   </Container>
 )
 

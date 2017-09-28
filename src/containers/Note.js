@@ -23,7 +23,7 @@ const Note = ({ text, removeNote, navigation, navigation: { state: { params: { d
           <Title medium secondaryFont>Contenu de la note - {title} </Title>
           <Text tertiary small>Il y a {formattedDate}</Text>
         </Box>
-        <Box padding>
+        <Box vPadding>
           <Text medium>{text}</Text>
         </Box>
         <Spacer />

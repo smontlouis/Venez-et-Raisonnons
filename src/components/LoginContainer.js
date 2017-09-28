@@ -10,15 +10,17 @@ import { FireAuth, withLogin } from '@helpers'
 
 const Login = ({ email, password, changeEmail, changePassword }) => (
   <Box>
-    <Box padding>
+    <Box vPadding>
       <FormLabel>Email</FormLabel>
       <FormInput
+        underlineColorAndroid='#bdc6cf'
         autoCapitalize='none'
         autoCorrect={false}
         onChangeText={changeEmail}
       />
       <FormLabel>Password</FormLabel>
       <FormInput
+        underlineColorAndroid='#bdc6cf'
         secureTextEntry
         autoCapitalize='none'
         autoCorrect={false}
@@ -36,7 +38,7 @@ const Login = ({ email, password, changeEmail, changePassword }) => (
         - ou -
       </Text>
     </Box>
-    <Box row padding>
+    <Box row vPadding>
       <Box flex>
         <Button
           onPress={() => FireAuth.googleLogin()}
@@ -54,7 +56,7 @@ const Login = ({ email, password, changeEmail, changePassword }) => (
         />
       </Box>
     </Box>
-    <Box padding center>
+    <Box vPadding center>
       <Link route={'register'}>
         <Text sansSerif underline medium>
           Pas de compte ? Inscrivez-vous.

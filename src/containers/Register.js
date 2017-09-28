@@ -14,18 +14,21 @@ const Login = ({ isLogged, user, email, password, changeEmail, changePassword, c
       <Spacer size={10} />
       <FormLabel>Nom utilisateur</FormLabel>
       <FormInput
+        underlineColorAndroid='#bdc6cf'
         autoCapitalize='none'
         autoCorrect={false}
         onChangeText={changeUser}
       />
       <FormLabel>Email</FormLabel>
       <FormInput
+        underlineColorAndroid='#bdc6cf'
         autoCapitalize='none'
         autoCorrect={false}
         onChangeText={changeEmail}
       />
       <FormLabel>Mot de passe</FormLabel>
       <FormInput
+        underlineColorAndroid='#bdc6cf'
         secureTextEntry
         autoCapitalize='none'
         autoCorrect={false}

@@ -32,6 +32,13 @@ import { Header } from '@src/components'
 
 const secondaryList = [
   {
+    title: 'À propos',
+    icon: 'info',
+    onPress (navigation) {
+      navigation.navigate('about')
+    }
+  },
+  {
     title: 'Astuces',
     icon: 'help-outline',
     onPress (navigation) {
