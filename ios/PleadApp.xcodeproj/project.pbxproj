@@ -47,7 +47,6 @@
 		6B79F39DBC074AA9A3D24DCB /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 207C6033C2B9431EB5E93B2C /* EvilIcons.ttf */; };
 		7A9402FD78634B7D97484476 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA27636D2FD4B7888DB7C6A /* libCodePush.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		904F6342614C40729DF1FD3B /* libLRDRCTSimpleToast.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1843C4DC5C2C44D181186920 /* libLRDRCTSimpleToast.a */; };
 		BFBEA07BAD2B4DED833256DE /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D77947E1939D4A68A471772A /* libRNFetchBlob.a */; };
 		DB2852E502BF448A976AF44F /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6C43933DD2840F08888F9D5 /* libRNVectorIcons.a */; };
 		DBAC7C06F61A4DF28009960F /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAC9A675FB2040EF8CE47CD4 /* SimpleLineIcons.ttf */; };
@@ -283,13 +282,6 @@
 			remoteGlobalIDString = 2D2A28201D9B03D100D4039D;
 			remoteInfo = "RCTAnimation-tvOS";
 		};
-		F4A66C561E27ED380078443E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 077691F02E1B4A95835889B7 /* LRDRCTSimpleToast.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 15209BEF1D250F63000D0F44;
-			remoteInfo = LRDRCTSimpleToast;
-		};
 		F4A66C7E1E28477E0078443E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F4E9700AAC37420DB4636BE3 /* CodePush.xcodeproj */;
@@ -337,7 +329,6 @@
 		00E356EE1AD99517003FC87E /* PleadAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PleadAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* PleadAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PleadAppTests.m; sourceTree = "<group>"; };
-		077691F02E1B4A95835889B7 /* LRDRCTSimpleToast.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = LRDRCTSimpleToast.xcodeproj; path = "../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast.xcodeproj"; sourceTree = "<group>"; };
 		0AA27636D2FD4B7888DB7C6A /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libCodePush.a; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
@@ -348,7 +339,6 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PleadApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PleadApp/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		1843C4DC5C2C44D181186920 /* libLRDRCTSimpleToast.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libLRDRCTSimpleToast.a; sourceTree = "<group>"; };
 		20718C201E3F472BAE99EADE /* RNFIRMessaging.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFIRMessaging.xcodeproj; path = "../node_modules/react-native-fcm/ios/RNFIRMessaging.xcodeproj"; sourceTree = "<group>"; };
 		207C6033C2B9431EB5E93B2C /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		2490A6EC1A97731E93080C2B /* Pods-PleadApp.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PleadApp.staging.xcconfig"; path = "Pods/Target Support Files/Pods-PleadApp/Pods-PleadApp.staging.xcconfig"; sourceTree = "<group>"; };
@@ -430,7 +420,6 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				DB2852E502BF448A976AF44F /* libRNVectorIcons.a in Frameworks */,
 				BFBEA07BAD2B4DED833256DE /* libRNFetchBlob.a in Frameworks */,
-				904F6342614C40729DF1FD3B /* libLRDRCTSimpleToast.a in Frameworks */,
 				7A9402FD78634B7D97484476 /* libCodePush.a in Frameworks */,
 				DE55E94976D04B208C5BE2A5 /* libz.tbd in Frameworks */,
 				2B7AF90F5DAD479DB290E67A /* libSQLite.a in Frameworks */,
@@ -637,7 +626,6 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				36C6A709888D4B1485819B81 /* RNVectorIcons.xcodeproj */,
 				C9DA870C6BE3490794A6A5A0 /* RNFetchBlob.xcodeproj */,
-				077691F02E1B4A95835889B7 /* LRDRCTSimpleToast.xcodeproj */,
 				F4E9700AAC37420DB4636BE3 /* CodePush.xcodeproj */,
 				7A0138CDEEDA4AF19669BE5D /* SQLite.xcodeproj */,
 				20718C201E3F472BAE99EADE /* RNFIRMessaging.xcodeproj */,
@@ -750,20 +738,11 @@
 				5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */,
 				C6C43933DD2840F08888F9D5 /* libRNVectorIcons.a */,
 				D77947E1939D4A68A471772A /* libRNFetchBlob.a */,
-				1843C4DC5C2C44D181186920 /* libLRDRCTSimpleToast.a */,
 				0AA27636D2FD4B7888DB7C6A /* libCodePush.a */,
 				F6C81A8CA1DB4E388FF626A2 /* libSQLite.a */,
 				636052B50F554086BBD7EC76 /* libRNFIRMessaging.a */,
 			);
 			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		F4A66C531E27ED380078443E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F4A66C571E27ED380078443E /* libLRDRCTSimpleToast.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		F4A66C7B1E28477E0078443E /* Products */ = {
@@ -885,7 +864,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 7PZMKGJ67J;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -925,10 +904,6 @@
 				{
 					ProductGroup = F4A66C7B1E28477E0078443E /* Products */;
 					ProjectRef = F4E9700AAC37420DB4636BE3 /* CodePush.xcodeproj */;
-				},
-				{
-					ProductGroup = F4A66C531E27ED380078443E /* Products */;
-					ProjectRef = 077691F02E1B4A95835889B7 /* LRDRCTSimpleToast.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -1208,13 +1183,6 @@
 			remoteRef = F48BB7CD1E01EDBE007D4996 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		F4A66C571E27ED380078443E /* libLRDRCTSimpleToast.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libLRDRCTSimpleToast.a;
-			remoteRef = F4A66C561E27ED380078443E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		F4A66C7F1E28477E0078443E /* libCodePush.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1463,10 +1431,7 @@
 				INFOPLIST_FILE = PleadAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1490,10 +1455,7 @@
 				INFOPLIST_FILE = PleadAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1526,7 +1488,6 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-sqlite-storage/src/ios",
 					"$(SRCROOT)/../node_modules/react-native/Libraries",
@@ -1573,7 +1534,6 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-sqlite-storage/src/ios",
 					"$(SRCROOT)/../node_modules/react-native/Libraries",
@@ -1616,10 +1576,7 @@
 				);
 				INFOPLIST_FILE = "PleadApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1650,10 +1607,7 @@
 				);
 				INFOPLIST_FILE = "PleadApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1679,10 +1633,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "PleadApp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.PleadApp-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -1704,10 +1655,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "PleadApp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.PleadApp-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -1861,7 +1809,6 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-sqlite-storage/src/ios",
 					"$(SRCROOT)/../node_modules/react-native/Libraries",
@@ -1901,10 +1848,7 @@
 				INFOPLIST_FILE = PleadAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1932,10 +1876,7 @@
 				);
 				INFOPLIST_FILE = "PleadApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1961,10 +1902,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "PleadApp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.PleadApp-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
