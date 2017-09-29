@@ -90,14 +90,16 @@ class TopicItem extends Component {
   componentWillMount () {
     const { imageUrl, id, dispatch, prevImgUrl, localImage } = this.props
 
-    // @TODO - Create folder instead, Implements exists method, etc
-    if ((imageUrl !== prevImgUrl) || !localImage) {
-      RNFetchBlob.config({ fileCache: true, appendExt: 'png' }).fetch('GET', imageUrl)
-      .then((res) => {
-        dispatch(saveLocalImage(id, res.path()))
+    RNFetchBlob.fs.exists(localImage)
+      .then((exist) => {
+        if (!exist || (imageUrl !== prevImgUrl)) {
+          RNFetchBlob.config({ fileCache: true, appendExt: 'png' }).fetch('GET', imageUrl)
+          .then((res) => {
+            dispatch(saveLocalImage(id, res.path()))
+          })
+          .catch(err => console.log(err))
+        }
       })
-      .catch(err => console.log(err))
-    }
   }
 
   render () {
