@@ -1,5 +1,6 @@
 import { Map } from 'immutable'
 import { firebaseDb } from '@src/services/firebase'
+import { SnackBar } from '@components'
 
 const LOAD_DATA = 'app/LOAD_DATA'
 export const LOAD_DATA_SUCCESS = 'app/LOAD_DATA_SUCCESS'
@@ -53,6 +54,7 @@ export function loadData () {
         // If update available
         if (lastUpdate !== stateUpdate) {
           dispatch({ type: LOAD_DATA })
+          SnackBar.show('Mise à jour en cours...')
           const racePromise = Promise.race([
             new Promise(resolve => AppData.once('value', snapshot => resolve(snapshot.val()))),
             new Promise((resolve, reject) => setTimeout(() => reject(new Error('Fail to connect to dabatase')), 10000))
@@ -62,6 +64,7 @@ export function loadData () {
             .then((val) => {
               dispatch(setLastUpdate(lastUpdate))
               dispatch(loadDataSuccess(val))
+              SnackBar.show('L\'application a été mise à jour !')
             })
             .catch((e) => {
               console.log(e)

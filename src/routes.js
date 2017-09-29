@@ -22,12 +22,14 @@ import Notes from '@src/containers/Notes'
 import NewNote from '@src/containers/NewNote'
 import EditNote from '@src/containers/EditNote'
 import Note from '@src/containers/Note'
+import Modal from '@src/containers/Modal'
 
 import Bible from '@src/containers/MainScreenTabs/Bible'
 import MainScreen from '@src/containers/MainScreenTabs/MainScreenNavigator'
 
 const routesConfigs = {
   home: { screen: MainScreen },
+  modal: { screen: Modal },
 
   favorites: { screen: Favorites },
   liked: { screen: Liked },

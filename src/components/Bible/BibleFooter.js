@@ -29,7 +29,8 @@ const styles = EStyleSheet.create({
     borderColor: '$color.grey',
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.3
+    shadowOpacity: 0.3,
+    elevation: 3
   }
 })
 

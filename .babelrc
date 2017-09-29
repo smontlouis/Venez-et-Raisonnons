@@ -5,8 +5,7 @@
   ],
   "env": {
     "production": {
-      "plugins": ["transform-remove-console"],
-      "presets": ["react-optimize"]
+      "plugins": ["transform-remove-console"]
     }
   },
   "plugins": [["flow-react-proptypes", {"ignoreNodeModules": true}]],

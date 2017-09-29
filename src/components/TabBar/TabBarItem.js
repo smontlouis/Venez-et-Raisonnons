@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import { Platform } from 'react-native'
 import { compose, pure, branch, renderComponent } from 'recompose'
 import { Icon } from 'react-native-elements'
 import glam, { View, TouchableOpacity, Text, withTheme } from 'glamorous-native'
@@ -29,15 +30,21 @@ const CircleImage = glam.image({
   height: 75
 })
 
+const ios = Platform.OS === 'ios'
+const profileImageWidth = ios ? 60 : 50
+
 const ProfileComponent = ({route, icon, label, index, jumpTo, active, theme, isLogged, user}: Props) => (
   <View
     backgroundColor='transparent'
     alignItems='center'
     justifyContent='center'
     width={75}
-    height={70}
+    height={ios ? 70 : 55}
   >
-    <CircleImage source={require('../../../static/images/circle.png')} />
+    {
+      Platform.OS === 'ios' &&
+      <CircleImage source={require('../../../static/images/circle.png')} />
+    }
     <TouchableOpacity
       activeOpacity={0.7}
       onPress={jumpTo}
@@ -67,7 +74,7 @@ const ProfileComponent = ({route, icon, label, index, jumpTo, active, theme, isL
         isLogged &&
         <ProfileImage
           source={user.get('photoURL') ? { uri: user.get('photoURL') } : require('../../../static/images/anonymous-user.jpg')}
-          style={{ width: 60, height: 60, borderRadius: 30, borderWidth: 2 }}
+          style={{ width: profileImageWidth, height: profileImageWidth, borderRadius: profileImageWidth / 2, borderWidth: 2 }}
         />
       }
     </TouchableOpacity>

@@ -18,7 +18,8 @@ const styles = EStyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'stretch',
     borderTopWidth: 1,
-    borderTopColor: '$color.grey'
+    borderTopColor: '$color.grey',
+    elevation: 4
   },
   button: {
     paddingLeft: 15,
