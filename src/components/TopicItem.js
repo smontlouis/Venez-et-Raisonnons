@@ -53,9 +53,9 @@ const styles = EStyleSheet.create({
   }
 })
 
-const getLocalImagePath = (state, props) => state.get('topics').get('localImages').get(props.id)
+const getLocalImagePath = (state, props) => state.get('topics').get('localImages').get(props.id) || ''
 const getCurrentTopic = (state, props) => state.getIn(['topics', 'topics']).get(props.id)
-const getPrevImgUrl = (state, props) => getCurrentTopic(state, props).get('image_url')
+const getPrevImgUrl = (state, props) => getCurrentTopic(state, props).get('image_url') || ''
 const getQuestions = state => state.getIn(['questions', 'questions'])
 const getNewQuestions = state => state.getIn(['questions', 'newQuestions'])
 
