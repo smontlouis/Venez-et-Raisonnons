@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { StatusBar, ScrollView } from 'react-native'
+import { StatusBar, ScrollView, Platform } from 'react-native'
 import { compose, pure, withStateHandlers } from 'recompose'
 import { FormLabel, FormInput } from 'react-native-elements'
 import { withNavigation } from 'react-navigation'
@@ -55,7 +55,7 @@ const NewNote = ({ title, navigation, selectedIds, note, changeNote, saveNote }:
         SAUVEGARDER
       </FixedButton>
     </FixedContainer>
-    <KeyboardSpacer />
+    { Platform.OS === 'ios' && <KeyboardSpacer /> }
   </Container>
 )
 
