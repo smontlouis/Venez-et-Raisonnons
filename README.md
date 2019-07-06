@@ -1,4 +1,4 @@
-# Venez et Raisonnons
+# Venez et Raisonnons - UNMAINTAINED PROJECT
 
 Ceci est le code source de l'application Venez et Raisonnons, disponible sur [Google Play](https://play.google.com/store/apps/details?id=com.pleadapp) et [App Store](https://itunes.apple.com/fr/app/venez-et-raisonnons/id1206099949?mt=8).
 
