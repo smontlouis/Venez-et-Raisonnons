@@ -70,7 +70,7 @@
     "redux-persist-transform-immutable": "^4.3.0",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.4",
-    "showdown": "^1.6.4"
+    "showdown": "^1.9.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
